@@ -98,7 +98,7 @@ class LocalFileManager: @unchecked Sendable {
         return folderURL.appendingPathComponent("\(modelName).json")
     }
     
-    // MARK: - Image Management
+    // MARK: - 图片管理
     
     func saveImage(image: UIImage, imageName: String, folderName: String) {
         createFolderIfNeeded(folderName: folderName)

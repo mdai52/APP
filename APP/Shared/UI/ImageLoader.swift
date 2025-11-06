@@ -1,61 +1,12 @@
-//
-//  ImageLoader.swift
-//  APP
-//
-//  Created by pxx917144686 on 2025/09/18.
-//
-
-import Foundation
 import SwiftUI
 import Combine
+import UIKit
 
-struct ImageLoaderView<Placeholder: View, ConfiguredImage: View>: View {
-    var url: String?
-    private let placeholder: () -> Placeholder
-    private let image: (Image) -> ConfiguredImage
-    private let completion: ((UIImage) -> Void)?
-
-    @ObservedObject var imageLoader: ImageLoaderService
-    @State var imageData: UIImage?
-
-    init(
-        url: String?,
-        @ViewBuilder placeholder: @escaping () -> Placeholder,
-        @ViewBuilder image: @escaping (Image) -> ConfiguredImage,
-        completion: ((UIImage) -> Void)? = nil
-    ) {
-        
-        self.url = url
-        self.placeholder = placeholder
-        self.image = image
-        self.imageLoader = ImageLoaderService(url: URL(string: url ?? "http://apple.com")!)
-        self.completion = completion
-    }
-
-    @ViewBuilder private var imageContent: some View {
-        if let data = imageData {
-            image(Image(uiImage: data))
-        } else {
-            placeholder()
-        }
-    }
-
-    var body: some View {
-        imageContent
-            .onReceive(imageLoader.$image) { imageData in
-                self.imageData = imageData
-                completion?(imageData)
-            }
-    }
-}
-
-@MainActor
-class ImageLoaderService: ObservableObject {
-    @Published var image = UIImage()
+class ImageLoader: ObservableObject {
+    @Published var image: UIImage?
+    @Published var error: Error?
     
-    private var imageSubscription: AnyCancellable?
-    private let fileManager = LocalFileManager.instance
-    private let folderName: String = "APP_images"
+    private var cancellable: AnyCancellable?
     private let url: URL
     
     init(url: URL) {
@@ -63,28 +14,68 @@ class ImageLoaderService: ObservableObject {
         loadImage()
     }
     
-    private func loadImage() {
-        if let savedImage = fileManager.getImage(imageName: url.path.md5, folderName: folderName) {
-            image = savedImage
-        } else {
-            downloadImage()
-        }
+    deinit {
+        cancel()
     }
     
-    private func downloadImage() {
-        imageSubscription = NetworkingManager.download(url: url)
-            .tryMap({ (data) -> UIImage? in
-                return UIImage(data: data)
-            })
+    func loadImage() {
+        // Check cache first
+        if let cachedImage = ImageCache.shared[url] {
+            self.image = cachedImage
+            return
+        }
+        
+        // If not in cache, download it
+        let currentURL = url // Capture the URL to avoid strong reference cycle
+        cancellable = URLSession.shared.dataTaskPublisher(for: currentURL)
+            .map { UIImage(data: $0.data) }
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] (returnedImage) in
-                guard let self = self, let downloadedImage = returnedImage else { return }
-                
-                Task { @MainActor in
-                    self.image = downloadedImage
-                    self.imageSubscription?.cancel()
-                    self.fileManager.saveImage(image: downloadedImage, imageName: self.url.path.md5, folderName: self.folderName)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    if case .failure(let error) = completion {
+                        self?.error = error
+                    }
+                },
+                receiveValue: { [weak self] image in
+                    guard let self = self, let image = image else { return }
+                    // Cache the image
+                    ImageCache.shared[currentURL] = image
+                    self.image = image
                 }
-            })
+            )
+    }
+    
+    func cancel() {
+        cancellable?.cancel()
+    }
+}
+
+struct ImageView: View {
+    @StateObject private var loader: ImageLoader
+    private let placeholder: Image
+    private let configuration: (Image) -> Image
+    
+    init(
+        url: URL,
+        placeholder: Image = Image(systemName: "photo"),
+        configuration: @escaping (Image) -> Image = { $0 }
+    ) {
+        _loader = StateObject(wrappedValue: ImageLoader(url: url))
+        self.placeholder = placeholder
+        self.configuration = configuration
+    }
+    
+    var body: some View {
+        Group {
+            if let image = loader.image {
+                configuration(Image(uiImage: image))
+            } else if loader.error != nil {
+                placeholder
+                    .foregroundColor(.secondary)
+            } else {
+                ProgressView()
+            }
+        }
+        .onAppear { loader.loadImage() }
     }
 }

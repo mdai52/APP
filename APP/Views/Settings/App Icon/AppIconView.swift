@@ -71,6 +71,16 @@ struct AppIconView: View {
 	}
 }
 
+extension Image {
+	func appIconStyle(size: CGFloat = 60) -> some View {
+		self
+			.resizable()
+			.aspectRatio(contentMode: .fit)
+			.frame(width: size, height: size)
+			.cornerRadius(size * 0.2)
+	}
+}
+
 extension AppIconView {
 	@ViewBuilder
 	private func _icon(
@@ -85,10 +95,15 @@ extension AppIconView {
 				Image(uiImage: icon.image)
 					.appIconStyle()
 				
-				NBTitleWithSubtitleView(
-					title: icon.displayName,
-					subtitle: icon.author
-				)
+				VStack(alignment: .leading, spacing: 2) {
+					Text(icon.displayName)
+						.font(.headline)
+					if !icon.author.isEmpty {
+						Text(icon.author)
+							.font(.subheadline)
+							.foregroundColor(.secondary)
+					}
+				}
 				
 				if currentIcon == icon.key {
 					Image(systemName: "checkmark")

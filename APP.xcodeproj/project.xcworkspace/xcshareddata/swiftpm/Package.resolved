@@ -1,5 +1,5 @@
 {
-  "originHash" : "369788ba97ea699a5603498192cc08833fe6bf624fb4d99a76b11c506058d282",
+  "originHash" : "1c3dcc42cdffd3ee96eeef04f8aa138d36acb59366823d8221d11c2ab856b0c2",
   "pins" : [
     {
       "identity" : "altsourcekit",
@@ -53,15 +53,6 @@
       "state" : {
         "revision" : "742f624a998cba2a9e653d9b1e91ad3f3a5dff6b",
         "version" : "4.15.2"
-      }
-    },
-    {
-      "identity" : "idevicekit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pxx917144686/IDeviceKit.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "8a1488793a424b8770eb5df521ba34a3fe038b61"
       }
     },
     {

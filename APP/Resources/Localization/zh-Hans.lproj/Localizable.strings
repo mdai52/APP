@@ -1,0 +1,4 @@
+/* Package Handler */
+"package_handler_processing" = "正在处理包文件...";
+"package_handler_success" = "包文件处理成功";
+"package_handler_error" = "处理包文件失败: %@";

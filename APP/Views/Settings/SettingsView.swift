@@ -5,19 +5,14 @@ import Darwin
 struct SettingsView: View {
     private let _githubUrl = "https://github.com/pxx917144686/APP"
     @State private var currentIcon = UIApplication.shared.alternateIconName
-    @StateObject private var optionsManager = OptionsManager.shared
     
     var body: some View {
         NavigationView {
             Form {
                 _feedback()
-                
                 appearanceSection
-                
-                advancedFeaturesSection
-                
-                resetSection
             }
+            .navigationTitle("设置")
         }
     }
 }
@@ -51,37 +46,4 @@ extension SettingsView {
             }
         }
     }
-    
-
-    private var advancedFeaturesSection: some View {
-        Section {
-            NavigationLink(destination: CertificatesView()) {
-                Label("证书管理", systemImage: "checkmark.seal")
-            }
-            NavigationLink(destination: ConfigurationView()) {
-                Label("签名配置", systemImage: "signature")
-            }
-            NavigationLink(destination: ArchiveView()) {
-                Label("归档设置", systemImage: "archivebox")
-            }
-            NavigationLink(destination: InstallationView()) {
-                Label("安装选项", systemImage: "arrow.down.circle")
-            }
-        } header: {
-            Text("高级功能")
-        } footer: {
-            Text("管理证书、配置签名选项和安装设置。")
-        }
-    }
-
-    private var resetSection: some View {
-        Section {
-            NavigationLink(destination: ResetView()) {
-                Label("重置", systemImage: "trash")
-            }
-        } footer: {
-            Text("重置应用的源、证书、应用程序和设置。")
-        }
-    }    
-
 }
