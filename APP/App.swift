@@ -11,34 +11,26 @@ struct FeatherApp: App {
     
     @StateObject var themeManager: ThemeManager
     @StateObject var appStore: AppStore
-    let storage: Storage
     
     init() {
-        // Initialize all shared instances
         _themeManager = StateObject(wrappedValue: ThemeManager.shared)
         _appStore = StateObject(wrappedValue: AppStore.this)
-        self.storage = Storage.shared
     }
-    
+
     func _handleURL(_ url: URL) {
         logger.info("Handling URL: \(url.absoluteString)")
-        // Handle URL opening here
-        // Example: Handle different URL schemes or universal links
         if url.scheme?.hasPrefix("feather") == true {
             handleFeatherURL(url)
         }
     }
     
     private func handleFeatherURL(_ url: URL) {
-        // Handle feather:// URLs
         logger.info("Handling Feather URL: \(url.absoluteString)")
-        // Add your URL handling logic here
     }
 	
 	var body: some Scene {
 		WindowGroup {
 			VariedTabbarView()
-				.environment(\.managedObjectContext, storage.context)
 				.environmentObject(themeManager)
 				.environmentObject(appStore)
 				.onOpenURL(perform: _handleURL)
@@ -69,15 +61,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         return true
     }
-    
-
-    
+        
     private func setupLibraryPaths() {
         // Tools文件夹已删除，不再需要设置库文件路径
     }
-    
-
-    
+        
     private func createDocumentsDirectories() {
         let fileManager = FileManager.default
         let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -90,7 +78,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         ]
         
         for url in directories {
-            try? fileManager.createDirectoryIfNeeded(at: url)
+            try? fileManager.createDirectory(at: url, withIntermediateDirectories: true)
         }
+    }
+}
+
+// MARK: - UIApplication Extension
+public extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
     }
 }

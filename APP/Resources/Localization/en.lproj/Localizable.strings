@@ -1,4 +1,0 @@
-/* Package Handler */
-"package_handler_processing" = "Processing package file...";
-"package_handler_success" = "Successfully processed package file";
-"package_handler_error" = "Failed to process package file: %@";

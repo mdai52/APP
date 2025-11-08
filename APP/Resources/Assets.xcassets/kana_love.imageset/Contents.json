@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icon_placeholder.png",
+      "filename" : "kana_love.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "kana_love.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "kana_love.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
