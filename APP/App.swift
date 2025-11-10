@@ -20,7 +20,7 @@ struct App: SwiftUI.App {
 
 // MARK: - App Delegate
 class AppDelegate: NSObject, UIApplicationDelegate {
-    // 后台会话完成处理器
+    // 后台完成处理
     var backgroundSessionCompletionHandler: (() -> Void)?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -42,8 +42,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 // MARK: - Previews
 struct App_Previews: SwiftUI.PreviewProvider {
     static var previews: some SwiftUI.View {
+        let themeManager = ThemeManager.shared
         TabbarView()
-            .environmentObject(ThemeManager.shared)
+            .environmentObject(themeManager)
             .environmentObject(AppStore.this)
     }
 }

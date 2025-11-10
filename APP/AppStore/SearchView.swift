@@ -348,7 +348,7 @@ class APIService: NSObject, URLSessionDelegate {
     let baseURL = "https://itunes.apple.com"
     
     enum Endpoint {
-        case search(term: String, limit: Int = 20)
+        case search(term: String, country: String, limit: Int = 20)
         case lookup(id: String)
         case reviews(id: String, page: Int = 1)
         case similar(id: String, limit: Int = 10)
@@ -357,8 +357,8 @@ class APIService: NSObject, URLSessionDelegate {
         
         var urlString: String {
             switch self {
-            case .search(let term, let limit):
-                return "\(Self.baseURL)/search?term=\(term.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? term)&country=us&media=software&limit=\(limit)"
+            case .search(let term, let country, let limit):
+                return "\(Self.baseURL)/search?term=\(term.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? term)&country=\(country)&media=software&limit=\(limit)"
             case .lookup(let id):
                 return "\(Self.baseURL)/lookup?id=\(id)"
             case .reviews(let id, let page):
@@ -1504,8 +1504,8 @@ struct SearchView: SwiftUI.View {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(.secondary)
-                    TextField("搜索app、游戏和更多内容...", text: $searchKey)
-                        .font(.title3)
+                    TextField("游戏、App、故事等", text: $searchKey)
+                        .font(.body)
                         .focused($searchKeyFocused)
                         .onChange(of: searchKey) { newValue in
                             if !newValue.isEmpty {
@@ -3253,8 +3253,9 @@ struct SearchView: SwiftUI.View {
         print("🔄 [地区刷新] 开始刷新地区设置")
         
         guard let account = appStore.selectedAccount else {
-            print("🔄 [地区刷新] 没有当前账户，重置为默认地区")
-            searchRegion = "US"
+            print("🔄 [地区刷新] 没有当前账户，使用系统推荐地区")
+            // 移除默认US设置，让effectiveSearchRegion自动处理
+            searchRegion = ""
             isUserSelectedRegion = false
             return
         }
@@ -3427,7 +3428,7 @@ struct SearchView: SwiftUI.View {
             .scaleEffect(sessionManager.isReconnecting ? 1.05 : 1.0)
             .animation(.easeInOut(duration: 0.3), value: sessionManager.isReconnecting)
         }
-        .buttonStyle(.plain) // 更新为新的语法
+        .buttonStyle(.plain) 
         .contentShape(Rectangle()) // 确保整个区域都可点击
         .help(cacheStatusTooltip)
     }

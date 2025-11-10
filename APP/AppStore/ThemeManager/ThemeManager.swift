@@ -1,4 +1,26 @@
 import SwiftUI
+import UIKit
+
+// Color扩展，用于从十六进制字符串创建颜色
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: Double(r) / 255, green: Double(g) / 255, blue: Double(b) / 255, opacity: Double(a) / 255)
+    }
+}
 
 // MARK: - 间距常量
 struct Spacing {
@@ -28,6 +50,10 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
     }
     
     
+    @Published var accentColor: Color = Color(hex: "#007AFF")
+    
+    private var notificationObserver: Any?
+    
     private init() {
         // 使用与设置页面相同的存储键
         let savedTheme = UserDefaults.standard.integer(forKey: "Feather.userInterfaceStyle")
@@ -42,14 +68,30 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
         // 直接设置初始值，避免触发didSet
         _selectedTheme = Published(initialValue: initialTheme)
         
+        // 初始化accentColor
+        updateAccentColor()
+        
+        // 使用NotificationCenter监听UserDefaults变化
+        notificationObserver = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
+            // 当UserDefaults变化时，更新颜色
+            self?.updateAccentColor()
+        }
+        
         // 手动调用一次更新
         updateUserInterfaceStyle()
     }
     
+    deinit {
+        // 移除通知监听
+        if let observer = notificationObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
     
-    
-    var accentColor: Color {
-        return .blue
+    private func updateAccentColor() {
+        // 从UserDefaults中读取用户选择的颜色，如果没有则使用默认蓝色
+        let savedColorHex = UserDefaults.standard.string(forKey: "APP.userTintColor") ?? "#007AFF"
+        accentColor = Color(hex: savedColorHex)
     }
     
     var backgroundColor: Color {

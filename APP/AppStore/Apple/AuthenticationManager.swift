@@ -262,11 +262,18 @@ class AuthenticationManager: @unchecked Sendable {
         // 3. 从Cookie中检测地区信息
         let cookieCountryCode = detectCountryCodeFromCookies()
         print("🌍 [地区检测] 从Cookie检测地区代码: \(cookieCountryCode)")
-        return cookieCountryCode
+        // 只有当Cookie检测到的不是默认值时才返回
+        if cookieCountryCode != "US" {
+            return cookieCountryCode
+        }
         
         // 4. 从邮箱域名推断地区（作为最后手段，但要谨慎）
         let emailCountryCode = inferCountryCodeFromEmail(email)
         print("🌍 [地区检测] 从邮箱推断地区代码: \(emailCountryCode)")
+        // 只有当邮箱推断出具体地区时才返回
+        if emailCountryCode != "US" {
+            return emailCountryCode
+        }
         
         // 5. 如果所有方法都失败，默认返回US（美区）
         print("🌍 [地区检测] 使用默认地区代码: US")

@@ -35,16 +35,30 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.4.7</string>
+	<string>2.4.8</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>itms-services</string>
+		<string>itms-apps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>此应用可能需要访问相机以扫描二维码下载应用。</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>此应用需要访问本地网络以启动临时服务器，用于安装下载的应用程序。</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -63,28 +77,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	
-	<!-- 本地网络权限 - 应用需要启动HTTP服务器进行应用安装 -->
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>此应用需要访问本地网络以启动临时服务器，用于安装下载的应用程序。</string>
-	
-	<!-- 后台模式 - 支持后台下载和安装 -->
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
-		<string>remote-notification</string>
-	</array>
-	
-	<!-- Safari浏览器访问权限 - 应用需要打开Safari或使用SFSafariViewController -->
-	<key>NSCameraUsageDescription</key>
-	<string>此应用可能需要访问相机以扫描二维码下载应用。</string>
-	
-	<!-- 应用支持处理的URL Scheme - 支持itms-services链接 -->
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>itms-services</string>
-		<string>itms-apps</string>
 	</array>
 </dict>
 </plist>

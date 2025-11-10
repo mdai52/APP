@@ -11,6 +11,7 @@ struct SettingsView: View {
     @State private var showUpdateAlert = false
     @State private var updateMessage = ""
     @State private var latestVersion = ""
+    @EnvironmentObject private var themeManager: ThemeManager
     
     // 从Info.plist读取当前版本信息
     private var currentVersion: String {
@@ -130,25 +131,23 @@ extension SettingsView {
             .disabled(isCheckingVersion)
             
             // 显示当前版本号
-            HStack {
-                Text("当前版本")
-                Spacer()
-                Text(currentVersion)
-                    .foregroundColor(.secondary)
-                    .font(.subheadline)
-            }
+            Text("当前版本 " + currentVersion)
+                .foregroundStyle(.secondary)
+                .font(.subheadline)
         } footer: {
             Text("有任何问题，或建议，请随时提交。")
         }
     }
-
+    
     private var appearanceSection: some View {
         Section {
             NavigationLink(destination: AppearanceView().environmentObject(ThemeManager.shared)) {
                 Label("外观", systemImage: "paintbrush")
+                    .foregroundStyle(themeManager.accentColor)
             }
             NavigationLink(destination: AppIconView(currentIcon: $currentIcon)) {
                 Label("图标", systemImage: "app.badge")
+                    .foregroundStyle(themeManager.accentColor)
             }
         }
     }

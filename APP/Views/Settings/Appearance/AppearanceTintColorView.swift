@@ -124,10 +124,16 @@ struct AppearanceTintColorView: View {
 			ColorPickerView(selectedColor: $selectedColor, selectedColorHex: $selectedColorHex)
 		}
 		.onChange(of: selectedColorHex) { value in
-			if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-			   let window = windowScene.windows.first {
-				window.tintColor = UIColor(Color(hex: value))
+			// 保存到UserDefaults（@AppStorage会自动处理）
+			// 更新window.tintColor
+			if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+				for window in windowScene.windows {
+					window.tintColor = UIColor(Color(hex: value))
+				}
 			}
+			
+			// 手动触发ThemeManager更新
+			ThemeManager.shared.objectWillChange.send()
 		}
 		.onAppear {
 			selectedColor = Color(hex: selectedColorHex)
