@@ -12,13 +12,12 @@ enum TabEnum: String, CaseIterable, Hashable {
     case downloads
     case search
     
-    // 标签标题
     var title: String {
         switch self {
         case .settings:  return "设置"
-        case .tfapps:     return "TF版获取"
-        case .downloads:  return "下载任务"
-        case .search:     return ""
+        case .tfapps:     return "TF版"
+        case .downloads:  return "下载"
+        case .search:     return "搜索"
         }
     }
     

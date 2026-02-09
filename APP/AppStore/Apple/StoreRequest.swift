@@ -652,7 +652,7 @@ class StoreRequest: @unchecked Sendable {
     }
 }
 // MARK: - 响应类型
-enum StoreError: Error, LocalizedError, Equatable {
+public enum StoreError: Error, LocalizedError, Equatable {
     case networkError(Error)
     case invalidResponse
     case authenticationFailed
@@ -668,7 +668,7 @@ enum StoreError: Error, LocalizedError, Equatable {
     case lockedAccount
     case keychainError
     case userInteractionRequired
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .networkError(let error):
             return "Network error: \(error.localizedDescription)"
@@ -702,7 +702,7 @@ enum StoreError: Error, LocalizedError, Equatable {
             return "Unknown error occurred"
         }
     }
-    static func fromFailureType(_ failureType: String) -> StoreError {
+    public static func fromFailureType(_ failureType: String) -> StoreError {
         switch failureType {
         case "authenticationFailed":
             return .authenticationFailed
@@ -718,7 +718,7 @@ enum StoreError: Error, LocalizedError, Equatable {
             return .unknownError
         }
     }
-    static func == (lhs: StoreError, rhs: StoreError) -> Bool {
+    public static func == (lhs: StoreError, rhs: StoreError) -> Bool {
         switch (lhs, rhs) {
         case (.invalidResponse, .invalidResponse),
              (.authenticationFailed, .authenticationFailed),

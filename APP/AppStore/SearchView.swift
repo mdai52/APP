@@ -159,37 +159,24 @@ struct EnhancedAppCard: SwiftUI.View {
     
     // 功能标签区域
     private var featuresSection: some SwiftUI.View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                ForEach(getFeatureTags(), id: \.self) { tag in
-                    HStack(spacing: 4) {
-                        if tag.contains("社交") {
-                            Image(systemName: "person.2.fill")
-                                .font(.system(size: 10))
-                        } else if tag.contains("娱乐") {
-                            Image(systemName: "film.fill")
-                                .font(.system(size: 10))
-                        } else if tag.contains("工具") || tag.contains("效率") {
-                            Image(systemName: "wrench.fill")
-                                .font(.system(size: 10))
-                        } else if tag.contains("游戏") {
-                            Image(systemName: "gamecontroller.fill")
-                                .font(.system(size: 10))
-                        } else {
-                            Image(systemName: "tag.fill")
-                                .font(.system(size: 10))
-                        }
-                        Text(tag)
-                            .font(.system(size: 11))
-                            .fontWeight(.medium)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("功能标签")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.primary)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(getFeatureTags(), id: \.self) {
+                        Text($0)
+                            .font(.system(size: 12))
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(Color(.systemGray6))
+                            )
                     }
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(.secondarySystemBackground))
-                    )
                 }
             }
         }
@@ -667,31 +654,36 @@ struct EnhancedAppDetailView: SwiftUI.View {
                 
                 Spacer()
                 
-                // 获取按钮
-                Button(action: { onPrimaryAction?(app) }) {
-                    if isDownloading {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                            .frame(width: 20, height: 20)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(themeManager.accentColor)
-                            )
-                    } else {
-                        Text(buttonTitle)
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 10)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(themeManager.accentColor)
-                            )
+                // 按钮组
+                HStack(spacing: 8) {
+                    // 获取按钮
+                    Button(action: { onPrimaryAction?(app) }) {
+                        if isDownloading {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                .frame(width: 20, height: 20)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 10)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(themeManager.accentColor)
+                                )
+                        } else {
+                            Text(buttonTitle)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 10)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(themeManager.accentColor)
+                                )
+                        }
                     }
+                    .disabled(isDownloading)
+                    
+
                 }
-                .disabled(isDownloading) // 下载时禁用按钮
             }
         }
         .padding(.vertical)
@@ -989,6 +981,9 @@ struct SearchView: SwiftUI.View {
     // 下载状态管理
     @State var isDownloading = false
     
+    // 购买状态管理
+    @State var purchasingTrackId: Int?
+    
     // 视图模式枚举
 
     
@@ -1005,8 +1000,9 @@ struct SearchView: SwiftUI.View {
             // 如果用户手动选择了地区，使用选择
             return searchRegion
         }
-        // 默认返回美国地区
-        return "US"
+        // 根据设备语言自动选择地区
+        let languageCode = Locale.current.languageCode ?? ""
+        return getRegionFromLanguageCode(languageCode)
     }
     
     // iOS兼容的地区检测方法
@@ -1314,8 +1310,8 @@ struct SearchView: SwiftUI.View {
     @State var selectedApp: iTunesSearchResult?
     @State var availableVersions: [StoreAppVersion] = []
     @State var versionHistory: [iTunesClient.AppVersionInfo] = []
-    // 正在执行“获取”的条目 trackId（避免一次点击影响所有条目按钮）
-    @State private var purchasingTrackId: Int? = nil
+    
+    // 正在执行“获取”的版本信息
     @State private var showPurchaseAlert: Bool = false
     @State private var purchaseAlertText: String = ""
     @State var isLoadingVersions = false
@@ -1446,6 +1442,7 @@ struct SearchView: SwiftUI.View {
         .sheet(isPresented: $showAccountMenu) {
             accountMenuSheet
         }
+
     }
     
     // 智能地区检测
@@ -1504,7 +1501,7 @@ struct SearchView: SwiftUI.View {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(.secondary)
-                    TextField("游戏、App、故事等", text: $searchKey)
+                    TextField("游戏、App", text: $searchKey)
                         .font(.body)
                         .focused($searchKeyFocused)
                         .onChange(of: searchKey) { newValue in
@@ -1714,8 +1711,7 @@ struct SearchView: SwiftUI.View {
                     }
                     
                     Button("账户详情") { showAccountMenu = true }
-                    Button("新增：添加账户") { showLoginSheet = true }
-                    Button("新增：刷新一下，解决地区识别问题") { refreshRegionSettings() }
+                    Button("添加Apple ID") { showLoginSheet = true }
                     
                     // 缓存管理功能
                     if appStore.selectedAccount != nil {
@@ -2411,15 +2407,21 @@ struct SearchView: SwiftUI.View {
     func resultCardView(item: iTunesSearchResult, index: Int) -> any SwiftUI.View {
         return EnhancedAppCard(app: item, onTap: { 
             // 处理app点击事件，显示详情页
-            let appDetailView = EnhancedAppDetailView(app: item, onPrimaryAction: { appToDownload in
-                // 处理获取/下载按钮点击事件
-                handleDownloadApp(appToDownload)
-            }, isDownloading: $isDownloading)
+            let appDetailView = EnhancedAppDetailView(
+                app: item,
+                onPrimaryAction: { appToDownload in
+                    // 处理获取/下载按钮点击事件
+                    handleDownloadApp(appToDownload)
+                },
+                isDownloading: $isDownloading
+            )
             .environmentObject(themeManager)
             
             // 以sheet形式显示详情页
             let hostingController = UIHostingController(rootView: appDetailView)
-            UIApplication.shared.windows.first?.rootViewController?.present(hostingController, animated: true)
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                windowScene.windows.first?.rootViewController?.present(hostingController, animated: true)
+            }
         }, isDownloading: $isDownloading)
         .environmentObject(themeManager)
     }
@@ -2706,17 +2708,14 @@ struct SearchView: SwiftUI.View {
     }
     // Version Selection Methods
     func loadVersionsForApp(_ app: iTunesSearchResult) {
-        // 首先同步设置selectedApp，确保UI立即更新
+        // 首先同步设置selectedApp和showVersionPicker，确保UI立即更新
         selectedApp = app
-        // 然后在Task中异步加载版本信息和更新其他状态
+        isLoadingVersions = true
+        versionError = nil
+        availableVersions = []
+        
+        // 然后在Task中异步加载版本信息
         Task {
-            await MainActor.run {
-                isLoadingVersions = true
-                versionError = nil
-                availableVersions = []
-                // 显示版本选择器
-                showVersionPicker = true
-            }
             do {
                 print("[SearchView] 开始加载app版本: \(app.trackName)")
                 // 获取已保存的账户信息
@@ -2738,6 +2737,10 @@ struct SearchView: SwiftUI.View {
                         self.versionHistory = hist
                         self.isLoadingVersions = false
                         print("[SearchView] 成功加载 \(versions.count) 个版本, 历史记录 \(hist.count) 条")
+                        // 延迟显示版本选择器，确保所有数据都已加载完成
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.showVersionPicker = true
+                        }
                     }
                 case .failure(let error):
                     throw error
@@ -2747,6 +2750,8 @@ struct SearchView: SwiftUI.View {
                     self.versionError = error.localizedDescription
                     self.isLoadingVersions = false
                     print("[SearchView] 加载版本失败: \(error)")
+                    // 即使出错也显示版本选择器，以便用户看到错误信息
+                    self.showVersionPicker = true
                 }
             }
         }
@@ -2856,18 +2861,35 @@ struct SearchView: SwiftUI.View {
     private var versionsListView: some SwiftUI.View {
         ScrollView {
             LazyVStack(spacing: 16) {
-                // app名称标题
-                VStack(spacing: 8) {
-                    Text(selectedApp?.trackName ?? "APP")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .multilineTextAlignment(.center)
+                // app图标和名称标题
+                VStack(spacing: 16) {
+                    // 应用图标
+                    AsyncImage(url: URL(string: selectedApp?.artworkUrl512 ?? "")) {
+                        image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+                    } placeholder: {
+                        Image(systemName: "app.fill")
+                            .font(.system(size: 64))
+                            .foregroundColor(themeManager.accentColor.opacity(0.3))
+                    }
+                    .frame(width: 100, height: 100)
                     
-                    Text(selectedApp?.artistName ?? "Unknown Developer")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
+                    // 应用名称和开发者
+                    VStack(spacing: 8) {
+                        Text(selectedApp?.trackName ?? "APP")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .multilineTextAlignment(.center)
+                        
+                        Text(selectedApp?.artistName ?? "Unknown Developer")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 24)
@@ -2907,8 +2929,9 @@ struct SearchView: SwiftUI.View {
             // 版本信息区域
             VStack(alignment: .leading, spacing: 8) {
                 // 版本号 + 发布日期（从 versionHistory 映射）
-                HStack(spacing: 8) {
-                    Text(displayVersionTitle(version: version))
+                VStack(alignment: .leading, spacing: 4) {
+                    // 版本号
+                    Text(getVersionNumber(version: version))
                         .font(.body)
                         .fontWeight(.bold)
                         .foregroundColor(themeManager.accentColor)
@@ -2918,6 +2941,20 @@ struct SearchView: SwiftUI.View {
                             Capsule()
                                 .fill(themeManager.accentColor.opacity(0.1))
                         )
+                    
+                    // 发布日期
+                    if let date = getVersionDate(version: version) {
+                        Text(date)
+                            .font(.body)
+                            .fontWeight(.bold)
+                            .foregroundColor(themeManager.accentColor)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 2)
+                            .background(
+                                Capsule()
+                                    .fill(themeManager.accentColor.opacity(0.1))
+                            )
+                    }
                 }
                 
                 // 发布说明（首行）
@@ -2989,10 +3026,59 @@ struct SearchView: SwiftUI.View {
     }
     // 映射显示：版本标题（含日期）
     private func displayVersionTitle(version: StoreAppVersion) -> String {
+        // 首先优先使用版本对象自身的发布日期
+        if let date = version.formattedReleaseDate {
+            return "版本 \(version.versionString) · \(date)"
+        }
+        
+        // 首先尝试精确匹配
         if let h = versionHistory.first(where: { $0.version == version.versionString }) {
             return "版本 \(h.version) · \(h.formattedDate)"
         }
+        
+        // 如果精确匹配失败，尝试前缀匹配或模糊匹配
+        if let h = versionHistory.first(where: { version.versionString.hasPrefix($0.version) || $0.version.hasPrefix(version.versionString) }) {
+            return "版本 \(version.versionString) · \(h.formattedDate)"
+        }
+        
+        // 如果还是没有匹配，使用最新的版本日期
+        if let latestVersion = versionHistory.first {
+            return "版本 \(version.versionString) · \(latestVersion.formattedDate)"
+        }
+        
+        // 如果没有任何版本历史，只显示版本号
         return "版本 \(version.versionString)"
+    }
+    
+    // 获取版本号（用于两行显示）
+    private func getVersionNumber(version: StoreAppVersion) -> String {
+        return "版本 \(version.versionString)"
+    }
+    
+    // 获取版本日期（用于两行显示）
+    private func getVersionDate(version: StoreAppVersion) -> String? {
+        // 首先优先使用版本对象自身的发布日期
+        if let date = version.formattedReleaseDate {
+            return date
+        }
+        
+        // 首先尝试精确匹配
+        if let h = versionHistory.first(where: { $0.version == version.versionString }) {
+            return h.formattedDate
+        }
+        
+        // 如果精确匹配失败，尝试前缀匹配或模糊匹配
+        if let h = versionHistory.first(where: { version.versionString.hasPrefix($0.version) || $0.version.hasPrefix(version.versionString) }) {
+            return h.formattedDate
+        }
+        
+        // 如果还是没有匹配，使用最新的版本日期
+        if let latestVersion = versionHistory.first {
+            return latestVersion.formattedDate
+        }
+        
+        // 如果没有任何版本历史，返回nil
+        return nil
     }
     
     // 映射显示：发布说明首段
@@ -3003,6 +3089,7 @@ struct SearchView: SwiftUI.View {
                 return firstLine
             }
         }
+        // 没有发布说明时返回nil
         return nil
     }
     @MainActor
@@ -3534,4 +3621,6 @@ struct SearchView: SwiftUI.View {
             }
         }
     }
+    
+
 }

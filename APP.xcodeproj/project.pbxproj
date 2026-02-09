@@ -7,19 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8568CB172E768AC1003A3E08 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 8568CB162E768AC1003A3E08 /* Nuke */; };
-		8568CB192E768AC1003A3E08 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 8568CB182E768AC1003A3E08 /* NukeExtensions */; };
-		8568CB1B2E768AC1003A3E08 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8568CB1A2E768AC1003A3E08 /* NukeUI */; };
-		8568CB1D2E768AC1003A3E08 /* NukeVideo in Frameworks */ = {isa = PBXBuildFile; productRef = 8568CB1C2E768AC1003A3E08 /* NukeVideo */; };
-		8568D3262E769115003A3E08 /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 8568D3252E769115003A3E08 /* OpenSSL */; };
-		859304CE2E76A99D00D0052E /* ZsignSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 859304CD2E76A99D00D0052E /* ZsignSwift */; };
-		859304D02E76A99D00D0052E /* zsign in Frameworks */ = {isa = PBXBuildFile; productRef = 859304CF2E76A99D00D0052E /* zsign */; };
+		859304D02E76A99D00D0052E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		85A1B2C52E6F123400D4E5F6 /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 85A1B2C42E6F123400D4E5F6 /* ZipArchive */; };
 		85EC5BF22E768811006D9773 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = 85EC5BF12E768811006D9773 /* Vapor */; };
-		85EC5BF92E76882C006D9773 /* SWCompression in Frameworks */ = {isa = PBXBuildFile; productRef = 85EC5BF82E76882C006D9773 /* SWCompression */; };
-		85EC5D262E76890C006D9773 /* ArArchiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 85EC5D252E76890C006D9773 /* ArArchiveKit */; };
-		85EC5D292E76891C006D9773 /* AltSourceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 85EC5D282E76891C006D9773 /* AltSourceKit */; };
-		85FCEE922E6B374E0069A30A /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 85FCEE912E6B374E0069A30A /* ZIPFoundation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,18 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85EC5D292E76891C006D9773 /* AltSourceKit in Frameworks */,
 				85EC5BF22E768811006D9773 /* Vapor in Frameworks */,
-				859304CE2E76A99D00D0052E /* ZsignSwift in Frameworks */,
-				859304D02E76A99D00D0052E /* zsign in Frameworks */,
-				85EC5D262E76890C006D9773 /* ArArchiveKit in Frameworks */,
-				85EC5BF92E76882C006D9773 /* SWCompression in Frameworks */,
-				85FCEE922E6B374E0069A30A /* ZIPFoundation in Frameworks */,
-				8568CB192E768AC1003A3E08 /* NukeExtensions in Frameworks */,
-				8568CB172E768AC1003A3E08 /* Nuke in Frameworks */,
-				8568D3262E769115003A3E08 /* OpenSSL in Frameworks */,
-				8568CB1D2E768AC1003A3E08 /* NukeVideo in Frameworks */,
-				8568CB1B2E768AC1003A3E08 /* NukeUI in Frameworks */,
+				859304D02E76A99D00D0052E /* (null) in Frameworks */,
 				85A1B2C52E6F123400D4E5F6 /* ZipArchive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,19 +112,8 @@
 			);
 			name = APP;
 			packageProductDependencies = (
-				85FCEE912E6B374E0069A30A /* ZIPFoundation */,
 				85A1B2C42E6F123400D4E5F6 /* ZipArchive */,
 				85EC5BF12E768811006D9773 /* Vapor */,
-				85EC5BF82E76882C006D9773 /* SWCompression */,
-				85EC5D252E76890C006D9773 /* ArArchiveKit */,
-				85EC5D282E76891C006D9773 /* AltSourceKit */,
-				8568CB162E768AC1003A3E08 /* Nuke */,
-				8568CB182E768AC1003A3E08 /* NukeExtensions */,
-				8568CB1A2E768AC1003A3E08 /* NukeUI */,
-				8568CB1C2E768AC1003A3E08 /* NukeVideo */,
-				8568D3252E769115003A3E08 /* OpenSSL */,
-				859304CD2E76A99D00D0052E /* ZsignSwift */,
-				859304CF2E76A99D00D0052E /* zsign */,
 			);
 			productName = APP;
 			productReference = 851FD95F2E578774002136BA /* APP.app */;
@@ -215,15 +184,8 @@
 			mainGroup = 851FD9562E578774002136BA;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				85FCEE902E6B374E0069A30A /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				85A1B2C32E6F123400D4E5F6 /* XCRemoteSwiftPackageReference "ZipArchive" */,
 				85EC5BF02E768811006D9773 /* XCRemoteSwiftPackageReference "vapor" */,
-				85EC5BF72E76882C006D9773 /* XCRemoteSwiftPackageReference "SWCompression" */,
-				85EC5D152E7688C1006D9773 /* XCRemoteSwiftPackageReference "Nuke" */,
-				85EC5D242E76890C006D9773 /* XCRemoteSwiftPackageReference "ArArchiveKit" */,
-				85EC5D272E76891C006D9773 /* XCRemoteSwiftPackageReference "AltSourceKit" */,
-				8568D3242E769115003A3E08 /* XCRemoteSwiftPackageReference "OpenSSL" */,
-				859304CC2E76A99D00D0052E /* XCRemoteSwiftPackageReference "Zsign" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 851FD9602E578774002136BA /* Products */;
@@ -415,9 +377,9 @@
 					"$(PROJECT_DIR)/APP/Resources",
 					"$(PROJECT_DIR)/APP",
 				);
-				MARKETING_VERSION = 2.4.8;
+				MARKETING_VERSION = 2.4.9;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App2025;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
@@ -467,9 +429,9 @@
 					"$(PROJECT_DIR)/APP/Resources",
 					"$(PROJECT_DIR)/APP",
 				);
-				MARKETING_VERSION = 2.4.8;
+				MARKETING_VERSION = 2.4.9;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App2025;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
@@ -508,22 +470,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8568D3242E769115003A3E08 /* XCRemoteSwiftPackageReference "OpenSSL" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/krzyzanowskim/OpenSSL.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.3.3001;
-			};
-		};
-		859304CC2E76A99D00D0052E /* XCRemoteSwiftPackageReference "Zsign" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pxx917144686/Zsign";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		85A1B2C32E6F123400D4E5F6 /* XCRemoteSwiftPackageReference "ZipArchive" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ZipArchive/ZipArchive.git";
@@ -540,84 +486,9 @@
 				minimumVersion = 4.117.0;
 			};
 		};
-		85EC5BF72E76882C006D9773 /* XCRemoteSwiftPackageReference "SWCompression" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tsolomko/SWCompression.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.8.6;
-			};
-		};
-		85EC5D152E7688C1006D9773 /* XCRemoteSwiftPackageReference "Nuke" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kean/Nuke";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.8.0;
-			};
-		};
-		85EC5D242E76890C006D9773 /* XCRemoteSwiftPackageReference "ArArchiveKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LebJe/ArArchiveKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
-			};
-		};
-		85EC5D272E76891C006D9773 /* XCRemoteSwiftPackageReference "AltSourceKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pxx917144686/AltSourceKit.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		85FCEE902E6B374E0069A30A /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.19;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8568CB162E768AC1003A3E08 /* Nuke */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85EC5D152E7688C1006D9773 /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = Nuke;
-		};
-		8568CB182E768AC1003A3E08 /* NukeExtensions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85EC5D152E7688C1006D9773 /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = NukeExtensions;
-		};
-		8568CB1A2E768AC1003A3E08 /* NukeUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85EC5D152E7688C1006D9773 /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = NukeUI;
-		};
-		8568CB1C2E768AC1003A3E08 /* NukeVideo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85EC5D152E7688C1006D9773 /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = NukeVideo;
-		};
-		8568D3252E769115003A3E08 /* OpenSSL */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8568D3242E769115003A3E08 /* XCRemoteSwiftPackageReference "OpenSSL" */;
-			productName = OpenSSL;
-		};
-		859304CD2E76A99D00D0052E /* ZsignSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 859304CC2E76A99D00D0052E /* XCRemoteSwiftPackageReference "Zsign" */;
-			productName = ZsignSwift;
-		};
-		859304CF2E76A99D00D0052E /* zsign */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 859304CC2E76A99D00D0052E /* XCRemoteSwiftPackageReference "Zsign" */;
-			productName = zsign;
-		};
 		85A1B2C42E6F123400D4E5F6 /* ZipArchive */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 85A1B2C32E6F123400D4E5F6 /* XCRemoteSwiftPackageReference "ZipArchive" */;
@@ -627,26 +498,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85EC5BF02E768811006D9773 /* XCRemoteSwiftPackageReference "vapor" */;
 			productName = Vapor;
-		};
-		85EC5BF82E76882C006D9773 /* SWCompression */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85EC5BF72E76882C006D9773 /* XCRemoteSwiftPackageReference "SWCompression" */;
-			productName = SWCompression;
-		};
-		85EC5D252E76890C006D9773 /* ArArchiveKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85EC5D242E76890C006D9773 /* XCRemoteSwiftPackageReference "ArArchiveKit" */;
-			productName = ArArchiveKit;
-		};
-		85EC5D282E76891C006D9773 /* AltSourceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85EC5D272E76891C006D9773 /* XCRemoteSwiftPackageReference "AltSourceKit" */;
-			productName = AltSourceKit;
-		};
-		85FCEE912E6B374E0069A30A /* ZIPFoundation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 85FCEE902E6B374E0069A30A /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
-			productName = ZIPFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

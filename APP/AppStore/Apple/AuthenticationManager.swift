@@ -51,7 +51,7 @@ class AuthenticationManager: @unchecked Sendable {
             dsPersonId: response.dsPersonId,
             cookies: cookieStrings,
             countryCode: detectedCountryCode,
-            storeResponse: Account.StoreResponse(
+            storeResponse: Account.AccountStoreResponse(
                 directoryServicesIdentifier: response.dsPersonId,
                 passwordToken: response.passwordToken,
                 storeFront: detectedStoreFront

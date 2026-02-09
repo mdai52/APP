@@ -15,9 +15,7 @@ import SafariServices
 #if canImport(Vapor)
 import Vapor
 #endif
-#if canImport(ZsignSwift)
-import ZsignSwift
-#endif
+
 
 
 // DownloadStatus枚举
@@ -377,8 +375,32 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
                 return Response(status: .notFound)
             }
             
-            guard let ipaData = try? Data(contentsOf: URL(fileURLWithPath: self.ipaPath)) else {
-                return Response(status: .notFound)
+            // 检查是否需要签名
+            let shouldSign = req.parameters.get("sign") == "1"
+            
+            // 获取IPA数据
+            var ipaData: Data
+            if shouldSign {
+                // 尝试对IPA文件进行签名
+                do {
+                    let signedIPAPath = try self.signIPAIfNeeded()
+                    guard let data = try? Data(contentsOf: URL(fileURLWithPath: signedIPAPath)) else {
+                        return Response(status: .internalServerError)
+                    }
+                    ipaData = data
+                } catch {
+                    // 如果签名失败，返回原始IPA文件
+                    guard let data = try? Data(contentsOf: URL(fileURLWithPath: self.ipaPath)) else {
+                        return Response(status: .notFound)
+                    }
+                    ipaData = data
+                }
+            } else {
+                // 直接返回原始IPA文件
+                guard let data = try? Data(contentsOf: URL(fileURLWithPath: self.ipaPath)) else {
+                    return Response(status: .notFound)
+                }
+                ipaData = data
             }
             
             let response = Response(status: .ok)
@@ -755,7 +777,7 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
         let fullIPAURL = "\(ipaURL)?sign=1"
         
         // 使用公共代理服务转发本地URL
-        let proxyURL = "https://api.palera.in/genPlist?bundleid=\(appInfo.bundleIdentifier)&name=\(appInfo.bundleIdentifier)&version=\(appInfo.version)&fetchurl=\(fullIPAURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? fullIPAURL)"
+        let proxyURL = "https://api.palera.in/genPlist?bundleid=\(appInfo.bundleIdentifier)&name=\(appInfo.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? appInfo.name)&version=\(appInfo.version)&fetchurl=\(fullIPAURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? fullIPAURL)"
         
         NSLog("🔗 [APP] 外部manifest URL: \(proxyURL)")
         
@@ -792,6 +814,12 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
         }
         
         return plistData
+    }
+    
+    // MARK: - IPA签名方法
+    private func signIPAIfNeeded() throws -> String {
+        // 由于移除了Zsign依赖，直接返回原始IPA文件
+        return ipaPath
     }
     
     // MARK: - 图标处理方法
@@ -1003,7 +1031,7 @@ struct DownloadView: SwiftUI.View {
                     value: animateCards
                 )
             
-            // 关于代码作者按钮 - 限制宽度的设计
+            // 关于作者按钮
             Button(action: {
                 guard let url = URL(string: "https://github.com/pxx917144686"),
                     UIApplication.shared.canOpenURL(url) else {
@@ -1012,7 +1040,7 @@ struct DownloadView: SwiftUI.View {
                 UIApplication.shared.open(url)
             }) {
                 HStack(spacing: 16) {
-                    Text("👉 看看源代码")
+                    Text("👉看看源代码")
                         .font(.body)
                         .fontWeight(.medium)
                         .foregroundColor(.white)
@@ -1294,41 +1322,12 @@ struct DownloadView: SwiftUI.View {
                 throw PackageInstallationError.installationFailed("需要ZipArchive库")
                 #endif
                 
-                let payloadDir = tempDir.appendingPathComponent("Payload")
-                let payloadContents = try FileManager.default.contentsOfDirectory(at: payloadDir, includingPropertiesForKeys: nil)
-                
-                guard let appBundle = payloadContents.first(where: { $0.pathExtension == "app" }) else {
-                    throw PackageInstallationError.installationFailed("未找到.app文件")
-                }
-                
-                let appPath = appBundle.path
-                let success = Zsign.sign(
-                    appPath: appPath,
-                    entitlementsPath: "",
-                    customIdentifier: appInfo.bundleIdentifier,
-                    customName: appInfo.name,
-                    customVersion: appInfo.version,
-                    adhoc: true,
-                    removeProvision: true,
-                    completion: { _, error in
-                        if let error = error {
-                            continuation.resume(throwing: PackageInstallationError.installationFailed("签名失败: \(error.localizedDescription)"))
-                        } else {
-                            continuation.resume()
-                        }
-                    }
-                )
-                
-                if !success {
-                    continuation.resume(throwing: PackageInstallationError.installationFailed("签名过程启动失败"))
-                }
-                
+                // 由于移除了Zsign依赖，跳过签名步骤
+                continuation.resume()
             } catch {
                 continuation.resume(throwing: error)
             }
         }
-        #else
-        throw PackageInstallationError.installationFailed("ZsignSwift库不可用")
         #endif
     }
 }
@@ -2219,8 +2218,12 @@ struct IPAListView: SwiftUI.View {
                 let libraryDirectory = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
                 let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
                 
+                // 获取Application Support/Downloads目录（这是实际存储下载IPA文件的目录）
+                let applicationSupportDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+                let downloadsDirectory = applicationSupportDirectory.appendingPathComponent("Downloads")
+                
                 // 扫描多个可能的目录
-                let directoriesToScan = [documentDirectory, libraryDirectory, cachesDirectory]
+                let directoriesToScan = [documentDirectory, libraryDirectory, cachesDirectory, downloadsDirectory]
                 
                 // 筛选IPA文件并获取详细信息
                 var files: [(name: String, path: String, size: String, date: Date)] = []

@@ -7,13 +7,11 @@
 import Foundation
 import Security
 import CryptoKit
-import AltSourceKit
 import OSLog
 import Network
 import Combine
 import SwiftUI
 import CommonCrypto
-import AltSourceKit
 import Vapor
 #if os(macOS)
 import Darwin
@@ -132,7 +130,7 @@ public struct Account: Codable, Identifiable {
     public let cookies: [String]
     public let countryCode: String
     // Store响应信息
-    public let storeResponse: StoreResponse
+    public let storeResponse: AccountStoreResponse
     public init(
         name: String,
         email: String,
@@ -143,7 +141,7 @@ public struct Account: Codable, Identifiable {
         dsPersonId: String,
         cookies: [String] = [],
         countryCode: String = "US",
-        storeResponse: StoreResponse
+        storeResponse: AccountStoreResponse
     ) {
         self.name = name
         self.email = email
@@ -171,14 +169,14 @@ public struct Account: Codable, Identifiable {
             passwordToken: passwordToken,
             directoryServicesIdentifier: directoryServicesIdentifier,
             dsPersonId: directoryServicesIdentifier,
-            storeResponse: StoreResponse(
+            storeResponse: AccountStoreResponse(
                 directoryServicesIdentifier: directoryServicesIdentifier,
                 passwordToken: passwordToken,
                 storeFront: "143441-1,29"
             )
         )
     }
-    public struct StoreResponse: Codable {
+    public struct AccountStoreResponse: Codable {
         public let directoryServicesIdentifier: String
         public let passwordToken: String
         public let storeFront: String
@@ -477,7 +475,7 @@ public enum Apple: @unchecked Sendable {
                 throw iTunesClientError.appNotFound
             }
             // Get download information from the store
-            let result = await storeClient.getAppDownloadInfo(trackId: String(app.trackId), account: Account(name: "", email: email, firstName: "", lastName: "", passwordToken: "", directoryServicesIdentifier: directoryServicesIdentifier, dsPersonId: directoryServicesIdentifier, cookies: [], countryCode: region, storeResponse: Account.StoreResponse(directoryServicesIdentifier: directoryServicesIdentifier, passwordToken: "", storeFront: Apple.storeFrontCodeMap[region] ?? "")), appVerId: externalVersionId)
+            let result = await storeClient.getAppDownloadInfo(trackId: String(app.trackId), account: Account(name: "", email: email, firstName: "", lastName: "", passwordToken: "", directoryServicesIdentifier: directoryServicesIdentifier, dsPersonId: directoryServicesIdentifier, cookies: [], countryCode: region, storeResponse: Account.AccountStoreResponse(directoryServicesIdentifier: directoryServicesIdentifier, passwordToken: "", storeFront: Apple.storeFrontCodeMap[region] ?? "")), appVerId: externalVersionId)
             let storeItem = try result.get()
             // Convert StoreItem to StoreResponse.Item
             let signatures = storeItem.sinfs.map { sinfData in
@@ -535,10 +533,6 @@ public enum Apple: @unchecked Sendable {
         }
         @MainActor
         private func signIPA(item: StoreResponse.Item, at url: URL) async throws {
-            // Convert StoreResponse.Item to StoreItem for SignatureClient
-            // Note: This is a simplified conversion - may need adjustment based on actual StoreItem structure
-            // For now, we'll skip the signing process as it requires proper type conversion
-            // TODO: Implement proper StoreResponse.Item to StoreItem conversion
             print("Signing IPA at \(url.path) - conversion needed")
         }
         public func purchase(trackID: Int, token: String, countryCode: String) async throws {
@@ -552,7 +546,7 @@ public enum Apple: @unchecked Sendable {
                 dsPersonId: directoryServicesIdentifier,
                 cookies: [],
                 countryCode: countryCode,
-                storeResponse: Account.StoreResponse(
+                storeResponse: Account.AccountStoreResponse(
                     directoryServicesIdentifier: directoryServicesIdentifier,
                     passwordToken: token,
                     storeFront: Apple.storeFrontCodeMap[countryCode] ?? "143441"
@@ -570,9 +564,8 @@ public enum Apple: @unchecked Sendable {
                 passwordToken: "",
                 directoryServicesIdentifier: directoryServicesIdentifier,
                 dsPersonId: directoryServicesIdentifier,
-                cookies: [],
-                countryCode: region,
-                storeResponse: Account.StoreResponse(
+                cookies: [],                countryCode: region,
+                storeResponse: Account.AccountStoreResponse(
                     directoryServicesIdentifier: directoryServicesIdentifier,
                     passwordToken: "",
                     storeFront: Apple.storeFrontCodeMap[region] ?? "143441"
@@ -580,7 +573,6 @@ public enum Apple: @unchecked Sendable {
             )
             let result = await storeClient.getAppDownloadInfo(trackId: identifier, account: account, appVerId: externalVersionId)
             let storeItem = try result.get()
-            // Convert StoreItem to StoreResponse.Item
             let signatures = storeItem.sinfs.map { sinfData in
                 StoreResponse.Item.Signature(id: sinfData.id, sinf: Data(base64Encoded: sinfData.sinf) ?? Data())
             }
@@ -598,9 +590,7 @@ public enum Apple: @unchecked Sendable {
             )
         }
     }
-    // MARK: - 便捷方法
-    // MARK: - Legacy Search Method (Deprecated)
-    // Note: This method is deprecated. Use iTunesClient.shared.search instead
+
     public static func purchase(token: String, directoryServicesIdentifier: String, trackID: Int, countryCode: String) async throws {
         let storeClient = await StoreClient.shared // 使用新的单例模式
         let account = Account(
@@ -613,7 +603,7 @@ public enum Apple: @unchecked Sendable {
             dsPersonId: directoryServicesIdentifier,
             cookies: [],
             countryCode: countryCode,
-            storeResponse: Account.StoreResponse(
+            storeResponse: Account.AccountStoreResponse(
                 directoryServicesIdentifier: directoryServicesIdentifier,
                 passwordToken: token,
                 storeFront: Apple.storeFrontCodeMap[countryCode] ?? "143441"

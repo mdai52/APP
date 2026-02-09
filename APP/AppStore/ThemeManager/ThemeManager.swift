@@ -74,7 +74,9 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
         // 使用NotificationCenter监听UserDefaults变化
         notificationObserver = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
             // 当UserDefaults变化时，更新颜色
-            self?.updateAccentColor()
+            DispatchQueue.main.async {
+                self?.updateAccentColor()
+            }
         }
         
         // 手动调用一次更新

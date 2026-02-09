@@ -14,7 +14,35 @@ import ZipArchive
 // 类型别名，用于兼容性
 typealias iTunesSearchResponse = iTunesResponse
 
-
+// MARK: - 应用版本信息
+public struct StoreAppVersion: Codable, Identifiable {
+    public let id: UUID
+    public let versionString: String
+    public let versionId: String
+    public let isCurrent: Bool
+    public let releaseDate: Date?
+    
+    public init(versionString: String, versionId: String, isCurrent: Bool, releaseDate: Date? = nil) {
+        self.id = UUID()
+        self.versionString = versionString
+        self.versionId = versionId
+        self.isCurrent = isCurrent
+        self.releaseDate = releaseDate
+    }
+    
+    public var displayName: String {
+        return isCurrent ? "\(versionString) (当前版本)" : versionString
+    }
+    
+    // 格式化发布日期
+    public var formattedReleaseDate: String? {
+        guard let date = releaseDate else { return nil }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
+    }
+}
 
 // MARK: - 本地账户定义
 // 用于 StoreClient 兼容性的本地账户定义
@@ -28,7 +56,7 @@ struct LocalAccount {
     let dsPersonId: String
     let cookies: [String]
     let countryCode: String
-    // 方便的初始化方法，匹配 Apple.Account 接口
+
     init(firstName: String, lastName: String, directoryServicesIdentifier: String, passwordToken: String) {
         self.firstName = firstName
         self.lastName = lastName
@@ -40,7 +68,7 @@ struct LocalAccount {
         self.cookies = []
         self.countryCode = "US"
     }
-    // 完整的初始化方法
+
     init(name: String, email: String, firstName: String, lastName: String, passwordToken: String, directoryServicesIdentifier: String, dsPersonId: String, cookies: [String], countryCode: String) {
         self.name = name
         self.email = email
@@ -92,8 +120,8 @@ struct ExtendedSearchResult: Codable {
 
 // MARK: - 商店客户端实现
 @MainActor
-class StoreClient: @unchecked Sendable {
-    static let shared = StoreClient()
+public class StoreClient: @unchecked Sendable {
+    public static let shared = StoreClient()
     private init() {}
     func searchApps(
         query: String,
@@ -245,80 +273,15 @@ class StoreClient: @unchecked Sendable {
         }
     }
 }
-// SignatureClient 定义在 SignatureClient.swift 中以避免重复
-    func sign() throws {
-        // 使用真正的签名逻辑
-        try performRealSigning()
-    }
-    
-    func save(to path: String) throws {
-        // 使用真正的保存逻辑
-        try performRealSaving(to: path)
-    }
-    
-    /// 执行真正的签名逻辑
-    private func performRealSigning() throws {
-        // 暂时抛出错误，表示需要实现真正的签名逻辑
-        throw NSError(domain: "SignatureError", code: 1, userInfo: [NSLocalizedDescriptionKey: "真正的签名逻辑尚未实现"])
-    }
-    
-    /// 执行真正的保存逻辑
-    private func performRealSaving(to path: String) throws {
-        // 这里应该调用真正的保存服务
-        // 暂时抛出错误，表示需要实现真正的保存逻辑
-        throw NSError(domain: "SaveError", code: 1, userInfo: [NSLocalizedDescriptionKey: "真正的保存逻辑尚未实现"])
-    }
-// MARK: - 商店响应模型（从 StoreAPI.swift 移动过来）
-struct LocalStoreAuthResponse: Codable {
-    let accountInfo: AccountInfo
-    let passwordToken: String
-    let dsPersonId: String
-    let pings: [String]?
-    struct AccountInfo: Codable {
-        let appleId: String
-        let address: Address
-        let dsPersonId: String
-        let countryCode: String?
-        let storeFront: String?
-        struct Address: Codable {
-            let firstName: String
-            let lastName: String
-        }
-    }
+
+// MARK: - 用于解析第三方 API 返回的版本信息
+private struct AppVersionInfo: Codable {
+    let bundle_version: String
+    let external_identifier: Int
+    let created_at: String
 }
-struct StoreFailureResponse: Codable {
-    let failureType: String
-    let customerMessage: String
-    let pings: [String]?
-}
-// MARK: - 商店响应模型
-// 注意：StoreDownloadResponse 和 StorePurchaseResponse 定义在 StoreRequest.swift 中以避免类型歧义
-// MARK: - 商店数据模型（从 DownloadManager.swift 统一过来）
-struct LocalStoreItem: Codable {
-    let url: String
-    let md5: String
-    let sinfs: [SinfInfo]
-    let metadata: AppMetadata
-}
-struct LocalAppMetadata: Codable {
-    let bundleId: String
-    let bundleDisplayName: String
-    let bundleShortVersionString: String
-    let softwareVersionExternalIdentifier: String
-    let softwareVersionExternalIdentifiers: [Int]?
-    enum CodingKeys: String, CodingKey {
-        case bundleId = "softwareVersionBundleId"
-        case bundleDisplayName
-        case bundleShortVersionString
-        case softwareVersionExternalIdentifier
-        case softwareVersionExternalIdentifiers
-    }
-}
-struct LocalSinfInfo: Codable {
-    let id: Int
-    let sinf: String
-}
-// MARK: - 商店端点
+
+// MARK: - 本地账户定义
 struct StoreEndpoint {
     static func authenticate(guid: String) -> String {
         return "https://auth.itunes.apple.com/auth/v1/native/fast?guid=\(guid)"
@@ -328,26 +291,8 @@ struct StoreEndpoint {
     }
     static let purchase = "https://buy.itunes.apple.com/WebObjects/MZBuy.woa/wa/buyProduct"
 }
-// MARK: - 账户信息
-// Account 结构体移动到 AuthenticationManager.swift 中以避免重复
-// MARK: - 应用版本信息
-struct StoreAppVersion: Codable, Identifiable {
-    let id: UUID
-    let versionString: String
-    let versionId: String
-    let isCurrent: Bool
-    init(versionString: String, versionId: String, isCurrent: Bool) {
-        self.id = UUID()
-        self.versionString = versionString
-        self.versionId = versionId
-        self.isCurrent = isCurrent
-    }
-    var displayName: String {
-        return isCurrent ? "\(versionString) (当前版本)" : versionString
-    }
-}
-// MARK: - 下载进度信息
-// 注意：DownloadProgress 定义在 DownloadManager.swift 中
+
+
 // MARK: - 商店客户端扩展（延续之前的定义）
 extension StoreClient {
     // MARK: - 身份验证（委托给 AuthenticationManager）
@@ -392,7 +337,7 @@ extension StoreClient {
         }
     }
     /// 获取可用的应用版本
-    func getAppVersions(
+    public func getAppVersions(
         trackId: String,
         account: Account,
         countryCode: String? = nil
@@ -415,7 +360,7 @@ extension StoreClient {
             // 首先获取当前版本信息，使用账户的storeFront信息
             let result = try await StoreRequest.shared.download(
                 appIdentifier: trackId,
-                directoryServicesIdentifier: account.dsPersonId,
+                directoryServicesIdentifier: account.directoryServicesIdentifier,
                 appVersion: nil,
                 passwordToken: account.passwordToken,
                 storeFront: account.storeResponse.storeFront
@@ -505,12 +450,14 @@ extension StoreClient {
                 // 如果日期解析失败，按照 bundle_version 字符串进行比较
                 return compareVersionStrings(version1.bundle_version, version2.bundle_version) > 0
             }.map { versionInfo -> StoreAppVersion in
-                // 判断是否为当前版本（这里简单假设第一个就是最新版本）
+                // 判断是否为当前版本
                 let isCurrent = versionInfo.bundle_version == versionData.first?.bundle_version
+                let releaseDate = parseDate(versionInfo.created_at)
                 return StoreAppVersion(
                     versionString: versionInfo.bundle_version,
                     versionId: String(versionInfo.external_identifier),
-                    isCurrent: isCurrent
+                    isCurrent: isCurrent,
+                    releaseDate: releaseDate
                 )
             }
             return versions
@@ -519,12 +466,6 @@ extension StoreClient {
             return nil
         }
     }
-    // 用于解析第三方 API 返回的版本信息
-    private struct AppVersionInfo: Codable {
-        let bundle_version: String
-        let external_identifier: Int
-        let created_at: String
-    }
     // 解析日期字符串
     private func parseDate(_ dateString: String) -> Date? {
         let dateFormatter = DateFormatter()
@@ -532,7 +473,7 @@ extension StoreClient {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dateFormatter.date(from: dateString)
     }
-    // 比较版本字符串（简单实现，处理主要版本号格式）
+    // 比较版本字符串（主要版本号格式）
     private func compareVersionStrings(_ v1: String, _ v2: String) -> Int {
         let components1 = v1.split(separator: ".").compactMap { Int($0) }
         let components2 = v2.split(separator: ".").compactMap { Int($0) }
@@ -914,7 +855,7 @@ extension StoreClient {
             }
             return .failure(StoreError.genericError)
         }
-        // 步骤 2: 获取曲目 ID
+        // 步骤 2: 获取应用 ID
         guard let bundleId = bundleId else {
             return .failure(StoreError.invalidItem)
         }
