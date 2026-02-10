@@ -1,3 +1,18 @@
+## 大白话：Unlicense 许可证——你用、改、卖，换命名，你开心就好！
+
+##### ”社区的核心精神“
+```js
+——如果每份公开的代码都要附加一堆条条框框，劝退很多人主动分享。
+
+——“代码能用、能被改进” 比 “内容归属” 重要得多。
+```
+🔴 <font color="red">遵循 [Unlicense 许可证](https://unlicense.org/#unlicensed-free-software)</font>
+
+🟢 <font color="green">遵循 [早期黑客文化](https://en.wikipedia.org/wiki/Hacker_culture) 是"无限制"的</font>
+
+🔵 <font color="blue">[早期 UNIX](https://en.wikipedia.org/wiki/History_of_Unix) 是"无限制"的</font>
+
+
 # 工作流
 ```js
 
