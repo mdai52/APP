@@ -88,7 +88,7 @@ class IPAProcessor: @unchecked Sendable {
     }
     
     /// 处理IPA文件的核心逻辑
-    private func processIPAFile(at ipaPath: URL, withSinfs sinfs: [Any]) throws -> URL {
+    nonisolated private func processIPAFile(at ipaPath: URL, withSinfs sinfs: [Any]) throws -> URL {
         // 创建临时工作目录
         let tempDir = FileManager.default.temporaryDirectory.appendingPathComponent("IPAProcessing_\(UUID().uuidString)")
         try FileManager.default.createDirectory(at: tempDir, withIntermediateDirectories: true)
@@ -116,7 +116,7 @@ class IPAProcessor: @unchecked Sendable {
     }
     
     /// 解压IPA文件
-    private func extractIPA(at ipaPath: URL, to tempDir: URL) throws -> URL {
+    nonisolated private func extractIPA(at ipaPath: URL, to tempDir: URL) throws -> URL {
         let extractedDir = tempDir.appendingPathComponent("extracted")
         try FileManager.default.createDirectory(at: extractedDir, withIntermediateDirectories: true)
         
@@ -136,9 +136,9 @@ class IPAProcessor: @unchecked Sendable {
     }
     
     /// 创建SC_Info文件夹和签名文件
-    private func createSCInfoFolder(in extractedDir: URL, withSinfs sinfs: [Any]) throws {
+    nonisolated private func createSCInfoFolder(in extractedRoot: URL, withSinfs sinfs: [Any]) throws {
         // 查找Payload文件夹
-        let payloadDir = extractedDir.appendingPathComponent("Payload")
+        let payloadDir = extractedRoot.appendingPathComponent("Payload")
         guard FileManager.default.fileExists(atPath: payloadDir.path) else {
             throw NSError(domain: "IPAProcessing", code: 2, userInfo: [NSLocalizedDescriptionKey: "未找到Payload文件夹"])
         }
@@ -243,7 +243,7 @@ class IPAProcessor: @unchecked Sendable {
 
         
         // 创建iTunesMetadata.plist文件（在IPA根目录）
-        try createiTunesMetadataPlist(in: extractedDir, appFolder: appFolder)
+        try createiTunesMetadataPlist(in: extractedRoot, appFolder: appFolder)
         print("🔧 [IPA处理器] 创建iTunesMetadata.plist文件")
         
         // 强制检查：确保至少有一个.sinf文件存在
@@ -273,7 +273,7 @@ class IPAProcessor: @unchecked Sendable {
     }
     
     /// 创建默认的sinf数据
-    private func createDefaultSinfData(for appName: String) -> Data {
+    nonisolated private func createDefaultSinfData(for appName: String) -> Data {
         // 创建一个基本的sinf数据结构
         // 注意：这是一个示例实现，实际的sinf数据应该从Apple Store API获取
         
@@ -316,7 +316,7 @@ class IPAProcessor: @unchecked Sendable {
 
     
     /// 创建iTunesMetadata.plist文件
-    private func createiTunesMetadataPlist(in extractedDir: URL, appFolder: URL) throws {
+    nonisolated private func createiTunesMetadataPlist(in extractedDir: URL, appFolder: URL) throws {
         let metadataPath = extractedDir.appendingPathComponent("iTunesMetadata.plist")
         
         // 尝试从Info.plist读取应用信息
@@ -378,7 +378,7 @@ class IPAProcessor: @unchecked Sendable {
     }
     
     /// 重新打包IPA文件
-    private func repackIPA(from extractedDir: URL, originalPath: URL) throws -> URL {
+    nonisolated private func repackIPA(from extractedDir: URL, originalPath: URL) throws -> URL {
         let processedIPAPath = originalPath.deletingLastPathComponent()
             .appendingPathComponent("processed_\(originalPath.lastPathComponent)")
         

@@ -61,22 +61,17 @@ class SessionManager: ObservableObject, @unchecked Sendable {
         
         print("🔐 [SessionManager] 检查会话有效性...")
         
-        do {
-            // 尝试一个轻量级的API调用来验证会话
-            let isValid = await validateSessionWithAPI(account: account)
-            
-            if isValid {
-                print("✅ [SessionManager] 会话有效")
-                isSessionValid = true
-                sessionError = nil
-                reconnectAttempts = 0
-                lastSessionCheck = Date()
-            } else {
-                print("❌ [SessionManager] 无效，需要重新认证")
-                await handleSessionInvalid()
-            }
-        } catch {
-            print("❌ [SessionManager] 检查出错: \(error)")
+        // 尝试一个轻量级的API调用来验证会话
+        let isValid = await validateSessionWithAPI(account: account)
+        
+        if isValid {
+            print("✅ [SessionManager] 会话有效")
+            isSessionValid = true
+            sessionError = nil
+            reconnectAttempts = 0
+            lastSessionCheck = Date()
+        } else {
+            print("❌ [SessionManager] 无效，需要重新认证")
             await handleSessionInvalid()
         }
     }

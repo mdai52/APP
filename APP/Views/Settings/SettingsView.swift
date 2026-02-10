@@ -13,6 +13,7 @@ struct SettingsView: View {
             Form {
                 _feedback()
                 appearanceSection
+                versionSection
             }
             .navigationTitle("设置")
         }
@@ -56,5 +57,22 @@ extension SettingsView {
                     .foregroundStyle(themeManager.accentColor)
             }
         }
+    }
+    
+    private var versionSection: some View {
+        Section {
+            HStack {
+                Text("版本号")
+                Spacer()
+                Text(appVersion)
+                    .foregroundColor(.secondary)
+            }
+        }
+    }
+    
+    private var appVersion: String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
+        return "\(version) (\(build))"
     }
 }

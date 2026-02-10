@@ -932,7 +932,7 @@ struct DownloadView: SwiftUI.View {
                 }
             }
         }
-        .onChange(of: scenePhase) { newPhase in
+        .onChange(of: scenePhase) { oldPhase, newPhase in
             handleScenePhaseChange(newPhase)
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
@@ -1964,8 +1964,7 @@ struct DownloadCardView: SwiftUI.View {
                 }
                 
                 // 构造安装URL
-                let serverURL = URL(string: "http://localhost:\(port)/")!
-                guard let plistURL = URL(string: "itms-services://?action=download-manifest&url=http://localhost:\(port)/plist/\(request.bundleIdentifier)") else {
+                guard URL(string: "itms-services://?action=download-manifest&url=http://localhost:\(port)/plist/\(request.bundleIdentifier)") != nil else {
                     NSLog("❌ [DownloadView] 无效的安装链接")
                     await MainActor.run {
                         installationMessage = "无效的安装链接"
@@ -2208,71 +2207,63 @@ struct IPAListView: SwiftUI.View {
     private func loadIPAFiles() {
         isLoading = true
         DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                // 获取APP文档目录
-                let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                
-                print("[IPAListView] 扫描目录: \(documentDirectory.path)")
-                
-                // 同时扫描应用沙盒目录下的其他可能包含IPA的目录
-                let libraryDirectory = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
-                let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-                
-                // 获取Application Support/Downloads目录（这是实际存储下载IPA文件的目录）
-                let applicationSupportDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-                let downloadsDirectory = applicationSupportDirectory.appendingPathComponent("Downloads")
-                
-                // 扫描多个可能的目录
-                let directoriesToScan = [documentDirectory, libraryDirectory, cachesDirectory, downloadsDirectory]
-                
-                // 筛选IPA文件并获取详细信息
-                var files: [(name: String, path: String, size: String, date: Date)] = []
-                
-                // 扫描所有目录
-                for directory in directoriesToScan {
-                    do {
-                        let directoryContents = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: [.fileSizeKey, .creationDateKey], options: .skipsHiddenFiles)
-                        
-                        for url in directoryContents {
-                            if url.pathExtension.lowercased() == "ipa" {
-                                let fileName = url.lastPathComponent
-                                let filePath = url.path
-                                
-                                // 获取文件大小
-                                let attributes = try FileManager.default.attributesOfItem(atPath: filePath)
-                                let fileSize = attributes[.size] as? Int64 ?? 0
-                                let formatter = ByteCountFormatter()
-                                formatter.allowedUnits = [.useMB, .useGB]
-                                formatter.countStyle = .file
-                                let sizeString = formatter.string(fromByteCount: fileSize)
-                                
-                                // 获取创建日期
-                                let creationDate = attributes[.creationDate] as? Date ?? Date()
-                                
-                                // 检查是否已添加相同路径的文件（避免重复）
-                                if !files.contains(where: { $0.path == filePath }) {
-                                    files.append((name: fileName, path: filePath, size: sizeString, date: creationDate))
-                                }
+            // 获取APP文档目录
+            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            
+            print("[IPAListView] 扫描目录: \(documentDirectory.path)")
+            
+            // 同时扫描应用沙盒目录下的其他可能包含IPA的目录
+            let libraryDirectory = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+            let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+            
+            // 获取Application Support/Downloads目录（这是实际存储下载IPA文件的目录）
+            let applicationSupportDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            let downloadsDirectory = applicationSupportDirectory.appendingPathComponent("Downloads")
+            
+            // 扫描多个可能的目录
+            let directoriesToScan = [documentDirectory, libraryDirectory, cachesDirectory, downloadsDirectory]
+            
+            // 筛选IPA文件并获取详细信息
+            var files: [(name: String, path: String, size: String, date: Date)] = []
+            
+            // 扫描所有目录
+            for directory in directoriesToScan {
+                do {
+                    let directoryContents = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: [.fileSizeKey, .creationDateKey], options: .skipsHiddenFiles)
+                    
+                    for url in directoryContents {
+                        if url.pathExtension.lowercased() == "ipa" {
+                            let fileName = url.lastPathComponent
+                            let filePath = url.path
+                            
+                            // 获取文件大小
+                            let attributes = try FileManager.default.attributesOfItem(atPath: filePath)
+                            let fileSize = attributes[.size] as? Int64 ?? 0
+                            let formatter = ByteCountFormatter()
+                            formatter.allowedUnits = [.useMB, .useGB]
+                            formatter.countStyle = .file
+                            let sizeString = formatter.string(fromByteCount: fileSize)
+                            
+                            // 获取创建日期
+                            let creationDate = attributes[.creationDate] as? Date ?? Date()
+                            
+                            // 检查是否已添加相同路径的文件（避免重复）
+                            if !files.contains(where: { $0.path == filePath }) {
+                                files.append((name: fileName, path: filePath, size: sizeString, date: creationDate))
                             }
                         }
-                    } catch {
-                        print("[IPAListView] 扫描目录失败: \(directory.path), 错误: \(error.localizedDescription)")
                     }
+                } catch {
+                    print("[IPAListView] 扫描目录失败: \(directory.path), 错误: \(error.localizedDescription)")
                 }
-                
-                // 按创建日期倒序排序
-                files.sort { $0.date > $1.date }
-                
-                DispatchQueue.main.async {
-                    ipaFiles = files
-                    isLoading = false
-                }
-            } catch {
-                print("[IPAListView] 扫描目录失败: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    ipaFiles = []
-                    isLoading = false
-                }
+            }
+            
+            // 按创建日期倒序排序
+            files.sort { $0.date > $1.date }
+            
+            DispatchQueue.main.async {
+                ipaFiles = files
+                isLoading = false
             }
         }
     }

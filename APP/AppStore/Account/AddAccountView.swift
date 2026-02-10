@@ -104,7 +104,7 @@ struct AddAccountView: View {
                                         .textFieldStyle(ModernTextFieldStyle())
                                         .keyboardType(.numberPad)
                                         .focused($isCodeFieldFocused)
-                                        .onChange(of: code) { newValue in
+                                        .onChange(of: code) { oldValue, newValue in
                                             // 限制只能输入数字
                                             code = String(newValue.filter { $0.isNumber })
                                             

@@ -5,39 +5,7 @@
 import SwiftUI
 import UIKit
 
-// UIBlurEffect包装器
-struct BlurView: UIViewRepresentable {
-    var style: UIBlurEffect.Style = .systemMaterial
-    
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        return UIVisualEffectView(effect: UIBlurEffect(style: style))
-    }
-    
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = UIBlurEffect(style: style)
-    }
-}
 
-// glassEffect修饰符扩展
- extension View {
-     func glassEffect() -> some View {
-         self.background(
-             BlurView(style: .systemThinMaterial)
-         )
-         .clipShape(RoundedRectangle(cornerRadius: 16))
-         .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
-     }
-     
-     func glassEffect(backgroundColor: Color) -> some View {
-         self.background(
-             backgroundColor
-                 .blendMode(.overlay)
-                 .background(BlurView(style: .systemThinMaterial))
-         )
-         .clipShape(RoundedRectangle(cornerRadius: 16))
-         .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
-     }
- }
 
 
 // Date扩展，iso8601格式化
@@ -48,13 +16,38 @@ struct BlurView: UIViewRepresentable {
      }
  }
 
+// 超时函数实现
+func withTimeout<T>(seconds: Double, operation: @escaping @Sendable () async throws -> T) async throws -> T {
+    try await withThrowingTaskGroup(of: T.self) { group in
+        // 使用withTaskCancellationHandler确保超时任务可以被正确取消
+        let timeoutTask = Task { () -> T in
+            try await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
+            throw CancellationError()
+        }
+        
+        group.addTask { [timeoutTask] in
+            defer { timeoutTask.cancel() }
+            return try await operation()
+        }
+        
+        let result = try await group.next()
+        group.cancelAll()
+        
+        if let result = result {
+            return result
+        } else {
+            throw CancellationError()
+        }
+    }
+}
+
 // 卡片组件
 struct EnhancedAppCard: SwiftUI.View {
     let app: iTunesSearchResult
     let onTap: () -> Void
+    let onGetAction: () -> Void
     @Binding var isDownloading: Bool
     @SwiftUI.EnvironmentObject var themeManager: ThemeManager    
-    @State private var isPressed = false
     
     var body: some SwiftUI.View {
         Button(action: onTap) {
@@ -75,11 +68,7 @@ struct EnhancedAppCard: SwiftUI.View {
             .background(Color.clear)
         }
         .buttonStyle(PlainButtonStyle())
-        .scaleEffect(isPressed ? 0.98 : 1.0)
-        .animation(.easeInOut, value: isPressed)
-        .onLongPressGesture(pressing: { pressing in
-            isPressed = pressing
-        }, perform: {})
+        .scaleEffect(0.98)
     }
     
     // 获取应用功能标签
@@ -188,13 +177,10 @@ struct EnhancedAppCard: SwiftUI.View {
             HStack(spacing: 8) {
                 ForEach(screenshots.prefix(3), id: \.self) { screenshotURL in
                     if let url = URL(string: screenshotURL) {
-                        AsyncImage(url: url) { image in
+                        AdvancedAsyncImage(url: url) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                        } placeholder: {
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.2))
                         }
                         .frame(width: 120, height: 240)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -210,34 +196,35 @@ struct EnhancedAppCard: SwiftUI.View {
     
     // app图标
     private var appIcon: some SwiftUI.View {
-        Group {
-            if let iconURL = app.artworkUrl100, let url = URL(string: iconURL) {
-                AsyncImage(url: url) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
+        AnyView(
+            Group {
+                if let iconURL = app.artworkUrl100, let url = URL(string: iconURL) {
+                    AdvancedAsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    }
+                    .frame(width: 64, height: 64)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.black.opacity(0.05), lineWidth: 0.5)
+                    )
+                } else {
                     Rectangle()
                         .fill(Color.gray.opacity(0.2))
                         .overlay(
                             Image(systemName: "app.fill")
                                 .foregroundColor(.gray)
                         )
+                        .frame(width: 64, height: 64)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(Color.black.opacity(0.05), lineWidth: 0.5)
+                        )
                 }
-            } else {
-                Rectangle()
-                    .fill(Color.gray.opacity(0.2))
-                    .overlay(
-                        Image(systemName: "app.fill")
-                            .foregroundColor(.gray)
-                    )
             }
-        }
-        .frame(width: 64, height: 64)
-        .clipShape(RoundedRectangle(cornerRadius: 14))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.black.opacity(0.05), lineWidth: 0.5)
         )
     }
     
@@ -257,15 +244,17 @@ struct EnhancedAppCard: SwiftUI.View {
                     )
             } else {
                 // 正常状态显示按钮
-                Text(app.formattedPrice == "免费" || app.price == 0 ? "获取" : (app.formattedPrice ?? "查看"))
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 8)
-                    .background(
-                        Capsule()
-                            .fill(Color.blue)
-                    )
+                PremiumButton(
+                    action: onGetAction,
+                    style: .primary,
+                    cornerRadius: 20,
+                    padding: EdgeInsets(top: 8, leading: 20, bottom: 8, trailing: 20),
+                    isLoading: false,
+                    disabled: false
+                ) {
+                    Text(app.formattedPrice == "免费" || app.price == 0 ? "获取" : (app.formattedPrice ?? "查看"))
+                        .font(.system(size: 15, weight: .semibold))
+                }
             }
         }
     }
@@ -324,7 +313,7 @@ struct SearchSuggestionsView: SwiftUI.View {
                 }
             }
         }
-        .glassEffect()
+
     }
 }
 
@@ -1001,7 +990,7 @@ struct SearchView: SwiftUI.View {
             return searchRegion
         }
         // 根据设备语言自动选择地区
-        let languageCode = Locale.current.languageCode ?? ""
+        let languageCode = Locale.current.language.languageCode?.identifier ?? ""
         return getRegionFromLanguageCode(languageCode)
     }
     
@@ -1504,7 +1493,7 @@ struct SearchView: SwiftUI.View {
                     TextField("游戏、App", text: $searchKey)
                         .font(.body)
                         .focused($searchKeyFocused)
-                        .onChange(of: searchKey) { newValue in
+                        .onChange(of: searchKey) { oldValue, newValue in
                             if !newValue.isEmpty {
                                 showSearchSuggestions = true
                                 // 本地建议
@@ -1537,7 +1526,6 @@ struct SearchView: SwiftUI.View {
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
-                .glassEffect()
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(
@@ -1823,11 +1811,10 @@ struct SearchView: SwiftUI.View {
                         .foregroundColor(.secondary)
                     TextField("搜索地区...", text: $searchInput)
                         .font(.title3)
-                        .onChange(of: searchInput) { newValue in
+                        .onChange(of: searchInput) { oldValue, newValue in
                             // 实时搜索地区
                             if newValue.isEmpty {
                                 // 如果搜索框为空，显示所有地区
-                                // 可以在这里添加过滤逻辑
                             }
                         }
                     if !searchInput.isEmpty {
@@ -2067,55 +2054,85 @@ struct SearchView: SwiftUI.View {
     }
     // 搜索历史区域
     var searchHistorySection: some SwiftUI.View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Label("最近搜索", systemImage: "clock.arrow.circlepath")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 Spacer()
-                Button("清除全部") {
-                    withAnimation(.easeInOut) {
-                        clearSearchHistory()
-                    }
-                }
-                .font(.caption)
-                .foregroundColor(.blue)
-            }
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
-                    ForEach(searchHistory.prefix(8), id: \.self) { history in
-                        Button {
-                            searchKey = history
-                            showSearchHistory = false
-                            Task {
-                                await performSearch()
-                            }
-                        } label: {
-                            HStack(spacing: 8) {
-                                Image(systemName: "magnifyingglass")
-                                    .font(.system(size: 12))
-                                Text(history)
-                                    .font(.caption)
-                            }
-                            .foregroundColor(.primary)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 8)
-                            .background(
-                                Capsule()
-                                    .fill(Color(.secondarySystemBackground))
-                                    .overlay(
-                                        Capsule()
-                                            .stroke(.blue.opacity(0.2), lineWidth: 1)
-                                    )
-                            )
+                PremiumButton(
+                    action: {
+                        withAnimation(AnimationSystem.smooth) {
+                            clearSearchHistory()
                         }
-                        .buttonStyle(.plain)
+                    },
+                    style: .text,
+                    cornerRadius: 12,
+                    padding: EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8),
+                    isLoading: false
+                ) {
+                    Text("清除全部")
+                        .font(.caption)
+                }
+            }
+            .padding(.horizontal, 24)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(searchHistory.prefix(8), id: \.self) { history in
+                        HStack(spacing: 6) {
+                            PremiumButton(
+                                action: {
+                                    searchKey = history
+                                    showSearchHistory = false
+                                    Task {
+                                        await performSearch()
+                                    }
+                                },
+                                style: .secondary,
+                                cornerRadius: 20,
+                                padding: EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12),
+                                isLoading: false
+                            ) {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "magnifyingglass")
+                                        .font(.system(size: 12))
+                                    Text(history)
+                                        .font(.caption)
+                                }
+                            }
+                            .withTransition()
+                            
+                            PremiumButton(
+                                action: {
+                                    withAnimation(AnimationSystem.fast) {
+                                        removeFromHistory(history)
+                                    }
+                                },
+                                style: .text,
+                                cornerRadius: 12,
+                                padding: EdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4),
+                                isLoading: false
+                            ) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.secondary)
+                            }
+                        }
                     }
                 }
                 .padding(.horizontal, 24)
+                .padding(.vertical, 8)
             }
         }
-        .padding(.horizontal, 24)
+        .advancedGlassEffect(
+            style: .systemUltraThinMaterial,
+            intensity: 0.8,
+            cornerRadius: 24,
+            shadowRadius: 15
+        )
+        .padding(.horizontal, 16)
+        .withTransition()
     }
     // 搜索建议区域
     var searchSuggestionsSection: some SwiftUI.View {
@@ -2286,23 +2303,36 @@ struct SearchView: SwiftUI.View {
                         .foregroundColor(.secondary)
                     HStack(spacing: 8) {
                         ForEach(searchHistory.prefix(3), id: \.self) { history in
-                            Button {
-                                searchKey = history
-                                Task {
-                                    await performSearch()
+                            HStack(spacing: 4) {
+                                Button {
+                                    searchKey = history
+                                    Task {
+                                        await performSearch()
+                                    }
+                                } label: {
+                                    Text(history)
+                                        .font(.caption)
+                                        .foregroundColor(.blue)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 8)
+                                        .background(
+                                            Capsule()
+                                                .stroke(.blue.opacity(0.3), lineWidth: 1)
+                                        )
                                 }
-                            } label: {
-                                Text(history)
-                                    .font(.caption)
-                                    .foregroundColor(.blue)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 8)
-                                    .background(
-                                        Capsule()
-                                            .stroke(.blue.opacity(0.3), lineWidth: 1)
-                                    )
+                                .buttonStyle(.plain)
+                                
+                                Button {
+                                    withAnimation(.easeInOut) {
+                                        removeFromHistory(history)
+                                    }
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(.secondary)
+                                }
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
                     }
                 }
@@ -2422,6 +2452,9 @@ struct SearchView: SwiftUI.View {
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                 windowScene.windows.first?.rootViewController?.present(hostingController, animated: true)
             }
+        }, onGetAction: { 
+            // 直接处理获取按钮点击事件
+            handleDownloadApp(item)
         }, isDownloading: $isDownloading)
         .environmentObject(themeManager)
     }
@@ -2724,12 +2757,19 @@ struct SearchView: SwiftUI.View {
                 }
                 // 并行：StoreClient 版本ID集合 + iTunes 版本历史详情
                 let accountCopy = account
+                // 并行获取版本信息和历史记录，历史记录失败不影响主流程
                 let storeVersionsResult = await StoreClient.shared.getAppVersions(
                     trackId: String(app.trackId),
                     account: accountCopy,
                     countryCode: effectiveSearchRegion
                 )
-                let hist = try await iTunesClient.shared.versionHistory(id: app.trackId, country: effectiveSearchRegion)
+                
+                // 获取版本历史记录，使用try?，避免失败时中断流程
+                let histResult = try? await withTimeout(seconds: 3) {
+                    try await iTunesClient.shared.versionHistory(id: app.trackId, country: effectiveSearchRegion)
+                }
+                let hist = histResult ?? []
+                
                 switch storeVersionsResult {
                 case .success(let versions):
                     await MainActor.run {
@@ -2737,10 +2777,8 @@ struct SearchView: SwiftUI.View {
                         self.versionHistory = hist
                         self.isLoadingVersions = false
                         print("[SearchView] 成功加载 \(versions.count) 个版本, 历史记录 \(hist.count) 条")
-                        // 延迟显示版本选择器，确保所有数据都已加载完成
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            self.showVersionPicker = true
-                        }
+                        // 立即显示版本选择器，不再延迟
+                        self.showVersionPicker = true
                     }
                 case .failure(let error):
                     throw error
@@ -3413,7 +3451,6 @@ struct SearchView: SwiftUI.View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
-        .glassEffect()
         .padding(.horizontal, 16)
     }
     

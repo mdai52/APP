@@ -115,34 +115,29 @@ class AuthenticationManager: @unchecked Sendable {
     /// - 参数 account: 要验证的账户
     /// - 返回: 如果账户仍然有效则返回true
     func validateAccount(_ account: Account) async -> Bool {
-        do {
-            // 设置Cookie
-            setCookies(account.cookies)
-            
-            // 检查Cookie是否仍然有效
-            guard let cookies = HTTPCookieStorage.shared.cookies else { return false }
-            
-            var hasValidCookie = false
-            for cookie in cookies {
-                if cookie.domain.contains("apple.com") {
-                    if let expiresDate = cookie.expiresDate {
-                        if expiresDate.timeIntervalSinceNow > 0 {
-                            hasValidCookie = true
-                            break
-                        }
-                    } else {
-                        // 会话Cookie（没有过期时间）
+        // 设置Cookie
+        setCookies(account.cookies)
+        
+        // 检查Cookie是否仍然有效
+        guard let cookies = HTTPCookieStorage.shared.cookies else { return false }
+        
+        var hasValidCookie = false
+        for cookie in cookies {
+            if cookie.domain.contains("apple.com") {
+                if let expiresDate = cookie.expiresDate {
+                    if expiresDate.timeIntervalSinceNow > 0 {
                         hasValidCookie = true
                         break
                     }
+                } else {
+                    // 会话Cookie（没有过期时间）
+                    hasValidCookie = true
+                    break
                 }
             }
-            
-            return hasValidCookie
-        } catch {
-            print("🔐 [AuthenticationManager] 账户验证失败: \(error)")
-            return false
         }
+        
+        return hasValidCookie
     }
     
     /// 检查会话是否即将过期
@@ -454,24 +449,19 @@ class AuthenticationManager: @unchecked Sendable {
             return []
         }
         
-        do {
-            let decoder = JSONDecoder()
-            // 尝试解码为账户数组
-            if let accounts = try? decoder.decode([Account].self, from: data) {
-                print("🔐 [AuthenticationManager] 成功解码账户数组，包含 \(accounts.count) 个账户")
-                return accounts
-            }
-            // 如果失败，尝试解码为单个账户
-            else if let account = try? decoder.decode(Account.self, from: data) {
-                print("🔐 [AuthenticationManager] 成功解码单个账户，转换为数组")
-                return [account]
-            }
-            else {
-                print("🔐 [AuthenticationManager] 无法解码账户数据")
-                return []
-            }
-        } catch {
-            print("🔐 [AuthenticationManager] 解码账户数据失败: \(error)")
+        let decoder = JSONDecoder()
+        // 尝试解码为账户数组
+        if let accounts = try? decoder.decode([Account].self, from: data) {
+            print("🔐 [AuthenticationManager] 成功解码账户数组，包含 \(accounts.count) 个账户")
+            return accounts
+        }
+        // 如果失败，尝试解码为单个账户
+        else if let account = try? decoder.decode(Account.self, from: data) {
+            print("🔐 [AuthenticationManager] 成功解码单个账户，转换为数组")
+            return [account]
+        }
+        else {
+            print("🔐 [AuthenticationManager] 无法解码账户数据")
             return []
         }
     }

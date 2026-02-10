@@ -33,23 +33,34 @@ class UnifiedDownloadManager: ObservableObject, @unchecked Sendable {
     
     /// 设置会话监控，处理应用前后台切换和持久化下载任务
     private func configureSessionMonitoring() {
-        // 恢复下载任务
-        restoreDownloadTasks()
+        // 恢复下载任务 - 确保在主actor上执行
+        Task { @MainActor in
+            restoreDownloadTasks()
+        }
         
         // 监听应用即将进入非活动状态通知
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.saveDownloadTasks()
-            self?.pauseAllDownloads()
+            guard let self = self else { return }
+            Task { @MainActor in
+                self.saveDownloadTasks()
+                self.pauseAllDownloads()
+            }
         }
         
         // 监听应用已激活通知
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.checkAndResumeDownloads()
+            guard let self = self else { return }
+            Task { @MainActor in
+                self.checkAndResumeDownloads()
+            }
         }
         
         // 监听应用即将终止通知
         NotificationCenter.default.addObserver(forName: UIApplication.willTerminateNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.saveDownloadTasks()
+            guard let self = self else { return }
+            Task { @MainActor in
+                self.saveDownloadTasks()
+            }
         }
     }
     
@@ -255,8 +266,6 @@ class UnifiedDownloadManager: ObservableObject, @unchecked Sendable {
                         request.runtime.status = DownloadStatus.failed
                     case .cancelled:
                         request.runtime.status = DownloadStatus.cancelled
-                    default:
-                        request.runtime.status = DownloadStatus.waiting
                     }
                     
                     // 每1%进度打印一次日志，确保实时更新

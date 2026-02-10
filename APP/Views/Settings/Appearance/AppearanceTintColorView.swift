@@ -123,12 +123,12 @@ struct AppearanceTintColorView: View {
 		.sheet(isPresented: $showingColorPicker) {
 			ColorPickerView(selectedColor: $selectedColor, selectedColorHex: $selectedColorHex)
 		}
-		.onChange(of: selectedColorHex) { value in
+		.onChange(of: selectedColorHex) { oldValue, newValue in
 			// 保存到UserDefaults（@AppStorage会自动处理）
 			// 更新window.tintColor
 			if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
 				for window in windowScene.windows {
-					window.tintColor = UIColor(Color(hex: value))
+					window.tintColor = UIColor(Color(hex: newValue))
 				}
 			}
 			
@@ -213,7 +213,7 @@ struct ColorPickerView: View {
 				}
 			}
 		}
-		.onChange(of: selectedColor) { newColor in
+		.onChange(of: selectedColor) { oldColor, newColor in
 			// 实时更新预览
 		}
 	}
