@@ -1,7 +1,6 @@
 import SwiftUI
 import Foundation
 
-// MARK: - Modern Text Field Style
 struct ModernTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
@@ -32,23 +31,21 @@ struct AddAccountView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // 适配深色模式的背景
+
                 themeManager.backgroundColor
                     .ignoresSafeArea()
-                
+
                 VStack(spacing: 0) {
-                    // 顶部安全区域占位
+
                     GeometryReader { geometry in
                         Color.clear
                             .frame(height: geometry.safeAreaInsets.top > 0 ? geometry.safeAreaInsets.top : 44)
                     }
                     .frame(height: 44)
-                    
-                    // 主要内容区域 - 完美居中
+
                     VStack(spacing: 0) {
                         Spacer()
-                        
-                        // 标题区域 - 完全居中
+
                         VStack(spacing: 20) {
                             Image("AppLogo")
                                 .resizable()
@@ -56,24 +53,23 @@ struct AddAccountView: View {
                                 .frame(width: 120, height: 120)
                                 .cornerRadius(12)
                                 .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
-                            
+
                             VStack(spacing: 8) {
                                 Text("Apple ID")
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
                                     .foregroundColor(.primary)
-                                
+
                                 Text("登录您的账户")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }
                         }
-                        
+
                         Spacer()
-                        
-                        // 输入表单区域
+
                         VStack(spacing: 24) {
-                            // Apple ID 输入框
+
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("Apple ID")
                                     .font(.headline)
@@ -84,8 +80,7 @@ struct AddAccountView: View {
                                     .autocapitalization(.none)
                                     .disableAutocorrection(true)
                             }
-                            
-                            // 密码输入框
+
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("密码")
                                     .font(.headline)
@@ -93,8 +88,7 @@ struct AddAccountView: View {
                                 SecureField("输入您的密码", text: $password)
                                     .textFieldStyle(ModernTextFieldStyle())
                             }
-                            
-                            // 双重认证码输入框（条件显示）
+
                             if showTwoFactorField {
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text("双重认证码")
@@ -104,23 +98,22 @@ struct AddAccountView: View {
                                         .textFieldStyle(ModernTextFieldStyle())
                                         .keyboardType(.numberPad)
                                         .focused($isCodeFieldFocused)
-                                        .onChange(of: code) { oldValue, newValue in
-                                            // 限制只能输入数字
-                                            code = String(newValue.filter { $0.isNumber })
-                                            
-                                            // 限制输入长度为6位
-                                            if code.count > 6 {
-                                                code = String(code.prefix(6))
+                                        .onChange(of: code) { newValue in
+
+                                            let filtered = String(newValue.filter { $0.isNumber })
+
+                                            if filtered.count > 6 {
+                                                code = String(filtered.prefix(6))
+                                            } else {
+                                                code = filtered
                                             }
 
-                                            // 当输入6位验证码时自动开始认证
                                             if code.count == 6 {
-                                                // 延迟一点时间让用户看到输入完成
+
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                                    // 缩回键盘
+
                                                     isCodeFieldFocused = false
 
-                                                    // 自动开始认证
                                                     Task {
                                                         await authenticate()
                                                     }
@@ -135,10 +128,9 @@ struct AddAccountView: View {
                             }
                         }
                         .padding(.horizontal, 24)
-                        
+
                         Spacer()
-                        
-                        // 登录按钮区域
+
                         VStack(spacing: 16) {
                             Button(action: {
                                 Task {
@@ -151,7 +143,7 @@ struct AddAccountView: View {
                                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
                                             .scaleEffect(0.8)
                                     } else {
-                                        // 移除头像图标
+
                                     }
                                     Text(isLoading ? "验证中..." : "添加账户")
                                         .fontWeight(.semibold)
@@ -170,8 +162,7 @@ struct AddAccountView: View {
                                 .shadow(color: themeManager.accentColor.opacity(0.3), radius: 8, x: 0, y: 4)
                             }
                             .disabled(isLoading || email.isEmpty || password.isEmpty)
-                            
-                            // 错误信息显示
+
                             if !errorMessage.isEmpty {
                                 HStack(spacing: 8) {
                                     Image(systemName: "exclamationmark.triangle.fill")
@@ -198,64 +189,60 @@ struct AddAccountView: View {
                 dismiss()
             }.foregroundColor(.primary))
             .onTapGesture {
-                // 点击背景缩回键盘
+
                 isCodeFieldFocused = false
             }
             .onAppear {
-                // 保持用户当前的主题设置，不强制重置
+
             }
         }
     }
     @MainActor
     private func authenticate() async {
-        // 验证输入
+
         if email.isEmpty || password.isEmpty {
             errorMessage = "请输入完整的Apple ID和密码"
             return
         }
-        
+
         if showTwoFactorField && code.count != 6 {
             errorMessage = "请输入6位验证码"
-            // 聚焦到验证码输入框
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.isCodeFieldFocused = true
             }
             return
         }
-        
-        // 记录认证开始
+
         print("🔐 [AddAccountView] 开始认证流程")
         print("📧 [AddAccountView] Apple ID: \(email)")
         print("🔐 [AddAccountView] 密码长度: \(password.count)")
         print("📱 [AddAccountView] 验证码: \(showTwoFactorField ? code : "无")")
-        
-        // 更新UI状态
+
         isLoading = true
         errorMessage = ""
         isCodeFieldFocused = false
-        
+
         do {
-            // 调用AppStore的loginAccount方法进行认证
+
             try await vm.loginAccount(
                 email: email,
                 password: password,
                 code: showTwoFactorField ? code : nil
             )
-            
+
             print("✅ [AddAccountView] 认证成功，关闭视图")
-            // 认证成功后关闭视图
+
             dismiss()
         } catch {
             print("❌ [AddAccountView] 认证失败: \(error)")
             print("❌ [AddAccountView] 错误类型: \(type(of: error))")
-            
-            // 更新加载状态
+
             isLoading = false
-            
-            // 处理不同类型的错误
+
             if let storeError = error as? StoreError {
                 print("🔍 [AddAccountView] 检测到StoreError: \(storeError)")
-                
+
                 switch storeError {
                 case .invalidCredentials:
                     errorMessage = "Apple ID或密码错误，请检查后重试"
@@ -275,32 +262,31 @@ struct AddAccountView: View {
                     errorMessage = "认证过程中发生错误: \(storeError.localizedDescription)"
                 }
             } else {
-                // 处理其他类型的错误
+
                 print("🔍 [AddAccountView] 未知错误类型: \(error)")
                 errorMessage = "认证过程中发生错误: \(error.localizedDescription)"
             }
         }
     }
-    
-    // 处理需要双重认证的情况
+
     private func handleTwoFactorAuthRequired() {
         print("🔐 [AddAccountView] 需要双重认证码")
-        
+
         if !showTwoFactorField {
-            // 显示双重认证输入框
+
             withAnimation(.easeInOut(duration: 0.3)) {
                 showTwoFactorField = true
             }
-            
-            // 延迟聚焦到验证码输入框
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.isCodeFieldFocused = true
             }
+
+            errorMessage = "请查看您的Apple设备上的验证码"
         } else {
-            // 验证码错误的情况
-            errorMessage = "验证码错误，请检查验证码是否正确"
-            
-            // 清空验证码并重新聚焦
+
+            errorMessage = "验证码错误，请重新输入"
+
             code = ""
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.isCodeFieldFocused = true

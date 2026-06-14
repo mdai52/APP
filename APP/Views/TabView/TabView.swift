@@ -1,17 +1,11 @@
-//
-//  TabView.swift
-//
-
 import SwiftUI
 
-
-// 标签枚举定义
 enum TabEnum: String, CaseIterable, Hashable {
     case settings
     case tfapps
     case downloads
     case search
-    
+
     var title: String {
         switch self {
         case .settings:  return "设置"
@@ -20,8 +14,7 @@ enum TabEnum: String, CaseIterable, Hashable {
         case .search:     return "搜索"
         }
     }
-    
-    // 标签图标
+
     var icon: String {
         switch self {
         case .settings:  return "gearshape.2"
@@ -30,20 +23,19 @@ enum TabEnum: String, CaseIterable, Hashable {
         case .search:     return "magnifyingglass"
         }
     }
-    
-    // 根据标签类型返回对应的视图
+
     @ViewBuilder
     static func view(for tab: TabEnum, themeManager: ThemeManager) -> some View {
         switch tab {
-        case .settings: 
+        case .settings:
             SettingsView()
                 .environmentObject(themeManager)
-        case .downloads: 
+        case .downloads:
             NavigationView {
                 DownloadView()
                     .environmentObject(themeManager)
             }
-        case .tfapps: 
+        case .tfapps:
             NavigationView {
                 TFAppsView()
                     .environmentObject(themeManager)
@@ -57,32 +49,40 @@ enum TabEnum: String, CaseIterable, Hashable {
     }
 }
 
-// 主标签栏视图
 struct TabbarView: View {
     @State private var selectedTab: TabEnum = .settings
     @EnvironmentObject var themeManager: ThemeManager
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            // 设置标签
-            Tab(TabEnum.settings.title, systemImage: TabEnum.settings.icon, value: TabEnum.settings) {
-                TabEnum.view(for: .settings, themeManager: themeManager)
-            }
-            
-            // TF版获取标签
-            Tab(TabEnum.tfapps.title, systemImage: TabEnum.tfapps.icon, value: TabEnum.tfapps) {
-                TabEnum.view(for: .tfapps, themeManager: themeManager)
-            }
-            
-            // 下载任务标签
-            Tab(TabEnum.downloads.title, systemImage: TabEnum.downloads.icon, value: TabEnum.downloads) {
-                TabEnum.view(for: .downloads, themeManager: themeManager)
-            }
-            
-            // 搜索标签（独立在右侧）
-            Tab(TabEnum.search.title, systemImage: TabEnum.search.icon, value: TabEnum.search, role: .search) {
-                TabEnum.view(for: .search, themeManager: themeManager)
-            }
+
+            TabEnum.view(for: .settings, themeManager: themeManager)
+                .tabItem {
+                    Image(systemName: TabEnum.settings.icon)
+                    Text(TabEnum.settings.title)
+                }
+                .tag(TabEnum.settings)
+
+            TabEnum.view(for: .tfapps, themeManager: themeManager)
+                .tabItem {
+                    Image(systemName: TabEnum.tfapps.icon)
+                    Text(TabEnum.tfapps.title)
+                }
+                .tag(TabEnum.tfapps)
+
+            TabEnum.view(for: .downloads, themeManager: themeManager)
+                .tabItem {
+                    Image(systemName: TabEnum.downloads.icon)
+                    Text(TabEnum.downloads.title)
+                }
+                .tag(TabEnum.downloads)
+
+            TabEnum.view(for: .search, themeManager: themeManager)
+                .tabItem {
+                    Image(systemName: TabEnum.search.icon)
+                    Text(TabEnum.search.title)
+                }
+                .tag(TabEnum.search)
         }
         .accentColor(themeManager.accentColor)
         .background(themeManager.backgroundColor)

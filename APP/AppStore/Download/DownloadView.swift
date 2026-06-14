@@ -17,6 +17,27 @@ import Vapor
 #endif
 
 
+public struct AppInfo {
+    public let name: String
+    public let version: String
+    public let bundleIdentifier: String
+    public let path: String
+    public let localPath: String?
+    
+    public init(name: String, version: String, bundleIdentifier: String, path: String, localPath: String? = nil) {
+        self.name = name
+        self.version = version
+        self.bundleIdentifier = bundleIdentifier
+        self.path = path
+        self.localPath = localPath
+    }
+    
+    // 兼容性属性
+    public var bundleId: String {
+        return bundleIdentifier
+    }
+}
+
 
 // DownloadStatus枚举
 enum DownloadStatus: String, Codable {
@@ -94,8 +115,6 @@ class HTTPServerManager: ObservableObject, @unchecked Sendable {
 #if canImport(ZipArchive)
 import ZipArchive
 #endif
-
-
 
 // MARK: - 现代卡片样式
 struct ModernCard<Content: SwiftUI.View>: SwiftUI.View {
@@ -194,27 +213,6 @@ public enum PackageInstallationError: Error, LocalizedError {
         case .timeoutError:
             return "安装超时"
         }
-    }
-}
-
-public struct AppInfo {
-    public let name: String
-    public let version: String
-    public let bundleIdentifier: String
-    public let path: String
-    public let localPath: String?
-    
-    public init(name: String, version: String, bundleIdentifier: String, path: String, localPath: String? = nil) {
-        self.name = name
-        self.version = version
-        self.bundleIdentifier = bundleIdentifier
-        self.path = path
-        self.localPath = localPath
-    }
-    
-    // 兼容性属性
-    public var bundleId: String {
-        return bundleIdentifier
     }
 }
 
@@ -932,9 +930,7 @@ struct DownloadView: SwiftUI.View {
                 }
             }
         }
-        .onChange(of: scenePhase) { oldPhase, newPhase in
-            handleScenePhaseChange(newPhase)
-        }
+        .onChange(of: scenePhase, perform: handleScenePhaseChange)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             handleAppEnteredBackground()
         }
@@ -1031,7 +1027,6 @@ struct DownloadView: SwiftUI.View {
                     value: animateCards
                 )
             
-            // 关于作者按钮
             Button(action: {
                 guard let url = URL(string: "https://github.com/pxx917144686"),
                     UIApplication.shared.canOpenURL(url) else {
@@ -1075,44 +1070,8 @@ struct DownloadView: SwiftUI.View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.vertical, 32)
     }
-    
-    // MARK: - 安装进度相关属性
-    @State private var installationProgress: Double = 0.0
-    @State private var installationMessage: String = ""
-    @State private var isInstalling: Bool = false
-    
-    // MARK: - 安装进度视图
-    private var installationProgressView: some SwiftUI.View {
-        VStack(spacing: 4) {
-            HStack {
-                Label("安装进度", systemImage: "arrow.up.circle")
-                    .font(.headline)
-                    .foregroundColor(.green)
-                
-                Spacer()
-                
-                Text("\(Int(installationProgress * 100))%")
-                    .font(.title2)
-                    .foregroundColor(.green)
-            }
-            
-            ProgressView(value: installationProgress)
-                .progressViewStyle(LinearProgressViewStyle(tint: .green))
-                .scaleEffect(y: 2.0)
-            
-            Text(installationMessage)
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.leading)
-        }
-        .padding(.horizontal, 4)
-    }
-    
-    // MARK: - 生命周期方法
 
-
-    
-    // MARK: - 下载管理方法
+        // MARK: - 下载管理方法
     private func deleteDownload() {
         // 此方法在 DownloadView 中不需要直接实现，因为下载请求是在 DownloadCardView 中处理的
         print("[DownloadView] deleteDownload called")
@@ -1155,181 +1114,6 @@ struct DownloadView: SwiftUI.View {
         #endif
     }
     
-    // MARK: - 安装功能
-    private func startInstallation(for request: DownloadRequest) {
-        // 全局安装状态检查
-        guard globalInstallManager.startInstallation(for: request.id) else {
-            NSLog("⚠️ [APP] 其他应用正在安装中，忽略当前请求")
-            return
-        }
-        
-        // 本地安装状态检查
-        guard !isInstalling else { 
-            NSLog("⚠️ [APP] 安装正在进行中，忽略重复点击")
-            globalInstallManager.finishInstallation()
-            return 
-        }
-        
-        // 检查是否已经有本地文件
-        guard let localFilePath = request.localFilePath,
-              FileManager.default.fileExists(atPath: localFilePath) else {
-            NSLog("❌ [APP] 本地文件不存在，无法安装")
-            globalInstallManager.finishInstallation()
-            return
-        }
-        
-        NSLog("🚀 [APP] 开始安装流程 - 请求ID: \(request.id)")
-        isInstalling = true
-        installationProgress = 0.0
-        installationMessage = "准备安装..."
-        
-        Task {
-            do {
-                try await performOTAInstallation(for: request)
-                
-                await MainActor.run {
-                    installationProgress = 1.0
-                    installationMessage = "安装成功完成"
-                    isInstalling = false
-                    globalInstallManager.finishInstallation()
-                    NSLog("✅ [APP] 安装流程完成")
-                }
-            } catch {
-                await MainActor.run {
-                    installationMessage = "安装失败: \(error.localizedDescription)"
-                    isInstalling = false
-                    globalInstallManager.finishInstallation()
-                    NSLog("❌ [APP] 安装流程失败: \(error)")
-                }
-            }
-        }
-    }
-    
-    
-    private func performOTAInstallation(for request: DownloadRequest) async throws {
-        NSLog("🔧 [APP] 开始安装流程")
-        
-        guard let localFilePath = request.localFilePath else {
-            throw PackageInstallationError.invalidIPAFile
-        }
-        
-        // 创建AppInfo
-        let appInfo = AppInfo(
-            name: request.package.name,
-            version: request.version,
-            bundleIdentifier: request.package.bundleIdentifier,
-            path: localFilePath
-        )
-        
-        await MainActor.run {
-            installationMessage = "正在验证IPA文件..."
-            installationProgress = 0.2
-        }
-        
-        // 验证IPA文件是否存在
-        guard FileManager.default.fileExists(atPath: localFilePath) else {
-            throw PackageInstallationError.invalidIPAFile
-        }
-        
-        await MainActor.run {
-            installationMessage = "正在进行签名..."
-            installationProgress = 0.4
-        }
-        
-        // 执行签名
-        try await self.performAdhocSigning(ipaPath: localFilePath, appInfo: appInfo)
-        
-        await MainActor.run {
-            installationMessage = "签名成功，准备安装..."
-            installationProgress = 0.6
-        }
-        
-        // 启动HTTP服务器
-        let serverPort = SimpleHTTPServer.randomPort()
-        HTTPServerManager.shared.startServer(
-            for: request.id,
-            port: serverPort,
-            ipaPath: localFilePath,
-            appInfo: appInfo
-        )
-        
-        // 等待服务器启动
-        try await Task.sleep(nanoseconds: 4_000_000_000) // 等待4秒
-        
-        await MainActor.run {
-            installationMessage = "正在生成安装URL..."
-            installationProgress = 0.8
-        }
-        
-        // 生成安装URL
-        let manifestURL = "http://127.0.0.1:\(serverPort)/plist/\(appInfo.bundleIdentifier)"
-        let _ = manifestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? manifestURL
-        
-        await MainActor.run {
-            installationMessage = "正在打开iOS安装对话框..."
-            installationProgress = 0.9
-        }
-        
-        // 使用Safari WebView打开安装页面
-        let localInstallURL = "http://127.0.0.1:\(serverPort)/install"
-        
-        if let installURL = URL(string: localInstallURL) {
-            DispatchQueue.main.async {
-                self.safariURL = installURL
-                self.showSafariWebView = true
-                
-                // 设置自动关闭定时器
-                DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) {
-                    if self.showSafariWebView {
-                        self.showSafariWebView = false
-                    }
-                }
-                
-                // 延迟停止服务器
-                DispatchQueue.main.asyncAfter(deadline: .now() + 30.0) {
-                    HTTPServerManager.shared.stopServer(for: request.id)
-                }
-            }
-        } else {
-            throw PackageInstallationError.installationFailed("无法创建安装页面URL")
-        }
-        
-        await MainActor.run {
-            installationMessage = "iOS安装对话框已打开"
-            installationProgress = 1.0
-        }
-    }
-    
-    // MARK: - 签名方法
-    private func performAdhocSigning(ipaPath: String, appInfo: AppInfo) async throws {
-        
-        #if canImport(ZsignSwift)
-        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            let tempDir = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-            defer {
-                try? FileManager.default.removeItem(at: tempDir)
-            }
-            
-            do {
-                try FileManager.default.createDirectory(at: tempDir, withIntermediateDirectories: true)
-                
-                #if canImport(ZipArchive)
-                let unzipSuccess = SSZipArchive.unzipFile(atPath: ipaPath, toDestination: tempDir.path)
-                guard unzipSuccess else {
-                    throw PackageInstallationError.installationFailed("IPA文件解压失败")
-                }
-                #else
-                throw PackageInstallationError.installationFailed("需要ZipArchive库")
-                #endif
-                
-                // 由于移除了Zsign依赖，跳过签名步骤
-                continuation.resume()
-            } catch {
-                continuation.resume(throwing: error)
-            }
-        }
-        #endif
-    }
 }
 
 // MARK: - 下载卡片视图
@@ -1616,7 +1400,10 @@ struct DownloadCardView: SwiftUI.View {
                     url: url,
                     isPresented: $showSafariWebView,
                     onDismiss: {
-                        NSLog("🔒 [DownloadCardView] Safari WebView已关闭")
+                        NSLog("🔒 [DownloadCardView] Safari WebView已关闭，清理安装状态")
+                        isInstalling = false
+                        installationProgress = 0.0
+                        GlobalInstallationManager.shared.finishInstallation(for: request.id)
                     }
                 )
             }
@@ -1712,6 +1499,7 @@ struct DownloadCardView: SwiftUI.View {
         .font(.title2)
     }
     
+    // MARK: - 下载进度视图
     private var progressView: some SwiftUI.View {
         VStack(spacing: 4) {
             HStack {
@@ -1835,8 +1623,7 @@ struct DownloadCardView: SwiftUI.View {
     }
     
     private func isUnpurchasedAppError() -> Bool {
-        // 检查是否是未购买应用的错误
-        // 由于DownloadRuntime没有errorMessage成员，返回默认值
+        // 检查是否是未购买的错误
         return false
     }
     
@@ -1963,8 +1750,38 @@ struct DownloadCardView: SwiftUI.View {
                     installationMessage = "准备安装链接..."
                 }
                 
+                // 等待服务器启动（轮询健康检查端点）
+                let healthURL = "http://127.0.0.1:\(port)/health"
+                var serverReady = false
+                for attempt in 1...20 { // 最多等待10秒（20次 * 0.5秒）
+                    try await Task.sleep(nanoseconds: 500_000_000) // 0.5秒
+                    if let url = URL(string: healthURL) {
+                        do {
+                            let (_, response) = try await URLSession.shared.data(from: url)
+                            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                                serverReady = true
+                                NSLog("✅ [DownloadView] 服务器已就绪，第\(attempt)次尝试成功")
+                                break
+                            }
+                        } catch {
+                            NSLog("⏳ [DownloadView] 等待服务器启动... 第\(attempt)次尝试")
+                        }
+                    }
+                }
+                
+                guard serverReady else {
+                    NSLog("❌ [DownloadView] HTTP服务器启动超时")
+                    await MainActor.run {
+                        installationMessage = "安装服务启动超时，请重试"
+                        cleanupInstallation(request.id)
+                    }
+                    UIApplication.shared.endBackgroundTask(backgroundTaskID)
+                    return
+                }
+                
                 // 构造安装URL
-                guard URL(string: "itms-services://?action=download-manifest&url=http://localhost:\(port)/plist/\(request.bundleIdentifier)") != nil else {
+                let manifestURL = "http://127.0.0.1:\(port)/plist/\(request.bundleIdentifier)"
+                guard URL(string: "itms-services://?action=download-manifest&url=\(manifestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? manifestURL)") != nil else {
                     NSLog("❌ [DownloadView] 无效的安装链接")
                     await MainActor.run {
                         installationMessage = "无效的安装链接"
@@ -1993,21 +1810,29 @@ struct DownloadCardView: SwiftUI.View {
                 }
                 
                 // Safari WebView已打开，让用户在其中完成安装操作
+                // 30秒后自动清理状态，确保用户可以重新点击安装
                 await MainActor.run {
                     installationProgress = 1.0
                     installationMessage = "请在Safari中完成安装操作"
                     
+                    // 设置定时器，在30秒后清理安装状态（用户已有足够时间确认安装）
+                    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 30) {
+                        NSLog("⏰ [DownloadView] 30秒超时，清理安装状态，请求ID: \(request.id)")
+                        Task {
+                            await MainActor.run {
+                                isInstalling = false
+                                installationProgress = 0.0
+                                GlobalInstallationManager.shared.finishInstallation(for: request.id)
+                            }
+                        }
+                    }
+                    
                     // 设置定时器，在5分钟后自动停止HTTP服务器
-                    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 300) { // 5分钟后
+                    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 300) {
                         NSLog("⏰ [DownloadView] 自动停止HTTP服务器，请求ID: \(request.id)")
-                        // 使用Task确保在main actor上调用
                         Task {
                             await MainActor.run {
                                 HTTPServerManager.shared.stopServer(for: request.id)
-                                // 只有在没有其他安装任务时才清理状态
-                                if !GlobalInstallationManager.shared.isAnyInstalling {
-                                    GlobalInstallationManager.shared.finishInstallation(for: request.id)
-                                }
                             }
                         }
                     }

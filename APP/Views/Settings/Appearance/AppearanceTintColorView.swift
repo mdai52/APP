@@ -1,4 +1,3 @@
-
 import SwiftUI
 import UIKit
 
@@ -6,17 +5,17 @@ struct AppearanceTintColorView: View {
 	@AppStorage("APP.userTintColor") private var selectedColorHex: String = "#007AFF"
 	@State private var showingColorPicker = false
 	@State private var selectedColor = Color(hex: "#007AFF")
-	
+
 	var body: some View {
 		VStack(spacing: 20) {
-			// 当前选择的颜色预览
+
 			HStack {
 				Text("整体颜色")
 					.font(.headline)
 					.foregroundColor(.primary)
-				
+
 				Spacer()
-				
+
 				HStack(spacing: 12) {
 					Circle()
 						.fill(selectedColor)
@@ -25,12 +24,12 @@ struct AppearanceTintColorView: View {
 							Circle()
 								.strokeBorder(Color.primary.opacity(0.2), lineWidth: 2)
 						)
-					
+
 					VStack(alignment: .trailing, spacing: 2) {
 						Text(selectedColorHex)
 							.font(.system(.caption, design: .monospaced))
 							.foregroundColor(.secondary)
-						
+
 						Text(verbatim: "点击选择")
 							.font(.system(.caption2))
 							.foregroundColor(.secondary.opacity(0.7))
@@ -38,8 +37,7 @@ struct AppearanceTintColorView: View {
 				}
 			}
 			.padding(.horizontal, 20)
-			
-			// iOS原生调色板选择器
+
 			Button(action: {
 				showingColorPicker = true
 			}) {
@@ -47,13 +45,13 @@ struct AppearanceTintColorView: View {
 					Image(systemName: "paintpalette.fill")
 						.font(.title2)
 						.foregroundColor(selectedColor)
-					
+
 					Text(verbatim: "选择颜色")
 						.font(.headline)
 						.foregroundColor(.primary)
-					
+
 					Spacer()
-					
+
 					Image(systemName: "chevron.right")
 						.font(.caption)
 						.foregroundColor(.secondary)
@@ -71,14 +69,13 @@ struct AppearanceTintColorView: View {
 			}
 			.buttonStyle(PlainButtonStyle())
 			.padding(.horizontal, 20)
-			
-			// 预设颜色快速选择
+
 			VStack(alignment: .leading, spacing: 12) {
                                 Text(verbatim: "快速选择")
 					.font(.subheadline)
 					.foregroundColor(.secondary)
 					.padding(.horizontal, 20)
-				
+
 				ScrollView(.horizontal, showsIndicators: false) {
 					HStack(spacing: 12) {
 						ForEach(presetColors, id: \.self) { color in
@@ -93,7 +90,7 @@ struct AppearanceTintColorView: View {
 										)
 								)
 								.overlay(
-									selectedColor == color ? 
+									selectedColor == color ?
 									Image(systemName: "checkmark")
 										.font(.system(size: 16, weight: .bold))
 										.foregroundColor(.white)
@@ -108,8 +105,7 @@ struct AppearanceTintColorView: View {
 										selectedColor = color
 										selectedColorHex = color.toHex()
 									}
-									
-									// 触觉反馈
+
 									let impactFeedback = UIImpactFeedbackGenerator(style: .light)
 									impactFeedback.impactOccurred()
 								}
@@ -123,57 +119,54 @@ struct AppearanceTintColorView: View {
 		.sheet(isPresented: $showingColorPicker) {
 			ColorPickerView(selectedColor: $selectedColor, selectedColorHex: $selectedColorHex)
 		}
-		.onChange(of: selectedColorHex) { oldValue, newValue in
-			// 保存到UserDefaults（@AppStorage会自动处理）
-			// 更新window.tintColor
+		.onChange(of: selectedColorHex, perform: { newValue in
+
 			if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
 				for window in windowScene.windows {
 					window.tintColor = UIColor(Color(hex: newValue))
 				}
 			}
-			
-			// 手动触发ThemeManager更新
+
 			ThemeManager.shared.objectWillChange.send()
-		}
+		})
 		.onAppear {
 			selectedColor = Color(hex: selectedColorHex)
 		}
 	}
-	
+
 	private let presetColors: [Color] = [
-		Color(hex: "#B496DC"), // 默认
-		Color(hex: "#848ef9"), // 经典
-		Color(hex: "#ff7a83"), // 浆果
-		Color(hex: "#4161F1"), // 酷蓝
-		Color(hex: "#FF00FF"), // 紫红
-		Color(hex: "#4CD964"), // 协议
-		Color(hex: "#FF2D55"), // 爱读
-		Color(hex: "#FF9500"), // 时钟
-		Color(hex: "#4860e8"), // 特殊
-		Color(hex: "#5394F7"), // 非常特殊
-		Color(hex: "#e18aab"), // 艾米丽
-		Color(hex: "#00CED1"), // 海洋
-		Color(hex: "#228B22"), // 森林
-		Color(hex: "#FF6347"), // 日落
-		Color(hex: "#191970"), // 星空
-		Color(hex: "#FFB6C1"), // 樱花
-		Color(hex: "#98FB98"), // 薄荷
-		Color(hex: "#E6E6FA"), // 薰衣草
-		Color(hex: "#FF7F50"), // 珊瑚
-		Color(hex: "#50C878")  // 翡翠
+		Color(hex: "#B496DC"),
+		Color(hex: "#848ef9"),
+		Color(hex: "#ff7a83"),
+		Color(hex: "#4161F1"),
+		Color(hex: "#FF00FF"),
+		Color(hex: "#4CD964"),
+		Color(hex: "#FF2D55"),
+		Color(hex: "#FF9500"),
+		Color(hex: "#4860e8"),
+		Color(hex: "#5394F7"),
+		Color(hex: "#e18aab"),
+		Color(hex: "#00CED1"),
+		Color(hex: "#228B22"),
+		Color(hex: "#FF6347"),
+		Color(hex: "#191970"),
+		Color(hex: "#FFB6C1"),
+		Color(hex: "#98FB98"),
+		Color(hex: "#E6E6FA"),
+		Color(hex: "#FF7F50"),
+		Color(hex: "#50C878")
 	]
 }
 
-// MARK: - ColorPickerView
 struct ColorPickerView: View {
 	@Binding var selectedColor: Color
 	@Binding var selectedColorHex: String
 	@Environment(\.dismiss) private var dismiss
-	
+
 	var body: some View {
 		NavigationView {
 			VStack(spacing: 20) {
-				// 当前选择的颜色预览
+
 				VStack(spacing: 16) {
 					Circle()
 						.fill(selectedColor)
@@ -182,17 +175,16 @@ struct ColorPickerView: View {
 							Circle()
 								.strokeBorder(Color.primary.opacity(0.2), lineWidth: 3)
 						)
-					
+
 					Text(selectedColorHex)
 						.font(.system(.title3, design: .monospaced))
 						.foregroundColor(.secondary)
 				}
 				.padding(.top, 20)
-				
-				// iOS原生ColorPicker
+
 				ColorPicker("选择颜色", selection: $selectedColor, supportsOpacity: false)
 					.padding(.horizontal, 20)
-				
+
 				Spacer()
 			}
 			.navigationTitle("颜色选择器")
@@ -203,7 +195,7 @@ struct ColorPickerView: View {
 						dismiss()
 					}
 				}
-				
+
 				ToolbarItem(placement: .navigationBarTrailing) {
 					Button("返回") {
 						selectedColorHex = selectedColor.toHex()
@@ -213,13 +205,12 @@ struct ColorPickerView: View {
 				}
 			}
 		}
-		.onChange(of: selectedColor) { oldColor, newColor in
-			// 实时更新预览
-		}
+		.onChange(of: selectedColor, perform: { _ in
+
+		})
 	}
 }
 
-// MARK: - Color Extensions
 extension Color {
 	func toHex() -> String {
 		let uiColor = UIColor(self)
@@ -227,11 +218,11 @@ extension Color {
 		var green: CGFloat = 0
 		var blue: CGFloat = 0
 		var alpha: CGFloat = 0
-		
+
 		uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-		
+
 		let rgb: Int = (Int)(red * 255) << 16 | (Int)(green * 255) << 8 | (Int)(blue * 255) << 0
-		
+
 		return String(format: "#%06x", rgb).uppercased()
 	}
 }

@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851F44E32FDDEC8B00574B00 /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 851F44E22FDDEC8B00574B00 /* ZipArchive */; };
+		851F44E62FDDECA400574B00 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = 851F44E52FDDECA400574B00 /* Vapor */; };
 		859304D02E76A99D00D0052E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		85A1B2C52E6F123400D4E5F6 /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 85A1B2C42E6F123400D4E5F6 /* ZipArchive */; };
-		85EC5BF22E768811006D9773 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = 85EC5BF12E768811006D9773 /* Vapor */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,9 +65,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85EC5BF22E768811006D9773 /* Vapor in Frameworks */,
+				851F44E62FDDECA400574B00 /* Vapor in Frameworks */,
+				851F44E32FDDEC8B00574B00 /* ZipArchive in Frameworks */,
 				859304D02E76A99D00D0052E /* (null) in Frameworks */,
-				85A1B2C52E6F123400D4E5F6 /* ZipArchive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,8 +112,8 @@
 			);
 			name = APP;
 			packageProductDependencies = (
-				85A1B2C42E6F123400D4E5F6 /* ZipArchive */,
-				85EC5BF12E768811006D9773 /* Vapor */,
+				851F44E22FDDEC8B00574B00 /* ZipArchive */,
+				851F44E52FDDECA400574B00 /* Vapor */,
 			);
 			productName = APP;
 			productReference = 851FD95F2E578774002136BA /* APP.app */;
@@ -184,8 +184,8 @@
 			mainGroup = 851FD9562E578774002136BA;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				85A1B2C32E6F123400D4E5F6 /* XCRemoteSwiftPackageReference "ZipArchive" */,
-				85EC5BF02E768811006D9773 /* XCRemoteSwiftPackageReference "vapor" */,
+				851F44E12FDDEC8B00574B00 /* XCRemoteSwiftPackageReference "ZipArchive" */,
+				851F44E42FDDECA400574B00 /* XCRemoteSwiftPackageReference "vapor" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 851FD9602E578774002136BA /* Products */;
@@ -367,7 +367,7 @@
 					"$(PROJECT_DIR)/APP/Supporting",
 				);
 				INFOPLIST_FILE = APP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -377,7 +377,7 @@
 					"$(PROJECT_DIR)/APP/Resources",
 					"$(PROJECT_DIR)/APP",
 				);
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.5.1;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -419,7 +419,7 @@
 					"$(PROJECT_DIR)/APP/Supporting",
 				);
 				INFOPLIST_FILE = APP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -429,7 +429,7 @@
 					"$(PROJECT_DIR)/APP/Resources",
 					"$(PROJECT_DIR)/APP",
 				);
-				MARKETING_VERSION = 2.5.0;
+				MARKETING_VERSION = 2.5.1;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -470,33 +470,33 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		85A1B2C32E6F123400D4E5F6 /* XCRemoteSwiftPackageReference "ZipArchive" */ = {
+		851F44E12FDDEC8B00574B00 /* XCRemoteSwiftPackageReference "ZipArchive" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ZipArchive/ZipArchive.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.4.3;
+				minimumVersion = 2.6.0;
 			};
 		};
-		85EC5BF02E768811006D9773 /* XCRemoteSwiftPackageReference "vapor" */ = {
+		851F44E42FDDECA400574B00 /* XCRemoteSwiftPackageReference "vapor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/vapor/vapor.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.117.0;
+				minimumVersion = 4.121.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		85A1B2C42E6F123400D4E5F6 /* ZipArchive */ = {
+		851F44E22FDDEC8B00574B00 /* ZipArchive */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 85A1B2C32E6F123400D4E5F6 /* XCRemoteSwiftPackageReference "ZipArchive" */;
+			package = 851F44E12FDDEC8B00574B00 /* XCRemoteSwiftPackageReference "ZipArchive" */;
 			productName = ZipArchive;
 		};
-		85EC5BF12E768811006D9773 /* Vapor */ = {
+		851F44E52FDDECA400574B00 /* Vapor */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 85EC5BF02E768811006D9773 /* XCRemoteSwiftPackageReference "vapor" */;
+			package = 851F44E42FDDECA400574B00 /* XCRemoteSwiftPackageReference "vapor" */;
 			productName = Vapor;
 		};
 /* End XCSwiftPackageProductDependency section */

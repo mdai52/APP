@@ -1,13 +1,11 @@
-
 import SwiftUI
 import UIKit
 
-// Extension to provide all cases for UIUserInterfaceStyle
 private extension UIUserInterfaceStyle {
     static var allStyles: [UIUserInterfaceStyle] {
         return [.unspecified, .light, .dark]
     }
-    
+
     var displayName: String {
         switch self {
         case .unspecified: return "自动"
@@ -20,7 +18,7 @@ private extension UIUserInterfaceStyle {
 
 struct AppearanceView: View {
     @EnvironmentObject var themeManager: ThemeManager
-    
+
     private var selectedStyle: Binding<UIUserInterfaceStyle> {
         Binding(
             get: {
@@ -40,7 +38,7 @@ struct AppearanceView: View {
             }
         )
     }
-    
+
     var body: some View {
         List {
             Section {
@@ -52,7 +50,7 @@ struct AppearanceView: View {
                 }
                 .pickerStyle(.segmented)
             }
-            
+
             Section {
                 AppearanceTintColorView()
                     .listRowInsets(EdgeInsets())

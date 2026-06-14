@@ -1,7 +1,6 @@
 import SwiftUI
 import UIKit
 
-// Color扩展，用于从十六进制字符串创建颜色
 extension Color {
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -9,11 +8,11 @@ extension Color {
         Scanner(string: hex).scanHexInt64(&int)
         let a, r, g, b: UInt64
         switch hex.count {
-        case 3: // RGB (12-bit)
+        case 3:
             (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
+        case 6:
             (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
+        case 8:
             (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
         default:
             (a, r, g, b) = (255, 0, 0, 0)
@@ -22,7 +21,6 @@ extension Color {
     }
 }
 
-// MARK: - 间距常量
 struct Spacing {
     static let xxs: CGFloat = 2
     static let xs: CGFloat = 4
@@ -35,67 +33,62 @@ struct Spacing {
 }
 
 enum AppTheme: Int, CaseIterable {
-    case light = 1      // 对应UIUserInterfaceStyle.light.rawValue
-    case dark = 2       // 对应UIUserInterfaceStyle.dark.rawValue  
-    case system = 0     // 对应UIUserInterfaceStyle.unspecified.rawValue
+    case light = 1
+    case dark = 2
+    case system = 0
 }
 @MainActor
 class ThemeManager: ObservableObject, @unchecked Sendable {
     static let shared = ThemeManager()
-    
+
     @Published var selectedTheme: AppTheme = .system {
         didSet {
             updateUserInterfaceStyle()
         }
     }
-    
-    
+
     @Published var accentColor: Color = Color(hex: "#007AFF")
-    
+
     private var notificationObserver: Any?
-    
+
     private init() {
-        // 使用与设置页面相同的存储键
+
         let savedTheme = UserDefaults.standard.integer(forKey: "Feather.userInterfaceStyle")
-        // 现在AppTheme的rawValue与UIUserInterfaceStyle的rawValue匹配，可以直接转换
+
         let initialTheme: AppTheme
         if let theme = AppTheme(rawValue: savedTheme) {
             initialTheme = theme
         } else {
-            initialTheme = .system  // 默认使用系统主题
+            initialTheme = .system
         }
-        
-        // 直接设置初始值，避免触发didSet
+
         _selectedTheme = Published(initialValue: initialTheme)
-        
-        // 初始化accentColor
+
         updateAccentColor()
-        
-        // 使用NotificationCenter监听UserDefaults变化
+
         notificationObserver = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
-            // 当UserDefaults变化时，更新颜色
+
             DispatchQueue.main.async {
                 self?.updateAccentColor()
             }
         }
-        
-        // 手动调用一次更新
+
         updateUserInterfaceStyle()
     }
-    
+
     deinit {
-        // 移除通知监听
+
         if let observer = notificationObserver {
             NotificationCenter.default.removeObserver(observer)
         }
     }
-    
+
     private func updateAccentColor() {
-        // 从UserDefaults中读取用户选择的颜色，如果没有则使用默认蓝色
+
         let savedColorHex = UserDefaults.standard.string(forKey: "APP.userTintColor") ?? "#007AFF"
         accentColor = Color(hex: savedColorHex)
     }
-    
+
     var backgroundColor: Color {
         switch selectedTheme {
         case .light:
@@ -103,7 +96,7 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
         case .dark:
             return ModernDarkColors.backgroundPrimary
         case .system:
-            // 系统主题时，根据当前系统外观模式决定
+
             if UITraitCollection.current.userInterfaceStyle == .dark {
                 return ModernDarkColors.backgroundPrimary
             } else {
@@ -111,7 +104,7 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
             }
         }
     }
-    
+
     func updateUserInterfaceStyle() {
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             for window in windowScene.windows {
@@ -125,16 +118,14 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
                 }
             }
         }
-        
-        // 使用与设置页面相同的存储键
+
         UserDefaults.standard.set(selectedTheme.rawValue, forKey: "Feather.userInterfaceStyle")
         print("🎨 [ThemeManager] 主题已更新为: \(selectedTheme)")
     }
-    
-    // 从设置页面同步主题到ThemeManager
+
     func syncFromSettings() {
         let settingsTheme = UserDefaults.standard.integer(forKey: "Feather.userInterfaceStyle")
-        // 现在AppTheme的rawValue与UIUserInterfaceStyle的rawValue匹配，可以直接转换
+
         if let appTheme = AppTheme(rawValue: settingsTheme), appTheme != selectedTheme {
             selectedTheme = appTheme
         }
@@ -155,14 +146,13 @@ enum ThemeMode: String, CaseIterable {
     case dark = "深色"
 }
 
-
 struct FloatingThemeSelector: View {
     @EnvironmentObject var themeManager: ThemeManager
     @Binding var isPresented: Bool
-    
+
     var body: some View {
         ZStack {
-            // 背景遮罩
+
             if isPresented {
                 Color.black.opacity(0.3)
                     .ignoresSafeArea()
@@ -172,16 +162,15 @@ struct FloatingThemeSelector: View {
                         }
                     }
             }
-            
-            // 悬浮窗内容
+
             if isPresented {
                 VStack(spacing: 0) {
                     Spacer()
-                    // 主题选择器
-                    VStack(spacing: Spacing.lg) {                        
-                        // 主题选项
+
+                    VStack(spacing: Spacing.lg) {
+
                         HStack(spacing: Spacing.xl) {
-                            // 浅色主题选项
+
                             FloatingThemeOption(
                                 mode: .light,
                                 isSelected: themeManager.selectedTheme == .light,
@@ -192,7 +181,7 @@ struct FloatingThemeSelector: View {
                                     }
                                 }
                             )
-                            // 深色主题选项
+
                             FloatingThemeOption(
                                 mode: .dark,
                                 isSelected: themeManager.selectedTheme == .dark,
@@ -206,37 +195,34 @@ struct FloatingThemeSelector: View {
                         }
                         .padding(.horizontal, Spacing.lg)
                     }
-                    .padding(.bottom, 80) // 使用固定值：底部安全区域 + 80
+                    .padding(.bottom, 80)
                 }
             }
         }
     }
 }
 
-// 悬浮窗主题选项组件
 struct FloatingThemeOption: View {
     let mode: ThemeMode
     let isSelected: Bool
     let action: () -> Void
-    
-    // 使用简单的固定值替代复杂的设备检测
-    let isCompactDevice = false // 默认不是紧凑设备
-    
-    // 根据设备类型调整尺寸
+
+    let isCompactDevice = false
+
     private var cardSize: CGSize {
-        // 使用固定值，不再依赖设备检测
+
         return CGSize(width: 100, height: 120)
     }
-    
+
     private var fontSize: CGFloat {
-        // 使用固定值，不再依赖设备检测
+
         return 12
     }
-    
+
     var body: some View {
         Button(action: action) {
             VStack(spacing: Spacing.md) {
-                // 主题预览卡片 - 模拟APP搜索界面
+
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)
                         .fill(themeBackgroundColor)
@@ -246,10 +232,9 @@ struct FloatingThemeOption: View {
                                 .stroke(isSelected ? ThemeManager.shared.accentColor : Color.clear, lineWidth: 4)
                         )
                         .shadow(color: isSelected ? ThemeManager.shared.accentColor.opacity(0.4) : Color.black.opacity(0.15), radius: isSelected ? 12 : 6, x: 0, y: 4)
-                    
-                    // APP搜索界面预览
+
                     VStack(spacing: 8) {
-                        // 状态栏
+
                         HStack {
                             Text("9:41")
                                 .font(.system(size: fontSize - 2, weight: .medium))
@@ -266,8 +251,7 @@ struct FloatingThemeOption: View {
                         }
                         .frame(width: cardSize.width * 0.75)
                         .padding(.top, 6)
-                        
-                        // 搜索栏
+
                         RoundedRectangle(cornerRadius: 10)
                             .fill(themeSearchBarColor)
                             .frame(width: cardSize.width * 0.75, height: fontSize + 6)
@@ -283,33 +267,32 @@ struct FloatingThemeOption: View {
                                 }
                                 .padding(.horizontal, 8)
                             )
-                        
-                        // 搜索结果网格 - 彩色APP图标
+
                         VStack(spacing: 4) {
                             HStack(spacing: 4) {
-                                // APP图标1 - 蓝色
+
                                 RoundedRectangle(cornerRadius: 6)
                                     .fill(Color.blue)
                                     .frame(width: fontSize + 3, height: fontSize + 3)
-                                // APP图标2 - 绿色
+
                                 RoundedRectangle(cornerRadius: 6)
                                     .fill(Color.green)
                                     .frame(width: fontSize + 3, height: fontSize + 3)
-                                // APP图标3 - 橙色
+
                                 RoundedRectangle(cornerRadius: 6)
                                     .fill(Color.orange)
                                     .frame(width: fontSize + 3, height: fontSize + 3)
                             }
                             HStack(spacing: 4) {
-                                // APP图标4 - 紫色
+
                                 RoundedRectangle(cornerRadius: 6)
                                     .fill(Color.purple)
                                     .frame(width: fontSize + 3, height: fontSize + 3)
-                                // APP图标5 - 红色
+
                                 RoundedRectangle(cornerRadius: 6)
                                     .fill(Color.red)
                                     .frame(width: fontSize + 3, height: fontSize + 3)
-                                // APP图标6 - 青色
+
                                 RoundedRectangle(cornerRadius: 6)
                                     .fill(Color.teal)
                                     .frame(width: fontSize + 3, height: fontSize + 3)
@@ -318,13 +301,11 @@ struct FloatingThemeOption: View {
                         .padding(.top, 4)
                     }
                 }
-                
-                // 主题名称
+
                 Text(mode == .light ? "浅色" : "深色")
                     .font(.system(size: fontSize + 2, weight: isSelected ? .bold : .medium))
                     .foregroundColor(isSelected ? ThemeManager.shared.accentColor : .primary)
-                
-                // 选择指示器
+
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundColor(ThemeManager.shared.accentColor)
@@ -337,8 +318,7 @@ struct FloatingThemeOption: View {
         }
         .buttonStyle(PlainButtonStyle())
     }
-    
-    // 主题相关的颜色计算属性
+
     private var themeBackgroundColor: Color {
         switch mode {
         case .light:
@@ -347,7 +327,7 @@ struct FloatingThemeOption: View {
             return ModernDarkColors.surfacePrimary
         }
     }
-    
+
     private var themeTextColor: Color {
         switch mode {
         case .light:
@@ -356,7 +336,7 @@ struct FloatingThemeOption: View {
             return ModernDarkColors.textPrimary
         }
     }
-    
+
     private var themeSecondaryColor: Color {
         switch mode {
         case .light:
@@ -365,7 +345,7 @@ struct FloatingThemeOption: View {
             return ModernDarkColors.textSecondary
         }
     }
-    
+
     private var themeSearchBarColor: Color {
         switch mode {
         case .light:

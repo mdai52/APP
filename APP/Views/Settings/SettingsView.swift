@@ -7,7 +7,7 @@ struct SettingsView: View {
     private let _githubUrl = "https://github.com/pxx917144686/APP"
     @State private var currentIcon = UIApplication.shared.alternateIconName
     @EnvironmentObject private var themeManager: ThemeManager
-    
+
     var body: some View {
         NavigationView {
             Form {
@@ -20,7 +20,6 @@ struct SettingsView: View {
     }
 }
 
-// 预览扩展
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
@@ -45,7 +44,7 @@ extension SettingsView {
             Text("有任何问题，或建议，请随时提交。")
         }
     }
-    
+
     private var appearanceSection: some View {
         Section {
             NavigationLink(destination: AppearanceView().environmentObject(ThemeManager.shared)) {
@@ -58,7 +57,7 @@ extension SettingsView {
             }
         }
     }
-    
+
     private var versionSection: some View {
         Section {
             HStack {
@@ -69,7 +68,7 @@ extension SettingsView {
             }
         }
     }
-    
+
     private var appVersion: String {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""

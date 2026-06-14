@@ -3,77 +3,69 @@ import WebKit
 import Foundation
 import CommonCrypto
 
-// 网页缓存管理器
 @MainActor
 class WebCacheManager: ObservableObject, @unchecked Sendable {
     static let shared = WebCacheManager()
-    
+
     private let cacheDirectory: URL
-    private let cacheExpirationTime: TimeInterval = 30 * 60 // 30分钟缓存过期
-    
+    private let cacheExpirationTime: TimeInterval = 30 * 60
+
     private init() {
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         cacheDirectory = documentsPath.appendingPathComponent("WebCache")
-        
-        // 创建缓存目录
+
         try? FileManager.default.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)
     }
-    
-    // 获取缓存文件路径
+
     private func cacheFilePath(for url: URL) -> URL {
         let fileName = url.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "default"
         return cacheDirectory.appendingPathComponent("\(fileName).html")
     }
-    
-    // 获取缓存时间戳文件路径
+
     private func timestampFilePath(for url: URL) -> URL {
         let fileName = url.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "default"
         return cacheDirectory.appendingPathComponent("\(fileName).timestamp")
     }
-    
-    // 检查缓存是否有效
+
     func isCacheValid(for url: URL) -> Bool {
         let timestampFile = timestampFilePath(for: url)
-        
+
         guard let timestampData = try? Data(contentsOf: timestampFile),
               let timestamp = try? JSONDecoder().decode(Date.self, from: timestampData) else {
             return false
         }
-        
+
         return Date().timeIntervalSince(timestamp) < cacheExpirationTime
     }
-    
-    // 获取缓存内容
+
     func getCachedContent(for url: URL) -> String? {
         let cacheFile = cacheFilePath(for: url)
-        
+
         guard isCacheValid(for: url),
               let content = try? String(contentsOf: cacheFile, encoding: .utf8) else {
             return nil
         }
-        
+
         return content
     }
-    
-    // 保存缓存内容
+
     func saveCachedContent(_ content: String, for url: URL) {
         let cacheFile = cacheFilePath(for: url)
         let timestampFile = timestampFilePath(for: url)
-        
+
         do {
             try content.write(to: cacheFile, atomically: true, encoding: .utf8)
-            
+
             let timestamp = Date()
             let timestampData = try JSONEncoder().encode(timestamp)
             try timestampData.write(to: timestampFile)
-            
+
             print("💾 [WebCacheManager] 缓存已保存: \(url.absoluteString)")
         } catch {
             print("❌ [WebCacheManager] 缓存保存失败: \(error)")
         }
     }
-    
-    // 清除缓存
+
     func clearCache() {
         do {
             let files = try FileManager.default.contentsOfDirectory(at: cacheDirectory, includingPropertiesForKeys: nil)
@@ -85,8 +77,7 @@ class WebCacheManager: ObservableObject, @unchecked Sendable {
             print("❌ [WebCacheManager] 缓存清除失败: \(error)")
         }
     }
-    
-    // 获取缓存大小
+
     func getCacheSize() -> String {
         do {
             let files = try FileManager.default.contentsOfDirectory(at: cacheDirectory, includingPropertiesForKeys: [.fileSizeKey])
@@ -94,7 +85,7 @@ class WebCacheManager: ObservableObject, @unchecked Sendable {
                 let size = (try? file.resourceValues(forKeys: [.fileSizeKey]))?.fileSize ?? 0
                 return total + size
             }
-            
+
             let formatter = ByteCountFormatter()
             formatter.allowedUnits = [.useKB, .useMB]
             formatter.countStyle = .file
@@ -105,9 +96,8 @@ class WebCacheManager: ObservableObject, @unchecked Sendable {
     }
 }
 
-// 广告拦截辅助函数 - 更精确的拦截规则
 func isAdUrl(_ urlString: String) -> Bool {
-    // 只拦截明确的广告域名，避免误拦截
+
     let adDomains = [
         "googleads.g.doubleclick.net",
         "googlesyndication.com",
@@ -128,8 +118,7 @@ func isAdUrl(_ urlString: String) -> Bool {
         "adnxs.com",
         "adsrvr.org"
     ]
-    
-    // 更严格的匹配规则
+
     return adDomains.contains { domain in
         urlString.lowercased().contains(domain.lowercased())
     }
@@ -144,47 +133,46 @@ struct TFAppsView: View {
     @State private var cacheTimestamp: Date?
     private let url = URL(string: "https://departures.to/apps")!
     private let cacheManager = WebCacheManager.shared
-    
-    
+
     var body: some View {
         ZStack {
-            // 全屏网页显示
+
             if let errorMessage = errorMessage {
-                // 错误状态显示
+
                 VStack(spacing: 20) {
                     Spacer()
-                    
+
                     Image(systemName: "exclamationmark.triangle.fill")
                         .font(.system(size: 50))
                         .foregroundColor(.orange)
-                    
+
                     Text("加载失败")
                         .font(.title2)
                         .fontWeight(.semibold)
-                    
+
                     Text(errorMessage)
                         .font(.body)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 32)
-                    
+
                     Button("重试") {
                         self.errorMessage = nil
                         self.isLoading = true
                         self.webView?.reload()
                     }
                     .buttonStyle(.borderedProminent)
-                    
+
                     Spacer()
                 }
                 .background(Color(.systemBackground))
             } else {
-                // 全屏网页
+
                 WebViewRepresentable(
-                    url: url, 
-                    isLoading: $isLoading, 
-                    errorMessage: $errorMessage, 
-                    webView: $webView, 
+                    url: url,
+                    isLoading: $isLoading,
+                    errorMessage: $errorMessage,
+                    webView: $webView,
                     adBlockCount: $adBlockCount,
                     hasCachedContent: $hasCachedContent,
                     cacheTimestamp: $cacheTimestamp
@@ -193,7 +181,7 @@ struct TFAppsView: View {
                 .overlay(
                     Group {
                         if isLoading && !hasCachedContent {
-                            // 简化的加载指示器
+
                             VStack {
                                 ProgressView()
                                     .scaleEffect(1.5)
@@ -213,15 +201,14 @@ struct TFAppsView: View {
             checkCacheStatus()
         }
     }
-    
-    // 检查缓存状态
+
     private func checkCacheStatus() {
         hasCachedContent = cacheManager.isCacheValid(for: url)
         if hasCachedContent {
             print("💾 [TFAppsView] 发现有效缓存")
         }
     }
-    
+
 }
 
 struct WebViewRepresentable: UIViewRepresentable {
@@ -232,43 +219,34 @@ struct WebViewRepresentable: UIViewRepresentable {
     @Binding var adBlockCount: Int
     @Binding var hasCachedContent: Bool
     @Binding var cacheTimestamp: Date?
-    
+
     func makeUIView(context: Context) -> WKWebView {
         let configuration = WKWebViewConfiguration()
         configuration.allowsInlineMediaPlayback = true
         configuration.mediaTypesRequiringUserActionForPlayback = []
-        
-        // 添加广告拦截规则
+
         let adBlockScript = WKUserScript(
             source: getAdBlockScript(),
             injectionTime: .atDocumentStart,
             forMainFrameOnly: false
         )
         configuration.userContentController.addUserScript(adBlockScript)
-        
-        // 添加内容拦截器
+
         configuration.userContentController.add(context.coordinator, name: "adBlocker")
-        
-        
-        // 注意：不能为 https 和 http 注册自定义 URL scheme handler
-        // 这些是 WKWebView 原生处理的协议
-        // 广告拦截主要通过 JavaScript 和导航策略实现
-        
+
         let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.navigationDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = true
         webView.isOpaque = false
         webView.backgroundColor = UIColor.systemBackground
-        
-        // 保存webView引用
+
         DispatchQueue.main.async {
             self.webView = webView
         }
-        
+
         return webView
     }
-    
-    // 广告拦截脚本 - 更精确的拦截规则
+
     private func getAdBlockScript() -> String {
         return """
         (function() {
@@ -308,7 +286,7 @@ struct WebViewRepresentable: UIViewRepresentable {
                 '.mid-roll-ad',
                 '.post-roll-ad'
             ];
-            
+
             // 移除广告元素
             function removeAds() {
                 adSelectors.forEach(selector => {
@@ -331,7 +309,7 @@ struct WebViewRepresentable: UIViewRepresentable {
                     }
                 });
             }
-            
+
             // 更严格的广告元素判断
             function isDefinitelyAd(element) {
                 const text = element.textContent || '';
@@ -339,31 +317,31 @@ struct WebViewRepresentable: UIViewRepresentable {
                 const id = element.id || '';
                 const src = element.src || '';
                 const href = element.href || '';
-                
+
                 // 明确的广告关键词
                 const adKeywords = [
                     'advertisement', 'sponsored', 'promotion',
                     'click here', 'download now', 'install now',
                     'banner ad', 'popup ad', 'modal ad'
                 ];
-                
+
                 // 检查文本内容
                 const lowerText = text.toLowerCase();
                 const hasAdText = adKeywords.some(keyword => lowerText.includes(keyword));
-                
+
                 // 检查URL
                 const hasAdUrl = isAdUrl(src) || isAdUrl(href);
-                
+
                 // 检查尺寸（广告通常有特定尺寸）
                 const rect = element.getBoundingClientRect();
                 const isAdSize = (rect.width === 728 && rect.height === 90) || // 标准横幅
                                 (rect.width === 300 && rect.height === 250) || // 矩形广告
                                 (rect.width === 160 && rect.height === 600);   // 摩天大楼广告
-                
+
                 // 只有同时满足多个条件才认为是广告
                 return (hasAdText || hasAdUrl) && !isImportantElement(element);
             }
-            
+
             // 检查是否为重要元素（不应该被拦截）
             function isImportantElement(element) {
                 const importantSelectors = [
@@ -372,12 +350,12 @@ struct WebViewRepresentable: UIViewRepresentable {
                     '.menu', '.sidebar', '.toolbar', '.button', '.link',
                     'button', 'a', 'input', 'select', 'textarea'
                 ];
-                
+
                 return importantSelectors.some(selector => {
                     return element.matches && element.matches(selector);
                 });
             }
-            
+
             // 拦截广告请求
             const originalFetch = window.fetch;
             window.fetch = function(...args) {
@@ -391,7 +369,7 @@ struct WebViewRepresentable: UIViewRepresentable {
                 }
                 return originalFetch.apply(this, args);
             };
-            
+
             // 判断是否为广告URL
             function isAdUrl(url) {
                 const adDomains = [
@@ -414,14 +392,14 @@ struct WebViewRepresentable: UIViewRepresentable {
                     'adnxs.com',
                     'adsrvr.org'
                 ];
-                
+
                 return adDomains.some(domain => url.toLowerCase().includes(domain.toLowerCase()));
             }
-            
+
             // 延迟执行，确保页面基本元素已加载
             setTimeout(() => {
                 removeAds();
-                
+
                 // 监听DOM变化
                 const observer = new MutationObserver(() => {
                     setTimeout(removeAds, 100); // 延迟执行避免干扰正常加载
@@ -430,16 +408,16 @@ struct WebViewRepresentable: UIViewRepresentable {
                     childList: true,
                     subtree: true
                 });
-                
+
                 console.log('🛡️ 精确广告拦截器已启动');
             }, 1000);
         })();
         """
     }
-    
+
     func updateUIView(_ webView: WKWebView, context: Context) {
         if webView.url == nil {
-            // 检查是否有缓存内容
+
             let cacheManager = WebCacheManager.shared
             if let cachedContent = cacheManager.getCachedContent(for: url) {
                 print("💾 [WebViewRepresentable] 加载缓存内容")
@@ -457,18 +435,18 @@ struct WebViewRepresentable: UIViewRepresentable {
             }
         }
     }
-    
+
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-    
+
     class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler {
         let parent: WebViewRepresentable
-        
+
         init(_ parent: WebViewRepresentable) {
             self.parent = parent
         }
-        
+
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
             if message.name == "adBlocker" {
                 print("🛡️ [TFAppsView] 广告拦截消息: \(message.body)")
@@ -477,7 +455,7 @@ struct WebViewRepresentable: UIViewRepresentable {
                 }
             }
         }
-        
+
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
             print("🌐 [TFAppsView] 开始加载: \(webView.url?.absoluteString ?? "未知URL")")
             DispatchQueue.main.async {
@@ -485,14 +463,13 @@ struct WebViewRepresentable: UIViewRepresentable {
                 self.parent.errorMessage = nil
             }
         }
-        
+
                 func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
                     print("✅ [TFAppsView] 加载完成: \(webView.url?.absoluteString ?? "未知URL")")
                     DispatchQueue.main.async {
                         self.parent.isLoading = false
                     }
-                    
-                    // 保存页面内容到缓存
+
                     webView.evaluateJavaScript("document.documentElement.outerHTML") { result, error in
                         if let htmlContent = result as? String {
                             let cacheManager = WebCacheManager.shared
@@ -503,8 +480,7 @@ struct WebViewRepresentable: UIViewRepresentable {
                         }
                     }
                 }
-                
-        
+
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
             print("❌ [TFAppsView] 加载失败: \(error.localizedDescription)")
             DispatchQueue.main.async {
@@ -512,7 +488,7 @@ struct WebViewRepresentable: UIViewRepresentable {
                 self.parent.errorMessage = "网页加载失败: \(error.localizedDescription)"
             }
         }
-        
+
         func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
             print("❌ [TFAppsView] 初始加载失败: \(error.localizedDescription)")
             DispatchQueue.main.async {
@@ -520,12 +496,11 @@ struct WebViewRepresentable: UIViewRepresentable {
                 self.parent.errorMessage = "无法连接到服务器: \(error.localizedDescription)"
             }
         }
-        
+
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             let urlString = navigationAction.request.url?.absoluteString ?? ""
             print("🔍 [TFAppsView] 导航决策: \(urlString)")
-            
-            // 拦截广告URL
+
             if isAdUrl(urlString) {
                 print("🚫 [TFAppsView] 拦截广告导航: \(urlString)")
                 DispatchQueue.main.async {
@@ -534,18 +509,12 @@ struct WebViewRepresentable: UIViewRepresentable {
                 decisionHandler(.cancel)
                 return
             }
-            
+
             decisionHandler(.allow)
         }
-        
+
     }
 }
-
-// MARK: - 现代化UI组件
-
-
-
-
 
 #Preview {
     NavigationView {

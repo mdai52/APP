@@ -1,8 +1,3 @@
-//
-//  AccountView.swift
-//
-//  Created by pxx917144686 on 2025/08/20.
-//
 import SwiftUI
 #if canImport(UIKit)
 import UIKit
@@ -15,11 +10,11 @@ struct AccountView: View {
     @State var layoutRefreshTrigger = UUID()
     @State var showDeleteAlert = false
     @State var accountToDelete: Account?
-    
+
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                // 顶部安全区域占位 - 真机适配
+
                 GeometryReader { geometry in
                     Color.clear
                         .frame(height: geometry.safeAreaInsets.top > 0 ? geometry.safeAreaInsets.top : 44)
@@ -27,16 +22,14 @@ struct AccountView: View {
                             print("[AccountView] 顶部安全区域: \(geometry.safeAreaInsets.top)")
                         }
                 }
-                .frame(height: 44) // 固定高度，避免布局跳动
-                
-                // 主要内容
+                .frame(height: 44)
+
                 VStack(spacing: 0) {
                     if appStore.selectedAccount == nil {
                         VStack(spacing: 30) {
                             Spacer()
                             VStack(spacing: 20) {
-                                // 移除头像图标，直接显示文字内容
-                                // Welcome Text
+
                                 VStack(spacing: 12) {
                                     Text("Apple ID")
                                         .font(.title)
@@ -48,7 +41,7 @@ struct AccountView: View {
                                         .multilineTextAlignment(.center)
                                 }
                             }
-                            // Add Account Button
+
                             Button(action: { addSheet.toggle() }) {
                                 HStack(spacing: 10) {
                                     Image(systemName: "plus.circle.fill")
@@ -60,8 +53,7 @@ struct AccountView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                             }
-                            
-                            // 调试按钮 - 强制刷新布局
+
                             #if DEBUG
                             Button(action: {
                                 print("[AccountView] 手动强制刷新")
@@ -78,12 +70,12 @@ struct AccountView: View {
                                 .cornerRadius(10)
                             }
                             #endif
-                            
+
                             Spacer()
                         }
                         .padding(.horizontal, 40)
                     } else {
-                        // 显示账户列表
+
                         List {
                             if let account = appStore.selectedAccount {
                                  NavigationLink(destination: AccountDetailView(account: account)) {
@@ -91,17 +83,17 @@ struct AccountView: View {
                                  }
                                  .buttonStyle(PlainButtonStyle())
                              }
-                            // 移除滑动删除功能，因为只有一个账户
+
                         }
                         .listStyle(PlainListStyle())
                     }
                 }
                 .background(Color(.systemBackground))
-                .padding(.top, 10) // 添加额外的顶部间距
+                .padding(.top, 10)
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(true) // 隐藏返回按钮
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Apple ID")
@@ -124,13 +116,12 @@ struct AccountView: View {
                     .environmentObject(AppStore.this)
             }
             .onAppear {
-                // 强制刷新布局
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     layoutRefreshTrigger = UUID()
                     print("[AccountView] 强制刷新布局")
                 }
-                
-                // 启动动画
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     withAnimation(.easeInOut(duration: 0.8)) {
                         animation = true
@@ -138,7 +129,7 @@ struct AccountView: View {
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("ForceRefreshUI"))) { _ in
-                // 接收强制刷新通知 - 真机适配
+
                 print("[AccountView] 接收到强制刷新通知")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     layoutRefreshTrigger = UUID()
@@ -147,25 +138,23 @@ struct AccountView: View {
             }
         }
         .navigationViewStyle(.stack)
-        .background(Color(.systemBackground)) // 确保整个视图有背景色
+        .background(Color(.systemBackground))
         .alert("确认删除", isPresented: $showDeleteAlert) {
-            Button("取消", role: .cancel) { 
+            Button("取消", role: .cancel) {
                 print("[AccountView] 取消删除操作")
                 accountToDelete = nil
             }
             Button("删除", role: .destructive) {
                 if let account = accountToDelete {
                     print("[AccountView] 用户确认删除账户: \(account.email)")
-                    // 执行删除操作
+
                     appStore.logoutAccount()
                     print("[AccountView] 账户已登出")
-                    
-                    // 强制刷新UI
+
                     DispatchQueue.main.async {
                         layoutRefreshTrigger = UUID()
                     }
-                    
-                    // 清理状态
+
                     accountToDelete = nil
                 }
             }
@@ -175,59 +164,55 @@ struct AccountView: View {
             }
         }
     }
-    
+
     private func deleteAccount(offsets: IndexSet) {
         print("[AccountView] 删除账户被调用，索引: \(offsets)")
-        
+
         for _ in offsets {
             guard let account = appStore.selectedAccount else { return }
             print("[AccountView] 准备删除账户: \(account.email), ID: \(account.id)")
-            
-            // 设置要删除的账户并显示确认对话框
+
             accountToDelete = account
             showDeleteAlert = true
         }
     }
 }
 
-// MARK: - Account Row View
 struct AccountRowView: View {
     let account: Any
     @EnvironmentObject var themeManager: ThemeManager
-    
+
     var body: some View {
         HStack(spacing: 16) {
-            // 头像已移除
-            
-            // 账户信息
-            VStack(alignment: .leading, spacing: 6) { // 增加间距
+
+            VStack(alignment: .leading, spacing: 6) {
                 if let account = account as? Account {
                     Text(account.email)
                         .font(.headline)
                         .fontWeight(.semibold)
                         .foregroundColor(.primary)
                         .lineLimit(1)
-                    
+
                     if !account.name.isEmpty {
                         Text(account.name)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
-                            .lineLimit(2) // 允许两行显示
+                            .lineLimit(2)
                     }
-                    
+
                     HStack(spacing: 8) {
-                        // 显示地区代码，使用更友好的显示方式
+
                         let regionDisplay = getRegionDisplay(for: account.countryCode)
                         Text(regionDisplay)
                             .font(.caption)
-                            .foregroundColor(.white) // 改为白色以提高可读性
+                            .foregroundColor(.white)
                             .padding(.horizontal, 8)
-                            .padding(.vertical, 4) // 增加垂直间距
+                            .padding(.vertical, 4)
                             .background(
                                 Capsule()
-                                    .fill(Color.blue.opacity(0.8)) // 使用更明显的颜色
+                                    .fill(Color.blue.opacity(0.8))
                             )
-                        
+
                         if !account.dsPersonId.isEmpty {
                             Text("DS: \(account.dsPersonId)")
                                 .font(.caption)
@@ -241,7 +226,7 @@ struct AccountRowView: View {
                         }
                     }
                 } else {
-                    // 如果无法转换为Account类型，显示默认信息
+
                     Text("账户信息")
                         .font(.headline)
                         .foregroundColor(.primary)
@@ -250,24 +235,22 @@ struct AccountRowView: View {
                         .foregroundColor(.secondary)
                 }
             }
-            
+
             Spacer()
         }
-        .padding(.vertical, 12) // 增加垂直间距
-        .padding(.horizontal, 4) // 添加水平间距
-        .background(Color(.systemBackground)) // 确保有背景色
+        .padding(.vertical, 12)
+        .padding(.horizontal, 4)
+        .background(Color(.systemBackground))
     }
-    
-    // MARK: - 辅助方法
+
     private func getRegionDisplay(for countryCode: String) -> String {
-        // 地区代码映射 - 完整版本（去重）
+
         let regionMap: [String: String] = [
-            // 北美
+
             "US": "美国",
             "CA": "加拿大",
             "MX": "墨西哥",
-            
-            // 欧洲
+
             "GB": "英国",
             "DE": "德国",
             "FR": "法国",
@@ -304,8 +287,7 @@ struct AccountRowView: View {
             "AD": "安道尔",
             "SM": "圣马力诺",
             "VA": "梵蒂冈",
-            
-            // 亚洲
+
             "CN": "中国",
             "HK": "香港",
             "MO": "澳门",
@@ -353,8 +335,7 @@ struct AccountRowView: View {
             "GE": "格鲁吉亚",
             "AM": "亚美尼亚",
             "AZ": "阿塞拜疆",
-            
-            // 大洋洲
+
             "AU": "澳大利亚",
             "NZ": "新西兰",
             "FJ": "斐济",
@@ -374,8 +355,7 @@ struct AccountRowView: View {
             "CK": "库克群岛",
             "NU": "纽埃",
             "TK": "托克劳",
-            
-            // 南美
+
             "BR": "巴西",
             "AR": "阿根廷",
             "CL": "智利",
@@ -390,8 +370,7 @@ struct AccountRowView: View {
             "SR": "苏里南",
             "FK": "福克兰群岛",
             "GF": "法属圭亚那",
-            
-            // 非洲
+
             "ZA": "南非",
             "EG": "埃及",
             "NG": "尼日利亚",
@@ -434,8 +413,7 @@ struct AccountRowView: View {
             "MA": "摩洛哥",
             "EH": "西撒哈拉",
             "MR": "毛里塔尼亚",
-            
-            // 中美洲和加勒比海
+
             "GT": "危地马拉",
             "BZ": "伯利兹",
             "SV": "萨尔瓦多",
@@ -482,12 +460,11 @@ struct AccountRowView: View {
             "SH": "圣赫勒拿",
             "GI": "直布罗陀"
         ]
-        
-        // 如果找到对应的中文名称，返回"中文名 (代码)"格式
+
         if let chineseName = regionMap[countryCode] {
             return "\(chineseName) (\(countryCode))"
         } else {
-            // 如果没有找到，只返回代码
+
             return countryCode
         }
     }
