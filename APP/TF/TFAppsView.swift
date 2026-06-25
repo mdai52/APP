@@ -1,7 +1,6 @@
 import SwiftUI
 import WebKit
 import Foundation
-import CommonCrypto
 
 @MainActor
 class WebCacheManager: ObservableObject, @unchecked Sendable {
@@ -147,8 +146,7 @@ struct TFAppsView: View {
                         .foregroundColor(.orange)
 
                     Text("加载失败")
-                        .font(.title2)
-                        .fontWeight(.semibold)
+                        .font(.system(size: 22, weight: .semibold))
 
                     Text(errorMessage)
                         .font(.body)

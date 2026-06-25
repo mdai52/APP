@@ -54,7 +54,7 @@ class AuthenticationManager: @unchecked Sendable {
         return account
     }
 
-    func authenticateWith2FA(code: String, isSMS: Bool = false, phoneId: Any? = nil) async throws -> Account {
+    func authenticateWith2FA(code: String, isSMS: Bool = false, phoneId: String? = nil) async throws -> Account {
         let response = try await StoreRequest.shared.authenticateWith2FA(
             code: code,
             isSMS: isSMS,

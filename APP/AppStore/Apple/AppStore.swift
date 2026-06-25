@@ -66,22 +66,7 @@ class AppStore: ObservableObject {
 
     func logoutAccount() {
         guard let currentAccount = selectedAccount else { return }
-
-        if let index = savedAccounts.firstIndex(where: { $0.email == currentAccount.email }) {
-            savedAccounts.remove(at: index)
-
-            if savedAccounts.isEmpty {
-                selectedAccount = nil
-                selectedAccountIndex = 0
-            } else {
-
-                selectedAccountIndex = min(index, savedAccounts.count - 1)
-                selectedAccount = savedAccounts[selectedAccountIndex]
-            }
-        }
-
-        try? AuthenticationManager.shared.saveAllAccounts(savedAccounts)
-
+        deleteAccount(currentAccount)
         print("[AppStore] 账户已登出: \(currentAccount.email), 剩余账户数: \(savedAccounts.count)")
     }
 

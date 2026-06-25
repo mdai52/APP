@@ -22,6 +22,8 @@ class SessionManager: ObservableObject, @unchecked Sendable {
     }
 
     deinit {
+        sessionTimer?.invalidate()
+        sessionTimer = nil
     }
 
     func startSessionMonitoring() {

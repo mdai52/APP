@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		851F44E32FDDEC8B00574B00 /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 851F44E22FDDEC8B00574B00 /* ZipArchive */; };
+		850E83352FEDA2C30047BDF8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 850E83342FEDA2C30047BDF8 /* Alamofire */; };
 		851F44E62FDDECA400574B00 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = 851F44E52FDDECA400574B00 /* Vapor */; };
 		859304D02E76A99D00D0052E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
@@ -66,7 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				851F44E62FDDECA400574B00 /* Vapor in Frameworks */,
-				851F44E32FDDEC8B00574B00 /* ZipArchive in Frameworks */,
+				850E83352FEDA2C30047BDF8 /* Alamofire in Frameworks */,
 				859304D02E76A99D00D0052E /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,8 +112,8 @@
 			);
 			name = APP;
 			packageProductDependencies = (
-				851F44E22FDDEC8B00574B00 /* ZipArchive */,
 				851F44E52FDDECA400574B00 /* Vapor */,
+				850E83342FEDA2C30047BDF8 /* Alamofire */,
 			);
 			productName = APP;
 			productReference = 851FD95F2E578774002136BA /* APP.app */;
@@ -184,8 +184,8 @@
 			mainGroup = 851FD9562E578774002136BA;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				851F44E12FDDEC8B00574B00 /* XCRemoteSwiftPackageReference "ZipArchive" */,
 				851F44E42FDDECA400574B00 /* XCRemoteSwiftPackageReference "vapor" */,
+				850E83332FEDA2C30047BDF8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 851FD9602E578774002136BA /* Products */;
@@ -377,7 +377,7 @@
 					"$(PROJECT_DIR)/APP/Resources",
 					"$(PROJECT_DIR)/APP",
 				);
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.5.2;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -429,7 +429,7 @@
 					"$(PROJECT_DIR)/APP/Resources",
 					"$(PROJECT_DIR)/APP",
 				);
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.5.2;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -470,12 +470,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		851F44E12FDDEC8B00574B00 /* XCRemoteSwiftPackageReference "ZipArchive" */ = {
+		850E83332FEDA2C30047BDF8 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ZipArchive/ZipArchive.git";
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.6.0;
+				minimumVersion = 5.12.0;
 			};
 		};
 		851F44E42FDDECA400574B00 /* XCRemoteSwiftPackageReference "vapor" */ = {
@@ -489,10 +489,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		851F44E22FDDEC8B00574B00 /* ZipArchive */ = {
+		850E83342FEDA2C30047BDF8 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 851F44E12FDDEC8B00574B00 /* XCRemoteSwiftPackageReference "ZipArchive" */;
-			productName = ZipArchive;
+			package = 850E83332FEDA2C30047BDF8 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		851F44E52FDDECA400574B00 /* Vapor */ = {
 			isa = XCSwiftPackageProductDependency;

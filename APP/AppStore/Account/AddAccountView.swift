@@ -56,8 +56,7 @@ struct AddAccountView: View {
 
                             VStack(spacing: 8) {
                                 Text("Apple ID")
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
+                                    .font(.system(size: 34, weight: .bold))
                                     .foregroundColor(.primary)
 
                                 Text("登录您的账户")
@@ -146,7 +145,7 @@ struct AddAccountView: View {
 
                                     }
                                     Text(isLoading ? "验证中..." : "添加账户")
-                                        .fontWeight(.semibold)
+                                        .font(.system(size: 17, weight: .semibold))
                                 }
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 16)

@@ -124,7 +124,3 @@ class RegionValidator: ObservableObject {
     }
 
 }
-
-extension RegionValidator {
-
-}

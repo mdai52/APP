@@ -54,7 +54,7 @@ struct AppearanceView: View {
             Section {
                 AppearanceTintColorView()
                     .listRowInsets(EdgeInsets())
-                    .listRowBackground(EmptyView())
+                    .listRowBackground(Color.clear)
             } header: {
                 Text("颜色")
             }

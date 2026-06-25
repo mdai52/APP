@@ -476,8 +476,7 @@ struct ReviewCard: SwiftUI.View {
             }
 
             Text(review.title)
-                .font(.subheadline)
-                .fontWeight(.medium)
+                .font(.system(size: 15, weight: .medium))
 
             Text(review.content)
                 .font(.body)
@@ -584,8 +583,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(app.name)
-                    .font(.title2)
-                    .fontWeight(.bold)
+                    .font(.system(size: 22, weight: .bold))
 
                 if let developer = app.artistName {
                     Text(developer)
@@ -637,8 +635,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
     private func screenshotsSection(_ screenshots: [String]) -> some SwiftUI.View {
         VStack(alignment: .leading, spacing: 12) {
             Text("预览")
-                .font(.title3)
-                .fontWeight(.bold)
+                .font(.system(size: 20, weight: .bold))
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
@@ -668,8 +665,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
     private var ratingsSection: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 16) {
             Text("评分与评论")
-                .font(.title3)
-                .fontWeight(.bold)
+                .font(.system(size: 20, weight: .bold))
 
             HStack(spacing: 40) {
 
@@ -726,8 +722,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
     private func descriptionSection(_ description: String) -> some SwiftUI.View {
         VStack(alignment: .leading, spacing: 12) {
             Text("描述")
-                .font(.title3)
-                .fontWeight(.bold)
+                .font(.system(size: 20, weight: .bold))
 
             Text(description)
                 .font(.body)
@@ -739,8 +734,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
     private var informationSection: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 16) {
             Text("信息")
-                .font(.title3)
-                .fontWeight(.bold)
+                .font(.system(size: 20, weight: .bold))
 
             VStack(spacing: 12) {
                 if let seller = app.sellerName {
@@ -781,8 +775,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
     private func updateNotesSection(_ notes: String) -> some SwiftUI.View {
         VStack(alignment: .leading, spacing: 12) {
             Text("更新信息")
-                .font(.title3)
-                .fontWeight(.bold)
+                .font(.system(size: 20, weight: .bold))
 
             VStack(alignment: .leading, spacing: 8) {
                 if !app.version.isEmpty {
@@ -802,8 +795,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
     private var technicalInfoSection: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 16) {
             Text("技术信息")
-                .font(.title3)
-                .fontWeight(.bold)
+                .font(.system(size: 20, weight: .bold))
 
             VStack(spacing: 12) {
                 infoRow(title: "Bundle ID", value: app.bundleId)
@@ -895,203 +887,18 @@ struct SearchView: SwiftUI.View {
         }
     }
     @EnvironmentObject var appStore: AppStore
-    @StateObject private var regionValidator = RegionValidator.shared
     @StateObject private var sessionManager = SessionManager.shared
     @State var searching = false
-
-    @State var searchRegion: String = ""
-    @State var showRegionPicker = false
-
-    @State var isUserSelectedRegion: Bool = false
 
     @State var uiRefreshTrigger = UUID()
 
     @State var showLoginSheet = false
     @State var showAccountMenu = false
+    @State var showAccountSheet = false
 
     @State var isDownloading = false
 
     @State var purchasingTrackId: Int?
-
-    @State private var cachedAvatarImage: UIImage?
-
-    var effectiveSearchRegion: String {
-
-        if isUserSelectedRegion && !searchRegion.isEmpty {
-
-            return searchRegion
-        } else if let currentAccount = appStore.selectedAccount {
-
-            return currentAccount.countryCode
-        } else if !searchRegion.isEmpty {
-
-            return searchRegion
-        }
-
-        let languageCode = Locale.current.languageCode ?? ""
-        return getRegionFromLanguageCode(languageCode)
-    }
-
-    private func getRegionFromLanguageCode(_ languageCode: String) -> String {
-        switch languageCode {
-        case "zh":
-            return "CN"
-        case "ja":
-            return "JP"
-        case "ko":
-            return "KR"
-        case "de":
-            return "DE"
-        case "fr":
-            return "FR"
-        case "es":
-            return "ES"
-        case "it":
-            return "IT"
-        case "pt":
-            return "BR"
-        case "ru":
-            return "RU"
-        case "ar":
-            return "SA"
-        case "hi":
-            return "IN"
-        case "th":
-            return "TH"
-        case "vi":
-            return "VN"
-        case "id":
-            return "ID"
-        case "ms":
-            return "MY"
-        case "tr":
-            return "TR"
-        case "pl":
-            return "PL"
-        case "nl":
-            return "NL"
-        case "sv":
-            return "SE"
-        case "da":
-            return "DK"
-        case "no":
-            return "NO"
-        case "fi":
-            return "FI"
-        case "cs":
-            return "CZ"
-        case "hu":
-            return "HU"
-        case "ro":
-            return "RO"
-        case "bg":
-            return "BG"
-        case "hr":
-            return "HR"
-        case "sk":
-            return "SK"
-        case "sl":
-            return "SI"
-        case "et":
-            return "EE"
-        case "lv":
-            return "LV"
-        case "lt":
-            return "LT"
-        case "el":
-            return "GR"
-        case "he":
-            return "IL"
-        case "fa":
-            return "IR"
-        case "ur":
-            return "PK"
-        case "bn":
-            return "BD"
-        case "si":
-            return "LK"
-        case "my":
-            return "MM"
-        case "km":
-            return "KH"
-        case "lo":
-            return "LA"
-        case "ne":
-            return "NP"
-        case "ka":
-            return "GE"
-        case "hy":
-            return "AM"
-        case "az":
-            return "AZ"
-        case "kk":
-            return "KZ"
-        case "ky":
-            return "KG"
-        case "uz":
-            return "UZ"
-        case "tg":
-            return "TJ"
-        case "mn":
-            return "MN"
-        case "bo":
-            return "CN"
-        case "ug":
-            return "CN"
-        case "en":
-            return "US"
-        default:
-            return "US"
-        }
-    }
-
-    var currentRegionDisplayName: String {
-        let regionCode = effectiveSearchRegion
-        return SearchView.countryCodeMapChinese[regionCode] ?? SearchView.countryCodeMap[regionCode] ?? regionCode
-    }
-
-    var currentRegionInfo: String {
-        let regionCode = effectiveSearchRegion
-        let chineseName = SearchView.countryCodeMapChinese[regionCode] ?? ""
-        let englishName = SearchView.countryCodeMap[regionCode] ?? ""
-
-        if !chineseName.isEmpty && !englishName.isEmpty {
-            return "\(chineseName) (\(englishName))"
-        } else if !chineseName.isEmpty {
-            return chineseName
-        } else if !englishName.isEmpty {
-            return englishName
-        } else {
-            return regionCode
-        }
-    }
-
-    var currentRegionFlag: String {
-        flag(country: effectiveSearchRegion)
-    }
-
-    var sortedRegionKeys: [String] {
-        var regions = Array(SearchView.storeFrontCodeMap.keys)
-
-        if let currentAccount = appStore.selectedAccount {
-            let accountRegion = currentAccount.countryCode
-            if let index = regions.firstIndex(of: accountRegion) {
-                regions.remove(at: index)
-                regions.insert(accountRegion, at: 0)
-            }
-        }
-
-        let commonRegions = ["US", "CN", "HK", "MO", "TW", "JP", "KR", "GB", "DE", "FR", "CA", "AU", "IT", "ES", "NL", "SE", "NO", "DK", "FI", "RU", "BR", "MX", "IN", "SG", "TH", "VN", "MY", "ID", "PH"]
-
-        for commonRegion in commonRegions.reversed() {
-            if let index = regions.firstIndex(of: commonRegion) {
-                regions.remove(at: index)
-                regions.insert(commonRegion, at: 0)
-            }
-        }
-
-        return regions
-    }
 
     static let countryCodeMap: [String: String] = [
         "AE": "United Arab Emirates", "AG": "Antigua and Barbuda", "AI": "Anguilla", "AL": "Albania", "AM": "Armenia",
@@ -1183,25 +990,6 @@ struct SearchView: SwiftUI.View {
         "VN": "143471", "YE": "143571", "ZA": "143472"
     ]
 
-    var regionKeys: [String] { sortedRegionKeys }
-
-    var filteredRegionKeys: [String] {
-        if searchInput.isEmpty {
-            return regionKeys
-        } else {
-            return regionKeys.filter { regionCode in
-                let chineseName = SearchView.countryCodeMapChinese[regionCode] ?? ""
-                let englishName = SearchView.countryCodeMap[regionCode] ?? ""
-                let searchText = searchInput.lowercased()
-
-                return regionCode.lowercased().contains(searchText) ||
-                       chineseName.lowercased().contains(searchText) ||
-                       englishName.lowercased().contains(searchText)
-            }
-        }
-    }
-
-    @State var searchInput: String = ""
     @State var searchResult: [iTunesSearchResult] = []
     @State private var currentPage = 1
     @State private var isLoadingMore = false
@@ -1281,16 +1069,11 @@ struct SearchView: SwiftUI.View {
             sessionManager.startSessionMonitoring()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                print("[SearchView] 执行智能地区检测")
-                detectAndSetRegion()
-
-                print("[SearchView] 初始化完成 - 最终状态:")
-                print("  - searchRegion: \(searchRegion)")
-                print("  - effectiveSearchRegion: \(effectiveSearchRegion)")
+                print("[SearchView] 初始化完成")
                 if let account = appStore.selectedAccount {
                     print("  - 登录账户: \(account.email), 地区: \(account.countryCode)")
                 } else {
-                    print("  - 未登录账户")
+                    print("  - 未登录账户，默认地区: US")
                 }
 
                 self.uiRefreshTrigger = UUID()
@@ -1318,26 +1101,18 @@ struct SearchView: SwiftUI.View {
             if let newAccount = account {
                 print("[SearchView] 检测到账户变化: \(newAccount.email), 地区: \(newAccount.countryCode)")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    detectAndSetRegion()
-
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                         self.uiRefreshTrigger = UUID()
                     }
                 }
             } else {
-                print("[SearchView] 账户已登出，重置为默认地区")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    detectAndSetRegion()
-                }
+                print("[SearchView] 账户已登出，使用默认地区 US")
             }
         }
         .sheet(isPresented: $showVersionPicker) {
             versionPickerSheet
         }
 
-        .sheet(isPresented: $showRegionPicker) {
-            regionPickerSheet
-        }
         .sheet(isPresented: $showLoginSheet) {
             AddAccountView()
                 .environmentObject(appStore)
@@ -1346,50 +1121,12 @@ struct SearchView: SwiftUI.View {
         .sheet(isPresented: $showAccountMenu) {
             accountMenuSheet
         }
-
-    }
-
-    private func detectAndSetRegion() {
-
-        if let currentAccount = appStore.selectedAccount {
-            let accountRegion = currentAccount.countryCode
-            print("[SearchView] 检测到登录账户: \(currentAccount.email), 地区代码: \(accountRegion)")
-
-            if searchRegion != accountRegion && !isUserSelectedRegion {
-                searchRegion = accountRegion
-                print("[SearchView] 已将搜索地区更新为账户地区: \(searchRegion)")
-            }
-        } else {
-
-            let detectedRegion = effectiveSearchRegion
-            if searchRegion != detectedRegion && !isUserSelectedRegion {
-                searchRegion = detectedRegion
-                print("[SearchView] 未检测到登录账户，使用默认地区: \(searchRegion)")
-            }
+        .sheet(isPresented: $showAccountSheet) {
+            AccountSheetView()
+                .environmentObject(appStore)
+                .environmentObject(themeManager)
         }
 
-        print("[SearchView] 当前显示地区: \(effectiveSearchRegion), 用户手动选择标志: \(isUserSelectedRegion)")
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-
-            Task { @MainActor in
-                let validationResult = regionValidator.validateRegionSettings(
-                    account: appStore.selectedAccount,
-                    searchRegion: searchRegion,
-                    effectiveRegion: effectiveSearchRegion
-                )
-
-                if !validationResult.isValid {
-                    print("⚠️ [SearchView] 地区验证失败: \(validationResult.errorMessage ?? "未知错误")")
-                    let advice = regionValidator.getRegionValidationAdvice(for: validationResult)
-                    for tip in advice {
-                        print("💡 [SearchView] 建议: \(tip)")
-                    }
-                }
-            }
-
-            self.uiRefreshTrigger = UUID()
-        }
     }
 
     var modernSearchBar: some SwiftUI.View {
@@ -1479,301 +1216,19 @@ struct SearchView: SwiftUI.View {
 
                 Spacer()
 
-                compactAccountCapsule
-
-                Spacer()
-
-                smartRegionSelector
+                Button(action: {
+                    showAccountSheet = true
+                }) {
+                    AccountAvatarButton(size: 36)
+                        .environmentObject(appStore)
+                        .environmentObject(themeManager)
+                }
+                .buttonStyle(.plain)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 8)
         }
         .padding(.top, 8)
-    }
-
-    var smartRegionSelector: some SwiftUI.View {
-        Button(action: {
-            showRegionPicker = true
-        }) {
-            HStack(spacing: 8) {
-                Text(flag(country: effectiveSearchRegion))
-                    .font(.title2)
-                Text(SearchView.countryCodeMapChinese[effectiveSearchRegion] ?? SearchView.countryCodeMap[effectiveSearchRegion] ?? effectiveSearchRegion)
-                    .font(.caption)
-                    .foregroundColor(.primary)
-
-                if let currentAccount = appStore.selectedAccount {
-
-                    let isRegionValid = (effectiveSearchRegion == currentAccount.countryCode)
-
-                    Text(isRegionValid ? "已验证" : "地区不匹配")
-                        .font(.caption2)
-                        .foregroundColor(isRegionValid ? .green : .red)
-                        .help(isRegionValid ? "来自登录账户: \(currentAccount.email)" : "地区不匹配: 账户(\(currentAccount.countryCode)) vs 设置(\(effectiveSearchRegion))")
-                } else if !searchRegion.isEmpty {
-                    Image(systemName: "hand.point.up.fill")
-                        .font(.system(size: 10))
-                        .foregroundColor(.orange)
-                        .help("用户手动选择")
-                } else {
-                    Image(systemName: "globe")
-                        .font(.system(size: 10))
-                        .foregroundColor(.blue)
-                        .help(appStore.selectedAccount != nil ? "来自账户: \(SearchView.countryCodeMapChinese[appStore.selectedAccount!.countryCode] ?? SearchView.countryCodeMap[appStore.selectedAccount!.countryCode] ?? appStore.selectedAccount!.countryCode)" : "默认美区")
-                }
-
-                Image(systemName: "chevron.down")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.secondary)
-            }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 8)
-            .background(
-                Capsule()
-                    .fill(themeManager.selectedTheme == .dark ? Color(.secondarySystemBackground) : Color(.secondarySystemBackground))
-                    .overlay(
-                        Capsule()
-                            .stroke(themeManager.accentColor.opacity(0.3), lineWidth: 1)
-                    )
-            )
-        }
-        .buttonStyle(.plain)
-        .id("RegionSelector-\(effectiveSearchRegion)-\(uiRefreshTrigger)")
-        .onAppear {
-
-            print("[SearchView] 地区选择器显示，当前地区: \(effectiveSearchRegion)")
-        }
-    }
-
-    private var compactAccountCapsule: some SwiftUI.View {
-        Menu {
-            if appStore.selectedAccount == nil {
-                Button("登录") { showLoginSheet = true }
-            } else {
-                if appStore.hasMultipleAccounts {
-                    ForEach(appStore.savedAccounts.indices, id: \.self) { index in
-                        let account = appStore.savedAccounts[index]
-                        Button(action: {
-                            appStore.switchToAccount(at: index)
-                        }) {
-                            HStack {
-                                Text(account.email)
-                                if index == appStore.selectedAccountIndex {
-                                    Image(systemName: "checkmark")
-                                }
-                            }
-                        }
-                    }
-                    Divider()
-                }
-                Button("账户详情") { showAccountMenu = true }
-                Button("添加Apple ID") { showLoginSheet = true }
-                Divider()
-                Button("登出", role: .destructive) { logoutAccount() }
-            }
-        } label: {
-            if let image = cachedAvatarImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 36, height: 36)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(themeManager.accentColor.opacity(0.5), lineWidth: 1.5))
-            } else {
-                Image(systemName: appStore.selectedAccount == nil ? "person.circle" : "person.circle.fill")
-                    .font(.system(size: 36))
-                    .foregroundColor(appStore.selectedAccount == nil ? .secondary : themeManager.accentColor)
-            }
-        }
-        .onAppear { loadAvatar() }
-        .onChange(of: appStore.selectedAccount?.email, perform: { _ in loadAvatar() })
-    }
-
-    private func loadAvatar() {
-        guard let account = appStore.selectedAccount else {
-            cachedAvatarImage = nil
-            return
-        }
-        let cacheKey = "appleid_avatar_\(account.email)"
-        if let cached = UserDefaults.standard.data(forKey: cacheKey),
-           let image = UIImage(data: cached) {
-            cachedAvatarImage = image
-            return
-        }
-        Task {
-            AuthenticationManager.shared.setCookies(account.cookies)
-            try? await Task.sleep(nanoseconds: 500_000_000)
-            guard let cookies = HTTPCookieStorage.shared.cookies,
-                  !cookies.isEmpty else { return }
-            let config = URLSessionConfiguration.default
-            let cookieStorage = HTTPCookieStorage()
-            cookies.filter { $0.domain.contains("apple.com") }.forEach { cookieStorage.setCookie($0) }
-            config.httpCookieStorage = cookieStorage
-            let session = URLSession(configuration: config)
-            guard let url = URL(string: "https://appleid.apple.com/account/photo") else { return }
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.setValue("https://appleid.apple.com", forHTTPHeaderField: "Referer")
-            do {
-                let (data, response) = try await session.data(for: request)
-                if let httpResponse = response as? HTTPURLResponse,
-                   httpResponse.statusCode == 200,
-                   let image = UIImage(data: data) {
-                    UserDefaults.standard.set(data, forKey: cacheKey)
-                    await MainActor.run { cachedAvatarImage = image }
-                }
-            } catch {}
-        }
-    }
-
-    var regionPickerSheet: some SwiftUI.View {
-        NavigationView {
-            VStack(spacing: 0) {
-
-                VStack(spacing: 16) {
-                    Text("当前搜索地区")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-
-                                        HStack(spacing: 16) {
-                        Text(flag(country: searchRegion.isEmpty ? effectiveSearchRegion : searchRegion))
-                            .font(.system(size: 48))
-                        VStack(alignment: .leading, spacing: 8) {
-                            let displayRegion = searchRegion.isEmpty ? effectiveSearchRegion : searchRegion
-                            Text(SearchView.countryCodeMapChinese[displayRegion] ?? SearchView.countryCodeMap[displayRegion] ?? displayRegion)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                            Text(currentRegionInfo)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Text("地区代码: \(displayRegion)")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-
-                            if isUserSelectedRegion && !searchRegion.isEmpty {
-                                Text("用户手动选择")
-                                    .font(.caption2)
-                                    .foregroundColor(.orange)
-                            } else if let currentAccount = appStore.selectedAccount {
-                                Text("来自登录账户: \(currentAccount.email)")
-                                    .font(.caption2)
-                                    .foregroundColor(.green)
-                            
-                            }
-                        }
-                    }
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(themeManager.selectedTheme == .dark ? Color(.secondarySystemBackground) : Color(.secondarySystemBackground))
-                    )
-                }
-                .padding()
-
-                HStack {
-                    Text("共 \(regionKeys.count) 个地区")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    if let currentAccount = appStore.selectedAccount {
-                        Text("登录账户: \(currentAccount.countryCode)")
-                            .font(.caption)
-                            .foregroundColor(.green)
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.bottom, 8)
-
-                HStack(spacing: 8) {
-                    Image(systemName: "magnifyingglass")
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundColor(.secondary)
-                    TextField("搜索地区...", text: $searchInput)
-                        .font(.title3)
-                        .onChange(of: searchInput) { newValue in
-
-                            if newValue.isEmpty {
-
-                            }
-                        }
-                    if !searchInput.isEmpty {
-                        Button {
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                searchInput = ""
-                            }
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 16))
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 16)
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(themeManager.selectedTheme == .dark ? Color(.systemGray6) : Color(.systemBackground))
-                        .shadow(color: themeManager.selectedTheme == .dark ? .black.opacity(0.3) : .black.opacity(0.05), radius: 8, x: 0, y: 2)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(
-                            .clear,
-                            lineWidth: 2
-                        )
-                )
-                .padding(.horizontal)
-                .padding(.bottom, 8)
-
-                List {
-                    ForEach(filteredRegionKeys, id: \.self) { regionCode in
-                        Button(action: {
-                            selectRegion(regionCode)
-                        }) {
-                            HStack(spacing: 16) {
-                                Text(flag(country: regionCode))
-                                    .font(.title2)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    HStack(spacing: 8) {
-                                        Text(SearchView.countryCodeMapChinese[regionCode] ?? SearchView.countryCodeMap[regionCode] ?? regionCode)
-                                            .font(.body)
-                                            .foregroundColor(.primary)
-                                    }
-                                    Text(regionCode)
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                }
-                                Spacer()
-                                if regionCode == searchRegion {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(themeManager.accentColor)
-                                        .font(.system(size: 16, weight: .bold))
-                                }
-
-                                if isUserSelectedRegion && regionCode == searchRegion {
-                                    Image(systemName: "hand.point.up.fill")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(.orange)
-                                        .help("用户手动选择")
-                                } else if let currentAccount = appStore.selectedAccount, regionCode == currentAccount.countryCode {
-
-                                }
-                            }
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-            }
-            .navigationTitle("选择搜索地区")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("返回") {
-                        showRegionPicker = false
-                    }
-                }
-            }
-        }
     }
 
     var accountStatusBar: some SwiftUI.View {
@@ -1887,29 +1342,6 @@ struct SearchView: SwiftUI.View {
                 .padding(.bottom, 8)
             }
         }
-    }
-
-    private func selectRegion(_ regionCode: String) {
-        searchRegion = regionCode
-        isUserSelectedRegion = true
-        print("[SearchView] 用户选择地区: \(regionCode)")
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            self.uiRefreshTrigger = UUID()
-        }
-
-        if !searchResult.isEmpty {
-            searchResult = []
-            Task {
-                await performSearch()
-            }
-        }
-
-        showRegionPicker = false
-
-        print("[SearchView] 地区选择完成，当前搜索地区: \(searchRegion)")
-        print("[SearchView] 用户手动选择标志: \(isUserSelectedRegion)")
-        print("[SearchView] effectiveSearchRegion: \(effectiveSearchRegion)")
     }
 
     var searchHistorySection: some SwiftUI.View {
@@ -2048,11 +1480,6 @@ struct SearchView: SwiftUI.View {
                         Text("找到 \(searchResult.count) 个结果")
                             .font(.title2)
                             .foregroundColor(.primary)
-                        if !searchInput.isEmpty {
-                            Text("关于 \"\(searchInput)\"")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                        }
                     }
                     Spacer()
 
@@ -2306,7 +1733,9 @@ struct SearchView: SwiftUI.View {
         let base: UInt32 = 127397
         var s = ""
         for v in country.unicodeScalars {
-            s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+            if let scalar = UnicodeScalar(base + v.value) {
+                s.unicodeScalars.append(scalar)
+            }
         }
         return String(s)
     }
@@ -2314,7 +1743,7 @@ struct SearchView: SwiftUI.View {
     func performSearch() async {
         guard !searchKey.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
 
-        let regionToUse = effectiveSearchRegion
+        let regionToUse = appStore.selectedAccount?.countryCode ?? "US"
         print("[SearchView] 执行搜索，使用地区: \(regionToUse)")
 
         withAnimation(.easeInOut) {
@@ -2400,7 +1829,7 @@ struct SearchView: SwiftUI.View {
         Task {
             do {
 
-                let regionToUse = effectiveSearchRegion
+                let regionToUse = appStore.selectedAccount?.countryCode ?? "US"
                 let response = try await iTunesClient.shared.search(
                     term: searchKey,
                     limit: pageSize,
@@ -2509,8 +1938,7 @@ struct SearchView: SwiftUI.View {
                         let loading = (purchasingTrackId == (item.trackId))
                         if loading { ProgressView().scaleEffect(0.7) }
                         Text(loading ? "购买中" : "购买")
-                            .font(.caption)
-                            .fontWeight(.semibold)
+                            .font(.system(size: 12, weight: .semibold))
                     }
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
@@ -2594,11 +2022,11 @@ struct SearchView: SwiftUI.View {
                 let storeVersionsResult = await StoreClient.shared.getAppVersions(
                     trackId: String(app.trackId),
                     account: accountCopy,
-                    countryCode: effectiveSearchRegion
+                    countryCode: appStore.selectedAccount?.countryCode ?? "US"
                 )
 
                 let histResult = try? await withTimeout(seconds: 3) {
-                    try await iTunesClient.shared.versionHistory(id: app.trackId, country: effectiveSearchRegion)
+                    try await iTunesClient.shared.versionHistory(id: app.trackId, country: appStore.selectedAccount?.countryCode ?? "US")
                 }
                 let hist = histResult ?? []
 
@@ -2690,8 +2118,7 @@ struct SearchView: SwiftUI.View {
                 .font(.system(size: 48))
                 .foregroundColor(.red)
             Text("加载失败")
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(.system(size: 22, weight: .semibold))
             Text(error)
                 .font(.body)
                 .foregroundColor(.secondary)
@@ -2712,8 +2139,7 @@ struct SearchView: SwiftUI.View {
                 .font(.system(size: 48))
                 .foregroundColor(.secondary)
             Text("暂无历史版本")
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(.system(size: 22, weight: .semibold))
             Text("该app暂时没有可用的历史版本")
                 .font(.body)
                 .foregroundColor(.secondary)
@@ -2743,8 +2169,7 @@ struct SearchView: SwiftUI.View {
 
                     VStack(spacing: 8) {
                         Text(selectedApp?.trackName ?? "APP")
-                            .font(.title)
-                            .fontWeight(.bold)
+                            .font(.system(size: 28, weight: .bold))
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.center)
 
@@ -2759,8 +2184,7 @@ struct SearchView: SwiftUI.View {
 
                 HStack {
                     Text("历史版本")
-                        .font(.title2)
-                        .fontWeight(.bold)
+                        .font(.system(size: 22, weight: .bold))
                         .foregroundColor(.primary)
 
                     Spacer()
@@ -2793,8 +2217,7 @@ struct SearchView: SwiftUI.View {
                 VStack(alignment: .leading, spacing: 4) {
 
                     Text(getVersionNumber(version: version))
-                        .font(.body)
-                        .fontWeight(.bold)
+                        .font(.system(size: 17, weight: .bold))
                         .foregroundColor(themeManager.accentColor)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 2)
@@ -2805,8 +2228,7 @@ struct SearchView: SwiftUI.View {
 
                     if let date = getVersionDate(version: version) {
                         Text(date)
-                            .font(.body)
-                            .fontWeight(.bold)
+                            .font(.system(size: 17, weight: .bold))
                             .foregroundColor(themeManager.accentColor)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 2)
@@ -2852,8 +2274,7 @@ struct SearchView: SwiftUI.View {
                     Image(systemName: "arrow.down.circle.fill")
                         .font(.caption)
                     Text("下载")
-                        .font(.caption2)
-                        .fontWeight(.medium)
+                        .font(.system(size: 11, weight: .medium))
                 }
                 .foregroundColor(.white)
                 .padding(.horizontal, 16)
@@ -3013,23 +2434,85 @@ struct SearchView: SwiftUI.View {
     }
 
     var multiAccountManagementView: some SwiftUI.View {
-        VStack(spacing: 0) {
-
+        List {
             if let currentAccount = appStore.selectedAccount {
-                VStack(spacing: 16) {
+                Section {
+                    AccountDetailView(account: currentAccount)
+                        .environmentObject(appStore)
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
+                } header: {
                     Text("当前账户")
                         .font(.headline)
                         .foregroundColor(.primary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                    AccountDetailView(account: currentAccount)
-
-                        .environmentObject(appStore)
                 }
-                .padding()
             }
 
-            VStack(spacing: 16) {
+            Section {
+                ForEach(appStore.savedAccounts.indices, id: \.self) { index in
+                    let account = appStore.savedAccounts[index]
+                    let isSelected = index == appStore.selectedAccountIndex
+
+                    HStack(spacing: 12) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(account.email)
+                                .font(.system(size: 17, weight: isSelected ? .semibold : .regular))
+                                .foregroundColor(.primary)
+
+                            HStack(spacing: 8) {
+                                Text(flag(country: account.countryCode))
+                                    .font(.caption)
+                                Text(SearchView.countryCodeMapChinese[account.countryCode] ?? SearchView.countryCodeMap[account.countryCode] ?? account.countryCode)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+
+                                if isSelected {
+                                    Text("当前")
+                                        .font(.caption2)
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal, 6)
+                                        .padding(.vertical, 2)
+                                        .background(
+                                            Capsule()
+                                                .fill(themeManager.accentColor)
+                                        )
+                                }
+                            }
+                        }
+
+                        Spacer()
+
+                        HStack(spacing: 8) {
+                            if !isSelected {
+                                Button("切换") {
+                                    appStore.switchToAccount(at: index)
+                                }
+                                .font(.caption)
+                                .foregroundColor(themeManager.accentColor)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(
+                                    Capsule()
+                                        .fill(themeManager.accentColor.opacity(0.1))
+                                )
+                            }
+
+                            Button("删除") {
+                                appStore.deleteAccount(account)
+                            }
+                            .font(.caption)
+                            .foregroundColor(.red)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(
+                                Capsule()
+                                    .fill(Color.red.opacity(0.1))
+                            )
+                        }
+                    }
+                    .padding(.vertical, 4)
+                }
+            } header: {
                 HStack {
                     Text("所有账户")
                         .font(.headline)
@@ -3045,79 +2528,9 @@ struct SearchView: SwiftUI.View {
                                 .fill(themeManager.accentColor.opacity(0.1))
                         )
                 }
-                .padding(.horizontal)
-
-                List {
-                    ForEach(appStore.savedAccounts.indices, id: \.self) { index in
-                        let account = appStore.savedAccounts[index]
-                        let isSelected = index == appStore.selectedAccountIndex
-
-                        HStack(spacing: 12) {
-
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(account.email)
-                                    .font(.body)
-                                    .fontWeight(isSelected ? .semibold : .regular)
-                                    .foregroundColor(.primary)
-
-                                HStack(spacing: 8) {
-                                    Text(flag(country: account.countryCode))
-                                        .font(.caption)
-                                    Text(SearchView.countryCodeMapChinese[account.countryCode] ?? SearchView.countryCodeMap[account.countryCode] ?? account.countryCode)
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-
-                                    if isSelected {
-                                        Text("当前")
-                                            .font(.caption2)
-                                            .foregroundColor(.white)
-                                            .padding(.horizontal, 6)
-                                            .padding(.vertical, 2)
-                                            .background(
-                                                Capsule()
-                                                    .fill(themeManager.accentColor)
-                                            )
-                                    }
-                                }
-                            }
-
-                            Spacer()
-
-                            HStack(spacing: 8) {
-                                if !isSelected {
-                                    Button("切换") {
-                                        appStore.switchToAccount(at: index)
-                                    }
-                                    .font(.caption)
-                                    .foregroundColor(themeManager.accentColor)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(
-                                        Capsule()
-                                            .fill(themeManager.accentColor.opacity(0.1))
-                                    )
-                                }
-
-                                Button("删除") {
-                                    appStore.deleteAccount(account)
-                                }
-                                .font(.caption)
-                                .foregroundColor(.red)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
-                                .background(
-                                    Capsule()
-                                        .fill(Color.red.opacity(0.1))
-                                )
-                            }
-                        }
-                        .padding(.vertical, 4)
-                    }
-                }
-                .listStyle(PlainListStyle())
             }
 
-            VStack(spacing: 16) {
+            Section {
                 Button("添加新账户") {
                     showAccountMenu = false
                     showLoginSheet = true
@@ -3135,9 +2548,11 @@ struct SearchView: SwiftUI.View {
                 )
                 .cornerRadius(12)
                 .shadow(color: themeManager.accentColor.opacity(0.3), radius: 8, x: 0, y: 4)
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
             }
-            .padding()
         }
+        .listStyle(InsetGroupedListStyle())
         .background(
             LinearGradient(
                 colors: themeManager.selectedTheme == .dark ?
@@ -3170,30 +2585,6 @@ struct SearchView: SwiftUI.View {
         }
     }
 
-    private func refreshRegionSettings() {
-        print("🔄 [地区刷新] 开始刷新地区设置")
-
-        guard let account = appStore.selectedAccount else {
-            print("🔄 [地区刷新] 没有当前账户，使用系统推荐地区")
-
-            searchRegion = ""
-            isUserSelectedRegion = false
-            return
-        }
-
-        print("🔄 [地区刷新] 刷新账户地区: \(account.email) -> \(account.countryCode)")
-
-        isUserSelectedRegion = false
-
-        searchRegion = account.countryCode
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            self.uiRefreshTrigger = UUID()
-        }
-
-        print("🔄 [地区刷新] 地区设置已刷新: \(searchRegion)")
-    }
-
     private var currentAccountIndicator: some SwiftUI.View {
         HStack(spacing: 12) {
 
@@ -3205,8 +2596,7 @@ struct SearchView: SwiftUI.View {
 
                     HStack(spacing: 8) {
                         Text(account.email)
-                            .font(.caption)
-                            .fontWeight(.medium)
+                            .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.primary)
 
                         Text(flag(country: account.countryCode))
@@ -3255,8 +2645,7 @@ struct SearchView: SwiftUI.View {
 
                     HStack(spacing: 6) {
                         Text(account.email)
-                            .font(.caption)
-                            .fontWeight(.medium)
+                            .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.primary)
                             .lineLimit(1)
 
@@ -3323,8 +2712,7 @@ struct SearchView: SwiftUI.View {
                     .foregroundColor(.white)
 
                 Text(cacheStatusText)
-                    .font(.caption)
-                    .fontWeight(.medium)
+                    .font(.system(size: 12, weight: .medium))
                     .foregroundColor(.white)
             }
             .padding(.horizontal, 10)

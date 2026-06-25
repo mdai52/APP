@@ -147,7 +147,11 @@ extension AppIconView {
 				DispatchQueue.main.async {
 					isLoading = false
 					currentIcon = UIApplication.shared.alternateIconName
-					showingSuccess = true
+					if error == nil {
+						showingSuccess = true
+					} else {
+						print("❌ [AppIcon] 设置图标失败: \(error!.localizedDescription)")
+					}
 				}
 			}
 		} label: {
@@ -175,8 +179,7 @@ extension AppIconView {
 
 				VStack(alignment: .center, spacing: 2) {
 					Text(icon.displayName)
-						.font(.subheadline)
-						.fontWeight(.semibold)
+						.font(.system(size: 15, weight: .semibold))
 						.multilineTextAlignment(.center)
 					Text(icon.author)
 						.font(.caption2)

@@ -84,7 +84,7 @@ struct TabbarView: View {
                 }
                 .tag(TabEnum.search)
         }
-        .accentColor(themeManager.accentColor)
+        .tint(themeManager.accentColor)
         .background(themeManager.backgroundColor)
     }
 }

@@ -4,468 +4,345 @@ import UIKit
 #endif
 
 struct AccountView: View {
-    @State var addSheet = false
-    @State var animation = false
+    @State private var addSheet = false
     @EnvironmentObject var appStore: AppStore
-    @State var layoutRefreshTrigger = UUID()
-    @State var showDeleteAlert = false
-    @State var accountToDelete: Account?
+    @EnvironmentObject var themeManager: ThemeManager
+    @State private var showDeleteAlert = false
+    @State private var accountToDelete: Account?
+    @State private var selectedAccountForDetail: Account?
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            List {
 
-                GeometryReader { geometry in
-                    Color.clear
-                        .frame(height: geometry.safeAreaInsets.top > 0 ? geometry.safeAreaInsets.top : 44)
-                        .onAppear {
-                            print("[AccountView] 顶部安全区域: \(geometry.safeAreaInsets.top)")
-                        }
-                }
-                .frame(height: 44)
-
-                VStack(spacing: 0) {
-                    if appStore.selectedAccount == nil {
-                        VStack(spacing: 30) {
-                            Spacer()
-                            VStack(spacing: 20) {
-
-                                VStack(spacing: 12) {
-                                    Text("Apple ID")
-                                        .font(.title)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.primary)
-                                    Text("遇到问题,联系pxx917144686")
-                                        .font(.body)
-                                        .foregroundColor(.secondary)
-                                        .multilineTextAlignment(.center)
-                                }
+                Section {
+                    if let account = appStore.selectedAccount {
+                        accountHeaderCard(account: account)
+                            .listRowBackground(Color.clear)
+                            .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+                            .onTapGesture {
+                                selectedAccountForDetail = account
                             }
-
-                            Button(action: { addSheet.toggle() }) {
-                                HStack(spacing: 10) {
-                                    Image(systemName: "plus.circle.fill")
-                                        .font(.body)
-                                    Text("添加账户")
-                                }
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                            }
-
-                            #if DEBUG
-                            Button(action: {
-                                print("[AccountView] 手动强制刷新")
-                                layoutRefreshTrigger = UUID()
-                            }) {
-                                HStack(spacing: 10) {
-                                    Image(systemName: "arrow.clockwise")
-                                        .font(.body)
-                                    Text("刷新布局")
-                                }
-                                .padding()
-                                .background(Color.orange)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                            }
-                            #endif
-
-                            Spacer()
-                        }
-                        .padding(.horizontal, 40)
                     } else {
-
-                        List {
-                            if let account = appStore.selectedAccount {
-                                 NavigationLink(destination: AccountDetailView(account: account)) {
-                                     AccountRowView(account: account)
-                                 }
-                                 .buttonStyle(PlainButtonStyle())
-                             }
-
-                        }
-                        .listStyle(PlainListStyle())
+                        emptyAccountCard
+                            .listRowBackground(Color.clear)
+                            .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                     }
                 }
-                .background(Color(.systemBackground))
-                .padding(.top, 10)
-            }
-            .navigationTitle("")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("Apple ID")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
+
+
+                if appStore.hasMultipleAccounts {
+                    Section {
+                        ForEach(Array(appStore.savedAccounts.enumerated()), id: \.element.id) { index, account in
+                            Button(action: {
+                                appStore.switchToAccount(at: index)
+                            }) {
+                                accountRow(account: account, isSelected: index == appStore.selectedAccountIndex)
+                            }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(role: .destructive) {
+                                    accountToDelete = account
+                                    showDeleteAlert = true
+                                } label: {
+                                    Label("删除", systemImage: "trash")
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("所有账户")
+                    }
                 }
+
+
+                Section {
+                    Button(action: {
+                        addSheet.toggle()
+                    }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "plus.circle.fill")
+                                .font(.system(size: 22))
+                                .foregroundColor(.green)
+                            Text("添加 Apple ID")
+                                .font(.system(size: 15))
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundColor(.secondary.opacity(0.6))
+                        }
+                    }
+
+                    if appStore.selectedAccount != nil {
+                        Button(role: .destructive, action: {
+                            if let account = appStore.selectedAccount {
+                                accountToDelete = account
+                                showDeleteAlert = true
+                            }
+                        }) {
+                            HStack(spacing: 12) {
+                                Image(systemName: "rectangle.portrait.and.arrow.right.fill")
+                                    .font(.system(size: 22))
+                                    .foregroundColor(.red)
+                                Text("退出登录")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.red)
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+
+
+                if let account = appStore.selectedAccount {
+                    Section {
+                        NavigationLink(destination: AccountDetailView(account: account)) {
+                            HStack {
+                                Text("地区")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                Text("\(flag(country: account.countryCode)) \(countryName(account.countryCode))")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+
+                        HStack {
+                            Text("DSID")
+                                .font(.system(size: 15))
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Text(account.directoryServicesIdentifier)
+                                .font(.system(size: 14, design: .monospaced))
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                                .truncationMode(.middle)
+                        }
+                    } header: {
+                        Text("账户信息")
+                    }
+                }
+            }
+            .listStyle(.insetGrouped)
+            .navigationTitle("Apple ID")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if appStore.selectedAccount != nil {
                         Button(action: { addSheet.toggle() }) {
                             Image(systemName: "plus")
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundColor(.blue)
+                                .font(.system(size: 18, weight: .semibold))
+                                .foregroundColor(themeManager.accentColor)
                         }
                     }
                 }
             }
             .sheet(isPresented: $addSheet) {
                 AddAccountView()
-                    .environmentObject(AppStore.this)
+                    .environmentObject(appStore)
+                    .environmentObject(themeManager)
             }
-            .onAppear {
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    layoutRefreshTrigger = UUID()
-                    print("[AccountView] 强制刷新布局")
+            .sheet(item: $selectedAccountForDetail) { account in
+                NavigationView {
+                    AccountDetailView(account: account)
                 }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    withAnimation(.easeInOut(duration: 0.8)) {
-                        animation = true
+                .environmentObject(appStore)
+                .environmentObject(themeManager)
+            }
+            .alert("确认删除", isPresented: $showDeleteAlert) {
+                Button("取消", role: .cancel) {
+                    accountToDelete = nil
+                }
+                Button("删除", role: .destructive) {
+                    if let account = accountToDelete {
+                        if appStore.savedAccounts.count == 1 {
+                            appStore.logoutAccount()
+                        } else if let index = appStore.savedAccounts.firstIndex(where: { $0.id == account.id }) {
+                            appStore.deleteAccount(account)
+                            if index <= appStore.selectedAccountIndex && appStore.selectedAccountIndex > 0 {
+                                appStore.selectedAccountIndex -= 1
+                            }
+                        }
+                        accountToDelete = nil
                     }
                 }
-            }
-            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("ForceRefreshUI"))) { _ in
-
-                print("[AccountView] 接收到强制刷新通知")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                    layoutRefreshTrigger = UUID()
-                    print("[AccountView] 真机适配强制刷新完成")
+            } message: {
+                if let account = accountToDelete {
+                    Text("确定要删除账户 \(account.email) 吗？此操作无法撤销。")
                 }
             }
         }
         .navigationViewStyle(.stack)
-        .background(Color(.systemBackground))
-        .alert("确认删除", isPresented: $showDeleteAlert) {
-            Button("取消", role: .cancel) {
-                print("[AccountView] 取消删除操作")
-                accountToDelete = nil
-            }
-            Button("删除", role: .destructive) {
-                if let account = accountToDelete {
-                    print("[AccountView] 用户确认删除账户: \(account.email)")
-
-                    appStore.logoutAccount()
-                    print("[AccountView] 账户已登出")
-
-                    DispatchQueue.main.async {
-                        layoutRefreshTrigger = UUID()
-                    }
-
-                    accountToDelete = nil
-                }
-            }
-        } message: {
-            if let account = accountToDelete {
-                Text("确定要删除账户 \(account.email) 吗？此操作无法撤销。")
-            }
-        }
     }
 
-    private func deleteAccount(offsets: IndexSet) {
-        print("[AccountView] 删除账户被调用，索引: \(offsets)")
 
-        for _ in offsets {
-            guard let account = appStore.selectedAccount else { return }
-            print("[AccountView] 准备删除账户: \(account.email), ID: \(account.id)")
 
-            accountToDelete = account
-            showDeleteAlert = true
+    private var emptyAccountCard: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "person.crop.circle.badge.plus")
+                .font(.system(size: 64))
+                .foregroundColor(.secondary.opacity(0.5))
+
+            VStack(spacing: 6) {
+                Text("登录您的 Apple ID")
+                    .font(.system(size: 22, weight: .bold))
+                    .foregroundColor(.primary)
+
+                Text("使用 Apple ID 下载和管理应用")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+
+            Button(action: {
+                addSheet.toggle()
+            }) {
+                Text("登录 Apple ID")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .background(themeManager.accentColor)
+                    .cornerRadius(14)
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 8)
         }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 40)
+        .background(
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .fill(Color(.secondarySystemGroupedBackground))
+        )
+        .padding(.horizontal, 16)
     }
-}
 
-struct AccountRowView: View {
-    let account: Any
-    @EnvironmentObject var themeManager: ThemeManager
-
-    var body: some View {
+    private func accountHeaderCard(account: Account) -> some View {
         HStack(spacing: 16) {
+            AccountAvatarButton(size: 72)
 
             VStack(alignment: .leading, spacing: 6) {
-                if let account = account as? Account {
+                Text(account.name.isEmpty ? account.email : account.name)
+                    .font(.system(size: 22, weight: .bold))
+                    .foregroundColor(.primary)
+                    .lineLimit(1)
+
+                if !account.name.isEmpty {
                     Text(account.email)
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                        .lineLimit(1)
-
-                    if !account.name.isEmpty {
-                        Text(account.name)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .lineLimit(2)
-                    }
-
-                    HStack(spacing: 8) {
-
-                        let regionDisplay = getRegionDisplay(for: account.countryCode)
-                        Text(regionDisplay)
-                            .font(.caption)
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(
-                                Capsule()
-                                    .fill(Color.blue.opacity(0.8))
-                            )
-
-                        if !account.dsPersonId.isEmpty {
-                            Text("DS: \(account.dsPersonId)")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 2)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(Color.gray.opacity(0.1))
-                                )
-                        }
-                    }
-                } else {
-
-                    Text("账户信息")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                    Text("无法加载详细信息")
-                        .font(.caption)
+                        .font(.subheadline)
                         .foregroundColor(.secondary)
+                        .lineLimit(1)
                 }
+
+                HStack(spacing: 8) {
+                    HStack(spacing: 4) {
+                        Text(flag(country: account.countryCode))
+                            .font(.caption)
+                        Text(countryName(account.countryCode))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+
+                    if !account.dsPersonId.isEmpty {
+                        Text("DS: \(account.dsPersonId)")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color.gray.opacity(0.15))
+                            )
+                    }
+                }
+                .padding(.top, 2)
             }
 
             Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.secondary.opacity(0.6))
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 4)
-        .background(Color(.systemBackground))
+        .padding(.horizontal, 16)
+        .padding(.vertical, 24)
+        .background(
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .fill(Color(.secondarySystemGroupedBackground))
+        )
+        .padding(.horizontal, 16)
+        .contentShape(Rectangle())
     }
 
-    private func getRegionDisplay(for countryCode: String) -> String {
 
-        let regionMap: [String: String] = [
 
-            "US": "美国",
-            "CA": "加拿大",
-            "MX": "墨西哥",
+    private func accountRow(account: Account, isSelected: Bool) -> some View {
+        HStack(spacing: 12) {
+            Circle()
+                .fill(themeManager.accentColor.opacity(0.15))
+                .frame(width: 36, height: 36)
+                .overlay(
+                    Text(String(account.email.prefix(1)).uppercased())
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(themeManager.accentColor)
+                )
 
-            "GB": "英国",
-            "DE": "德国",
-            "FR": "法国",
-            "IT": "意大利",
-            "ES": "西班牙",
-            "NL": "荷兰",
-            "SE": "瑞典",
-            "NO": "挪威",
-            "DK": "丹麦",
-            "FI": "芬兰",
-            "CH": "瑞士",
-            "AT": "奥地利",
-            "BE": "比利时",
-            "IE": "爱尔兰",
-            "PT": "葡萄牙",
-            "GR": "希腊",
-            "PL": "波兰",
-            "CZ": "捷克",
-            "HU": "匈牙利",
-            "RO": "罗马尼亚",
-            "BG": "保加利亚",
-            "HR": "克罗地亚",
-            "SI": "斯洛文尼亚",
-            "SK": "斯洛伐克",
-            "LT": "立陶宛",
-            "LV": "拉脱维亚",
-            "EE": "爱沙尼亚",
-            "LU": "卢森堡",
-            "MT": "马耳他",
-            "CY": "塞浦路斯",
-            "IS": "冰岛",
-            "LI": "列支敦士登",
-            "MC": "摩纳哥",
-            "AD": "安道尔",
-            "SM": "圣马力诺",
-            "VA": "梵蒂冈",
+            VStack(alignment: .leading, spacing: 3) {
+                Text(account.email)
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundColor(.primary)
+                    .lineLimit(1)
 
-            "CN": "中国",
-            "HK": "香港",
-            "MO": "澳门",
-            "TW": "台湾",
-            "JP": "日本",
-            "KR": "韩国",
-            "SG": "新加坡",
-            "TH": "泰国",
-            "VN": "越南",
-            "MY": "马来西亚",
-            "ID": "印尼",
-            "PH": "菲律宾",
-            "IN": "印度",
-            "PK": "巴基斯坦",
-            "BD": "孟加拉国",
-            "LK": "斯里兰卡",
-            "NP": "尼泊尔",
-            "MM": "缅甸",
-            "KH": "柬埔寨",
-            "LA": "老挝",
-            "BN": "文莱",
-            "TL": "东帝汶",
-            "MN": "蒙古",
-            "KZ": "哈萨克斯坦",
-            "UZ": "乌兹别克斯坦",
-            "KG": "吉尔吉斯斯坦",
-            "TJ": "塔吉克斯坦",
-            "TM": "土库曼斯坦",
-            "AF": "阿富汗",
-            "IR": "伊朗",
-            "IQ": "伊拉克",
-            "SA": "沙特阿拉伯",
-            "AE": "阿联酋",
-            "QA": "卡塔尔",
-            "KW": "科威特",
-            "BH": "巴林",
-            "OM": "阿曼",
-            "YE": "也门",
-            "JO": "约旦",
-            "LB": "黎巴嫩",
-            "SY": "叙利亚",
-            "IL": "以色列",
-            "PS": "巴勒斯坦",
-            "TR": "土耳其",
-            "GE": "格鲁吉亚",
-            "AM": "亚美尼亚",
-            "AZ": "阿塞拜疆",
+                Text(flag(country: account.countryCode) + " " + countryName(account.countryCode))
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+            }
 
-            "AU": "澳大利亚",
-            "NZ": "新西兰",
-            "FJ": "斐济",
-            "PG": "巴布亚新几内亚",
-            "NC": "新喀里多尼亚",
-            "PF": "法属波利尼西亚",
-            "VU": "瓦努阿图",
-            "SB": "所罗门群岛",
-            "TO": "汤加",
-            "WS": "萨摩亚",
-            "KI": "基里巴斯",
-            "TV": "图瓦卢",
-            "NR": "瑙鲁",
-            "PW": "帕劳",
-            "MH": "马绍尔群岛",
-            "FM": "密克罗尼西亚",
-            "CK": "库克群岛",
-            "NU": "纽埃",
-            "TK": "托克劳",
+            Spacer()
 
-            "BR": "巴西",
-            "AR": "阿根廷",
-            "CL": "智利",
-            "CO": "哥伦比亚",
-            "PE": "秘鲁",
-            "VE": "委内瑞拉",
-            "EC": "厄瓜多尔",
-            "BO": "玻利维亚",
-            "PY": "巴拉圭",
-            "UY": "乌拉圭",
-            "GY": "圭亚那",
-            "SR": "苏里南",
-            "FK": "福克兰群岛",
-            "GF": "法属圭亚那",
+            if isSelected {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 20))
+                    .foregroundColor(themeManager.accentColor)
+            }
+        }
+        .padding(.vertical, 2)
+    }
 
-            "ZA": "南非",
-            "EG": "埃及",
-            "NG": "尼日利亚",
-            "KE": "肯尼亚",
-            "ET": "埃塞俄比亚",
-            "TZ": "坦桑尼亚",
-            "UG": "乌干达",
-            "GH": "加纳",
-            "CI": "科特迪瓦",
-            "SN": "塞内加尔",
-            "ML": "马里",
-            "BF": "布基纳法索",
-            "NE": "尼日尔",
-            "TD": "乍得",
-            "SD": "苏丹",
-            "SS": "南苏丹",
-            "CF": "中非共和国",
-            "CM": "喀麦隆",
-            "GQ": "赤道几内亚",
-            "GA": "加蓬",
-            "CG": "刚果共和国",
-            "CD": "刚果民主共和国",
-            "AO": "安哥拉",
-            "ZM": "赞比亚",
-            "ZW": "津巴布韦",
-            "BW": "博茨瓦纳",
-            "NA": "纳米比亚",
-            "SZ": "斯威士兰",
-            "LS": "莱索托",
-            "MG": "马达加斯加",
-            "MU": "毛里求斯",
-            "SC": "塞舌尔",
-            "KM": "科摩罗",
-            "DJ": "吉布提",
-            "SO": "索马里",
-            "ER": "厄立特里亚",
-            "LY": "利比亚",
-            "TN": "突尼斯",
-            "DZ": "阿尔及利亚",
-            "MA": "摩洛哥",
-            "EH": "西撒哈拉",
-            "MR": "毛里塔尼亚",
 
-            "GT": "危地马拉",
-            "BZ": "伯利兹",
-            "SV": "萨尔瓦多",
-            "HN": "洪都拉斯",
-            "NI": "尼加拉瓜",
-            "CR": "哥斯达黎加",
-            "PA": "巴拿马",
-            "CU": "古巴",
-            "JM": "牙买加",
-            "HT": "海地",
-            "DO": "多米尼加",
-            "PR": "波多黎各",
-            "TT": "特立尼达和多巴哥",
-            "BB": "巴巴多斯",
-            "GD": "格林纳达",
-            "LC": "圣卢西亚",
-            "VC": "圣文森特和格林纳丁斯",
-            "AG": "安提瓜和巴布达",
-            "KN": "圣基茨和尼维斯",
-            "DM": "多米尼克",
-            "BS": "巴哈马",
-            "TC": "特克斯和凯科斯群岛",
-            "KY": "开曼群岛",
-            "BM": "百慕大",
-            "AW": "阿鲁巴",
-            "CW": "库拉索",
-            "SX": "圣马丁",
-            "MF": "法属圣马丁",
-            "BL": "圣巴泰勒米",
-            "GP": "瓜德罗普",
-            "MQ": "马提尼克",
-            "RE": "留尼汪",
-            "YT": "马约特",
-            "WF": "瓦利斯和富图纳",
-            "TF": "法属南部领地",
-            "PM": "圣皮埃尔和密克隆",
-            "GL": "格陵兰",
-            "FO": "法罗群岛",
-            "AX": "奥兰群岛",
-            "SJ": "斯瓦尔巴和扬马延",
-            "BV": "布韦岛",
-            "GS": "南乔治亚和南桑威奇群岛",
-            "IO": "英属印度洋领地",
-            "SH": "圣赫勒拿",
-            "GI": "直布罗陀"
+
+    private func flag(country: String) -> String {
+        let base: UInt32 = 127397
+        var s = ""
+        for v in country.uppercased().unicodeScalars {
+            if let scalar = UnicodeScalar(base + v.value) {
+                s.unicodeScalars.append(scalar)
+            }
+        }
+        return s
+    }
+
+    private func countryName(_ code: String) -> String {
+        let chineseNames: [String: String] = [
+            "CN": "中国大陆", "US": "美国", "JP": "日本", "KR": "韩国",
+            "HK": "香港", "TW": "台湾", "SG": "新加坡", "GB": "英国",
+            "DE": "德国", "FR": "法国", "AU": "澳大利亚", "CA": "加拿大",
+            "BR": "巴西", "IN": "印度", "RU": "俄罗斯", "IT": "意大利",
+            "ES": "西班牙", "MX": "墨西哥", "NL": "荷兰", "SE": "瑞典",
+            "TR": "土耳其", "AR": "阿根廷", "CL": "智利", "CO": "哥伦比亚",
+            "PE": "秘鲁", "PL": "波兰", "SA": "沙特阿拉伯", "TH": "泰国",
+            "PH": "菲律宾", "MY": "马来西亚", "ID": "印度尼西亚", "VN": "越南",
+            "ZA": "南非", "AE": "阿联酋", "EG": "埃及", "NG": "尼日利亚",
+            "IL": "以色列", "BE": "比利时", "CH": "瑞士", "AT": "奥地利",
+            "DK": "丹麦", "FI": "芬兰", "NO": "挪威", "IE": "爱尔兰",
+            "PT": "葡萄牙", "CZ": "捷克", "HU": "匈牙利", "RO": "罗马尼亚",
+            "GR": "希腊", "NZ": "新西兰", "PK": "巴基斯坦", "BD": "孟加拉国"
         ]
-
-        if let chineseName = regionMap[countryCode] {
-            return "\(chineseName) (\(countryCode))"
-        } else {
-
-            return countryCode
-        }
+        return chineseNames[code.uppercased()] ?? Locale.current.localizedString(forRegionCode: code) ?? code.uppercased()
     }
+}
+
+#Preview {
+    AccountView()
+        .environmentObject(AppStore.this)
+        .environmentObject(ThemeManager.shared)
 }
