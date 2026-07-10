@@ -1,0 +1,601 @@
+// MARK: - Tab Bar
+"tab_settings" = "設定";
+"tab_tfapps" = "TF版";
+"tab_downloads" = "ダウンロード";
+"tab_search" = "検索";
+
+// MARK: - Common
+"cancel" = "キャンセル";
+"confirm" = "確定";
+"ok" = "OK";
+"done" = "完了";
+"back" = "戻る";
+"save" = "保存";
+"delete" = "削除";
+"edit" = "編集";
+"add" = "追加";
+"close" = "閉じる";
+"refresh" = "更新";
+"retry" = "再試行";
+"loading" = "読み込み中...";
+"success" = "成功";
+"failed" = "失敗";
+"error" = "エラー";
+"warning" = "警告";
+"info" = "情報";
+"search" = "検索";
+"download" = "ダウンロード";
+"install" = "インストール";
+"update" = "アップデート";
+"more" = "その他";
+"all" = "すべて";
+"none" = "なし";
+"default" = "デフォルト";
+"copy" = "コピー";
+"share" = "共有";
+"export" = "エクスポート";
+"import" = "インポート";
+"clear" = "クリア";
+"reset" = "リセット";
+"continue" = "続行";
+"confirm_delete" = "削除の確認";
+"confirm_delete_message" = "本当に削除しますか？この操作は元に戻せません。";
+"copied" = "コピーしました";
+"copy_failed" = "コピーに失敗しました";
+"no_data" = "データがありません";
+"no_result" = "結果が見つかりません";
+"try_again" = "もう一度お試しください";
+"got_it" = "了解";
+
+// MARK: - Settings
+"settings" = "設定";
+"appearance" = "外観";
+"theme" = "テーマ";
+"color" = "カラー";
+"icon" = "アイコン";
+"language" = "言語";
+"general" = "一般";
+"about" = "このアプリについて";
+"version" = "バージョン";
+"version_number" = "バージョン番号";
+"follow_system" = "システムに合わせる";
+"light_mode" = "ライトモード";
+"dark_mode" = "ダークモード";
+"accent_color" = "アクセントカラー";
+"app_icon" = "アプリアイコン";
+"select_icon" = "アイコンを選択";
+"icon_changed_success" = "アイコンを変更しました";
+"icon_changed_failed" = "アイコンの変更に失敗しました";
+"language_select" = "言語を選択";
+"language_footer" = "言語を切り替えると、アプリの再起動が必要になる場合があります。";
+"language_switch" = "言語を切り替え";
+"language_switch_message" = "言語を切り替えると、アプリの表示言語がすぐに更新されます。一部のシステムコンポーネントは、アプリの再起動後に完全に反映される場合があります。";
+"confirm_switch" = "切り替えを確定";
+"app_icon" = "アイコン";
+"icon_default" = "デフォルト";
+"icon_author" = "アイコン";
+"icon_love" = "Love";
+"icon_peek" = "Peek";
+"icon_set_success" = "アイコン設定完了";
+"system_language" = "システム言語";
+"language_system_settings" = "システム設定で変更";
+"language_system_hint" = "設定 → APP → 言語へ";
+"language_recommended" = "おすすめ";
+"lang_chinese_simplified" = "簡体字中国語";
+"lang_english" = "英語";
+"lang_japanese" = "日本語";
+"lang_korean" = "韓国語";
+"lang_spanish" = "スペイン語";
+"lang_french" = "フランス語";
+"lang_german" = "ドイツ語";
+"lang_italian" = "イタリア語";
+"lang_portuguese" = "ポルトガル語";
+"lang_russian" = "ロシア語";
+"lang_arabic" = "アラビア語";
+"lang_hindi" = "ヒンディー語";
+"lang_thai" = "タイ語";
+"lang_vietnamese" = "ベトナム語";
+"lang_indonesian" = "インドネシア語";
+"lang_malay" = "マレー語";
+"lang_dutch" = "オランダ語";
+"lang_swedish" = "スウェーデン語";
+"lang_danish" = "デンマーク語";
+"lang_finnish" = "フィンランド語";
+"lang_norwegian" = "ノルウェー語";
+"lang_polish" = "ポーランド語";
+"lang_czech" = "チェコ語";
+"lang_hungarian" = "ハンガリー語";
+"lang_romanian" = "ルーマニア語";
+"lang_turkish" = "トルコ語";
+"lang_ukrainian" = "ウクライナ語";
+"lang_greek" = "ギリシャ語";
+"lang_hebrew" = "ヘブライ語";
+"lang_slovak" = "スロバキア語";
+"lang_croatian" = "クロアチア語";
+"lang_catalan" = "カタルーニャ語";
+
+// MARK: - Download
+"download_title" = "ダウンロード";
+"downloading" = "ダウンロード中";
+"download_paused" = "一時停止中";
+"download_completed" = "完了";
+"download_failed" = "ダウンロード失敗";
+"download_cancelled" = "キャンセル済み";
+"download_waiting" = "待機中";
+"download_speed" = "ダウンロード速度";
+"download_progress" = "ダウンロード進捗";
+"download_size" = "ダウンロードサイズ";
+"download_time" = "ダウンロード時間";
+"pause_download" = "一時停止";
+"resume_download" = "再開";
+"cancel_download" = "キャンセル";
+"retry_download" = "再ダウンロード";
+"delete_download" = "削除";
+"all_pause" = "すべて一時停止";
+"all_start" = "すべて開始";
+"clear_completed" = "完了済みをクリア";
+"download_queue" = "ダウンロードキュー";
+"download_history" = "ダウンロード履歴";
+"no_downloads" = "ダウンロードはありません";
+"download_settings" = "ダウンロード設定";
+"wifi_only_download" = "WiFiのみでダウンロード";
+"max_concurrent_downloads" = "最大同時ダウンロード数";
+"download_path" = "ダウンロードパス";
+
+// MARK: - Account
+"account" = "アカウント";
+"apple_id" = "Apple ID";
+"add_account" = "Apple IDを追加";
+"switch_account" = "アカウントを切り替え";
+"current_account" = "現在のアカウント";
+"all_accounts" = "すべてのアカウント";
+"account_info" = "アカウント情報";
+"region" = "地域";
+"delete_account" = "アカウントを削除";
+"logout" = "ログアウト";
+"logout_confirm" = "ログアウトの確認";
+"logout_confirm_message" = "本当にログアウトしますか？";
+"delete_account_confirm" = "アカウント削除の確認";
+"delete_account_message" = "本当にアカウント %@ を削除しますか？削除後は復元できず、再度追加する必要があります。";
+"account_detail" = "アカウント詳細";
+"verified" = "認証済み";
+"unverified" = "未認証";
+"no_account" = "未ログイン";
+"no_account_description" = "Apple IDを追加して開始してください";
+"name" = "名前";
+"email" = "メールアドレス";
+"country" = "国/地域";
+
+// MARK: - App Icon
+"app_icon_settings" = "アプリアイコン";
+"default_icon" = "デフォルト";
+
+// MARK: - Search
+"search_placeholder" = "アプリ、ゲーム、開発者を検索";
+"search_history" = "検索履歴";
+"search_suggestions" = "検索候補";
+"search_results" = "検索結果";
+"clear_history" = "履歴をクリア";
+"hot_search" = "人気検索";
+"no_results" = "結果が見つかりません";
+"try_different_keywords" = "別のキーワードでお試しください";
+"searching" = "検索中...";
+
+// MARK: - Version Picker
+"version_picker" = "バージョンを選択";
+"current_version" = "現在のバージョン";
+"available_versions" = "利用可能なバージョン";
+"no_versions" = "利用可能なバージョンがありません";
+"load_versions_failed" = "バージョンリストの取得に失敗しました";
+"select_version_to_download" = "ダウンロードするバージョンを選択";
+"version_history" = "バージョン履歴";
+"release_date" = "リリース日";
+"size" = "サイズ";
+"build_number" = "ビルド番号";
+
+// MARK: - App Detail
+"app_detail" = "アプリ詳細";
+"get" = "入手";
+"icloud_sync" = "iCloud同期";
+"screenshots" = "スクリーンショット";
+"description" = "アプリの説明";
+"whats_new" = "新機能";
+"version_history" = "バージョン履歴";
+"ratings_and_reviews" = "評価とレビュー";
+"developer" = "開発者";
+"category" = "カテゴリ";
+"compatibility" = "互換性";
+"privacy" = "プライバシー";
+"privacy_policy" = "プライバシーポリシー";
+"user_agreement" = "利用規約";
+"rating" = "評価";
+"no_reviews" = "レビューはありません";
+"no_reviews_description" = "このアプリにはまだユーザーレビューがありません";
+
+// MARK: - TF Apps
+"tf_apps" = "TF版";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "TestFlightアプリはありません";
+"install_tf_app" = "TestFlight版をインストール";
+"testing_status" = "テスト状況";
+"testing" = "テスト中";
+"expired" = "期限切れ";
+"full" = "満員";
+"test_duration" = "テスト期間";
+"remaining_seats" = "残り枠";
+"install" = "インストール";
+"redeem_code" = "引き換えコード";
+"enter_redeem_code" = "引き換えコードを入力";
+
+// MARK: - Filter & Sort
+"filter" = "フィルター";
+"sort" = "並べ替え";
+"sort_by_name" = "名前順";
+"sort_by_date" = "日付順";
+"sort_by_size" = "サイズ順";
+"sort_by_status" = "ステータス順";
+"ascending" = "昇順";
+"descending" = "降順";
+
+// MARK: - Notification
+"notifications" = "通知";
+"push_notifications" = "プッシュ通知";
+"download_complete_notification" = "ダウンロード完了通知";
+"notification_sound" = "通知音";
+"notification_vibrate" = "バイブレーション";
+"notification_badge" = "バッジ";
+
+// MARK: - Privacy & Security
+"privacy_security" = "プライバシーとセキュリティ";
+"privacy_policy" = "プライバシーポリシー";
+"user_agreement" = "利用規約";
+"clear_cache" = "キャッシュをクリア";
+"cache_size" = "キャッシュサイズ";
+"calculating_cache" = "計算中...";
+"clear_cache_confirm" = "キャッシュクリアの確認";
+"clear_cache_message" = "本当にすべてのキャッシュをクリアしますか？ダウンロードしたアプリは削除されません。";
+"cache_cleared" = "キャッシュをクリアしました";
+
+// MARK: - Storage
+"storage" = "ストレージ";
+"total_storage" = "合計容量";
+"used_storage" = "使用済み";
+"available_storage" = "空き容量";
+"app_size" = "アプリサイズ";
+"documents_size" = "書類サイズ";
+
+// MARK: - Download Manager
+"download_manager" = "ダウンロード管理";
+"download_queue" = "ダウンロードキュー";
+"batch_operations" = "一括操作";
+"select_all" = "すべて選択";
+"deselect_all" = "選択を解除";
+"selected_count" = "%@項目を選択中";
+
+// MARK: - App Information
+"app_name" = "アプリ名";
+"app_version" = "アプリバージョン";
+"app_size" = "アプリサイズ";
+"app_rating" = "アプリ評価";
+"app_developer" = "開発者";
+"app_category" = "カテゴリ";
+"release_date" = "リリース日";
+"last_updated" = "最終更新";
+"compatibility" = "互換性";
+"language_support" = "対応言語";
+"content_rating" = "コンテンツ評価";
+
+// MARK: - Account Management
+"account_management" = "アカウント管理";
+"login_status" = "ログイン状態";
+"two_factor_auth" = "二段階認証";
+"remember_password" = "パスワードを記憶";
+"auto_login" = "自動ログイン";
+"login_expired" = "ログインの有効期限が切れました";
+"please_relogin" = "再度ログインしてください";
+
+// MARK: - Settings More
+"advanced_settings" = "詳細設定";
+"developer_options" = "開発者向けオプション";
+"check_update" = "アップデートを確認";
+"new_version_available" = "新しいバージョンがあります";
+"already_latest_version" = "最新バージョンです";
+"feedback" = "フィードバック";
+"rate_app" = "アプリを評価";
+"share_app" = "アプリを共有";
+
+// MARK: - Network
+"network" = "ネットワーク";
+"network_status" = "ネットワーク状態";
+"wifi" = "WiFi";
+"cellular" = "モバイルデータ";
+"no_network" = "ネットワークに接続されていません";
+"network_error" = "ネットワークエラー";
+"network_error_message" = "ネットワーク接続に失敗しました。ネットワーク設定を確認してください";
+"network_speed" = "ネットワーク速度";
+"network_usage" = "データ使用量";
+
+// MARK: - Installation
+"installation" = "インストール";
+"installing" = "インストール中...";
+"install_success" = "インストール成功";
+"install_failed" = "インストール失敗";
+"install_failed_message" = "インストールに失敗しました。もう一度お試しください";
+"uninstall" = "アンインストール";
+"uninstall_confirm" = "アンインストールの確認";
+"uninstall_message" = "本当にこのアプリをアンインストールしますか？すべてのデータが削除されます。";
+"ipa_file" = "IPAファイル";
+"ipa_signature" = "IPA署名";
+"signed" = "署名済み";
+"unsigned" = "未署名";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "テスト招待";
+"testflight_build" = "ビルド";
+"testflight_group" = "テストグループ";
+"testflight_tester" = "テスター";
+"testflight_feedback" = "テストフィードバック";
+"testflight_expired" = "テスト期限切れ";
+"testflight_full" = "テスト満員";
+"testflight_join" = "テストに参加";
+"testflight_leave" = "テストを退会";
+
+// MARK: - Search More
+"search_filter" = "検索フィルター";
+"search_result_count" = "%@件の結果";
+"exact_match" = "完全一致";
+"fuzzy_match" = "あいまい一致";
+"hot_apps" = "人気アプリ";
+"new_apps" = "新着アプリ";
+"recommended_apps" = "おすすめアプリ";
+"top_charts" = "ランキング";
+
+// MARK: - Status
+"status" = "ステータス";
+"status_normal" = "正常";
+"status_abnormal" = "異常";
+"status_pending" = "保留中";
+"status_processing" = "処理中";
+"status_completed" = "完了";
+"status_failed" = "失敗";
+"status_cancelled" = "キャンセル済み";
+"status_expired" = "期限切れ";
+"status_active" = "アクティブ";
+"status_inactive" = "非アクティブ";
+"status_idle" = "アイドル";
+"status_busy" = "ビジー";
+
+// MARK: - Tips
+"tips" = "お知らせ";
+"tip_download_speed" = "ダウンロード速度はネットワーク環境に依存します";
+"tip_wifi_download" = "大きなファイルはWiFi環境でのダウンロードをおすすめします";
+"tip_storage_space" = "十分なストレージ容量があることを確認してください";
+"tip_account_security" = "アカウント情報を安全に管理してください";
+"dont_show_again" = "今後表示しない";
+"remind_later" = "後で通知";
+"view_details" = "詳細を見る";
+"learn_more" = "詳しくはこちら";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "秒";
+"unit_minutes" = "分";
+"unit_hours" = "時間";
+"unit_days" = "日";
+"unit_weeks" = "週";
+"unit_months" = "ヶ月";
+"unit_years" = "年";
+"today" = "今日";
+"yesterday" = "昨日";
+"day_before_yesterday" = "一昨日";
+"just_now" = "たった今";
+"minutes_ago" = "%@分前";
+"hours_ago" = "%@時間前";
+"days_ago" = "%@日前";
+
+// MARK: - Actions
+"action_open" = "開く";
+"action_close" = "閉じる";
+"action_view" = "表示";
+"action_edit" = "編集";
+"action_delete" = "削除";
+"action_share" = "共有";
+"action_copy" = "コピー";
+"action_paste" = "ペースト";
+"action_select" = "選択";
+"action_select_all" = "すべて選択";
+"action_deselect" = "選択解除";
+"action_refresh" = "更新";
+"action_reload" = "再読み込み";
+"action_scroll_top" = "トップへ";
+"action_scroll_bottom" = "ボトムへ";
+"action_favorite" = "お気に入り";
+"action_unfavorite" = "お気に入り解除";
+"action_like" = "いいね";
+"action_unlike" = "いいね解除";
+"action_follow" = "フォロー";
+"action_unfollow" = "フォロー解除";
+"action_report" = "報告";
+"action_block" = "ブロック";
+"action_rename" = "名前変更";
+"action_move" = "移動";
+"action_compress" = "圧縮";
+"action_extract" = "展開";
+"action_upload" = "アップロード";
+"action_download" = "ダウンロード";
+"action_install" = "インストール";
+"action_uninstall" = "アンインストール";
+"action_update" = "アップデート";
+"action_upgrade" = "アップグレード";
+"action_downgrade" = "ダウングレード";
+"action_scan_qr" = "QRコードをスキャン";
+"action_generate_qr" = "QRコードを生成";
+"action_print" = "印刷";
+"action_send" = "送信";
+"action_receive" = "受信";
+"action_reject" = "拒否";
+"action_accept" = "承諾";
+"action_declined" = "拒否済み";
+"action_accepted" = "承諾済み";
+
+// MARK: - Theme
+"theme_settings" = "テーマ設定";
+"light_theme" = "ライトテーマ";
+"dark_theme" = "ダークテーマ";
+"system_theme" = "システムテーマ";
+"pure_black" = "ピュアブラック";
+"auto_switch" = "自動切り替え";
+"custom_theme" = "カスタムテーマ";
+"theme_color" = "テーマカラー";
+"accent_color" = "アクセントカラー";
+"background_color" = "背景色";
+"text_color" = "テキスト色";
+"font_size" = "フォントサイズ";
+"font_style" = "フォントスタイル";
+
+// MARK: - App Detail More
+"feature_tags" = "機能タグ";
+"free" = "無料";
+"get" = "入手";
+"view" = "表示";
+"get_reviews_failed" = "レビューの取得に失敗しました: %@";
+"x_ratings" = "%@ 件の評価";
+"age_rating" = "年齢制限";
+"x_languages" = "%@ 言語";
+"whats_new" = "新機能";
+"tech_info" = "技術情報";
+"first_release" = "初回リリース";
+"last_updated" = "最終更新";
+"requires_ios" = "iOS %@ 以降が必要";
+
+// MARK: - Search More
+"search_placeholder" = "ゲーム、Appを検索";
+"login" = "ログイン";
+"clear_all" = "すべてクリア";
+"x_results_found" = "%@ 件の結果";
+"finding_best_results" = "最適な結果を探しています";
+"app_downgrade" = "APPダウングレード";
+"search_error" = "検索エラー";
+"load_more" = "もっと読み込む...";
+"purchasing" = "購入中";
+"purchase" = "購入";
+"please_login_first" = "アプリを入手するには、先にログインしてください";
+"loading_versions" = "バージョン履歴を読み込み中...";
+"load_failed" = "読み込み失敗";
+"no_versions_desc" = "このアプリには過去のバージョンがありません";
+"x_versions" = "%@ 個のバージョン";
+"version_x_date" = "バージョン %@ · %@";
+
+// MARK: - Account More
+"login_account" = "アカウントにログイン";
+"current" = "現在";
+"switch" = "切り替え";
+"x_accounts" = "%@ 個のアカウント";
+"add_new_account" = "新しいアカウントを追加";
+"account_management" = "アカウント管理";
+"use_account" = "アカウントを使用";
+"connection_lost" = "接続が切断されました";
+"reconnecting" = "再接続中";
+"connected" = "接続済み";
+"apple_id_disconnected" = "Apple IDの接続が切断されました。タップして再認証するか、再度ログインしてください。";
+"apple_id_reconnecting" = "Apple IDに自動的に再接続しています。しばらくお待ちください...";
+"apple_id_connected" = "Apple IDに接続されています。通常通り検索とダウンロードが可能です。";
+"login_apple_id" = "Apple IDでログイン";
+"login_apple_id_desc" = "Apple IDでアプリをダウンロード・管理します";
+"login_apple_id_btn" = "Apple IDでログイン";
+"view_account_details" = "アカウント詳細を表示";
+"media_purchases" = "メディアと購入";
+"media_purchases_header" = "メディアと購入";
+"sign_in_apple_id" = "iPhoneにサインイン";
+"sign_in_apple_id_desc" = "このiPhoneでApple IDを使用する";
+"apple_id" = "Apple ID";
+"name" = "名前";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "名前、メール";
+"account_identifier_header" = "アカウント識別子";
+"country_region" = "国/地域";
+"region_header" = "地域";
+"sign_out" = "サインアウト";
+"login_your_account" = "アカウントにログイン";
+"enter_apple_id" = "Apple IDを入力してください";
+"password" = "パスワード";
+"enter_password" = "パスワードを入力してください";
+"two_factor_code" = "2要素認証コード";
+"enter_6digit_code" = "6桁のコードを入力";
+"check_trusted_device" = "信頼できるデバイスまたはSMSでコードを確認してください";
+"verifying" = "認証中...";
+"enter_full_credentials" = "Apple IDとパスワードをすべて入力してください";
+"enter_6digit_code_verify" = "6桁の認証コードを入力してください";
+"wrong_credentials" = "Apple IDまたはパスワードが間違っています。確認して再試行してください。";
+"account_locked" = "お使いのApple IDはロックされています。後でもう一度試すか、Appleサポートにお問い合わせください。";
+"network_error_retry" = "ネットワーク接続エラーです。ネットワーク設定を確認して再試行してください。";
+"auth_failed" = "認証に失敗しました。ネットワーク接続とアカウント情報を確認してください。";
+"invalid_server_response" = "サーバーの応答が無効です。後でもう一度試してください。";
+"unknown_error" = "不明なエラーです。後でもう一度試してください。";
+"auth_error" = "認証中にエラーが発生しました: %@";
+"check_apple_device_code" = "Appleデバイスで認証コードを確認してください";
+"wrong_verification_code" = "認証コードが間違っています。再入力してください。";
+
+// MARK: - Download More
+"invalid_ipa_file" = "無効なIPAファイル";
+"install_failed_with_reason" = "インストール失敗: %@";
+"install_timeout" = "インストールタイムアウト";
+"installing_app" = "%@ をインストール中";
+"version_x" = "バージョン %@";
+"install_starting" = "インストールを開始しています...";
+"install_manual_hint" = "自動インストールに失敗した場合は、下のボタンをタップして手動でインストールしてください:";
+"manual_install" = "手動でインストール";
+"install_success_desc" = "ホーム画面を確認してください、アプリをインストール中です...";
+"install_contact_author" = "問題がある場合は開発者 pxx917144686 にお問い合わせください";
+"install_start_failed" = "インストールの開始に失敗しました";
+"retry_install" = "インストールを再試行";
+"view_source_code" = "👉ソースコードを見る";
+"file_size_x" = "ファイルサイズ: %@";
+"no_purchase_record" = "購入履歴がないようです、App Storeに移動して購入してください";
+"file_saved_to" = "ファイルの保存先:";
+"preparing" = "準備中...";
+"waiting_confirm" = "確認待ち...";
+"install_completed" = "インストール完了";
+"waiting" = "待機中...";
+"start_install" = "インストール開始";
+"unknown_path" = "不明なパス";
+"share_ipa" = "IPAファイルを共有";
+"install_background_hint" = "アプリはバックグラウンドでインストールされています。ホーム画面に戻って進行状況を確認できます。";
+"ipa_not_found" = "IPAファイルが見つかりません。再ダウンロードしてください";
+"preparing_install" = "インストールの準備中...";
+"install_in_progress" = "インストールが既に進行中です";
+"verifying_package" = "パッケージを検証中...";
+"starting_install_service" = "インストールサービスを開始中...";
+"install_service_timeout" = "インストールサービスがタイムアウトしました。再試行してください。";
+"opening_install_page" = "インストールページを開いています...";
+"download_record_file" = "ダウンロード履歴";
+"delete_file" = "ファイルを削除";
+"delete_file_confirm" = "%@ を削除してもよろしいですか？この操作は取り消せません。";
+"delete_success" = "削除完了";
+"delete_success_desc" = "ファイルが正常に削除されました。";
+"no_ipa_found" = "IPAファイルが見つかりません";
+"no_ipa_found_desc" = "アプリの保存ディレクトリにIPAファイルが見つかりません";
+
+// MARK: - Account Detail
+"basic_info" = "基本情報";
+"account_identifier" = "アカウント識別子";
+"country_region" = "国/地域";
+"password_token" = "パスワードトークン";
+"auth_info" = "認証情報";
+"password_token_hint" = "パスワードトークンは自動認証に使用されます。他の人と共有しないでください。";
+"delete_this_account" = "このアカウントを削除";
+"delete_account_confirm_detail" = "このデバイスからアカウント %@ を削除してもよろしいですか？\n\nこのアカウントのすべてのログイン情報とCookieが削除されます。";
+"dsid" = "DSID";
+"no_value" = "なし";
+"region_title" = "地域";
+
+// MARK: - Appearance More
+"overall_color" = "アクセントカラー";
+"quick_select" = "クイック選択";
+"auto" = "自動";
+"unknown" = "不明";

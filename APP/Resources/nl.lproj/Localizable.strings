@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Instellingen";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Downloads";
+"tab_search" = "Zoeken";
+
+// MARK: - Common
+"cancel" = "Annuleren";
+"confirm" = "Bevestigen";
+"ok" = "OK";
+"done" = "Gereed";
+"back" = "Terug";
+"save" = "Opslaan";
+"delete" = "Verwijderen";
+"edit" = "Bewerken";
+"add" = "Toevoegen";
+"close" = "Sluiten";
+"refresh" = "Vernieuwen";
+"retry" = "Opnieuw proberen";
+"loading" = "Laden...";
+"success" = "Succes";
+"failed" = "Mislukt";
+"error" = "Fout";
+"warning" = "Waarschuwing";
+"info" = "Info";
+"search" = "Zoeken";
+"download" = "Downloaden";
+"install" = "Installeren";
+"update" = "Bijwerken";
+"more" = "Meer";
+"all" = "Alle";
+"none" = "Geen";
+"default" = "Standaard";
+"copy" = "Kopiëren";
+"share" = "Delen";
+"export" = "Exporteren";
+"import" = "Importeren";
+"clear" = "Wissen";
+"reset" = "Resetten";
+"continue" = "Doorgaan";
+"confirm_delete" = "Verwijderen bevestigen";
+"confirm_delete_message" = "Weet je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.";
+"copied" = "Gekopieerd";
+"copy_failed" = "Kopiëren mislukt";
+"no_data" = "Geen gegevens";
+"no_result" = "Geen resultaten gevonden";
+"try_again" = "Probeer het opnieuw";
+"got_it" = "Begrepen";
+
+// MARK: - Settings
+"settings" = "Instellingen";
+"appearance" = "Uiterlijk";
+"theme" = "Thema";
+"color" = "Kleur";
+"icon" = "Pictogram";
+"language" = "Taal";
+"general" = "Algemeen";
+"about" = "Over";
+"version" = "Versie";
+"version_number" = "Versienummer";
+"follow_system" = "Systeemstandaard";
+"light_mode" = "Licht";
+"dark_mode" = "Donker";
+"accent_color" = "Accentkleur";
+"app_icon" = "App-pictogram";
+"select_icon" = "Pictogram kiezen";
+"icon_changed_success" = "Pictogram succesvol gewijzigd";
+"icon_changed_failed" = "Pictogram wijzigen mislukt";
+"language_select" = "Taal kiezen";
+"language_footer" = "Na het wijzigen van de taal moet de app opnieuw worden opgestart om de wijzigingen volledig toe te passen.";
+"language_switch" = "Taal wijzigen";
+"language_switch_message" = "De app-interface wordt onmiddellijk bijgewerkt na het wijzigen van de taal. Sommige systeemcomponenten hebben mogelijk een herstart nodig om volledig van kracht te worden.";
+"confirm_switch" = "Wijziging bevestigen";
+"app_icon" = "App-pictogram";
+"icon_default" = "Standaard";
+"icon_author" = "Pictogram";
+"icon_love" = "Liefde";
+"icon_peek" = "Piepen";
+"icon_set_success" = "Pictogram succesvol ingesteld";
+"system_language" = "Systeemtaal";
+"language_system_settings" = "Wijzigen in Systeeminstellingen";
+"language_system_hint" = "Ga naar Instellingen → APP → Taal";
+"language_recommended" = "Aanbevolen";
+"lang_chinese_simplified" = "Chinees (Vereenvoudigd)";
+"lang_english" = "Engels";
+"lang_japanese" = "Japans";
+"lang_korean" = "Koreaans";
+"lang_spanish" = "Spaans";
+"lang_french" = "Frans";
+"lang_german" = "Duits";
+"lang_italian" = "Italiaans";
+"lang_portuguese" = "Portugees";
+"lang_russian" = "Russisch";
+"lang_arabic" = "Arabisch";
+"lang_hindi" = "Hindi";
+"lang_thai" = "Thais";
+"lang_vietnamese" = "Vietnamees";
+"lang_indonesian" = "Indonesisch";
+"lang_malay" = "Maleis";
+"lang_dutch" = "Nederlands";
+"lang_swedish" = "Zweeds";
+"lang_danish" = "Deens";
+"lang_finnish" = "Fins";
+"lang_norwegian" = "Noors";
+"lang_polish" = "Pools";
+"lang_czech" = "Tsjechisch";
+"lang_hungarian" = "Hongaars";
+"lang_romanian" = "Roemeens";
+"lang_turkish" = "Turks";
+"lang_ukrainian" = "Oekraïens";
+"lang_greek" = "Grieks";
+"lang_hebrew" = "Hebreeuws";
+"lang_slovak" = "Slowaaks";
+"lang_croatian" = "Kroatisch";
+"lang_catalan" = "Catalaans";
+
+// MARK: - Download
+"download_title" = "Downloads";
+"downloading" = "Downloaden";
+"download_paused" = "Gepauzeerd";
+"download_completed" = "Voltooid";
+"download_failed" = "Download mislukt";
+"download_cancelled" = "Geannuleerd";
+"download_waiting" = "Wachten";
+"download_speed" = "Downloadsnelheid";
+"download_progress" = "Downloadvoortgang";
+"download_size" = "Downloadgrootte";
+"download_time" = "Downloadtijd";
+"pause_download" = "Download pauzeren";
+"resume_download" = "Download hervatten";
+"cancel_download" = "Download annuleren";
+"retry_download" = "Download opnieuw proberen";
+"delete_download" = "Download verwijderen";
+"all_pause" = "Alle pauzeren";
+"all_start" = "Alle starten";
+"clear_completed" = "Voltooide wissen";
+"download_queue" = "Downloadwachtrij";
+"download_history" = "Downloadgeschiedenis";
+"no_downloads" = "Geen downloads";
+"download_settings" = "Downloadinstellingen";
+"wifi_only_download" = "Alleen downloaden via Wi-Fi";
+"max_concurrent_downloads" = "Max gelijktijdige downloads";
+"download_path" = "Downloadpad";
+
+// MARK: - Account
+"account" = "Account";
+"apple_id" = "Apple ID";
+"add_account" = "Apple ID toevoegen";
+"switch_account" = "Account wisselen";
+"current_account" = "Huidig account";
+"all_accounts" = "Alle accounts";
+"account_info" = "Accountgegevens";
+"region" = "Regio";
+"delete_account" = "Account verwijderen";
+"logout" = "Uitloggen";
+"logout_confirm" = "Uitloggen bevestigen";
+"logout_confirm_message" = "Weet je zeker dat je wilt uitloggen bij het huidige account?";
+"delete_account_confirm" = "Account verwijderen bevestigen";
+"delete_account_message" = "Weet je zeker dat je account %@ wilt verwijderen? Dit kan niet ongedaan worden gemaakt en je moet het opnieuw toevoegen.";
+"account_detail" = "Accountdetails";
+"verified" = "Geverifieerd";
+"unverified" = "Niet geverifieerd";
+"no_account" = "Niet ingelogd";
+"no_account_description" = "Voeg een Apple ID toe om te beginnen";
+"name" = "Naam";
+"email" = "E-mail";
+"country" = "Land/Regio";
+
+// MARK: - App Icon
+"app_icon_settings" = "App-pictogram";
+"default_icon" = "Standaard";
+
+// MARK: - Search
+"search_placeholder" = "Zoek apps, games, ontwikkelaars";
+"search_history" = "Zoekgeschiedenis";
+"search_suggestions" = "Zoeksuggesties";
+"search_results" = "Zoekresultaten";
+"clear_history" = "Geschiedenis wissen";
+"hot_search" = "Trending zoekopdrachten";
+"no_results" = "Geen resultaten gevonden";
+"try_different_keywords" = "Probeer andere zoekwoorden";
+"searching" = "Zoeken...";
+
+// MARK: - Version Picker
+"version_picker" = "Versie kiezen";
+"current_version" = "Huidige versie";
+"available_versions" = "Beschikbare versies";
+"no_versions" = "Geen beschikbare versies";
+"load_versions_failed" = "Versies laden mislukt";
+"select_version_to_download" = "Kies versie om te downloaden";
+"version_history" = "Versiegeschiedenis";
+"release_date" = "Releasedatum";
+"size" = "Grootte";
+"build_number" = "Buildnummer";
+
+// MARK: - App Detail
+"app_detail" = "App-details";
+"get" = "Krijg";
+"icloud_sync" = "iCloud-synchronisatie";
+"screenshots" = "Screenshots";
+"description" = "Beschrijving";
+"whats_new" = "Wat is nieuw";
+"ratings_and_reviews" = "Beoordelingen & Recensies";
+"developer" = "Ontwikkelaar";
+"category" = "Categorie";
+"compatibility" = "Compatibiliteit";
+"privacy" = "Privacy";
+"privacy_policy" = "Privacybeleid";
+"user_agreement" = "Gebruikersovereenkomst";
+"rating" = "Beoordeling";
+"no_reviews" = "Geen recensies";
+"no_reviews_description" = "Deze app heeft nog geen gebruikersrecensies";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Geen TestFlight-apps";
+"install_tf_app" = "TestFlight-versie installeren";
+"testing_status" = "Teststatus";
+"testing" = "Testen";
+"expired" = "Verlopen";
+"full" = "Vol";
+"test_duration" = "Testduur";
+"remaining_seats" = "Resterende plaatsen";
+"redeem_code" = "Inwisselcode";
+"enter_redeem_code" = "Voer inwisselcode in";
+
+// MARK: - Filter & Sort
+"filter" = "Filter";
+"sort" = "Sorteren";
+"sort_by_name" = "Sorteren op naam";
+"sort_by_date" = "Sorteren op datum";
+"sort_by_size" = "Sorteren op grootte";
+"sort_by_status" = "Sorteren op status";
+"ascending" = "Oplopend";
+"descending" = "Aflopend";
+
+// MARK: - Notification
+"notifications" = "Meldingen";
+"push_notifications" = "Pushmeldingen";
+"download_complete_notification" = "Melding download voltooid";
+"notification_sound" = "Meldingsgeluid";
+"notification_vibrate" = "Trillen";
+"notification_badge" = "Badge";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Privacy & Beveiliging";
+"clear_cache" = "Cache wissen";
+"cache_size" = "Cachegrootte";
+"calculating_cache" = "Berekenen...";
+"clear_cache_confirm" = "Cache wissen bevestigen";
+"clear_cache_message" = "Weet je zeker dat je alle cache wilt wissen? Dit verwijdert geen gedownloade apps.";
+"cache_cleared" = "Cache gewist";
+
+// MARK: - Storage
+"storage" = "Opslag";
+"total_storage" = "Totaal";
+"used_storage" = "Gebruikt";
+"available_storage" = "Beschikbaar";
+"app_size" = "App-grootte";
+"documents_size" = "Documentengrootte";
+
+// MARK: - Download Manager
+"download_manager" = "Downloadbeheer";
+"batch_operations" = "Batchbewerkingen";
+"select_all" = "Alles selecteren";
+"deselect_all" = "Alles deselecteren";
+"selected_count" = "%@ geselecteerd";
+
+// MARK: - App Information
+"app_name" = "App-naam";
+"app_version" = "App-versie";
+"app_rating" = "App-beoordeling";
+"app_developer" = "Ontwikkelaar";
+"app_category" = "Categorie";
+"last_updated" = "Laatst bijgewerkt";
+"language_support" = "Taalondersteuning";
+"content_rating" = "Inhoudsbeoordeling";
+
+// MARK: - Account Management
+"account_management" = "Accountbeheer";
+"login_status" = "Inlogstatus";
+"two_factor_auth" = "Tweefactorauthenticatie";
+"remember_password" = "Wachtwoord onthouden";
+"auto_login" = "Automatisch inloggen";
+"login_expired" = "Login verlopen";
+"please_relogin" = "Log opnieuw in";
+
+// MARK: - Settings More
+"advanced_settings" = "Geavanceerde instellingen";
+"developer_options" = "Ontwikkelaarsopties";
+"check_update" = "Controleren op updates";
+"new_version_available" = "Nieuwe versie beschikbaar";
+"already_latest_version" = "Reeds de nieuwste versie";
+"feedback" = "Feedback";
+"rate_app" = "App beoordelen";
+"share_app" = "App delen";
+
+// MARK: - Network
+"network" = "Netwerk";
+"network_status" = "Netwerkstatus";
+"wifi" = "Wi-Fi";
+"cellular" = "Mobiel";
+"no_network" = "Geen netwerkverbinding";
+"network_error" = "Netwerkfout";
+"network_error_message" = "Netwerkverbinding mislukt. Controleer je netwerkinstellingen.";
+"network_speed" = "Netwerksnelheid";
+"network_usage" = "Dataverbruik";
+
+// MARK: - Installation
+"installation" = "Installatie";
+"installing" = "Installeren...";
+"install_success" = "Installatie succesvol";
+"install_failed" = "Installatie mislukt";
+"install_failed_message" = "Installatie mislukt. Probeer het opnieuw.";
+"uninstall" = "Verwijderen";
+"uninstall_confirm" = "Verwijderen bevestigen";
+"uninstall_message" = "Weet je zeker dat je deze app wilt verwijderen? Alle gegevens worden verwijderd.";
+"ipa_file" = "IPA-bestand";
+"ipa_signature" = "IPA-handtekening";
+"signed" = "Ondertekend";
+"unsigned" = "Niet ondertekend";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Testuitnodiging";
+"testflight_build" = "Build";
+"testflight_group" = "Testgroep";
+"testflight_tester" = "Tester";
+"testflight_feedback" = "Testfeedback";
+"testflight_expired" = "Test verlopen";
+"testflight_full" = "Test vol";
+"testflight_join" = "Deelnemen aan test";
+"testflight_leave" = "Test verlaten";
+
+// MARK: - Search More
+"search_filter" = "Zoekfilter";
+"search_result_count" = "%@ resultaten gevonden";
+"exact_match" = "Exacte overeenkomst";
+"fuzzy_match" = "Fuzzy overeenkomst";
+"hot_apps" = "Trending apps";
+"new_apps" = "Nieuwe apps";
+"recommended_apps" = "Aanbevolen apps";
+"top_charts" = "Toplijsten";
+
+// MARK: - Status
+"status" = "Status";
+"status_normal" = "Normaal";
+"status_abnormal" = "Abnormaal";
+"status_pending" = "In behandeling";
+"status_processing" = "Verwerken";
+"status_completed" = "Voltooid";
+"status_failed" = "Mislukt";
+"status_cancelled" = "Geannuleerd";
+"status_expired" = "Verlopen";
+"status_active" = "Actief";
+"status_inactive" = "Inactief";
+"status_idle" = "Inactief";
+"status_busy" = "Bezig";
+
+// MARK: - Tips
+"tips" = "Tips";
+"tip_download_speed" = "Downloadsnelheid is afhankelijk van je netwerkverbinding";
+"tip_wifi_download" = "Het wordt aanbevolen om grote bestanden via Wi-Fi te downloaden";
+"tip_storage_space" = "Zorg ervoor dat je voldoende opslagruimte hebt";
+"tip_account_security" = "Houd je accountgegevens veilig";
+"dont_show_again" = "Niet meer tonen";
+"remind_later" = "Herinner me later";
+"view_details" = "Details bekijken";
+"learn_more" = "Meer informatie";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "sec";
+"unit_minutes" = "min";
+"unit_hours" = "uur";
+"unit_days" = "dag";
+"unit_weeks" = "wk";
+"unit_months" = "maand";
+"unit_years" = "jaar";
+"today" = "Vandaag";
+"yesterday" = "Gisteren";
+"day_before_yesterday" = "Eergisteren";
+"just_now" = "Zojuist";
+"minutes_ago" = "%@ min geleden";
+"hours_ago" = "%@ uur geleden";
+"days_ago" = "%@ dag geleden";
+
+// MARK: - Actions
+"action_open" = "Openen";
+"action_close" = "Sluiten";
+"action_view" = "Bekijken";
+"action_edit" = "Bewerken";
+"action_delete" = "Verwijderen";
+"action_share" = "Delen";
+"action_copy" = "Kopiëren";
+"action_paste" = "Plakken";
+"action_select" = "Selecteren";
+"action_select_all" = "Alles selecteren";
+"action_deselect" = "Deselecteren";
+"action_refresh" = "Vernieuwen";
+"action_reload" = "Herladen";
+"action_scroll_top" = "Naar boven scrollen";
+"action_scroll_bottom" = "Naar beneden scrollen";
+"action_favorite" = "Favoriet";
+"action_unfavorite" = "Favoriet verwijderen";
+"action_like" = "Leuk vinden";
+"action_unlike" = "Niet leuk vinden";
+"action_follow" = "Volgen";
+"action_unfollow" = "Ontvolgen";
+"action_report" = "Rapporteren";
+"action_block" = "Blokkeren";
+"action_rename" = "Hernoemen";
+"action_move" = "Verplaatsen";
+"action_compress" = "Comprimeren";
+"action_extract" = "Uitpakken";
+"action_upload" = "Uploaden";
+"action_download" = "Downloaden";
+"action_install" = "Installeren";
+"action_uninstall" = "Verwijderen";
+"action_update" = "Bijwerken";
+"action_upgrade" = "Upgraden";
+"action_downgrade" = "Downgrad";
+"action_scan_qr" = "QR-code scannen";
+"action_generate_qr" = "QR-code genereren";
+"action_print" = "Afdrukken";
+"action_send" = "Verzenden";
+"action_receive" = "Ontvangen";
+"action_reject" = "Weigeren";
+"action_accept" = "Accepteren";
+"action_declined" = "Geweigerd";
+"action_accepted" = "Geaccepteerd";
+
+// MARK: - Theme
+"theme_settings" = "Thema-instellingen";
+"light_theme" = "Licht thema";
+"dark_theme" = "Donker thema";
+"system_theme" = "Systeemthema";
+"pure_black" = "Puur zwart";
+"auto_switch" = "Automatisch wisselen";
+"custom_theme" = "Aangepast thema";
+"theme_color" = "Themakleur";
+"background_color" = "Achtergrondkleur";
+"text_color" = "Tekstkleur";
+"font_size" = "Lettergrootte";
+"font_style" = "Letterstijl";
+
+// MARK: - App Detail More
+"feature_tags" = "Functietags";
+"free" = "Krijg";
+"get" = "Krijg";
+"view" = "Bekijken";
+"get_reviews_failed" = "Kan recensies niet ophalen: %@";
+"x_ratings" = "%@ beoordelingen";
+"age_rating" = "Leeftijdsclassificatie";
+"x_languages" = "%@ talen";
+"whats_new" = "Wat is nieuw";
+"tech_info" = "Technische info";
+"first_release" = "Eerste release";
+"last_updated" = "Laatst bijgewerkt";
+"requires_ios" = "Vereist iOS %@ of nieuwer";
+
+// MARK: - Search More
+"search_placeholder" = "Zoek games, apps";
+"login" = "Inloggen";
+"clear_all" = "Alles wissen";
+"x_results_found" = "%@ resultaten gevonden";
+"finding_best_results" = "De beste resultaten voor je aan het vinden";
+"app_downgrade" = "App downgrad";
+"search_error" = "Zoekfout";
+"load_more" = "Meer laden...";
+"purchasing" = "Kopen";
+"purchase" = "Kopen";
+"please_login_first" = "Log eerst in om apps te downloaden";
+"loading_versions" = "Versiegeschiedenis laden...";
+"load_failed" = "Laden mislukt";
+"no_versions_desc" = "Geen eerdere versies beschikbaar voor deze app";
+"x_versions" = "%@ versies";
+"version_x_date" = "Versie %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Inloggen";
+"current" = "Huidig";
+"switch" = "Wisselen";
+"x_accounts" = "%@ accounts";
+"add_new_account" = "Nieuw account toevoegen";
+"account_management" = "Accountbeheer";
+"use_account" = "Account gebruiken";
+"connection_lost" = "Verbinding verbroken";
+"reconnecting" = "Opnieuw verbinden";
+"connected" = "Verbonden";
+"apple_id_disconnected" = "Apple ID verbinding verbroken. Tik om opnieuw te verifiëren of opnieuw in te loggen.";
+"apple_id_reconnecting" = "Automatisch opnieuw verbinden met Apple ID, even geduld...";
+"apple_id_connected" = "Apple ID verbonden. Zoek en download apps normaal.";
+"login_apple_id" = "Inloggen met Apple ID";
+"login_apple_id_desc" = "Download en beheer apps met je Apple ID";
+"login_apple_id_btn" = "Inloggen met Apple ID";
+"view_account_details" = "Accountdetails bekijken";
+"media_purchases" = "Media & Aankopen";
+"media_purchases_header" = "Media & Aankopen";
+"sign_in_apple_id" = "Inloggen op je iPhone";
+"sign_in_apple_id_desc" = "Gebruik je Apple ID op deze iPhone";
+"apple_id" = "Apple ID";
+"name" = "Naam";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Naam, E-mail";
+"account_identifier_header" = "Account-ID";
+"country_region" = "Land/Regio";
+"region_header" = "Regio";
+"sign_out" = "Uitloggen";
+"login_your_account" = "Inloggen op je account";
+"enter_apple_id" = "Voer je Apple ID in";
+"password" = "Wachtwoord";
+"enter_password" = "Voer je wachtwoord in";
+"two_factor_code" = "Tweefactorcode";
+"enter_6digit_code" = "Voer 6-cijferige code in";
+"check_trusted_device" = "Controleer je vertrouwde apparaten of SMS voor de code";
+"verifying" = "Verifiëren...";
+"enter_full_credentials" = "Voer je volledige Apple ID en wachtwoord in";
+"enter_6digit_code_verify" = "Voer de 6-cijferige verificatiecode in";
+"wrong_credentials" = "Apple ID of wachtwoord onjuist. Probeer het opnieuw.";
+"account_locked" = "Je Apple ID is vergrendeld. Probeer het later opnieuw of neem contact op met Apple Support.";
+"network_error_retry" = "Netwerkverbindingsfout. Controleer je netwerkinstellingen en probeer het opnieuw.";
+"auth_failed" = "Verificatie mislukt. Controleer je netwerkverbinding en accountgegevens.";
+"invalid_server_response" = "Ongeldig serverantwoord. Probeer het later opnieuw.";
+"unknown_error" = "Onbekende fout. Probeer het later opnieuw.";
+"auth_error" = "Er is een fout opgetreden tijdens verificatie: %@";
+"check_apple_device_code" = "Controleer de verificatiecode op je Apple-apparaat";
+"wrong_verification_code" = "Onjuiste verificatiecode. Probeer het opnieuw.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Ongeldig IPA-bestand";
+"install_failed_with_reason" = "Installatie mislukt: %@";
+"install_timeout" = "Installatie time-out";
+"installing_app" = "%@ installeren";
+"version_x" = "Versie %@";
+"install_starting" = "Installatie starten...";
+"install_manual_hint" = "Als automatische installatie mislukt, tik op de knop hieronder om handmatig te installeren:";
+"manual_install" = "Handmatig installeren";
+"install_success_desc" = "Controleer je startscherm, de app wordt geïnstalleerd...";
+"install_contact_author" = "Neem bij problemen contact op met ontwikkelaar pxx917144686";
+"install_start_failed" = "Kan installatie niet starten";
+"retry_install" = "Installatie opnieuw proberen";
+"view_source_code" = "👉 Broncode bekijken";
+"file_size_x" = "Bestandsgrootte: %@";
+"no_purchase_record" = "Geen aankooprecord gevonden, doorverwijzen naar App Store";
+"file_saved_to" = "Bestand opgeslagen in:";
+"preparing" = "Voorbereiden...";
+"waiting_confirm" = "Wachten op bevestiging...";
+"install_completed" = "Installatie voltooid";
+"waiting" = "Wachten...";
+"start_install" = "Installatie starten";
+"unknown_path" = "Onbekend pad";
+"share_ipa" = "IPA delen";
+"install_background_hint" = "De app wordt op de achtergrond geïnstalleerd. Je kunt terugkeren naar het startscherm om de voortgang te controleren.";
+"ipa_not_found" = "IPA-bestand niet gevonden, download het opnieuw";
+"preparing_install" = "Installatie voorbereiden...";
+"install_in_progress" = "Installatie is al bezig";
+"verifying_package" = "Pakket verifiëren...";
+"starting_install_service" = "Installatieservice starten...";
+"install_service_timeout" = "Installatieservice time-out. Probeer het opnieuw.";
+"opening_install_page" = "Installatiepagina openen...";
+"download_record_file" = "Downloadrecord";
+"delete_file" = "Bestand verwijderen";
+"delete_file_confirm" = "Weet je zeker dat je %@ wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.";
+"delete_success" = "Succesvol verwijderd";
+"delete_success_desc" = "Bestand is succesvol verwijderd.";
+"no_ipa_found" = "Geen IPA-bestanden gevonden";
+"no_ipa_found_desc" = "Geen IPA-bestanden gevonden in de app-opslagmap";
+
+// MARK: - Account Detail
+"basic_info" = "Basisgegevens";
+"account_identifier" = "Account-ID";
+"country_region" = "Land/Regio";
+"password_token" = "Wachtwoordtoken";
+"auth_info" = "Verificatiegegevens";
+"password_token_hint" = "Het wachtwoordtoken wordt gebruikt voor automatische verificatie. Deel dit niet met anderen.";
+"delete_this_account" = "Dit account verwijderen";
+"delete_account_confirm_detail" = "Weet je zeker dat je account %@ van dit apparaat wilt verwijderen?\n\nAlle inloggegevens en cookies voor dit account worden verwijderd.";
+"dsid" = "DSID";
+"no_value" = "Geen";
+"region_title" = "Regio";
+
+// MARK: - Appearance More
+"overall_color" = "Accentkleur";
+"quick_select" = "Snelle selectie";
+"auto" = "Auto";
+"unknown" = "Onbekend";

@@ -8,7 +8,7 @@ struct AppearanceTintColorView: View {
     var body: some View {
         VStack(spacing: 20) {
             HStack {
-                Text("整体颜色")
+                Text("overall_color".localized)
                     .font(.headline)
                     .foregroundColor(.primary)
 
@@ -31,7 +31,7 @@ struct AppearanceTintColorView: View {
             .padding(.horizontal, 20)
 
             VStack(alignment: .leading, spacing: 12) {
-                Text(verbatim: "快速选择")
+                Text("quick_select".localized)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 20)

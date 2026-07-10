@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "การตั้งค่า";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "ดาวน์โหลด";
+"tab_search" = "ค้นหา";
+
+// MARK: - Common
+"cancel" = "ยกเลิก";
+"confirm" = "ยืนยัน";
+"ok" = "ตกลง";
+"done" = "เสร็จสิ้น";
+"back" = "ย้อนกลับ";
+"save" = "บันทึก";
+"delete" = "ลบ";
+"edit" = "แก้ไข";
+"add" = "เพิ่ม";
+"close" = "ปิด";
+"refresh" = "รีเฟรช";
+"retry" = "ลองใหม่";
+"loading" = "กำลังโหลด...";
+"success" = "สำเร็จ";
+"failed" = "ล้มเหลว";
+"error" = "ข้อผิดพลาด";
+"warning" = "คำเตือน";
+"info" = "ข้อมูล";
+"search" = "ค้นหา";
+"download" = "ดาวน์โหลด";
+"install" = "ติดตั้ง";
+"update" = "อัปเดต";
+"more" = "เพิ่มเติม";
+"all" = "ทั้งหมด";
+"none" = "ไม่มี";
+"default" = "ค่าเริ่มต้น";
+"copy" = "คัดลอก";
+"share" = "แชร์";
+"export" = "ส่งออก";
+"import" = "นำเข้า";
+"clear" = "ล้าง";
+"reset" = "รีเซ็ต";
+"continue" = "ดำเนินต่อ";
+"confirm_delete" = "ยืนยันการลบ";
+"confirm_delete_message" = "คุณแน่ใจหรือไม่ที่จะลบรายการนี้? การดำเนินการนี้ไม่สามารถย้อนกลับได้";
+"copied" = "คัดลอกแล้ว";
+"copy_failed" = "คัดลอกล้มเหลว";
+"no_data" = "ไม่มีข้อมูล";
+"no_result" = "ไม่พบผลลัพธ์";
+"try_again" = "กรุณาลองอีกครั้ง";
+"got_it" = "เข้าใจแล้ว";
+
+// MARK: - Settings
+"settings" = "การตั้งค่า";
+"appearance" = "รูปแบบการแสดงผล";
+"theme" = "ธีม";
+"color" = "สี";
+"icon" = "ไอคอน";
+"language" = "ภาษา";
+"general" = "ทั่วไป";
+"about" = "เกี่ยวกับ";
+"version" = "เวอร์ชัน";
+"version_number" = "หมายเลขเวอร์ชัน";
+"follow_system" = "ตามระบบ";
+"light_mode" = "สว่าง";
+"dark_mode" = "มืด";
+"accent_color" = "สีเน้น";
+"app_icon" = "ไอคอนแอป";
+"select_icon" = "เลือกไอคอน";
+"icon_changed_success" = "เปลี่ยนไอคอนสำเร็จ";
+"icon_changed_failed" = "เปลี่ยนไอคอนล้มเหลว";
+"language_select" = "เลือกภาษา";
+"language_footer" = "หลังจากเปลี่ยนภาษา แอปจำเป็นต้องรีสตาร์ทเพื่อให้การเปลี่ยนแปลงมีผลอย่างสมบูรณ์";
+"language_switch" = "เปลี่ยนภาษา";
+"language_switch_message" = "อินเทอร์เฟซแอปจะอัปเดตทันทีหลังจากเปลี่ยนภาษา ส่วนประกอบระบบบางอย่างอาจจำเป็นต้องรีสตาร์ทเพื่อให้มีผลอย่างสมบูรณ์";
+"confirm_switch" = "ยืนยันการเปลี่ยน";
+"app_icon" = "ไอคอนแอป";
+"icon_default" = "ค่าเริ่มต้น";
+"icon_author" = "ไอคอน";
+"icon_love" = "รัก";
+"icon_peek" = "แอบมอง";
+"icon_set_success" = "ตั้งค่าไอคอนสำเร็จ";
+"system_language" = "ภาษาระบบ";
+"language_system_settings" = "เปลี่ยนในการตั้งค่าระบบ";
+"language_system_hint" = "ไปที่ การตั้งค่า → APP → ภาษา";
+"language_recommended" = "แนะนำ";
+"lang_chinese_simplified" = "จีน (简体)";
+"lang_english" = "อังกฤษ";
+"lang_japanese" = "ญี่ปุ่น";
+"lang_korean" = "เกาหลี";
+"lang_spanish" = "สเปน";
+"lang_french" = "ฝรั่งเศส";
+"lang_german" = "เยอรมนี";
+"lang_italian" = "อิตาลี";
+"lang_portuguese" = "โปรตุเกส";
+"lang_russian" = "รัสเซีย";
+"lang_arabic" = "อาหรับ";
+"lang_hindi" = "ฮินดี";
+"lang_thai" = "ไทย";
+"lang_vietnamese" = "เวียดนาม";
+"lang_indonesian" = "อินโดนีเซีย";
+"lang_malay" = "มาเลเซีย";
+"lang_dutch" = "ดัตช์";
+"lang_swedish" = "สวีเดน";
+"lang_danish" = "เดนมาร์ก";
+"lang_finnish" = "ฟินแลนด์";
+"lang_norwegian" = "นอร์เวย์";
+"lang_polish" = "โปแลนด์";
+"lang_czech" = "เช็ก";
+"lang_hungarian" = "ฮังการี";
+"lang_romanian" = "โรมาเนีย";
+"lang_turkish" = "ตุรกี";
+"lang_ukrainian" = "ยูเครน";
+"lang_greek" = "กรีก";
+"lang_hebrew" = "ฮีบรู";
+"lang_slovak" = "สโลวัก";
+"lang_croatian" = "โครเอเชีย";
+"lang_catalan" = "คาตาลัน";
+
+// MARK: - Download
+"download_title" = "ดาวน์โหลด";
+"downloading" = "กำลังดาวน์โหลด";
+"download_paused" = "หยุดชั่วคราว";
+"download_completed" = "เสร็จสมบูรณ์";
+"download_failed" = "ดาวน์โหลดล้มเหลว";
+"download_cancelled" = "ยกเลิกแล้ว";
+"download_waiting" = "รอคิว";
+"download_speed" = "ความเร็วดาวน์โหลด";
+"download_progress" = "ความคืบหน้าดาวน์โหลด";
+"download_size" = "ขนาดไฟล์";
+"download_time" = "เวลาดาวน์โหลด";
+"pause_download" = "หยุดดาวน์โหลดชั่วคราว";
+"resume_download" = "ดำเนินการดาวน์โหลดต่อ";
+"cancel_download" = "ยกเลิกดาวน์โหลด";
+"retry_download" = "ลองดาวน์โหลดใหม่";
+"delete_download" = "ลบดาวน์โหลด";
+"all_pause" = "หยุดทั้งหมด";
+"all_start" = "เริ่มทั้งหมด";
+"clear_completed" = "ลบรายการที่เสร็จแล้ว";
+"download_queue" = "คิวดาวน์โหลด";
+"download_history" = "ประวัติดาวน์โหลด";
+"no_downloads" = "ไม่มีดาวน์โหลด";
+"download_settings" = "การตั้งค่าดาวน์โหลด";
+"wifi_only_download" = "ดาวน์โหลดผ่าน Wi-Fi เท่านั้น";
+"max_concurrent_downloads" = "จำนวนดาวน์โหลดพร้อมกันสูงสุด";
+"download_path" = "ที่เก็บไฟล์ดาวน์โหลด";
+
+// MARK: - Account
+"account" = "บัญชี";
+"apple_id" = "Apple ID";
+"add_account" = "เพิ่ม Apple ID";
+"switch_account" = "เปลี่ยนบัญชี";
+"current_account" = "บัญชีปัจจุบัน";
+"all_accounts" = "บัญชีทั้งหมด";
+"account_info" = "ข้อมูลบัญชี";
+"region" = "ภูมิภาค";
+"delete_account" = "ลบบัญชี";
+"logout" = "ออกจากระบบ";
+"logout_confirm" = "ยืนยันการออกจากระบบ";
+"logout_confirm_message" = "คุณแน่ใจหรือไม่ที่จะออกจากระบบบัญชีปัจจุบัน?";
+"delete_account_confirm" = "ยืนยันการลบบัญชี";
+"delete_account_message" = "คุณแน่ใจหรือไม่ที่จะลบบัญชี %@? การดำเนินการนี้ไม่สามารถย้อนกลับได้ และคุณจะต้องเพิ่มอีกครั้ง";
+"account_detail" = "รายละเอียดบัญชี";
+"verified" = "ยืนยันแล้ว";
+"unverified" = "ยังไม่ได้ยืนยัน";
+"no_account" = "ยังไม่ได้เข้าสู่ระบบ";
+"no_account_description" = "โปรดเพิ่ม Apple ID เพื่อเริ่มต้นใช้งาน";
+"name" = "ชื่อ";
+"email" = "อีเมล";
+"country" = "ประเทศ/ภูมิภาค";
+
+// MARK: - App Icon
+"app_icon_settings" = "ไอคอนแอป";
+"default_icon" = "ค่าเริ่มต้น";
+
+// MARK: - Search
+"search_placeholder" = "ค้นหาแอป เกม ผู้พัฒนา";
+"search_history" = "ประวัติการค้นหา";
+"search_suggestions" = "คำแนะนำการค้นหา";
+"search_results" = "ผลการค้นหา";
+"clear_history" = "ล้างประวัติ";
+"hot_search" = "ค้นหายอดนิยม";
+"no_results" = "ไม่พบผลลัพธ์";
+"try_different_keywords" = "ลองใช้คำค้นหาอื่น";
+"searching" = "กำลังค้นหา...";
+
+// MARK: - Version Picker
+"version_picker" = "เลือกเวอร์ชัน";
+"current_version" = "เวอร์ชันปัจจุบัน";
+"available_versions" = "เวอร์ชันที่ใช้ได้";
+"no_versions" = "ไม่มีเวอร์ชันที่ใช้ได้";
+"load_versions_failed" = "โหลดเวอร์ชันล้มเหลว";
+"select_version_to_download" = "เลือกเวอร์ชันที่ต้องการดาวน์โหลด";
+"version_history" = "ประวัติเวอร์ชัน";
+"release_date" = "วันที่เผยแพร่";
+"size" = "ขนาด";
+"build_number" = "หมายเลขบิลด์";
+
+// MARK: - App Detail
+"app_detail" = "รายละเอียดแอป";
+"get" = "รับ";
+"icloud_sync" = "iCloud ซิงค์";
+"screenshots" = "ภาพหน้าจอ";
+"description" = "คำอธิบาย";
+"whats_new" = "มีอะไรใหม่";
+"ratings_and_reviews" = "เรตติ้งและรีวิว";
+"developer" = "ผู้พัฒนา";
+"category" = "หมวดหมู่";
+"compatibility" = "ความเข้ากันได้";
+"privacy" = "ความเป็นส่วนตัว";
+"privacy_policy" = "นโยบายความเป็นส่วนตัว";
+"user_agreement" = "ข้อตกลงผู้ใช้";
+"rating" = "เรตติ้ง";
+"no_reviews" = "ไม่มีรีวิว";
+"no_reviews_description" = "แอปนี้ยังไม่มีรีวิวจากผู้ใช้";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "ไม่มีแอป TestFlight";
+"install_tf_app" = "ติดตั้งเวอร์ชัน TestFlight";
+"testing_status" = "สถานะการทดสอบ";
+"testing" = "กำลังทดสอบ";
+"expired" = "หมดอายุ";
+"full" = "เต็ม";
+"test_duration" = "ระยะเวลาทดสอบ";
+"remaining_seats" = "ที่นั่งที่เหลือ";
+"redeem_code" = "รหัสแลกของ";
+"enter_redeem_code" = "กรอกรหัสแลกของ";
+
+// MARK: - Filter & Sort
+"filter" = "กรอง";
+"sort" = "จัดเรียง";
+"sort_by_name" = "เรียงตามชื่อ";
+"sort_by_date" = "เรียงตามวันที่";
+"sort_by_size" = "เรียงตามขนาด";
+"sort_by_status" = "เรียงตามสถานะ";
+"ascending" = "น้อยไปมาก";
+"descending" = "มากไปน้อย";
+
+// MARK: - Notification
+"notifications" = "การแจ้งเตือน";
+"push_notifications" = "การแจ้งเตือนพุช";
+"download_complete_notification" = "แจ้งเตือนเมื่อดาวน์โหลดเสร็จ";
+"notification_sound" = "เสียงแจ้งเตือน";
+"notification_vibrate" = "สั่น";
+"notification_badge" = "เขตข้อมูล";
+
+// MARK: - Privacy & Security
+"privacy_security" = "ความเป็นส่วนตัวและความปลอดภัย";
+"clear_cache" = "ล้างแคช";
+"cache_size" = "ขนาดแคช";
+"calculating_cache" = "กำลังคำนวณ...";
+"clear_cache_confirm" = "ยืนยันการล้างแคช";
+"clear_cache_message" = "คุณแน่ใจหรือไม่ที่จะล้างแคชทั้งหมด? การดำเนินการนี้จะไม่ลบแอปที่ดาวน์โหลดมา";
+"cache_cleared" = "ล้างแคชแล้ว";
+
+// MARK: - Storage
+"storage" = "พื้นที่จัดเก็บ";
+"total_storage" = "รวมทั้งหมด";
+"used_storage" = "ใช้ไปแล้ว";
+"available_storage" = "ว่าง";
+"app_size" = "ขนาดแอป";
+"documents_size" = "ขนาดเอกสาร";
+
+// MARK: - Download Manager
+"download_manager" = "ตัวจัดการดาวน์โหลด";
+"batch_operations" = "การดำเนินการเป็นกลุ่ม";
+"select_all" = "เลือกทั้งหมด";
+"deselect_all" = "ยกเลิกการเลือกทั้งหมด";
+"selected_count" = "เลือกไว้ %@ รายการ";
+
+// MARK: - App Information
+"app_name" = "ชื่อแอป";
+"app_version" = "เวอร์ชันแอป";
+"app_rating" = "เรตติ้งแอป";
+"app_developer" = "ผู้พัฒนา";
+"app_category" = "หมวดหมู่";
+"last_updated" = "อัปเดตล่าสุด";
+"language_support" = "รองรับภาษา";
+"content_rating" = "เรตติ้งเนื้อหา";
+
+// MARK: - Account Management
+"account_management" = "การจัดการบัญชี";
+"login_status" = "สถานะการเข้าสู่ระบบ";
+"two_factor_auth" = "การยืนยันตัวตนสองชั้น";
+"remember_password" = "จำรหัสผ่าน";
+"auto_login" = "เข้าสู่ระบบอัตโนมัติ";
+"login_expired" = "การเข้าสู่ระบบหมดอายุ";
+"please_relogin" = "กรุณาเข้าสู่ระบบอีกครั้ง";
+
+// MARK: - Settings More
+"advanced_settings" = "การตั้งค่าขั้นสูง";
+"developer_options" = "ตัวเลือกนักพัฒนา";
+"check_update" = "ตรวจสอบการอัปเดต";
+"new_version_available" = "มีเวอร์ชันใหม่";
+"already_latest_version" = "เป็นเวอร์ชันล่าสุดแล้ว";
+"feedback" = "ข้อเสนอแนะ";
+"rate_app" = "ให้คะแนนแอป";
+"share_app" = "แชร์แอป";
+
+// MARK: - Network
+"network" = "เครือข่าย";
+"network_status" = "สถานะเครือข่าย";
+"wifi" = "Wi-Fi";
+"cellular" = "เซลลูลาร์";
+"no_network" = "ไม่มีการเชื่อมต่อเครือข่าย";
+"network_error" = "ข้อผิดพลาดเครือข่าย";
+"network_error_message" = "การเชื่อมต่อเครือข่ายล้มเหลว กรุณาตรวจสอบการตั้งค่าเครือข่ายของคุณ";
+"network_speed" = "ความเร็วเครือข่าย";
+"network_usage" = "การใช้ข้อมูล";
+
+// MARK: - Installation
+"installation" = "การติดตั้ง";
+"installing" = "กำลังติดตั้ง...";
+"install_success" = "ติดตั้งสำเร็จ";
+"install_failed" = "ติดตั้งล้มเหลว";
+"install_failed_message" = "การติดตั้งล้มเหลว กรุณาลองอีกครั้ง";
+"uninstall" = "ถอนการติดตั้ง";
+"uninstall_confirm" = "ยืนยันการถอนการติดตั้ง";
+"uninstall_message" = "คุณแน่ใจหรือไม่ที่จะถอนการติดตั้งแอปนี้? ข้อมูลทั้งหมดจะถูกลบ";
+"ipa_file" = "ไฟล์ IPA";
+"ipa_signature" = "ลายเซ็น IPA";
+"signed" = "มีลายเซ็น";
+"unsigned" = "ไม่มีลายเซ็น";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "คำเชิญทดสอบ";
+"testflight_build" = "บิลด์";
+"testflight_group" = "กลุ่มทดสอบ";
+"testflight_tester" = "ผู้ทดสอบ";
+"testflight_feedback" = "ข้อเสนอแนะการทดสอบ";
+"testflight_expired" = "การทดสอบหมดอายุ";
+"testflight_full" = "การทดสอบเต็ม";
+"testflight_join" = "เข้าร่วมทดสอบ";
+"testflight_leave" = "ออกจากการทดสอบ";
+
+// MARK: - Search More
+"search_filter" = "ตัวกรองการค้นหา";
+"search_result_count" = "พบ %@ ผลลัพธ์";
+"exact_match" = "ตรงกันเป๊ะ";
+"fuzzy_match" = "จับคู่คล้ายๆ";
+"hot_apps" = "แอปยอดนิยม";
+"new_apps" = "แอปใหม่";
+"recommended_apps" = "แอปแนะนำ";
+"top_charts" = "ชาร์ตสูงสุด";
+
+// MARK: - Status
+"status" = "สถานะ";
+"status_normal" = "ปกติ";
+"status_abnormal" = "ผิดปกติ";
+"status_pending" = "รอดำเนินการ";
+"status_processing" = "กำลังดำเนินการ";
+"status_completed" = "เสร็จสมบูรณ์";
+"status_failed" = "ล้มเหลว";
+"status_cancelled" = "ยกเลิก";
+"status_expired" = "หมดอายุ";
+"status_active" = "ใช้งานอยู่";
+"status_inactive" = "ไม่ใช้งาน";
+"status_idle" = "ว่าง";
+"status_busy" = "ไม่ว่าง";
+
+// MARK: - Tips
+"tips" = "เคล็ดลับ";
+"tip_download_speed" = "ความเร็วดาวน์โหลดขึ้นอยู่กับการเชื่อมต่อเครือข่ายของคุณ";
+"tip_wifi_download" = "แนะนำให้ดาวน์โหลดไฟล์ขนาดใหญ่ผ่าน Wi-Fi";
+"tip_storage_space" = "โปรดตรวจสอบให้แน่ใจว่ามีพื้นที่จัดเก็บเพียงพอ";
+"tip_account_security" = "โปรดรักษาข้อมูลบัญชีของคุณให้ปลอดภัย";
+"dont_show_again" = "อย่าแสดงอีก";
+"remind_later" = "เตือนฉันภายหลัง";
+"view_details" = "ดูรายละเอียด";
+"learn_more" = "เรียนรู้เพิ่มเติม";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "วินาที";
+"unit_minutes" = "นาที";
+"unit_hours" = "ชั่วโมง";
+"unit_days" = "วัน";
+"unit_weeks" = "สัปดาห์";
+"unit_months" = "เดือน";
+"unit_years" = "ปี";
+"today" = "วันนี้";
+"yesterday" = "เมื่อวาน";
+"day_before_yesterday" = "เมื่อวานซืน";
+"just_now" = "เมื่อสักครู่";
+"minutes_ago" = "%@ นาทีที่แล้ว";
+"hours_ago" = "%@ ชั่วโมงที่แล้ว";
+"days_ago" = "%@ วันที่แล้ว";
+
+// MARK: - Actions
+"action_open" = "เปิด";
+"action_close" = "ปิด";
+"action_view" = "ดู";
+"action_edit" = "แก้ไข";
+"action_delete" = "ลบ";
+"action_share" = "แชร์";
+"action_copy" = "คัดลอก";
+"action_paste" = "วาง";
+"action_select" = "เลือก";
+"action_select_all" = "เลือกทั้งหมด";
+"action_deselect" = "ยกเลิกการเลือก";
+"action_refresh" = "รีเฟรช";
+"action_reload" = "โหลดใหม่";
+"action_scroll_top" = "เลื่อนขึ้นด้านบน";
+"action_scroll_bottom" = "เลื่อนลงด้านล่าง";
+"action_favorite" = "รายการโปรด";
+"action_unfavorite" = "ลบจากรายการโปรด";
+"action_like" = "ชอบ";
+"action_unlike" = "ไม่ชอบ";
+"action_follow" = "ติดตาม";
+"action_unfollow" = "เลิกติดตาม";
+"action_report" = "รายงาน";
+"action_block" = "บล็อก";
+"action_rename" = "เปลี่ยนชื่อ";
+"action_move" = "ย้าย";
+"action_compress" = "บีบอัด";
+"action_extract" = "แยกไฟล์";
+"action_upload" = "อัปโหลด";
+"action_download" = "ดาวน์โหลด";
+"action_install" = "ติดตั้ง";
+"action_uninstall" = "ถอนการติดตั้ง";
+"action_update" = "อัปเดต";
+"action_upgrade" = "อัปเกรด";
+"action_downgrade" = "ดาวน์เกรด";
+"action_scan_qr" = "สแกนคิวอาร์โค้ด";
+"action_generate_qr" = "สร้างคิวอาร์โค้ด";
+"action_print" = "พิมพ์";
+"action_send" = "ส่ง";
+"action_receive" = "รับ";
+"action_reject" = "ปฏิเสธ";
+"action_accept" = "ยอมรับ";
+"action_declined" = "ถูกปฏิเสธ";
+"action_accepted" = "ยอมรับแล้ว";
+
+// MARK: - Theme
+"theme_settings" = "การตั้งค่าธีม";
+"light_theme" = "ธีมสว่าง";
+"dark_theme" = "ธีมมืด";
+"system_theme" = "ธีมตามระบบ";
+"pure_black" = "สีดำสนิท";
+"auto_switch" = "สลับอัตโนมัติ";
+"custom_theme" = "ธีมที่กำหนดเอง";
+"theme_color" = "สีธีม";
+"background_color" = "สีพื้นหลัง";
+"text_color" = "สีข้อความ";
+"font_size" = "ขนาดฟอนต์";
+"font_style" = "สไตล์ฟอนต์";
+
+// MARK: - App Detail More
+"feature_tags" = "แท็กคุณสมบัติ";
+"free" = "รับ";
+"get" = "รับ";
+"view" = "ดู";
+"get_reviews_failed" = "ไม่สามารถรับรีวิวได้: %@";
+"x_ratings" = "%@ เรตติ้ง";
+"age_rating" = "เรตติ้งอายุ";
+"x_languages" = "%@ ภาษา";
+"whats_new" = "มีอะไรใหม่";
+"tech_info" = "ข้อมูลทางเทคนิค";
+"first_release" = "รุ่นแรก";
+"last_updated" = "อัปเดตล่าสุด";
+"requires_ios" = "ต้องการ iOS %@ หรือใหม่กว่า";
+
+// MARK: - Search More
+"search_placeholder" = "ค้นหาเกม แอป";
+"login" = "เข้าสู่ระบบ";
+"clear_all" = "ล้างทั้งหมด";
+"x_results_found" = "พบ %@ ผลลัพธ์";
+"finding_best_results" = "กำลังค้นหาผลลัพธ์ที่ดีที่สุดสำหรับคุณ";
+"app_downgrade" = "ดาวน์เกรดแอป";
+"search_error" = "ข้อผิดพลาดในการค้นหา";
+"load_more" = "โหลดเพิ่มเติม...";
+"purchasing" = "กำลังซื้อ";
+"purchase" = "ซื้อ";
+"please_login_first" = "กรุณาเข้าสู่ระบบก่อนดาวน์โหลดแอป";
+"loading_versions" = "กำลังโหลดประวัติเวอร์ชัน...";
+"load_failed" = "โหลดล้มเหลว";
+"no_versions_desc" = "ไม่มีเวอร์ชันก่อนหน้าสำหรับแอปนี้";
+"x_versions" = "%@ เวอร์ชัน";
+"version_x_date" = "เวอร์ชัน %@ · %@";
+
+// MARK: - Account More
+"login_account" = "เข้าสู่ระบบ";
+"current" = "ปัจจุบัน";
+"switch" = "เปลี่ยน";
+"x_accounts" = "%@ บัญชี";
+"add_new_account" = "เพิ่มบัญชีใหม่";
+"account_management" = "การจัดการบัญชี";
+"use_account" = "ใช้บัญชีนี้";
+"connection_lost" = "การเชื่อมต่อขาดหาย";
+"reconnecting" = "กำลังเชื่อมต่อใหม่";
+"connected" = "เชื่อมต่อแล้ว";
+"apple_id_disconnected" = "Apple ID ขาดการเชื่อมต่อ แตะเพื่อยืนยันตัวตนอีกครั้งหรือเข้าสู่ระบบใหม่";
+"apple_id_reconnecting" = "กำลังเชื่อมต่อกับ Apple ID อัตโนมัติ กรุณารอสักครู่...";
+"apple_id_connected" = "Apple ID เชื่อมต่อแล้ว ค้นหาและดาวน์โหลดแอปได้ตามปกติ";
+"login_apple_id" = "เข้าสู่ระบบด้วย Apple ID";
+"login_apple_id_desc" = "ดาวน์โหลดและจัดการแอปด้วย Apple ID ของคุณ";
+"login_apple_id_btn" = "เข้าสู่ระบบด้วย Apple ID";
+"view_account_details" = "ดูรายละเอียดบัญชี";
+"media_purchases" = "สื่อและการซื้อ";
+"media_purchases_header" = "สื่อและการซื้อ";
+"sign_in_apple_id" = "เข้าสู่ระบบบน iPhone ของคุณ";
+"sign_in_apple_id_desc" = "ใช้ Apple ID ของคุณบน iPhone นี้";
+"apple_id" = "Apple ID";
+"name" = "ชื่อ";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "ชื่อ, อีเมล";
+"account_identifier_header" = "ตัวระบุบัญชี";
+"country_region" = "ประเทศ/ภูมิภาค";
+"region_header" = "ภูมิภาค";
+"sign_out" = "ออกจากระบบ";
+"login_your_account" = "เข้าสู่ระบบบัญชีของคุณ";
+"enter_apple_id" = "กรอก Apple ID ของคุณ";
+"password" = "รหัสผ่าน";
+"enter_password" = "กรอกรหัสผ่านของคุณ";
+"two_factor_code" = "รหัสยืนยันสองชั้น";
+"enter_6digit_code" = "กรอกรหัส 6 หลัก";
+"check_trusted_device" = "ตรวจสอบอุปกรณ์ที่เชื่อถือได้หรือ SMS เพื่อรับรหัส";
+"verifying" = "กำลังยืนยัน...";
+"enter_full_credentials" = "กรุณากรอก Apple ID และรหัสผ่านทั้งหมด";
+"enter_6digit_code_verify" = "กรุณากรอกรหัสยืนยัน 6 หลัก";
+"wrong_credentials" = "Apple ID หรือรหัสผ่านไม่ถูกต้อง กรุณาลองอีกครั้ง";
+"account_locked" = "Apple ID ของคุณถูกล็อก กรุณาลองอีกครั้งภายหลังหรือติดต่อฝ่ายสนับสนุน Apple";
+"network_error_retry" = "ข้อผิดพลาดในการเชื่อมต่อเครือข่าย กรุณาตรวจสอบการตั้งค่าเครือข่ายและลองอีกครั้ง";
+"auth_failed" = "การยืนยันตัวตนล้มเหลว กรุณาตรวจสอบการเชื่อมต่อเครือข่ายและข้อมูลบัญชี";
+"invalid_server_response" = "การตอบสนองจากเซิร์ฟเวอร์ไม่ถูกต้อง กรุณาลองอีกครั้งภายหลัง";
+"unknown_error" = "ข้อผิดพลาดที่ไม่ทราบสาเหตุ กรุณาลองอีกครั้งภายหลัง";
+"auth_error" = "เกิดข้อผิดพลาดระหว่างการยืนยันตัวตน: %@";
+"check_apple_device_code" = "ตรวจสอบรหัสยืนยันบนอุปกรณ์ Apple ของคุณ";
+"wrong_verification_code" = "รหัสยืนยันไม่ถูกต้อง กรุณาลองอีกครั้ง";
+
+// MARK: - Download More
+"invalid_ipa_file" = "ไฟล์ IPA ไม่ถูกต้อง";
+"install_failed_with_reason" = "การติดตั้งล้มเหลว: %@";
+"install_timeout" = "การติดตั้งหมดเวลา";
+"installing_app" = "กำลังติดตั้ง %@";
+"version_x" = "เวอร์ชัน %@";
+"install_starting" = "กำลังเริ่มติดตั้ง...";
+"install_manual_hint" = "หากการติดตั้งอัตโนมัติล้มเหลว แตะปุ่มด้านล่างเพื่อติดตั้งด้วยตัวเอง:";
+"manual_install" = "ติดตั้งด้วยตัวเอง";
+"install_success_desc" = "ตรวจสอบหน้าจอโฮมของคุณ แอปกำลังติดตั้ง...";
+"install_contact_author" = "หากพบปัญหาโปรดติดต่อผู้พัฒนา pxx917144686";
+"install_start_failed" = "ไม่สามารถเริ่มติดตั้งได้";
+"retry_install" = "ลองติดตั้งใหม่";
+"view_source_code" = "👉 ดูซอร์สโค้ด";
+"file_size_x" = "ขนาดไฟล์: %@";
+"no_purchase_record" = "ไม่พบบันทึกการซื้อ กำลังเปลี่ยนไปยัง App Store";
+"file_saved_to" = "บันทึกไฟล์ไว้ที่:";
+"preparing" = "กำลังเตรียม...";
+"waiting_confirm" = "รอการยืนยัน...";
+"install_completed" = "ติดตั้งเสร็จสมบูรณ์";
+"waiting" = "รอ...";
+"start_install" = "เริ่มติดตั้ง";
+"unknown_path" = "ที่อยู่ไม่ทราบ";
+"share_ipa" = "แชร์ IPA";
+"install_background_hint" = "แอปกำลังติดตั้งในพื้นหลัง คุณสามารถกลับไปที่หน้าจอโฮมเพื่อตรวจสอบความคืบหน้า";
+"ipa_not_found" = "ไม่พบไฟล์ IPA กรุณาดาวน์โหลดใหม่";
+"preparing_install" = "กำลังเตรียมการติดตั้ง...";
+"install_in_progress" = "มีการติดตั้งอยู่แล้ว";
+"verifying_package" = "กำลังตรวจสอบแพ็กเกจ...";
+"starting_install_service" = "กำลังเริ่มบริการติดตั้ง...";
+"install_service_timeout" = "บริการติดตั้งหมดเวลา กรุณาลองอีกครั้ง";
+"opening_install_page" = "กำลังเปิดหน้าการติดตั้ง...";
+"download_record_file" = "บันทึกการดาวน์โหลด";
+"delete_file" = "ลบไฟล์";
+"delete_file_confirm" = "คุณแน่ใจหรือไม่ที่จะลบ %@? การดำเนินการนี้ไม่สามารถย้อนกลับได้";
+"delete_success" = "ลบสำเร็จ";
+"delete_success_desc" = "ลบไฟล์เรียบร้อยแล้ว";
+"no_ipa_found" = "ไม่พบไฟล์ IPA";
+"no_ipa_found_desc" = "ไม่พบไฟล์ IPA ในไดเรกทอรีจัดเก็บแอป";
+
+// MARK: - Account Detail
+"basic_info" = "ข้อมูลพื้นฐาน";
+"account_identifier" = "ตัวระบุบัญชี";
+"country_region" = "ประเทศ/ภูมิภาค";
+"password_token" = "โทเคนรหัสผ่าน";
+"auth_info" = "ข้อมูลการยืนยันตัวตน";
+"password_token_hint" = "โทเคนรหัสผ่านใช้สำหรับการยืนยันตัวตนอัตโนมัติ กรุณาอย่าแชร์กับผู้อื่น";
+"delete_this_account" = "ลบบัญชีนี้";
+"delete_account_confirm_detail" = "คุณแน่ใจหรือไม่ที่จะลบบัญชี %@ ออกจากอุปกรณ์นี้?\n\nข้อมูลการเข้าสู่ระบบและคุกกี้ทั้งหมดของบัญชีนี้จะถูกลบ";
+"dsid" = "DSID";
+"no_value" = "ไม่มี";
+"region_title" = "ภูมิภาค";
+
+// MARK: - Appearance More
+"overall_color" = "สีเน้น";
+"quick_select" = "เลือกด่วน";
+"auto" = "อัตโนมัติ";
+"unknown" = "ไม่ทราบ";

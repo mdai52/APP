@@ -9,10 +9,10 @@ private extension UIUserInterfaceStyle {
 
     var displayName: String {
         switch self {
-        case .unspecified: return "跟随系统"
-        case .light: return "浅色"
-        case .dark: return "深色"
-        @unknown default: return "未知"
+        case .unspecified: return "follow_system".localized
+        case .light: return "light_mode".localized
+        case .dark: return "dark_mode".localized
+        @unknown default: return "none".localized
         }
     }
 }
@@ -26,6 +26,7 @@ struct SettingsView: View {
     @State private var selectedColor = Color(hex: "#007AFF")
     @State private var showingIconSuccess = false
     @State private var isIconLoading = false
+    @State private var showAccountSheet = false
 
     private var selectedStyle: Binding<UIUserInterfaceStyle> {
         Binding(
@@ -49,22 +50,32 @@ struct SettingsView: View {
 
     var allIcons: [AltIcon] {
         let allIcons = AppIconView.getAllIconsFromFolder()
-        var icons: [AltIcon] = []
 
-        let defaultIcon = AltIcon(displayName: "默认", author: "图标", key: "app")
-        icons.append(defaultIcon)
-
-        let alternateIcons = allIcons.filter { $0.key != "app" }
-        icons.append(contentsOf: alternateIcons)
-
-        if alternateIcons.isEmpty {
-            icons.append(contentsOf: [
-                AltIcon(displayName: "Love", author: "图标", key: "kana_love"),
-                AltIcon(displayName: "Peek", author: "图标", key: "kana_peek")
-            ])
+        if !allIcons.isEmpty {
+            return allIcons.sorted { icon1, icon2 in
+                if icon1.key == "app" { return true }
+                if icon2.key == "app" { return false }
+                return icon1.key ?? "" < icon2.key ?? ""
+            }
         }
 
-        return icons
+        return [
+            AltIcon(
+                displayName: "icon_default".localized,
+                author: "icon_author".localized,
+                key: "app"
+            ),
+            AltIcon(
+                displayName: "icon_love".localized,
+                author: "icon_author".localized,
+                key: "kana_love"
+            ),
+            AltIcon(
+                displayName: "icon_peek".localized,
+                author: "icon_author".localized,
+                key: "kana_peek"
+            )
+        ]
     }
 
     private let presetColorHexes: [String] = [
@@ -81,11 +92,17 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
+                accountHeaderSection
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
+
                 appearanceSection
+                languageSection
                 iconSection
-                versionSection
             }
-            .navigationTitle("设置")
+            .listStyle(.insetGrouped)
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 selectedColor = Color(hex: selectedColorHex)
                 currentIcon = UIApplication.shared.alternateIconName
@@ -98,7 +115,103 @@ struct SettingsView: View {
                 }
                 themeManager.objectWillChange.send()
             })
+            .sheet(isPresented: $showAccountSheet) {
+                AccountSheetView()
+                    .environmentObject(appStore)
+                    .environmentObject(themeManager)
+            }
         }
+    }
+
+    private var accountHeaderSection: some View {
+        Button(action: {
+            showAccountSheet = true
+        }) {
+            if let account = appStore.selectedAccount {
+                HStack(spacing: 16) {
+                    ZStack {
+                        AccountAvatarButton(size: 64)
+
+                        Circle()
+                            .stroke(themeManager.accentColor.opacity(0.3), lineWidth: 2)
+                            .frame(width: 72, height: 72)
+                    }
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(account.name.isEmpty ? account.email : account.name)
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.primary)
+                            .lineLimit(1)
+
+                        if !account.name.isEmpty {
+                            Text(account.email)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                        }
+
+                        HStack(spacing: 6) {
+                            Text(flag(country: account.countryCode))
+                                .font(.caption)
+                            Text(countryName(account.countryCode))
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.top, 2)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.secondary.opacity(0.6))
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+            } else {
+                HStack(spacing: 16) {
+                    Image(systemName: "person.circle.fill")
+                        .font(.system(size: 64))
+                        .foregroundColor(.secondary.opacity(0.5))
+                        .frame(width: 64, height: 64)
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("sign_in_apple_id".localized)
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.primary)
+
+                        Text("sign_in_apple_id_desc".localized)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.secondary.opacity(0.6))
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+            }
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func flag(country: String) -> String {
+        let base: UInt32 = 127397
+        var s = ""
+        for v in country.uppercased().unicodeScalars {
+            if let scalar = UnicodeScalar(base + v.value) {
+                s.unicodeScalars.append(scalar)
+            }
+        }
+        return s
+    }
+
+    private func countryName(_ code: String) -> String {
+        let locale = LanguageManager.shared.locale
+        return locale.localizedString(forRegionCode: code) ?? code.uppercased()
     }
 }
 
@@ -114,7 +227,7 @@ extension SettingsView {
     @ViewBuilder
     private var appearanceSection: some View {
         Section {
-            Picker("外观", selection: selectedStyle) {
+            Picker("appearance".localized, selection: selectedStyle) {
                 ForEach(UIUserInterfaceStyle.allStyles, id: \.self) { style in
                     Text(style.displayName)
                         .tag(style)
@@ -122,12 +235,12 @@ extension SettingsView {
             }
             .pickerStyle(.segmented)
         } header: {
-            Text("外观")
+            Text("appearance".localized)
         }
 
         Section {
             HStack {
-                Label("整体颜色", systemImage: "paintpalette.fill")
+                Label("".localized, systemImage: "paintpalette.fill")
                     .foregroundStyle(themeManager.accentColor)
 
                 Spacer()
@@ -187,7 +300,7 @@ extension SettingsView {
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
         } header: {
-            Text("颜色")
+            Text("color".localized)
         }
     }
 
@@ -202,25 +315,40 @@ extension SettingsView {
             .listRowInsets(EdgeInsets())
             .padding(.horizontal, 16)
         } header: {
-            Text("图标")
+            Text("icon".localized)
         }
     }
 
-    private var versionSection: some View {
+    private var languageSection: some View {
         Section {
-            HStack {
-                Text("版本号")
-                Spacer()
-                Text(appVersion)
-                    .foregroundColor(.secondary)
-            }
-        }
-    }
+            NavigationLink(destination: LanguageSettingsView().environmentObject(themeManager)) {
+                HStack(spacing: 12) {
+                    Image(systemName: "globe")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.blue)
+                        .frame(width: 28, height: 28)
+                        .background(
+                            Circle()
+                                .fill(Color.blue.opacity(0.12))
+                        )
 
-    private var appVersion: String {
-        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
-        return "\(version) (\(build))"
+                    Text("language".localized)
+                        .font(.system(size: 15))
+                        .foregroundColor(.primary)
+
+                    Spacer()
+
+                    HStack(spacing: 6) {
+                        Text(LanguageManager.shared.currentLanguage.flag)
+                        Text(LanguageManager.shared.currentLanguage.nativeName)
+                            .font(.system(size: 14))
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        } header: {
+            Text("general".localized)
+        }
     }
 
     @ViewBuilder
@@ -246,23 +374,6 @@ extension SettingsView {
                 ZStack {
                     Image(uiImage: icon.image)
                         .appIconStyle()
-
-                    if (icon.key == "app" && currentIcon == nil) || currentIcon == icon.key {
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(themeManager.accentColor, lineWidth: 3)
-                            .frame(width: 80, height: 80)
-
-                        Image(systemName: "checkmark.circle.fill")
-                            .resizable()
-                            .frame(width: 22, height: 22)
-                            .foregroundColor(themeManager.accentColor)
-                            .background(
-                                Circle()
-                                    .fill(Color.white)
-                                    .frame(width: 26, height: 26)
-                            )
-                            .offset(x: 28, y: -28)
-                    }
                 }
 
                 VStack(alignment: .center, spacing: 2) {

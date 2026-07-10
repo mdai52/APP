@@ -55,11 +55,11 @@ struct AddAccountView: View {
                                 .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
 
                             VStack(spacing: 8) {
-                                Text("Apple ID")
+                                Text("apple_id".localized)
                                     .font(.system(size: 34, weight: .bold))
                                     .foregroundColor(.primary)
 
-                                Text("登录您的账户")
+                                Text("login_your_account".localized)
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }
@@ -70,10 +70,10 @@ struct AddAccountView: View {
                         VStack(spacing: 24) {
 
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("Apple ID")
+                                Text("apple_id".localized)
                                     .font(.headline)
                                     .foregroundColor(.primary)
-                                TextField("输入您的 Apple ID", text: $email)
+                                TextField("enter_apple_id".localized, text: $email)
                                     .textFieldStyle(ModernTextFieldStyle())
                                     .keyboardType(.emailAddress)
                                     .autocapitalization(.none)
@@ -81,19 +81,19 @@ struct AddAccountView: View {
                             }
 
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("密码")
+                                Text("password".localized)
                                     .font(.headline)
                                     .foregroundColor(.primary)
-                                SecureField("输入您的密码", text: $password)
+                                SecureField("enter_password".localized, text: $password)
                                     .textFieldStyle(ModernTextFieldStyle())
                             }
 
                             if showTwoFactorField {
                                 VStack(alignment: .leading, spacing: 8) {
-                                    Text("双重认证码")
+                                    Text("two_factor_code".localized)
                                         .font(.headline)
                                         .foregroundColor(.primary)
-                                    TextField("输入6位验证码", text: $code)
+                                    TextField("enter_6digit_code".localized, text: $code)
                                         .textFieldStyle(ModernTextFieldStyle())
                                         .keyboardType(.numberPad)
                                         .focused($isCodeFieldFocused)
@@ -119,7 +119,7 @@ struct AddAccountView: View {
                                                 }
                                             }
                                         }
-                                    Text("请查看您的受信任设备或短信获取验证码")
+                                    Text("check_trusted_device".localized)
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                 }
@@ -144,7 +144,7 @@ struct AddAccountView: View {
                                     } else {
 
                                     }
-                                    Text(isLoading ? "验证中..." : "添加账户")
+                                    Text(isLoading ? "verifying".localized : "add_account".localized)
                                         .font(.system(size: 17, weight: .semibold))
                                 }
                                 .frame(maxWidth: .infinity)
@@ -184,7 +184,7 @@ struct AddAccountView: View {
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Button("取消") {
+            .navigationBarItems(leading: Button("cancel".localized) {
                 dismiss()
             }.foregroundColor(.primary))
             .onTapGesture {
@@ -200,12 +200,12 @@ struct AddAccountView: View {
     private func authenticate() async {
 
         if email.isEmpty || password.isEmpty {
-            errorMessage = "请输入完整的Apple ID和密码"
+            errorMessage = "enter_full_credentials".localized
             return
         }
 
         if showTwoFactorField && code.count != 6 {
-            errorMessage = "请输入6位验证码"
+            errorMessage = "enter_6digit_code_verify".localized
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.isCodeFieldFocused = true
@@ -244,26 +244,26 @@ struct AddAccountView: View {
 
                 switch storeError {
                 case .invalidCredentials:
-                    errorMessage = "Apple ID或密码错误，请检查后重试"
+                    errorMessage = "wrong_credentials".localized
                 case .codeRequired:
                     handleTwoFactorAuthRequired()
                 case .lockedAccount:
-                    errorMessage = "您的Apple ID已被锁定，请稍后再试或联系Apple支持"
+                    errorMessage = "account_locked".localized
                 case .networkError:
-                    errorMessage = "网络连接错误，请检查网络设置后重试"
+                    errorMessage = "network_error_retry".localized
                 case .authenticationFailed:
-                    errorMessage = "认证失败，请检查您的网络连接和账户信息"
+                    errorMessage = "auth_failed".localized
                 case .invalidResponse:
-                    errorMessage = "服务器响应无效，请稍后重试"
+                    errorMessage = "invalid_server_response".localized
                 case .unknownError:
-                    errorMessage = "未知错误，请稍后重试"
+                    errorMessage = "unknown_error".localized
                 default:
-                    errorMessage = "认证过程中发生错误: \(storeError.localizedDescription)"
+                    errorMessage = String(format: "auth_error".localized, storeError.localizedDescription)
                 }
             } else {
 
                 print("🔍 [AddAccountView] 未知错误类型: \(error)")
-                errorMessage = "认证过程中发生错误: \(error.localizedDescription)"
+                errorMessage = String(format: "auth_error".localized, error.localizedDescription)
             }
         }
     }
@@ -281,10 +281,10 @@ struct AddAccountView: View {
                 self.isCodeFieldFocused = true
             }
 
-            errorMessage = "请查看您的Apple设备上的验证码"
+            errorMessage = "check_apple_device_code".localized
         } else {
 
-            errorMessage = "验证码错误，请重新输入"
+            errorMessage = "wrong_verification_code".localized
 
             code = ""
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

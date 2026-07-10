@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Beállítások";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Letöltések";
+"tab_search" = "Keresés";
+
+// MARK: - Common
+"cancel" = "Mégse";
+"confirm" = "Megerősítés";
+"ok" = "OK";
+"done" = "Kész";
+"back" = "Vissza";
+"save" = "Mentés";
+"delete" = "Törlés";
+"edit" = "Szerkesztés";
+"add" = "Hozzáadás";
+"close" = "Bezárás";
+"refresh" = "Frissítés";
+"retry" = "Újrapróbálkozás";
+"loading" = "Betöltés...";
+"success" = "Sikeres";
+"failed" = "Sikertelen";
+"error" = "Hiba";
+"warning" = "Figyelmeztetés";
+"info" = "Információ";
+"search" = "Keresés";
+"download" = "Letöltés";
+"install" = "Telepítés";
+"update" = "Frissítés";
+"more" = "Több";
+"all" = "Összes";
+"none" = "Egyik sem";
+"default" = "Alapértelmezett";
+"copy" = "Másolás";
+"share" = "Megosztás";
+"export" = "Exportálás";
+"import" = "Importálás";
+"clear" = "Törlés";
+"reset" = "Visszaállítás";
+"continue" = "Folytatás";
+"confirm_delete" = "Törlés megerősítése";
+"confirm_delete_message" = "Biztosan törli ezt? Ez a művelet nem visszavonható.";
+"copied" = "Másolva";
+"copy_failed" = "Másolás sikertelen";
+"no_data" = "Nincs adat";
+"no_result" = "Nincs találat";
+"try_again" = "Próbálkozzon újra";
+"got_it" = "Értem";
+
+// MARK: - Settings
+"settings" = "Beállítások";
+"appearance" = "Megjelenés";
+"theme" = "Téma";
+"color" = "Szín";
+"icon" = "Ikon";
+"language" = "Nyelv";
+"general" = "Általános";
+"about" = "Névjegy";
+"version" = "Verzió";
+"version_number" = "Verziószám";
+"follow_system" = "Rendszer alapértelmezett";
+"light_mode" = "Világos";
+"dark_mode" = "Sötét";
+"accent_color" = "Kiemelőszín";
+"app_icon" = "Alkalmazásikon";
+"select_icon" = "Ikon kiválasztása";
+"icon_changed_success" = "Ikon sikeresen megváltoztatva";
+"icon_changed_failed" = "Ikon módosítása sikertelen";
+"language_select" = "Nyelv kiválasztása";
+"language_footer" = "A nyelv megváltoztatása után az alkalmazást újra kell indítani a változtatások teljes érvénybe lépéséhez.";
+"language_switch" = "Nyelv váltása";
+"language_switch_message" = "Az alkalmazás felülete azonnal frissül a nyelv váltása után. Egyes rendszerösszetevők újraindítást igényelhetnek a teljes érvénybe lépéshez.";
+"confirm_switch" = "Váltás megerősítése";
+"app_icon" = "Alkalmazásikon";
+"icon_default" = "Alapértelmezett";
+"icon_author" = "Ikon";
+"icon_love" = "Szerelem";
+"icon_peek" = "Kukorica";
+"icon_set_success" = "Ikon beállítása sikeres";
+"system_language" = "Rendszernyelv";
+"language_system_settings" = "Változtatás a rendszerbeállításokban";
+"language_system_hint" = "Menjen a Beállítások → APP → Nyelv menüpontra";
+"language_recommended" = "Ajánlott";
+"lang_chinese_simplified" = "Egyszerűsített kínai";
+"lang_english" = "Angol";
+"lang_japanese" = "Japán";
+"lang_korean" = "Koreai";
+"lang_spanish" = "Spanyol";
+"lang_french" = "Francia";
+"lang_german" = "Német";
+"lang_italian" = "Olasz";
+"lang_portuguese" = "Portugál";
+"lang_russian" = "Orosz";
+"lang_arabic" = "Arab";
+"lang_hindi" = "Hindi";
+"lang_thai" = "Thai";
+"lang_vietnamese" = "Vietnami";
+"lang_indonesian" = "Indonéz";
+"lang_malay" = "Maláj";
+"lang_dutch" = "Holland";
+"lang_swedish" = "Svéd";
+"lang_danish" = "Dán";
+"lang_finnish" = "Finn";
+"lang_norwegian" = "Norvég";
+"lang_polish" = "Lengyel";
+"lang_czech" = "Cseh";
+"lang_hungarian" = "Magyar";
+"lang_romanian" = "Román";
+"lang_turkish" = "Török";
+"lang_ukrainian" = "Ukrán";
+"lang_greek" = "Görög";
+"lang_hebrew" = "Héber";
+"lang_slovak" = "Szlovák";
+"lang_croatian" = "Horvát";
+"lang_catalan" = "Katalán";
+
+// MARK: - Download
+"download_title" = "Letöltések";
+"downloading" = "Letöltés";
+"download_paused" = "Szüneteltetve";
+"download_completed" = "Befejezett";
+"download_failed" = "Letöltés sikertelen";
+"download_cancelled" = "Megszakítva";
+"download_waiting" = "Várakozás";
+"download_speed" = "Letöltési sebesség";
+"download_progress" = "Letöltési előrehaladás";
+"download_size" = "Letöltés mérete";
+"download_time" = "Letöltési idő";
+"pause_download" = "Letöltés szüneteltetése";
+"resume_download" = "Letöltés folytatása";
+"cancel_download" = "Letöltés megszakítása";
+"retry_download" = "Letöltés újból";
+"delete_download" = "Letöltés törlése";
+"all_pause" = "Összes szüneteltetése";
+"all_start" = "Összes indítása";
+"clear_completed" = "Befejezettek törlése";
+"download_queue" = "Letöltési várólista";
+"download_history" = "Letöltési előzmények";
+"no_downloads" = "Nincsenek letöltések";
+"download_settings" = "Letöltési beállítások";
+"wifi_only_download" = "Csak Wi-Fi letöltés";
+"max_concurrent_downloads" = "Maximális párhuzamos letöltések";
+"download_path" = "Letöltési útvonal";
+
+// MARK: - Account
+"account" = "Fiók";
+"apple_id" = "Apple ID";
+"add_account" = "Apple ID hozzáadása";
+"switch_account" = "Fiók váltása";
+"current_account" = "Aktuális fiók";
+"all_accounts" = "Összes fiók";
+"account_info" = "Fiókinformáció";
+"region" = "Régió";
+"delete_account" = "Fiók törlése";
+"logout" = "Kijelentkezés";
+"logout_confirm" = "Kijelentkezés megerősítése";
+"logout_confirm_message" = "Biztosan ki akar jelentkezni az aktuális fiókból?";
+"delete_account_confirm" = "Fiók törlésének megerősítése";
+"delete_account_message" = "Biztosan törli a(z) %@ fiókot? Ez nem visszavonható, és újra hozzá kell adnia.";
+"account_detail" = "Fiók részletei";
+"verified" = "Ellenőrzött";
+"unverified" = "Nem ellenőrzött";
+"no_account" = "Nincs bejelentkezve";
+"no_account_description" = "Adjon hozzá egy Apple ID-t a kezdéshez";
+"name" = "Név";
+"email" = "E-mail";
+"country" = "Ország/régió";
+
+// MARK: - App Icon
+"app_icon_settings" = "Alkalmazásikon";
+"default_icon" = "Alapértelmezett";
+
+// MARK: - Search
+"search_placeholder" = "Alkalmazások, játékok, fejlesztők keresése";
+"search_history" = "Keresési előzmények";
+"search_suggestions" = "Keresési javaslatok";
+"search_results" = "Keresési eredmények";
+"clear_history" = "Előzmények törlése";
+"hot_search" = "Népszerű keresések";
+"no_results" = "Nincs találat";
+"try_different_keywords" = "Próbáljon más kulcsszavakat";
+"searching" = "Keresés...";
+
+// MARK: - Version Picker
+"version_picker" = "Verzió kiválasztása";
+"current_version" = "Aktuális verzió";
+"available_versions" = "Elérhető verziók";
+"no_versions" = "Nincs elérhető verzió";
+"load_versions_failed" = "Verziók betöltése sikertelen";
+"select_version_to_download" = "Válassza ki a letölteni kívánt verziót";
+"version_history" = "Verziótörténet";
+"release_date" = "Kiadás dátuma";
+"size" = "Méret";
+"build_number" = "Építésszám";
+
+// MARK: - App Detail
+"app_detail" = "Alkalmazás részletei";
+"get" = "Letöltés";
+"icloud_sync" = "iCloud szinkronizálás";
+"screenshots" = "Képernyőképek";
+"description" = "Leírás";
+"whats_new" = "Újdonságok";
+"ratings_and_reviews" = "Értékelések és vélemények";
+"developer" = "Fejlesztő";
+"category" = "Kategória";
+"compatibility" = "Kompatibilitás";
+"privacy" = "Adatvédelem";
+"privacy_policy" = "Adatvédelmi szabályzat";
+"user_agreement" = "Felhasználói megállapodás";
+"rating" = "Értékelés";
+"no_reviews" = "Nincsenek vélemények";
+"no_reviews_description" = "Ennek az alkalmazásnak még nincsenek felhasználói véleményei";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Nincsenek TestFlight alkalmazások";
+"install_tf_app" = "TestFlight verzió telepítése";
+"testing_status" = "Tesztelési állapot";
+"testing" = "Tesztelés";
+"expired" = "Lejárt";
+"full" = "Tele";
+"test_duration" = "Teszt időtartama";
+"remaining_seats" = "Hátralévő helyek";
+"redeem_code" = "Beváltási kód";
+"enter_redeem_code" = "Adja meg a beváltási kódot";
+
+// MARK: - Filter & Sort
+"filter" = "Szűrés";
+"sort" = "Rendezés";
+"sort_by_name" = "Rendezés név szerint";
+"sort_by_date" = "Rendezés dátum szerint";
+"sort_by_size" = "Rendezés méret szerint";
+"sort_by_status" = "Rendezés állapot szerint";
+"ascending" = "Növekvő";
+"descending" = "Csökkenő";
+
+// MARK: - Notification
+"notifications" = "Értesítések";
+"push_notifications" = "Leküldött értesítések";
+"download_complete_notification" = "Letöltés befejezési értesítés";
+"notification_sound" = "Értesítési hang";
+"notification_vibrate" = "Rezgés";
+"notification_badge" = "Jelvény";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Adatvédelem és biztonság";
+"clear_cache" = "Gyorsítótár törlése";
+"cache_size" = "Gyorsítótár mérete";
+"calculating_cache" = "Számítás...";
+"clear_cache_confirm" = "Gyorsítótár törlésének megerősítése";
+"clear_cache_message" = "Biztosan törli az összes gyorsítótárat? Ez nem törli a letöltött alkalmazásokat.";
+"cache_cleared" = "Gyorsítótár törölve";
+
+// MARK: - Storage
+"storage" = "Tárhely";
+"total_storage" = "Összesen";
+"used_storage" = "Használt";
+"available_storage" = "Elérhető";
+"app_size" = "Alkalmazás mérete";
+"documents_size" = "Dokumentumok mérete";
+
+// MARK: - Download Manager
+"download_manager" = "Letöltéskezelő";
+"batch_operations" = "Kötegelt műveletek";
+"select_all" = "Összes kijelölése";
+"deselect_all" = "Összes kijelölésének megszüntetése";
+"selected_count" = "%@ kijelölve";
+
+// MARK: - App Information
+"app_name" = "Alkalmazás neve";
+"app_version" = "Alkalmazás verziója";
+"app_rating" = "Alkalmazás értékelése";
+"app_developer" = "Fejlesztő";
+"app_category" = "Kategória";
+"last_updated" = "Utolsó frissítés";
+"language_support" = "Nyelvtámogatás";
+"content_rating" = "Tartalomértékelés";
+
+// MARK: - Account Management
+"account_management" = "Fiókkezelés";
+"login_status" = "Bejelentkezési állapot";
+"two_factor_auth" = "Kétfaktoros hitelesítés";
+"remember_password" = "Jelszó megjegyzése";
+"auto_login" = "Automatikus bejelentkezés";
+"login_expired" = "Bejelentkezés lejárt";
+"please_relogin" = "Jelentkezzen be újra";
+
+// MARK: - Settings More
+"advanced_settings" = "Speciális beállítások";
+"developer_options" = "Fejlesztői beállítások";
+"check_update" = "Frissítések keresése";
+"new_version_available" = "Új verzió elérhető";
+"already_latest_version" = "Már a legújabb verzió";
+"feedback" = "Visszajelzés";
+"rate_app" = "Értékelés";
+"share_app" = "Alkalmazás megosztása";
+
+// MARK: - Network
+"network" = "Hálózat";
+"network_status" = "Hálózati állapot";
+"wifi" = "Wi-Fi";
+"cellular" = "Mobilhálózat";
+"no_network" = "Nincs hálózati kapcsolat";
+"network_error" = "Hálózati hiba";
+"network_error_message" = "Hálózati kapcsolat sikertelen. Ellenőrizze a hálózati beállításokat.";
+"network_speed" = "Hálózati sebesség";
+"network_usage" = "Adathasználat";
+
+// MARK: - Installation
+"installation" = "Telepítés";
+"installing" = "Telepítés...";
+"install_success" = "Telepítés sikeres";
+"install_failed" = "Telepítés sikertelen";
+"install_failed_message" = "Telepítés sikertelen. Próbálkozzon újra.";
+"uninstall" = "Eltávolítás";
+"uninstall_confirm" = "Eltávolítás megerősítése";
+"uninstall_message" = "Biztosan el akarja távolítani ezt az alkalmazást? Minden adat törlésre kerül.";
+"ipa_file" = "IPA fájl";
+"ipa_signature" = "IPA aláírás";
+"signed" = "Aláírt";
+"unsigned" = "Aláírás nélküli";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Tesztmeghívás";
+"testflight_build" = "Építés";
+"testflight_group" = "Tesztcsoport";
+"testflight_tester" = "Tesztelő";
+"testflight_feedback" = "Tesztvisszajelzés";
+"testflight_expired" = "Teszt lejárt";
+"testflight_full" = "Teszt tele";
+"testflight_join" = "Teszthez csatlakozás";
+"testflight_leave" = "Teszt elhagyása";
+
+// MARK: - Search More
+"search_filter" = "Keresési szűrő";
+"search_result_count" = "%@ találat";
+"exact_match" = "Pontos egyezés";
+"fuzzy_match" = "Bizonytalan egyezés";
+"hot_apps" = "Népszerű alkalmazások";
+"new_apps" = "Új alkalmazások";
+"recommended_apps" = "Ajánlott alkalmazások";
+"top_charts" = "Top listák";
+
+// MARK: - Status
+"status" = "Állapot";
+"status_normal" = "Normál";
+"status_abnormal" = "Rendellenes";
+"status_pending" = "Függőben";
+"status_processing" = "Feldolgozás";
+"status_completed" = "Befejezett";
+"status_failed" = "Sikertelen";
+"status_cancelled" = "Megszakítva";
+"status_expired" = "Lejárt";
+"status_active" = "Aktív";
+"status_inactive" = "Inaktív";
+"status_idle" = "Tétlen";
+"status_busy" = "Foglalt";
+
+// MARK: - Tips
+"tips" = "Tippek";
+"tip_download_speed" = "A letöltési sebesség a hálózati kapcsolatótól függ";
+"tip_wifi_download" = "A nagy fájlok letöltését Wi-Fi hálózaton javasoljuk";
+"tip_storage_space" = "Győződjön meg arról, hogy elegendő tárhely áll rendelkezésre";
+"tip_account_security" = "Tartsa biztonságban fiókinformációit";
+"dont_show_again" = "Ne mutassa újra";
+"remind_later" = "Emlékeztessen később";
+"view_details" = "Részletek megtekintése";
+"learn_more" = "További információ";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "mp";
+"unit_minutes" = "perc";
+"unit_hours" = "óra";
+"unit_days" = "nap";
+"unit_weeks" = "hét";
+"unit_months" = "hónap";
+"unit_years" = "év";
+"today" = "Ma";
+"yesterday" = "Tegnap";
+"day_before_yesterday" = "Tegnapelőtt";
+"just_now" = "Épp most";
+"minutes_ago" = "%@ perccel ezelőtt";
+"hours_ago" = "%@ órával ezelőtt";
+"days_ago" = "%@ nappal ezelőtt";
+
+// MARK: - Actions
+"action_open" = "Megnyitás";
+"action_close" = "Bezárás";
+"action_view" = "Megtekintés";
+"action_edit" = "Szerkesztés";
+"action_delete" = "Törlés";
+"action_share" = "Megosztás";
+"action_copy" = "Másolás";
+"action_paste" = "Beillesztés";
+"action_select" = "Kijelölés";
+"action_select_all" = "Összes kijelölése";
+"action_deselect" = "Kijelölés megszüntetése";
+"action_refresh" = "Frissítés";
+"action_reload" = "Újratöltés";
+"action_scroll_top" = "Görgetés felülre";
+"action_scroll_bottom" = "Görgetés alulra";
+"action_favorite" = "Kedvenc";
+"action_unfavorite" = "Kedvenc eltávolítása";
+"action_like" = "Tetszik";
+"action_unlike" = "Nincs tetszik";
+"action_follow" = "Követés";
+"action_unfollow" = "Követés megszüntetése";
+"action_report" = "Jelentés";
+"action_block" = "Letiltás";
+"action_rename" = "Átnevezés";
+"action_move" = "Áthelyezés";
+"action_compress" = "Tömörítés";
+"action_extract" = "Kibontás";
+"action_upload" = "Feltöltés";
+"action_download" = "Letöltés";
+"action_install" = "Telepítés";
+"action_uninstall" = "Eltávolítás";
+"action_update" = "Frissítés";
+"action_upgrade" = "Frissítés";
+"action_downgrade" = "Visszaállítás régebbi verzióra";
+"action_scan_qr" = "QR kód beolvasása";
+"action_generate_qr" = "QR kód generálása";
+"action_print" = "Nyomtatás";
+"action_send" = "Küldés";
+"action_receive" = "Fogadás";
+"action_reject" = "Elutasítás";
+"action_accept" = "Elfogadás";
+"action_declined" = "Elutasítva";
+"action_accepted" = "Elfogadva";
+
+// MARK: - Theme
+"theme_settings" = "Téma beállítások";
+"light_theme" = "Világos téma";
+"dark_theme" = "Sötét téma";
+"system_theme" = "Rendszer téma";
+"pure_black" = "Tiszta fekete";
+"auto_switch" = "Automatikus váltás";
+"custom_theme" = "Egyéni téma";
+"theme_color" = "Téma színe";
+"background_color" = "Háttérszín";
+"text_color" = "Szövegszín";
+"font_size" = "Betűméret";
+"font_style" = "Betűstílus";
+
+// MARK: - App Detail More
+"feature_tags" = "Funkciócímkék";
+"free" = "Letöltés";
+"get" = "Letöltés";
+"view" = "Megtekintés";
+"get_reviews_failed" = "Vélemények lekérése sikertelen: %@";
+"x_ratings" = "%@ értékelés";
+"age_rating" = "Korhatár";
+"x_languages" = "%@ nyelv";
+"whats_new" = "Újdonságok";
+"tech_info" = "Technikai információ";
+"first_release" = "Első kiadás";
+"last_updated" = "Utolsó frissítés";
+"requires_ios" = "iOS %@ vagy újabb szükséges";
+
+// MARK: - Search More
+"search_placeholder" = "Játékok, alkalmazások keresése";
+"login" = "Bejelentkezés";
+"clear_all" = "Összes törlése";
+"x_results_found" = "%@ találat";
+"finding_best_results" = "A legjobb találatok keresése Önnek";
+"app_downgrade" = "Alkalmazás visszavonása";
+"search_error" = "Keresési hiba";
+"load_more" = "Több betöltése...";
+"purchasing" = "Vásárlás";
+"purchase" = "Vásárlás";
+"please_login_first" = "Jelentkezzen be először az alkalmazások letöltéséhez";
+"loading_versions" = "Verziótörténet betöltése...";
+"load_failed" = "Betöltés sikertelen";
+"no_versions_desc" = "Ehhez az alkalmazáshoz nincsenek előző verziók";
+"x_versions" = "%@ verzió";
+"version_x_date" = "%@ verzió · %@";
+
+// MARK: - Account More
+"login_account" = "Bejelentkezés";
+"current" = "Aktuális";
+"switch" = "Váltás";
+"x_accounts" = "%@ fiók";
+"add_new_account" = "Új fiók hozzáadása";
+"account_management" = "Fiókkezelés";
+"use_account" = "Fiók használata";
+"connection_lost" = "Kapcsolat megszakadt";
+"reconnecting" = "Újracsatlakozás";
+"connected" = "Csatlakoztatva";
+"apple_id_disconnected" = "Apple ID kapcsolat megszakadt. Érintse meg az újrabizonyításhoz vagy jelentkezzen be újra.";
+"apple_id_reconnecting" = "Automatikus újracsatlakozás az Apple ID-hoz, kérjük várjon...";
+"apple_id_connected" = "Apple ID csatlakoztatva. Alkalmazások keresése és letöltése normálisan.";
+"login_apple_id" = "Bejelentkezés Apple ID-val";
+"login_apple_id_desc" = "Alkalmazások letöltése és kezelése az Apple ID-jával";
+"login_apple_id_btn" = "Bejelentkezés Apple ID-val";
+"view_account_details" = "Fiók részleteinek megtekintése";
+"media_purchases" = "Média és vásárlások";
+"media_purchases_header" = "Média és vásárlások";
+"sign_in_apple_id" = "Bejelentkezés az iPhone-ján";
+"sign_in_apple_id_desc" = "Használja az Apple ID-ját ezen az iPhone-on";
+"apple_id" = "Apple ID";
+"name" = "Név";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Név, e-mail";
+"account_identifier_header" = "Fiókazonosító";
+"country_region" = "Ország/régió";
+"region_header" = "Régió";
+"sign_out" = "Kijelentkezés";
+"login_your_account" = "Jelentkezzen be a fiókjába";
+"enter_apple_id" = "Adja meg az Apple ID-ját";
+"password" = "Jelszó";
+"enter_password" = "Adja meg jelszavát";
+"two_factor_code" = "Kétfaktoros kód";
+"enter_6digit_code" = "Adja meg a 6 számjegyű kódot";
+"check_trusted_device" = "Ellenőrizze megbízható eszközeit vagy az SMS-ben a kódot";
+"verifying" = "Ellenőrzés...";
+"enter_full_credentials" = "Adja meg a teljes Apple ID-t és jelszót";
+"enter_6digit_code_verify" = "Kérjük, adja meg a 6 számjegyű ellenőrző kódot";
+"wrong_credentials" = "Apple ID vagy jelszó helytelen. Próbálkozzon újra.";
+"account_locked" = "Az Apple ID zárolva van. Próbálkozzon újra később, vagy lépjen kapcsolatba az Apple Támogatással.";
+"network_error_retry" = "Hálózati kapcsolat hiba. Ellenőrizze a hálózati beállításokat és próbálkozzon újra.";
+"auth_failed" = "Hitelesítés sikertelen. Ellenőrizze a hálózati kapcsolatot és fiókinformációit.";
+"invalid_server_response" = "Érvénytelen kiszolgálóválasz. Próbálkozzon újra később.";
+"unknown_error" = "Ismeretlen hiba. Próbálkozzon újra később.";
+"auth_error" = "Hiba történt a hitelesítés során: %@";
+"check_apple_device_code" = "Ellenőrizze Apple-eszközét az ellenőrző kódért";
+"wrong_verification_code" = "Helytelen ellenőrző kód. Próbálkozzon újra.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Érvénytelen IPA fájl";
+"install_failed_with_reason" = "Telepítés sikertelen: %@";
+"install_timeout" = "Telepítési időtúllépés";
+"installing_app" = "%@ telepítése";
+"version_x" = "%@ verzió";
+"install_starting" = "Telepítés megkezdése...";
+"install_manual_hint" = "Ha az automatikus telepítés sikertelen, érintse meg az alábbi gombot a manuális telepítéshez:";
+"manual_install" = "Manuális telepítés";
+"install_success_desc" = "Ellenőrizze a kezdőképernyőt, az alkalmazás települ...";
+"install_contact_author" = "Kapcsolódjon a fejlesztővel: pxx917144686, ha problémákat tapasztal";
+"install_start_failed" = "Telepítés indítása sikertelen";
+"retry_install" = "Telepítés újból";
+"view_source_code" = "👉 Forráskód megtekintése";
+"file_size_x" = "Fájl mérete: %@";
+"no_purchase_record" = "Nem található vásárlási rekord, átirányítás az App Store-ba";
+"file_saved_to" = "Fájl mentve:";
+"preparing" = "Előkészítés...";
+"waiting_confirm" = "Várakozás a megerősítésre...";
+"install_completed" = "Telepítés befejezve";
+"waiting" = "Várakozás...";
+"start_install" = "Telepítés indítása";
+"unknown_path" = "Ismeretlen útvonal";
+"share_ipa" = "IPA megosztása";
+"install_background_hint" = "Az alkalmazás a háttérben települ. Visszatérhet a kezdőképernyőre a folyamat ellenőrzéséhez.";
+"ipa_not_found" = "IPA fájl nem található, töltse le újra";
+"preparing_install" = "Telepítés előkészítése...";
+"install_in_progress" = "A telepítés már folyamatban van";
+"verifying_package" = "Csomag ellenőrzése...";
+"starting_install_service" = "Telepítési szolgáltatás indítása...";
+"install_service_timeout" = "Telepítési szolgáltatás időtúllépés. Próbálkozzon újra.";
+"opening_install_page" = "Telepítési oldal megnyitása...";
+"download_record_file" = "Letöltési rekord";
+"delete_file" = "Fájl törlése";
+"delete_file_confirm" = "Biztosan törli a(z) %@ fájlt? Ez a művelet nem visszavonható.";
+"delete_success" = "Sikeres törlés";
+"delete_success_desc" = "A fájl sikeresen törölve.";
+"no_ipa_found" = "Nem találhatók IPA fájlok";
+"no_ipa_found_desc" = "Nem találhatók IPA fájlok az alkalmazás tárhelykönyvtárában";
+
+// MARK: - Account Detail
+"basic_info" = "Alapvető információ";
+"account_identifier" = "Fiókazonosító";
+"country_region" = "Ország/régió";
+"password_token" = "Jelszójelző";
+"auth_info" = "Hitelesítési információ";
+"password_token_hint" = "A jelszójelző az automatikus hitelesítéshez szolgál. Kérjük, ne ossza meg másokkal.";
+"delete_this_account" = "Ezen fiók törlése";
+"delete_account_confirm_detail" = "Biztosan törli a(z) %@ fiókot erről az eszközről?\n\nA fiók összes bejelentkezési információja és sütije eltávolításra kerül.";
+"dsid" = "DSID";
+"no_value" = "Nincs";
+"region_title" = "Régió";
+
+// MARK: - Appearance More
+"overall_color" = "Kiemelőszín";
+"quick_select" = "Gyorsválasztás";
+"auto" = "Automatikus";
+"unknown" = "Ismeretlen";

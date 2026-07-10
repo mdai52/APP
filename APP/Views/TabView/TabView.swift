@@ -8,10 +8,10 @@ enum TabEnum: String, CaseIterable, Hashable {
 
     var title: String {
         switch self {
-        case .settings:  return "设置"
-        case .tfapps:     return "TF版"
-        case .downloads:  return "下载"
-        case .search:     return "搜索"
+        case .settings:  return "tab_settings".localized
+        case .tfapps:     return "tab_tfapps".localized
+        case .downloads:  return "tab_downloads".localized
+        case .search:     return "tab_search".localized
         }
     }
 

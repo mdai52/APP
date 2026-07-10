@@ -61,14 +61,18 @@ extension AppIconView {
 	static func getAllIconsFromFolder() -> [AltIcon] {
 		var icons: [AltIcon] = []
 
-		let iconInfo: [String: (displayName: String, author: String)] = [
-			"app": ("默认", "图标"),
-			"kana_love": ("Love", "图标"),
-			"kana_peek": ("Peek", "图标")
+		let iconInfo: [String: (displayNameKey: String, authorKey: String)] = [
+			"app": ("icon_default", "icon_author"),
+			"kana_love": ("icon_love", "icon_author"),
+			"kana_peek": ("icon_peek", "icon_author")
 		]
 
 		for (key, info) in iconInfo {
-			let icon = AltIcon(displayName: info.displayName, author: info.author, key: key)
+			let icon = AltIcon(
+				displayName: info.displayNameKey.localized,
+				author: info.authorKey.localized,
+				key: key
+			)
 
 			if !icon.image.isSymbolImage && icon.image.size.width > 1 {
 				icons.append(icon)
@@ -87,22 +91,31 @@ struct AppIconView: View {
 	var allIcons: [AltIcon] {
 		let allIcons = AppIconView.getAllIconsFromFolder()
 
-		var icons: [AltIcon] = []
-
-		let defaultIcon = AltIcon(displayName: "默认", author: "图标", key: "app")
-		icons.append(defaultIcon)
-
-		let alternateIcons = allIcons.filter { $0.key != "app" }
-		icons.append(contentsOf: alternateIcons)
-
-		if alternateIcons.isEmpty {
-			icons.append(contentsOf: [
-				AltIcon(displayName: "Love", author: "图标", key: "kana_love"),
-				AltIcon(displayName: "Peek", author: "图标", key: "kana_peek")
-			])
+		if !allIcons.isEmpty {
+			return allIcons.sorted { icon1, icon2 in
+				if icon1.key == "app" { return true }
+				if icon2.key == "app" { return false }
+				return icon1.key ?? "" < icon2.key ?? ""
+			}
 		}
 
-		return icons
+		return [
+			AltIcon(
+				displayName: "icon_default".localized,
+				author: "icon_author".localized,
+				key: "app"
+			),
+			AltIcon(
+				displayName: "icon_love".localized,
+				author: "icon_author".localized,
+				key: "kana_love"
+			),
+			AltIcon(
+				displayName: "icon_peek".localized,
+				author: "icon_author".localized,
+				key: "kana_peek"
+			)
+		]
 	}
 
 	var body: some View {
@@ -118,7 +131,7 @@ struct AppIconView: View {
 			}
 			.padding(.bottom, 30)
 		}
-		.navigationTitle("图标")
+		.navigationTitle("app_icon".localized)
 		.onAppear {
 			currentIcon = UIApplication.shared.alternateIconName
 		}
@@ -159,22 +172,6 @@ extension AppIconView {
 				ZStack {
 					Image(uiImage: icon.image)
 						.appIconStyle()
-
-					if (icon.key == "app" && currentIcon == nil) || currentIcon == icon.key {
-						Color.clear
-							.frame(width: 100, height: 100)
-							.overlay(
-								RoundedRectangle(cornerRadius: 20)
-									.stroke(Color.blue, lineWidth: 3)
-							)
-							.overlay(
-								Image(systemName: "checkmark.circle.fill")
-									.resizable()
-									.frame(width: 24, height: 24)
-									.foregroundColor(.blue)
-									.position(x: 85, y: 15)
-							)
-					}
 				}
 
 				VStack(alignment: .center, spacing: 2) {
@@ -188,10 +185,6 @@ extension AppIconView {
 				}
 				.frame(maxWidth: .infinity)
 			}
-			.padding()
-			.background(Color(.systemBackground))
-			.cornerRadius(16)
-			.shadow(radius: 2)
 		}
 		.buttonStyle(.plain)
 	}

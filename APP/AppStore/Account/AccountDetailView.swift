@@ -19,23 +19,23 @@ struct AccountDetailView: View {
 
 
             Section {
-                infoRow(title: "Apple ID", value: account.email, isEmail: true)
-                infoRow(title: "姓名", value: account.name)
+                infoRow(title: "apple_id".localized, value: account.email, isEmail: true)
+                infoRow(title: "name".localized, value: account.name)
             } header: {
-                Text("基本信息")
+                Text("basic_info".localized)
             }
 
 
             Section {
-                infoRow(title: "DSID", value: account.directoryServicesIdentifier, isMonospaced: true)
+                infoRow(title: "dsid".localized, value: account.directoryServicesIdentifier, isMonospaced: true)
             } header: {
-                Text("账户标识")
+                Text("account_identifier".localized)
             }
 
 
             Section {
                 HStack {
-                    Text("国家/地区")
+                    Text("country_region".localized)
                         .font(.system(size: 15))
                         .foregroundColor(.primary)
                     Spacer()
@@ -44,19 +44,19 @@ struct AccountDetailView: View {
                         .foregroundColor(.secondary)
                 }
             } header: {
-                Text("地区")
+                Text("region_title".localized)
             }
 
 
             Section {
                 HStack {
-                    Text("密码 Token")
+                    Text("password_token".localized)
                         .font(.system(size: 15))
                         .foregroundColor(.primary)
                     Spacer()
 
                     if account.passwordToken.isEmpty {
-                        Text("无")
+                        Text("no_value".localized)
                             .font(.system(size: 14, design: .monospaced))
                             .foregroundColor(.secondary.opacity(0.5))
                     } else {
@@ -78,9 +78,9 @@ struct AccountDetailView: View {
                     }
                 }
             } header: {
-                Text("认证信息")
+                Text("auth_info".localized)
             } footer: {
-                Text("密码 Token 用于自动验证身份，请勿泄露给他人。")
+                Text("password_token_hint".localized)
             }
 
 
@@ -90,7 +90,7 @@ struct AccountDetailView: View {
                 }) {
                     HStack {
                         Spacer()
-                        Text("删除此账户")
+                        Text("delete_this_account".localized)
                             .font(.system(size: 16, weight: .medium))
                         Spacer()
                     }
@@ -98,26 +98,26 @@ struct AccountDetailView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle("账户详情")
+        .navigationTitle("account_detail".localized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("返回") {
+                Button("back".localized) {
                     dismiss()
                 }
                 .font(.system(size: 17, weight: .semibold))
                 .foregroundColor(themeManager.accentColor)
             }
         }
-        .alert("删除账户", isPresented: $showingDeleteAlert) {
-            Button("取消", role: .cancel) {
+        .alert("delete_account".localized, isPresented: $showingDeleteAlert) {
+            Button("cancel".localized, role: .cancel) {
                 showingDeleteAlert = false
             }
-            Button("删除", role: .destructive) {
+            Button("delete".localized, role: .destructive) {
                 deleteAccount()
             }
         } message: {
-            Text("确定要从设备上删除账户 \(account.email) 吗？\n\n删除后，此账户的所有登录信息和 Cookie 都将被移除。")
+            Text(String(format: "delete_account_confirm_detail".localized, account.email))
         }
     }
 
@@ -166,7 +166,7 @@ struct AccountDetailView: View {
                 .foregroundColor(.primary)
             Spacer()
             if value.isEmpty {
-                Text("无")
+                Text("no_value".localized)
                     .font(.system(size: 15))
                     .foregroundColor(.secondary.opacity(0.5))
             } else {
@@ -204,21 +204,7 @@ struct AccountDetailView: View {
     }
 
     private func countryName(_ code: String) -> String {
-        let chineseNames: [String: String] = [
-            "CN": "中国大陆", "US": "美国", "JP": "日本", "KR": "韩国",
-            "HK": "香港", "TW": "台湾", "SG": "新加坡", "GB": "英国",
-            "DE": "德国", "FR": "法国", "AU": "澳大利亚", "CA": "加拿大",
-            "BR": "巴西", "IN": "印度", "RU": "俄罗斯", "IT": "意大利",
-            "ES": "西班牙", "MX": "墨西哥", "NL": "荷兰", "SE": "瑞典",
-            "TR": "土耳其", "AR": "阿根廷", "CL": "智利", "CO": "哥伦比亚",
-            "PE": "秘鲁", "PL": "波兰", "SA": "沙特阿拉伯", "TH": "泰国",
-            "PH": "菲律宾", "MY": "马来西亚", "ID": "印度尼西亚", "VN": "越南",
-            "ZA": "南非", "AE": "阿联酋", "EG": "埃及", "NG": "尼日利亚",
-            "IL": "以色列", "BE": "比利时", "CH": "瑞士", "AT": "奥地利",
-            "DK": "丹麦", "FI": "芬兰", "NO": "挪威", "IE": "爱尔兰",
-            "PT": "葡萄牙", "CZ": "捷克", "HU": "匈牙利", "RO": "罗马尼亚",
-            "GR": "希腊", "NZ": "新西兰", "PK": "巴基斯坦", "BD": "孟加拉国"
-        ]
-        return chineseNames[code.uppercased()] ?? Locale.current.localizedString(forRegionCode: code) ?? code.uppercased()
+        let locale = LanguageManager.shared.locale
+        return locale.localizedString(forRegionCode: code) ?? code.uppercased()
     }
 }

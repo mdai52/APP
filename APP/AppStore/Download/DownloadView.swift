@@ -282,13 +282,13 @@ public enum PackageInstallationError: Error, LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .invalidIPAFile:
-            return "无效的IPA文件"
+            return "invalid_ipa_file".localized
         case .installationFailed(let reason):
-            return "安装失败: \(reason)"
+            return String(format: "install_failed_with_reason".localized, reason)
         case .networkError:
-            return "网络错误"
+            return "network_error".localized
         case .timeoutError:
-            return "安装超时"
+            return "install_timeout".localized
         }
     }
 }
@@ -544,7 +544,7 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
             <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>正在安装 \(self.appInfo.name)</title>
+                <title>\(String(format: "installing_app".localized, self.appInfo.name))</title>
                 <style>
                     * {
                         box-sizing: border-box;
@@ -666,18 +666,18 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
                     <div class="app-icon">📱</div>
                     <div class="app-info">
                         <h1 class="app-name">\(self.appInfo.name)</h1>
-                        <p class="app-version">版本 \(self.appInfo.version)</p>
+                        <p class="app-version">\(String(format: "version_x".localized, self.appInfo.version))</p>
                         <p class="app-bundle">\(self.appInfo.bundleIdentifier)</p>
                     </div>
 
                     <div class="status" id="status">
-                        <span class="loading"></span>正在启动安装程序...
+                        <span class="loading"></span>\("install_starting".localized)
                     </div>
 
                     <div class="manual-install" id="manualInstall" style="display: none;">
-                        <p>如果自动安装失败，请点击下方按钮手动安装：</p>
+                        <p>\("install_manual_hint".localized)</p>
                         <button class="install-button" id="manualButton" onclick="manualInstall()">
-                            手动安装
+                            \("manual_install".localized)
                         </button>
                     </div>
                 </div>
@@ -719,7 +719,7 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
                         const manualInstall = document.getElementById('manualInstall');
 
                         isInstalling = true;
-                        status.innerHTML = '<span class="loading"></span>正在启动安装程序...';
+                        status.innerHTML = '<span class="loading"></span>\("install_starting".localized)';
 
                         console.log('开始安装尝试');
 
@@ -734,14 +734,14 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
                             // 如果跳转成功，3秒后显示成功信息
                             setTimeout(function() {
                                 if (installSuccess) {
-                                    status.innerHTML = '<span class="success">✅ 请查看iPhone桌面~ 遇到问题联系代码作者pxx917144686</span>';
-                                    document.body.innerHTML = '<div class="container fade-in" style="text-align: center; padding: 50px; color: white;"><div class="app-icon">✅</div><h1>安装成功</h1><p>请查看iPhone桌面，应用正在安装中...</p><p style="font-size: 12px; opacity: 0.6;">遇到问题请联系源代码作者 pxx917144686</p></div>';
+                                    status.innerHTML = '<span class="success">✅ \("install_success_desc".localized)</span>';
+                                    document.body.innerHTML = '<div class="container fade-in" style="text-align: center; padding: 50px; color: white;"><div class="app-icon">✅</div><h1>\("install_success".localized)</h1><p>\("install_success_desc".localized)</p><p style="font-size: 12px; opacity: 0.6;">\("install_contact_author".localized)</p></div>';
                                 }
                             }, 3000);
 
                         } catch (error) {
                             console.error('安装失败:', error);
-                            status.innerHTML = '<span class="error">❌ 安装启动失败</span>';
+                            status.innerHTML = '<span class="error">❌ \("install_start_failed".localized)</span>';
                             manualInstall.style.display = 'block';
                             isInstalling = false;
                         }
@@ -757,7 +757,7 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
                         const status = document.getElementById('status');
 
                         button.disabled = true;
-                        button.textContent = '正在安装...';
+                        button.textContent = '\("installing".localized)';
                         status.innerHTML = '<span class="loading"></span>手动触发安装...';
                         isInstalling = true;
 
@@ -768,7 +768,7 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
                         } catch (error) {
                             status.innerHTML = '<span class="error">❌ 手动安装失败: ' + error.message + '</span>';
                             button.disabled = false;
-                            button.textContent = '重试安装';
+                            button.textContent = '\("retry_install".localized)';
                             isInstalling = false;
                         }
                     }
@@ -1077,7 +1077,7 @@ struct DownloadView: SwiftUI.View {
                 UIApplication.shared.open(url)
             }) {
                 HStack(spacing: 16) {
-                    Text("👉看看源代码")
+                    Text("view_source_code".localized)
                         .font(.system(size: 17, weight: .medium))
                         .foregroundColor(.white)
                 }
@@ -1102,7 +1102,7 @@ struct DownloadView: SwiftUI.View {
 
 
             VStack(spacing: 8) {
-                Text("暂无下载任务")
+                Text("no_downloads".localized)
                     .font(.system(size: 22, weight: .semibold))
                     .foregroundColor(.primary)
             }
@@ -1248,7 +1248,7 @@ struct DownloadCardView: SwiftUI.View {
                             .lineLimit(1)
 
 
-                        Text("版本 \(request.version)")
+                        Text(String(format: "version_x".localized, request.version))
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .lineLimit(1)
@@ -1256,7 +1256,7 @@ struct DownloadCardView: SwiftUI.View {
 
                         if let localFilePath = request.localFilePath {
                             if let fileSize = getFileSize(path: localFilePath) {
-                                Text("文件大小: \(fileSize)")
+                                Text(String(format: "file_size_x".localized, fileSize))
                                     .font(.caption2)
                                     .foregroundColor(.secondary)
                                     .lineLimit(1)
@@ -1337,7 +1337,7 @@ struct DownloadCardView: SwiftUI.View {
                     }) {
                         HStack(spacing: 4) {
                             Image(systemName: "xmark.circle.fill")
-                            Text("取消")
+                            Text("cancel".localized)
                         }
                         .font(.caption)
                         .foregroundColor(.white)
@@ -1357,7 +1357,7 @@ struct DownloadCardView: SwiftUI.View {
                         }) {
                             HStack(spacing: 4) {
                                 Image(systemName: "app.badge")
-                                Text("此APP疑似没有购买记录，跳转 App Store 购买")
+                                Text("no_purchase_record".localized)
                             }
                             .font(.caption)
                             .foregroundColor(.white)
@@ -1373,7 +1373,7 @@ struct DownloadCardView: SwiftUI.View {
                         }) {
                             HStack(spacing: 4) {
                                 Image(systemName: "arrow.clockwise")
-                                Text("重试")
+                                Text("retry".localized)
                             }
                             .font(.caption)
                             .foregroundColor(.white)
@@ -1396,7 +1396,7 @@ struct DownloadCardView: SwiftUI.View {
                             .foregroundColor(.green)
                             .font(.caption)
 
-                        Text("文件已保存到:")
+                        Text("file_saved_to".localized)
                             .font(.caption2)
                             .foregroundColor(.secondary)
 
@@ -1442,32 +1442,32 @@ struct DownloadCardView: SwiftUI.View {
                                     if let installState = installManager.installingRequests[request.id] {
                                         switch installState.status {
                                         case .preparing:
-                                            Text("准备中...")
+                                            Text("preparing".localized)
                                                 .font(.system(size: 14, weight: .semibold))
                                                 .foregroundColor(.white)
                                         case .prompting:
-                                            Text("等待确认...")
+                                            Text("waiting_confirm".localized)
                                                 .font(.system(size: 14, weight: .semibold))
                                                 .foregroundColor(.white)
                                         case .installing:
-                                            Text("安装中...")
+                                            Text("installing".localized)
                                                 .font(.system(size: 14, weight: .semibold))
                                                 .foregroundColor(.white)
                                         case .completed:
-                                            Text("安装完成")
+                                            Text("install_completed".localized)
                                                 .font(.system(size: 14, weight: .semibold))
                                                 .foregroundColor(.white)
                                         case .failed, .timeout, .cancelled:
-                                            Text("安装失败")
+                                            Text("install_failed".localized)
                                                 .font(.system(size: 14, weight: .semibold))
                                                 .foregroundColor(.white)
                                         }
                                     } else if globalInstallManager.isAnyInstalling && globalInstallManager.currentInstallingRequestId != request.id {
-                                        Text("等待中...")
+                                        Text("waiting".localized)
                                             .font(.system(size: 14, weight: .semibold))
                                             .foregroundColor(.white.opacity(0.6))
                                     } else {
-                                        Text("开始安装")
+                                        Text("start_install".localized)
                                             .font(.system(size: 14, weight: .semibold))
                                             .foregroundColor(.white)
                                     }
@@ -1490,7 +1490,7 @@ struct DownloadCardView: SwiftUI.View {
                         }
                     }
 
-                    Text(request.localFilePath ?? "未知路径")
+                    Text(request.localFilePath ?? "unknown_path".localized)
                         .font(.caption2)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.leading)
@@ -1554,7 +1554,7 @@ struct DownloadCardView: SwiftUI.View {
         )
 
 
-        activityViewController.setValue("分享IPA文件", forKey: "subject")
+        activityViewController.setValue("share_ipa".localized, forKey: "subject")
 
 
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -1650,7 +1650,7 @@ struct DownloadCardView: SwiftUI.View {
     private var installationProgressView: some SwiftUI.View {
         VStack(spacing: 8) {
             HStack {
-                Label("正在安装", systemImage: "arrow.up.circle")
+                Label("installing".localized, systemImage: "arrow.up.circle")
                     .font(.headline)
                     .foregroundColor(.green)
 
@@ -1689,7 +1689,7 @@ struct DownloadCardView: SwiftUI.View {
                         Image(systemName: "info.circle")
                             .font(.caption)
                             .foregroundColor(.secondary)
-                        Text("系统正在后台安装应用，您可以返回桌面查看安装进度")
+                        Text("install_background_hint".localized)
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -1704,17 +1704,17 @@ struct DownloadCardView: SwiftUI.View {
     private func getProgressLabel() -> String {
         switch request.runtime.status {
         case DownloadStatus.waiting:
-            return "等待下载"
+            return "download_waiting".localized
         case DownloadStatus.downloading:
-            return "正在下载"
+            return "downloading".localized
         case DownloadStatus.paused:
-            return "已暂停"
+            return "download_paused".localized
         case DownloadStatus.completed:
-            return "下载完成"
+            return "download_completed".localized
         case DownloadStatus.failed:
-            return "下载失败"
+            return "download_failed".localized
         case DownloadStatus.cancelled:
-            return "已取消"
+            return "download_cancelled".localized
         }
     }
 
@@ -1819,17 +1819,17 @@ struct DownloadCardView: SwiftUI.View {
 
     private func startInstallation(for request: DownloadRequest) {
         guard let localFilePath = request.localFilePath, FileManager.default.fileExists(atPath: localFilePath) else {
-            installationMessage = "IPA文件不存在，请重新下载"
+            installationMessage = "ipa_not_found".localized
             return
         }
 
         isInstalling = true
         installationProgress = 0.0
-        installationMessage = "准备安装..."
+        installationMessage = "preparing_install".localized
 
         let canStart = globalInstallManager.startInstallation(for: request.id)
         guard canStart else {
-            installationMessage = "已有安装任务在进行中"
+            installationMessage = "install_in_progress".localized
             isInstalling = false
             return
         }
@@ -1850,7 +1850,7 @@ struct DownloadCardView: SwiftUI.View {
 
                 await MainActor.run {
                     installationProgress = 0.2
-                    installationMessage = "验证安装包..."
+                    installationMessage = "verifying_package".localized
                 }
 
                 let fileAttributes = try FileManager.default.attributesOfItem(atPath: localFilePath)
@@ -1861,7 +1861,7 @@ struct DownloadCardView: SwiftUI.View {
 
                 await MainActor.run {
                     installationProgress = 0.4
-                    installationMessage = "启动安装服务..."
+                    installationMessage = "starting_install_service".localized
                 }
 
                 let port = SimpleHTTPServer.randomPort()
@@ -1901,7 +1901,7 @@ struct DownloadCardView: SwiftUI.View {
                 guard serverReady else {
                     NSLog("❌ [DownloadView] HTTP服务器启动超时")
                     await MainActor.run {
-                        installationMessage = "安装服务启动超时，请重试"
+                        installationMessage = "install_service_timeout".localized
                         cleanupInstallation(request.id)
                     }
                     UIApplication.shared.endBackgroundTask(backgroundTaskID)
@@ -1910,7 +1910,7 @@ struct DownloadCardView: SwiftUI.View {
 
                 await MainActor.run {
                     installationProgress = 0.8
-                    installationMessage = "正在打开安装页面..."
+                    installationMessage = "opening_install_page".localized
 
                     NSLog("🌐 [DownloadView] 使用Safari打开安装页面")
 
@@ -2071,7 +2071,7 @@ struct IPAListView: SwiftUI.View {
                     }
                 }
             }
-            .navigationTitle("下载记录文件")
+            .navigationTitle("download_record_file".localized)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
 
@@ -2089,19 +2089,19 @@ struct IPAListView: SwiftUI.View {
         }
         .actionSheet(isPresented: $showDeleteAlert) {
             ActionSheet(
-                title: Text("删除文件"),
-                message: Text("确定要删除文件 \(deleteFileName ?? "") 吗？此操作无法撤销。"),
+                title: Text("delete_file".localized),
+                message: Text(String(format: "delete_file_confirm".localized, deleteFileName ?? "")),
                 buttons: [
-                    .destructive(Text("删除"), action: confirmDelete),
-                    .cancel(Text("取消"))
+                    .destructive(Text("delete".localized), action: confirmDelete),
+                    .cancel(Text("cancel".localized))
                 ]
             )
         }
         .alert(isPresented: $lastDeleteSuccess) {
             Alert(
-                title: Text("删除成功"),
-                message: Text("文件已成功删除。"),
-                dismissButton: .default(Text("确定")) { loadIPAFiles() }
+                title: Text("delete_success".localized),
+                message: Text("delete_success_desc".localized),
+                dismissButton: .default(Text("ok".localized)) { loadIPAFiles() }
             )
         }
     }
@@ -2111,10 +2111,10 @@ struct IPAListView: SwiftUI.View {
             Image(systemName: "folder")
                 .font(.system(size: 64))
                 .foregroundColor(themeManager.accentColor.opacity(0.5))
-            Text("未找到IPA文件")
+            Text("no_ipa_found".localized)
                 .font(.system(size: 22, weight: .semibold))
                 .foregroundColor(.primary)
-            Text("未在应用存储目录中发现IPA文件")
+            Text("no_ipa_found_desc".localized)
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -2149,12 +2149,12 @@ struct IPAListView: SwiftUI.View {
                     Button(action: {
                         shareIPAFile(path: file.path, name: file.name)
                     }) {
-                        Label("分享", systemImage: "square.and.arrow.up")
+                        Label("share".localized, systemImage: "square.and.arrow.up")
                     }
                     Button(action: {
                         showDeleteConfirmation(for: file.path, name: file.name)
                     }) {
-                        Label("删除", systemImage: "trash")
+                        Label("delete".localized, systemImage: "trash")
                             .foregroundColor(.red)
                     }
                 } label: {

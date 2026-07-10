@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Налаштування";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Завантаження";
+"tab_search" = "Пошук";
+
+// MARK: - Common
+"cancel" = "Скасувати";
+"confirm" = "Підтвердити";
+"ok" = "OK";
+"done" = "Готово";
+"back" = "Назад";
+"save" = "Зберегти";
+"delete" = "Видалити";
+"edit" = "Редагувати";
+"add" = "Додати";
+"close" = "Закрити";
+"refresh" = "Оновити";
+"retry" = "Повторити";
+"loading" = "Завантаження...";
+"success" = "Успішно";
+"failed" = "Не вдалося";
+"error" = "Помилка";
+"warning" = "Попередження";
+"info" = "Інформація";
+"search" = "Пошук";
+"download" = "Завантажити";
+"install" = "Встановити";
+"update" = "Оновити";
+"more" = "Більше";
+"all" = "Усі";
+"none" = "Жоден";
+"default" = "За замовчуванням";
+"copy" = "Копіювати";
+"share" = "Поділитися";
+"export" = "Експортувати";
+"import" = "Імпортувати";
+"clear" = "Очистити";
+"reset" = "Скинути";
+"continue" = "Продовжити";
+"confirm_delete" = "Підтвердити видалення";
+"confirm_delete_message" = "Ви впевнені, що хочете видалити це? Цю дію не можна скасувати.";
+"copied" = "Скопійовано";
+"copy_failed" = "Не вдалося скопіювати";
+"no_data" = "Немає даних";
+"no_result" = "Результатів не знайдено";
+"try_again" = "Будь ласка, спробуйте ще раз";
+"got_it" = "Зрозуміло";
+
+// MARK: - Settings
+"settings" = "Налаштування";
+"appearance" = "Зовнішній вигляд";
+"theme" = "Тема";
+"color" = "Колір";
+"icon" = "Значок";
+"language" = "Мова";
+"general" = "Загальні";
+"about" = "Про програму";
+"version" = "Версія";
+"version_number" = "Номер версії";
+"follow_system" = "Системне значення";
+"light_mode" = "Світлий";
+"dark_mode" = "Темний";
+"accent_color" = "Колір акценту";
+"app_icon" = "Значок програми";
+"select_icon" = "Вибрати значок";
+"icon_changed_success" = "Значок успішно змінено";
+"icon_changed_failed" = "Не вдалося змінити значок";
+"language_select" = "Вибрати мову";
+"language_footer" = "Після зміни мови програму потрібно перезапустити, щоб зміни набули повної чинності.";
+"language_switch" = "Змінити мову";
+"language_switch_message" = "Інтерфейс програми оновиться відразу після зміни мови. Деякі системні компоненти можуть потребувати перезапуску для повного набуття чинності.";
+"confirm_switch" = "Підтвердити зміну";
+"app_icon" = "Значок програми";
+"icon_default" = "За замовчуванням";
+"icon_author" = "Значок";
+"icon_love" = "Любов";
+"icon_peek" = "Піглянути";
+"icon_set_success" = "Значок успішно встановлено";
+"system_language" = "Мова системи";
+"language_system_settings" = "Змінити в системних налаштуваннях";
+"language_system_hint" = "Перейдіть до Налаштування → APP → Мова";
+"language_recommended" = "Рекомендовано";
+"lang_chinese_simplified" = "Китайська (спрощена)";
+"lang_english" = "Англійська";
+"lang_japanese" = "Японська";
+"lang_korean" = "Корейська";
+"lang_spanish" = "Іспанська";
+"lang_french" = "Французька";
+"lang_german" = "Німецька";
+"lang_italian" = "Італійська";
+"lang_portuguese" = "Португальська";
+"lang_russian" = "Російська";
+"lang_arabic" = "Арабська";
+"lang_hindi" = "Гінді";
+"lang_thai" = "Тайська";
+"lang_vietnamese" = "В'єтнамська";
+"lang_indonesian" = "Індонезійська";
+"lang_malay" = "Малайська";
+"lang_dutch" = "Нідерландська";
+"lang_swedish" = "Шведська";
+"lang_danish" = "Данська";
+"lang_finnish" = "Фінська";
+"lang_norwegian" = "Норвезька";
+"lang_polish" = "Польська";
+"lang_czech" = "Чеська";
+"lang_hungarian" = "Угорська";
+"lang_romanian" = "Румунська";
+"lang_turkish" = "Турецька";
+"lang_ukrainian" = "Українська";
+"lang_greek" = "Грецька";
+"lang_hebrew" = "Іврит";
+"lang_slovak" = "Словацька";
+"lang_croatian" = "Хорватська";
+"lang_catalan" = "Каталонська";
+
+// MARK: - Download
+"download_title" = "Завантаження";
+"downloading" = "Завантажується";
+"download_paused" = "Призупинено";
+"download_completed" = "Завершено";
+"download_failed" = "Не вдалося завантажити";
+"download_cancelled" = "Скасовано";
+"download_waiting" = "Очікування";
+"download_speed" = "Швидкість завантаження";
+"download_progress" = "Прогрес завантаження";
+"download_size" = "Розмір завантаження";
+"download_time" = "Час завантаження";
+"pause_download" = "Призупинити завантаження";
+"resume_download" = "Відновити завантаження";
+"cancel_download" = "Скасувати завантаження";
+"retry_download" = "Повторити завантаження";
+"delete_download" = "Видалити завантаження";
+"all_pause" = "Призупинити всі";
+"all_start" = "Запустити всі";
+"clear_completed" = "Очистити завершені";
+"download_queue" = "Черга завантажень";
+"download_history" = "Історія завантажень";
+"no_downloads" = "Немає завантажень";
+"download_settings" = "Налаштування завантаження";
+"wifi_only_download" = "Завантаження лише через Wi-Fi";
+"max_concurrent_downloads" = "Макс. одночасних завантажень";
+"download_path" = "Шлях завантаження";
+
+// MARK: - Account
+"account" = "Обліковий запис";
+"apple_id" = "Apple ID";
+"add_account" = "Додати Apple ID";
+"switch_account" = "Змінити обліковий запис";
+"current_account" = "Поточний обліковий запис";
+"all_accounts" = "Усі облікові записи";
+"account_info" = "Інформація про обліковий запис";
+"region" = "Регіон";
+"delete_account" = "Видалити обліковий запис";
+"logout" = "Вийти";
+"logout_confirm" = "Підтвердити вихід";
+"logout_confirm_message" = "Ви впевнені, що хочете вийти з поточного облікового запису?";
+"delete_account_confirm" = "Підтвердити видалення облікового запису";
+"delete_account_message" = "Ви впевнені, що хочете видалити обліковий запис %@? Це не можна скасувати, і вам доведеться додавати його знову.";
+"account_detail" = "Деталі облікового запису";
+"verified" = "Підтверджено";
+"unverified" = "Непідтверджено";
+"no_account" = "Не ввійдено";
+"no_account_description" = "Додайте Apple ID, щоб почати";
+"name" = "Ім'я";
+"email" = "Електронна пошта";
+"country" = "Країна/Регіон";
+
+// MARK: - App Icon
+"app_icon_settings" = "Значок програми";
+"default_icon" = "За замовчуванням";
+
+// MARK: - Search
+"search_placeholder" = "Пошук програм, ігор, розробників";
+"search_history" = "Історія пошуку";
+"search_suggestions" = "Пропозиції пошуку";
+"search_results" = "Результати пошуку";
+"clear_history" = "Очистити історію";
+"hot_search" = "Популярні запити";
+"no_results" = "Нічого не знайдено";
+"try_different_keywords" = "Спробуйте інші ключові слова";
+"searching" = "Пошук...";
+
+// MARK: - Version Picker
+"version_picker" = "Вибрати версію";
+"current_version" = "Поточна версія";
+"available_versions" = "Доступні версії";
+"no_versions" = "Немає доступних версій";
+"load_versions_failed" = "Не вдалося завантажити версії";
+"select_version_to_download" = "Виберіть версію для завантаження";
+"version_history" = "Історія версій";
+"release_date" = "Дата випуску";
+"size" = "Розмір";
+"build_number" = "Номер збірки";
+
+// MARK: - App Detail
+"app_detail" = "Деталі програми";
+"get" = "Отримати";
+"icloud_sync" = "Синхронізація iCloud";
+"screenshots" = "Знімки екрана";
+"description" = "Опис";
+"whats_new" = "Що нового";
+"ratings_and_reviews" = "Рейтинги та відгуки";
+"developer" = "Розробник";
+"category" = "Категорія";
+"compatibility" = "Сумісність";
+"privacy" = "Конфіденційність";
+"privacy_policy" = "Політика конфіденційності";
+"user_agreement" = "Угода користувача";
+"rating" = "Рейтинг";
+"no_reviews" = "Немає відгуків";
+"no_reviews_description" = "У цієї програми ще немає відгуків користувачів";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Немає програм TestFlight";
+"install_tf_app" = "Встановити версію TestFlight";
+"testing_status" = "Статус тестування";
+"testing" = "Тестування";
+"expired" = "Термін закінчився";
+"full" = "Повно";
+"test_duration" = "Тривалість тесту";
+"remaining_seats" = "Залишилось місць";
+"redeem_code" = "Код активації";
+"enter_redeem_code" = "Введіть код активації";
+
+// MARK: - Filter & Sort
+"filter" = "Фільтр";
+"sort" = "Сортування";
+"sort_by_name" = "Сортувати за іменем";
+"sort_by_date" = "Сортувати за датою";
+"sort_by_size" = "Сортувати за розміром";
+"sort_by_status" = "Сортувати за статусом";
+"ascending" = "За зростанням";
+"descending" = "За спаданням";
+
+// MARK: - Notification
+"notifications" = "Сповіщення";
+"push_notifications" = "Push-сповіщення";
+"download_complete_notification" = "Сповіщення про завершення завантаження";
+"notification_sound" = "Звук сповіщення";
+"notification_vibrate" = "Вібрація";
+"notification_badge" = "Значок";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Конфіденційність та безпека";
+"clear_cache" = "Очистити кеш";
+"cache_size" = "Розмір кешу";
+"calculating_cache" = "Обчислення...";
+"clear_cache_confirm" = "Підтвердити очищення кешу";
+"clear_cache_message" = "Ви впевнені, що хочете очистити весь кеш? Це не видалить завантажені програми.";
+"cache_cleared" = "Кеш очищено";
+
+// MARK: - Storage
+"storage" = "Сховище";
+"total_storage" = "Загалом";
+"used_storage" = "Використано";
+"available_storage" = "Доступно";
+"app_size" = "Розмір програми";
+"documents_size" = "Розмір документів";
+
+// MARK: - Download Manager
+"download_manager" = "Менеджер завантажень";
+"batch_operations" = "Пакетні операції";
+"select_all" = "Вибрати всі";
+"deselect_all" = "Скасувати вибір усіх";
+"selected_count" = "%@ вибрано";
+
+// MARK: - App Information
+"app_name" = "Назва програми";
+"app_version" = "Версія програми";
+"app_rating" = "Рейтинг програми";
+"app_developer" = "Розробник";
+"app_category" = "Категорія";
+"last_updated" = "Останнє оновлення";
+"language_support" = "Підтримка мов";
+"content_rating" = "Віковий рейтинг";
+
+// MARK: - Account Management
+"account_management" = "Керування обліковими записами";
+"login_status" = "Статус входу";
+"two_factor_auth" = "Двофакторна автентифікація";
+"remember_password" = "Запам'ятати пароль";
+"auto_login" = "Автоматичний вхід";
+"login_expired" = "Термін дії сесії закінчився";
+"please_relogin" = "Будь ласка, увійдіть знову";
+
+// MARK: - Settings More
+"advanced_settings" = "Додаткові налаштування";
+"developer_options" = "Параметри розробника";
+"check_update" = "Перевірити оновлення";
+"new_version_available" = "Доступна нова версія";
+"already_latest_version" = "Вже остання версія";
+"feedback" = "Зворотний зв'язок";
+"rate_app" = "Оцінити програму";
+"share_app" = "Поділитися програмою";
+
+// MARK: - Network
+"network" = "Мережа";
+"network_status" = "Стан мережі";
+"wifi" = "Wi-Fi";
+"cellular" = "Стільниковий зв'язок";
+"no_network" = "Немає з'єднання з мережею";
+"network_error" = "Мережева помилка";
+"network_error_message" = "Не вдалося підключитися до мережі. Перевірте налаштування мережі.";
+"network_speed" = "Швидкість мережі";
+"network_usage" = "Використання даних";
+
+// MARK: - Installation
+"installation" = "Встановлення";
+"installing" = "Встановлення...";
+"install_success" = "Встановлення успішне";
+"install_failed" = "Не вдалося встановити";
+"install_failed_message" = "Не вдалося встановити. Спробуйте ще раз.";
+"uninstall" = "Видалити";
+"uninstall_confirm" = "Підтвердити видалення";
+"uninstall_message" = "Ви впевнені, що хочете видалити цю програму? Всі дані будуть видалені.";
+"ipa_file" = "Файл IPA";
+"ipa_signature" = "Підпис IPA";
+"signed" = "Підписано";
+"unsigned" = "Непідписано";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Запрошення на тест";
+"testflight_build" = "Збірка";
+"testflight_group" = "Тестова група";
+"testflight_tester" = "Тестувальник";
+"testflight_feedback" = "Зворотний зв'язок з тесту";
+"testflight_expired" = "Термін тесту закінчився";
+"testflight_full" = "Тест заповнений";
+"testflight_join" = "Приєднатися до тесту";
+"testflight_leave" = "Покинути тест";
+
+// MARK: - Search More
+"search_filter" = "Фільтр пошуку";
+"search_result_count" = "Знайдено %@ результатів";
+"exact_match" = "Точне співпадіння";
+"fuzzy_match" = "Неточне співпадіння";
+"hot_apps" = "Популярні програми";
+"new_apps" = "Нові програми";
+"recommended_apps" = "Рекомендовані програми";
+"top_charts" = "Топ-чарти";
+
+// MARK: - Status
+"status" = "Статус";
+"status_normal" = "Нормальний";
+"status_abnormal" = "Аномальний";
+"status_pending" = "Очікує";
+"status_processing" = "Обробляється";
+"status_completed" = "Завершено";
+"status_failed" = "Не вдалося";
+"status_cancelled" = "Скасовано";
+"status_expired" = "Термін закінчився";
+"status_active" = "Активний";
+"status_inactive" = "Неактивний";
+"status_idle" = "Вільний";
+"status_busy" = "Зайнятий";
+
+// MARK: - Tips
+"tips" = "Поради";
+"tip_download_speed" = "Швидкість завантаження залежить від вашого з'єднання з мережею";
+"tip_wifi_download" = "Рекомендується завантажувати великі файли через Wi-Fi";
+"tip_storage_space" = "Переконайтеся, що у вас достатньо місця в сховищі";
+"tip_account_security" = "Зберігайте інформацію про обліковий запис у безпеці";
+"dont_show_again" = "Більше не показувати";
+"remind_later" = "Нагадати пізніше";
+"view_details" = "Переглянути деталі";
+"learn_more" = "Дізнатися більше";
+
+// MARK: - Units
+"unit_bytes" = "Б";
+"unit_kilobytes" = "КБ";
+"unit_megabytes" = "МБ";
+"unit_gigabytes" = "ГБ";
+"unit_terabytes" = "ТБ";
+"unit_seconds" = "с";
+"unit_minutes" = "хв";
+"unit_hours" = "год";
+"unit_days" = "дн";
+"unit_weeks" = "тиж";
+"unit_months" = "міс";
+"unit_years" = "р";
+"today" = "Сьогодні";
+"yesterday" = "Вчора";
+"day_before_yesterday" = "Позавчора";
+"just_now" = "Щойно";
+"minutes_ago" = "%@ хв тому";
+"hours_ago" = "%@ год тому";
+"days_ago" = "%@ дн тому";
+
+// MARK: - Actions
+"action_open" = "Відкрити";
+"action_close" = "Закрити";
+"action_view" = "Переглянути";
+"action_edit" = "Редагувати";
+"action_delete" = "Видалити";
+"action_share" = "Поділитися";
+"action_copy" = "Копіювати";
+"action_paste" = "Вставити";
+"action_select" = "Вибрати";
+"action_select_all" = "Вибрати всі";
+"action_deselect" = "Скасувати вибір";
+"action_refresh" = "Оновити";
+"action_reload" = "Перезавантажити";
+"action_scroll_top" = "Прокрутити вгору";
+"action_scroll_bottom" = "Прокрутити вниз";
+"action_favorite" = "Улюблені";
+"action_unfavorite" = "Видалити з улюблених";
+"action_like" = "Подобається";
+"action_unlike" = "Більше не подобається";
+"action_follow" = "Підписатися";
+"action_unfollow" = "Відписатися";
+"action_report" = "Поскаржитися";
+"action_block" = "Заблокувати";
+"action_rename" = "Перейменувати";
+"action_move" = "Перемістити";
+"action_compress" = "Стиснути";
+"action_extract" = "Розпакувати";
+"action_upload" = "Завантажити";
+"action_download" = "Завантажити";
+"action_install" = "Встановити";
+"action_uninstall" = "Видалити";
+"action_update" = "Оновити";
+"action_upgrade" = "Оновити";
+"action_downgrade" = "Понизити версію";
+"action_scan_qr" = "Сканувати QR-код";
+"action_generate_qr" = "Створити QR-код";
+"action_print" = "Друкувати";
+"action_send" = "Надіслати";
+"action_receive" = "Отримати";
+"action_reject" = "Відхилити";
+"action_accept" = "Прийняти";
+"action_declined" = "Відхилено";
+"action_accepted" = "Прийнято";
+
+// MARK: - Theme
+"theme_settings" = "Налаштування теми";
+"light_theme" = "Світла тема";
+"dark_theme" = "Темна тема";
+"system_theme" = "Системна тема";
+"pure_black" = "Чистий чорний";
+"auto_switch" = "Автоматичне перемикання";
+"custom_theme" = "Індивідуальна тема";
+"theme_color" = "Колір теми";
+"background_color" = "Колір фону";
+"text_color" = "Колір тексту";
+"font_size" = "Розмір шрифту";
+"font_style" = "Стиль шрифту";
+
+// MARK: - App Detail More
+"feature_tags" = "Теги функцій";
+"free" = "Отримати";
+"get" = "Отримати";
+"view" = "Переглянути";
+"get_reviews_failed" = "Не вдалося отримати відгуки: %@";
+"x_ratings" = "%@ оцінок";
+"age_rating" = "Віковий рейтинг";
+"x_languages" = "%@ мов";
+"whats_new" = "Що нового";
+"tech_info" = "Технічна інформація";
+"first_release" = "Перший випуск";
+"last_updated" = "Останнє оновлення";
+"requires_ios" = "Потрібно iOS %@ або новішої версії";
+
+// MARK: - Search More
+"search_placeholder" = "Пошук ігор, програм";
+"login" = "Увійти";
+"clear_all" = "Очистити все";
+"x_results_found" = "Знайдено %@ результатів";
+"finding_best_results" = "Пошук найкращих результатів для вас";
+"app_downgrade" = "Пониження версії програми";
+"search_error" = "Помилка пошуку";
+"load_more" = "Завантажити ще...";
+"purchasing" = "Покупка";
+"purchase" = "Купити";
+"please_login_first" = "Увійдіть спочатку, щоб завантажувати програми";
+"loading_versions" = "Завантаження історії версій...";
+"load_failed" = "Не вдалося завантажити";
+"no_versions_desc" = "Для цієї програми немає попередніх версій";
+"x_versions" = "%@ версій";
+"version_x_date" = "Версія %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Увійти";
+"current" = "Поточний";
+"switch" = "Змінити";
+"x_accounts" = "%@ облікових записів";
+"add_new_account" = "Додати новий обліковий запис";
+"account_management" = "Керування обліковими записами";
+"use_account" = "Використати обліковий запис";
+"connection_lost" = "З'єднання втрачено";
+"reconnecting" = "Підключення знову";
+"connected" = "Підключено";
+"apple_id_disconnected" = "З'єднання з Apple ID розірвано. Натисніть, щоб підтвердити знову або увійдіть знову.";
+"apple_id_reconnecting" = "Автоматичне повторне підключення до Apple ID, будь ласка, зачекайте...";
+"apple_id_connected" = "Apple ID підключено. Шукайте та завантажуйте програми як зазвичай.";
+"login_apple_id" = "Увійти за допомогою Apple ID";
+"login_apple_id_desc" = "Завантажуйте та керуйте програмами за допомогою свого Apple ID";
+"login_apple_id_btn" = "Увійти за допомогою Apple ID";
+"view_account_details" = "Переглянути деталі облікового запису";
+"media_purchases" = "Медіа та покупки";
+"media_purchases_header" = "Медіа та покупки";
+"sign_in_apple_id" = "Увійдіть на своєму iPhone";
+"sign_in_apple_id_desc" = "Використовуйте свій Apple ID на цьому iPhone";
+"apple_id" = "Apple ID";
+"name" = "Ім'я";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Ім'я, електронна пошта";
+"account_identifier_header" = "Ідентифікатор облікового запису";
+"country_region" = "Країна/Регіон";
+"region_header" = "Регіон";
+"sign_out" = "Вийти";
+"login_your_account" = "Увійдіть у свій обліковий запис";
+"enter_apple_id" = "Введіть свій Apple ID";
+"password" = "Пароль";
+"enter_password" = "Введіть пароль";
+"two_factor_code" = "Двофакторний код";
+"enter_6digit_code" = "Введіть 6-значний код";
+"check_trusted_device" = "Перевірте довірені пристрої або SMS для отримання коду";
+"verifying" = "Перевірка...";
+"enter_full_credentials" = "Введіть повний Apple ID та пароль";
+"enter_6digit_code_verify" = "Введіть 6-значний код перевірки";
+"wrong_credentials" = "Неправильний Apple ID або пароль. Спробуйте ще раз.";
+"account_locked" = "Ваш Apple ID заблоковано. Спробуйте ще раз пізніше або зверніться до служби підтримки Apple.";
+"network_error_retry" = "Помилка мережевого з'єднання. Перевірте налаштування мережі та спробуйте ще раз.";
+"auth_failed" = "Не вдалося пройти автентифікацію. Перевірте з'єднання з мережею та інформацію про обліковий запис.";
+"invalid_server_response" = "Недійсна відповідь сервера. Спробуйте ще раз пізніше.";
+"unknown_error" = "Невідома помилка. Спробуйте ще раз пізніше.";
+"auth_error" = "Під час автентифікації сталася помилка: %@";
+"check_apple_device_code" = "Перевірте пристрій Apple для отримання коду перевірки";
+"wrong_verification_code" = "Неправильний код перевірки. Спробуйте ще раз.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Недійсний файл IPA";
+"install_failed_with_reason" = "Не вдалося встановити: %@";
+"install_timeout" = "Час очікування встановлення вичерпано";
+"installing_app" = "Встановлення %@";
+"version_x" = "Версія %@";
+"install_starting" = "Початок встановлення...";
+"install_manual_hint" = "Якщо автоматичне встановлення не вдалося, натисніть кнопку нижче для ручного встановлення:";
+"manual_install" = "Встановити вручну";
+"install_success_desc" = "Перевірте головний екран, програма встановлюється...";
+"install_contact_author" = "Зверніться до розробника pxx917144686, якщо виникли проблеми";
+"install_start_failed" = "Не вдалося розпочати встановлення";
+"retry_install" = "Повторити встановлення";
+"view_source_code" = "👉 Переглянути вихідний код";
+"file_size_x" = "Розмір файлу: %@";
+"no_purchase_record" = "Запис про покупку не знайдено, перенаправлення в App Store";
+"file_saved_to" = "Файл збережено в:";
+"preparing" = "Підготовка...";
+"waiting_confirm" = "Очікування підтвердження...";
+"install_completed" = "Встановлення завершено";
+"waiting" = "Очікування...";
+"start_install" = "Почати встановлення";
+"unknown_path" = "Невідомий шлях";
+"share_ipa" = "Поділитися IPA";
+"install_background_hint" = "Програма встановлюється у фоновому режимі. Ви можете повернутися на головний екран, щоб перевірити прогрес.";
+"ipa_not_found" = "Файл IPA не знайдено, завантажте його знову";
+"preparing_install" = "Підготовка до встановлення...";
+"install_in_progress" = "Встановлення вже триває";
+"verifying_package" = "Перевірка пакета...";
+"starting_install_service" = "Запуск служби встановлення...";
+"install_service_timeout" = "Час очікування служби встановлення вичерпано. Спробуйте ще раз.";
+"opening_install_page" = "Відкриття сторінки встановлення...";
+"download_record_file" = "Запис завантаження";
+"delete_file" = "Видалити файл";
+"delete_file_confirm" = "Ви впевнені, що хочете видалити %@? Цю дію не можна скасувати.";
+"delete_success" = "Успішно видалено";
+"delete_success_desc" = "Файл успішно видалено.";
+"no_ipa_found" = "Файлів IPA не знайдено";
+"no_ipa_found_desc" = "Файлів IPA не знайдено в каталозі зберігання програми";
+
+// MARK: - Account Detail
+"basic_info" = "Основна інформація";
+"account_identifier" = "Ідентифікатор облікового запису";
+"country_region" = "Країна/Регіон";
+"password_token" = "Токен пароля";
+"auth_info" = "Інформація про автентифікацію";
+"password_token_hint" = "Токен пароля використовується для автоматичної автентифікації. Не діліться ним з іншими.";
+"delete_this_account" = "Видалити цей обліковий запис";
+"delete_account_confirm_detail" = "Ви впевнені, що хочете видалити обліковий запис %@ з цього пристрою?\n\nУся інформація для входу та файли cookie для цього облікового запису будуть видалені.";
+"dsid" = "DSID";
+"no_value" = "Немає";
+"region_title" = "Регіон";
+
+// MARK: - Appearance More
+"overall_color" = "Колір акценту";
+"quick_select" = "Швидкий вибір";
+"auto" = "Автоматично";
+"unknown" = "Невідомо";

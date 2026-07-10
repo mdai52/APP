@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Postavke";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Preuzimanja";
+"tab_search" = "Pretraživanje";
+
+// MARK: - Common
+"cancel" = "Otkaži";
+"confirm" = "Potvrdi";
+"ok" = "OK";
+"done" = "Gotovo";
+"back" = "Natrag";
+"save" = "Spremi";
+"delete" = "Izbriši";
+"edit" = "Uredi";
+"add" = "Dodaj";
+"close" = "Zatvori";
+"refresh" = "Osvježi";
+"retry" = "Ponovi";
+"loading" = "Učitavanje...";
+"success" = "Uspjeh";
+"failed" = "Neuspjelo";
+"error" = "Greška";
+"warning" = "Upozorenje";
+"info" = "Informacije";
+"search" = "Pretraži";
+"download" = "Preuzmi";
+"install" = "Instaliraj";
+"update" = "Ažuriraj";
+"more" = "Više";
+"all" = "Sve";
+"none" = "Ništa";
+"default" = "Zadano";
+"copy" = "Kopiraj";
+"share" = "Podijeli";
+"export" = "Izvezi";
+"import" = "Uvezi";
+"clear" = "Očisti";
+"reset" = "Resetiraj";
+"continue" = "Nastavi";
+"confirm_delete" = "Potvrdi brisanje";
+"confirm_delete_message" = "Jeste li sigurni da želite ovo izbrisati? Ova se akcija ne može poništiti.";
+"copied" = "Kopirano";
+"copy_failed" = "Kopiranje nije uspjelo";
+"no_data" = "Nema podataka";
+"no_result" = "Nema pronađenih rezultata";
+"try_again" = "Molimo pokušajte ponovno";
+"got_it" = "Razumijem";
+
+// MARK: - Settings
+"settings" = "Postavke";
+"appearance" = "Izgled";
+"theme" = "Tema";
+"color" = "Boja";
+"icon" = "Ikona";
+"language" = "Jezik";
+"general" = "Općenito";
+"about" = "O aplikaciji";
+"version" = "Verzija";
+"version_number" = "Broj verzije";
+"follow_system" = "Zadano sustava";
+"light_mode" = "Svijetli";
+"dark_mode" = "Tamni";
+"accent_color" = "Boja naglaska";
+"app_icon" = "Ikona aplikacije";
+"select_icon" = "Odaberi ikonu";
+"icon_changed_success" = "Ikona je uspješno promijenjena";
+"icon_changed_failed" = "Promjena ikone nije uspjela";
+"language_select" = "Odaberi jezik";
+"language_footer" = "Nakon promjene jezika, aplikaciju je potrebno ponovno pokrenuti kako bi se promjene u potpunosti primijenile.";
+"language_switch" = "Promijeni jezik";
+"language_switch_message" = "Sučelje aplikacije bit će ažurirano odmah nakon promjene jezika. Neke se sistemske komponente možda moraju ponovno pokrenuti.";
+"confirm_switch" = "Potvrdi promjenu";
+"app_icon" = "Ikona aplikacije";
+"icon_default" = "Zadana";
+"icon_author" = "Ikona";
+"icon_love" = "Ljubav";
+"icon_peek" = "Pogledaj";
+"icon_set_success" = "Ikona je uspješno postavljena";
+"system_language" = "Jezik sustava";
+"language_system_settings" = "Promijeni u postavkama sustava";
+"language_system_hint" = "Idite u Postavke → APP → Jezik";
+"language_recommended" = "Preporučeno";
+"lang_chinese_simplified" = "Kineski (pojednostavljeni)";
+"lang_english" = "Engleski";
+"lang_japanese" = "Japanski";
+"lang_korean" = "Korejski";
+"lang_spanish" = "Španjolski";
+"lang_french" = "Francuski";
+"lang_german" = "Njemački";
+"lang_italian" = "Talijanski";
+"lang_portuguese" = "Portugalski";
+"lang_russian" = "Ruski";
+"lang_arabic" = "Arapski";
+"lang_hindi" = "Hindski";
+"lang_thai" = "Tajlandski";
+"lang_vietnamese" = "Vijetnamski";
+"lang_indonesian" = "Indonezijski";
+"lang_malay" = "Malajski";
+"lang_dutch" = "Nizozemski";
+"lang_swedish" = "Švedski";
+"lang_danish" = "Danski";
+"lang_finnish" = "Finski";
+"lang_norwegian" = "Norveški";
+"lang_polish" = "Poljski";
+"lang_czech" = "Češki";
+"lang_hungarian" = "Mađarski";
+"lang_romanian" = "Rumunjski";
+"lang_turkish" = "Turski";
+"lang_ukrainian" = "Ukrajinski";
+"lang_greek" = "Grčki";
+"lang_hebrew" = "Hebrejski";
+"lang_slovak" = "Slovački";
+"lang_croatian" = "Hrvatski";
+"lang_catalan" = "Katalonski";
+
+// MARK: - Download
+"download_title" = "Preuzimanja";
+"downloading" = "Preuzimanje";
+"download_paused" = "Pauzirano";
+"download_completed" = "Dovršeno";
+"download_failed" = "Preuzimanje nije uspjelo";
+"download_cancelled" = "Otkazano";
+"download_waiting" = "Čekanje";
+"download_speed" = "Brzina preuzimanja";
+"download_progress" = "Napredak preuzimanja";
+"download_size" = "Veličina preuzimanja";
+"download_time" = "Vrijeme preuzimanja";
+"pause_download" = "Pauziraj preuzimanje";
+"resume_download" = "Nastavi preuzimanje";
+"cancel_download" = "Otkaži preuzimanje";
+"retry_download" = "Ponovi preuzimanje";
+"delete_download" = "Izbriši preuzimanje";
+"all_pause" = "Pauziraj sve";
+"all_start" = "Pokreni sve";
+"clear_completed" = "Očisti dovršeno";
+"download_queue" = "Red preuzimanja";
+"download_history" = "Povijest preuzimanja";
+"no_downloads" = "Nema preuzimanja";
+"download_settings" = "Postavke preuzimanja";
+"wifi_only_download" = "Preuzimanje samo putem Wi-Fi mreže";
+"max_concurrent_downloads" = "Najveći broj istovremenih preuzimanja";
+"download_path" = "Put preuzimanja";
+
+// MARK: - Account
+"account" = "Račun";
+"apple_id" = "Apple ID";
+"add_account" = "Dodaj Apple ID";
+"switch_account" = "Prebaci račun";
+"current_account" = "Trenutni račun";
+"all_accounts" = "Svi računi";
+"account_info" = "Podaci o računu";
+"region" = "Regija";
+"delete_account" = "Izbriši račun";
+"logout" = "Odjavi se";
+"logout_confirm" = "Potvrdi odjavu";
+"logout_confirm_message" = "Jeste li sigurni da se želite odjaviti s trenutnog računa?";
+"delete_account_confirm" = "Potvrdi brisanje računa";
+"delete_account_message" = "Jeste li sigurni da želite izbrisati račun %@? Ovo se ne može poništiti i morat ćete ga ponovno dodati.";
+"account_detail" = "Pojedinosti o računu";
+"verified" = "Potvrđeno";
+"unverified" = "Nije potvrđeno";
+"no_account" = "Niste prijavljeni";
+"no_account_description" = "Dodajte Apple ID kako biste započeli";
+"name" = "Ime";
+"email" = "E-pošta";
+"country" = "Zemlja/regija";
+
+// MARK: - App Icon
+"app_icon_settings" = "Ikona aplikacije";
+"default_icon" = "Zadana";
+
+// MARK: - Search
+"search_placeholder" = "Pretraži aplikacije, igre, programere";
+"search_history" = "Povijest pretraživanja";
+"search_suggestions" = "Prijedlozi pretraživanja";
+"search_results" = "Rezultati pretraživanja";
+"clear_history" = "Očisti povijest";
+"hot_search" = "Popularno";
+"no_results" = "Nema pronađenih rezultata";
+"try_different_keywords" = "Pokušajte s drugim ključnim riječima";
+"searching" = "Pretraživanje...";
+
+// MARK: - Version Picker
+"version_picker" = "Odaberi verziju";
+"current_version" = "Trenutna verzija";
+"available_versions" = "Dostupne verzije";
+"no_versions" = "Nema dostupnih verzija";
+"load_versions_failed" = "Učitavanje verzija nije uspjelo";
+"select_version_to_download" = "Odaberi verziju za preuzimanje";
+"version_history" = "Povijest verzija";
+"release_date" = "Datum izdanja";
+"size" = "Veličina";
+"build_number" = "Broj izrade";
+
+// MARK: - App Detail
+"app_detail" = "Pojedinosti o aplikaciji";
+"get" = "Preuzmi";
+"icloud_sync" = "iCloud sinkronizacija";
+"screenshots" = "Snimke zaslona";
+"description" = "Opis";
+"whats_new" = "Što je novo";
+"ratings_and_reviews" = "Ocjene i recenzije";
+"developer" = "Programer";
+"category" = "Kategorija";
+"compatibility" = "Kompatibilnost";
+"privacy" = "Privatnost";
+"privacy_policy" = "Politika privatnosti";
+"user_agreement" = "Korisnički ugovor";
+"rating" = "Ocjena";
+"no_reviews" = "Nema recenzija";
+"no_reviews_description" = "Ova aplikacija još nema korisničkih recenzija";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Nema TestFlight aplikacija";
+"install_tf_app" = "Instaliraj TestFlight verziju";
+"testing_status" = "Status testiranja";
+"testing" = "Testiranje";
+"expired" = "Isteklo";
+"full" = "Puno";
+"test_duration" = "Trajanje testa";
+"remaining_seats" = "Preostala mjesta";
+"redeem_code" = "Unesi kod";
+"enter_redeem_code" = "Unesite kod za iskorak";
+
+// MARK: - Filter & Sort
+"filter" = "Filter";
+"sort" = "Sortiraj";
+"sort_by_name" = "Sortiraj po imenu";
+"sort_by_date" = "Sortiraj po datumu";
+"sort_by_size" = "Sortiraj po veličini";
+"sort_by_status" = "Sortiraj po statusu";
+"ascending" = "Uzlazno";
+"descending" = "Silazno";
+
+// MARK: - Notification
+"notifications" = "Obavijesti";
+"push_notifications" = "Push obavijesti";
+"download_complete_notification" = "Obavijest o dovršenom preuzimanju";
+"notification_sound" = "Zvuk obavijesti";
+"notification_vibrate" = "Vibracija";
+"notification_badge" = "Značka";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Privatnost i sigurnost";
+"clear_cache" = "Očisti predmemoriju";
+"cache_size" = "Veličina predmemorije";
+"calculating_cache" = "Izračun...";
+"clear_cache_confirm" = "Potvrdi čišćenje predmemorije";
+"clear_cache_message" = "Jeste li sigurni da želite očistiti cijelu predmemoriju? Ovo neće izbrisati preuzete aplikacije.";
+"cache_cleared" = "Predmemorija je očišćena";
+
+// MARK: - Storage
+"storage" = "Skladište";
+"total_storage" = "Ukupno";
+"used_storage" = "Iskorišteno";
+"available_storage" = "Dostupno";
+"app_size" = "Veličina aplikacije";
+"documents_size" = "Veličina dokumenata";
+
+// MARK: - Download Manager
+"download_manager" = "Upravitelj preuzimanja";
+"batch_operations" = "Grupne operacije";
+"select_all" = "Odaberi sve";
+"deselect_all" = "Poništi odabir svega";
+"selected_count" = "Odabrano: %@";
+
+// MARK: - App Information
+"app_name" = "Naziv aplikacije";
+"app_version" = "Verzija aplikacije";
+"app_rating" = "Ocjena aplikacije";
+"app_developer" = "Programer";
+"app_category" = "Kategorija";
+"last_updated" = "Zadnje ažurirano";
+"language_support" = "Podrška za jezike";
+"content_rating" = "Ocjena sadržaja";
+
+// MARK: - Account Management
+"account_management" = "Upravljanje računima";
+"login_status" = "Status prijave";
+"two_factor_auth" = "Dvofaktorska autentikacija";
+"remember_password" = "Zapamti lozinku";
+"auto_login" = "Automatska prijava";
+"login_expired" = "Prijava je istekla";
+"please_relogin" = "Prijavite se ponovno";
+
+// MARK: - Settings More
+"advanced_settings" = "Napredne postavke";
+"developer_options" = "Opcije za programere";
+"check_update" = "Provjeri ažuriranja";
+"new_version_available" = "Dostupna je nova verzija";
+"already_latest_version" = "Već imate najnoviju verziju";
+"feedback" = "Povratne informacije";
+"rate_app" = "Ocjeni aplikaciju";
+"share_app" = "Podijeli aplikaciju";
+
+// MARK: - Network
+"network" = "Mreža";
+"network_status" = "Stanje mreže";
+"wifi" = "Wi-Fi";
+"cellular" = "Mobilna mreža";
+"no_network" = "Nema mrežne veze";
+"network_error" = "Mrežna greška";
+"network_error_message" = "Mrežna veza nije uspjela. Provjerite postavke mreže.";
+"network_speed" = "Brzina mreže";
+"network_usage" = "Potrošnja podataka";
+
+// MARK: - Installation
+"installation" = "Instalacija";
+"installing" = "Instalacija...";
+"install_success" = "Instalacija je uspjela";
+"install_failed" = "Instalacija nije uspjela";
+"install_failed_message" = "Instalacija nije uspjela. Pokušajte ponovno.";
+"uninstall" = "Deinstaliraj";
+"uninstall_confirm" = "Potvrdi deinstalaciju";
+"uninstall_message" = "Jeste li sigurni da želite deinstalirati ovu aplikaciju? Svi podaci bit će izbrisani.";
+"ipa_file" = "IPA datoteka";
+"ipa_signature" = "IPA potpis";
+"signed" = "Potpisano";
+"unsigned" = "Nije potpisano";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Pozivnica za test";
+"testflight_build" = "Izrada";
+"testflight_group" = "Testna grupa";
+"testflight_tester" = "Tester";
+"testflight_feedback" = "Povratne informacije o testu";
+"testflight_expired" = "Test je istekao";
+"testflight_full" = "Test je pun";
+"testflight_join" = "Pridruži se testu";
+"testflight_leave" = "Napusti test";
+
+// MARK: - Search More
+"search_filter" = "Filter pretraživanja";
+"search_result_count" = "Pronađeno %@ rezultata";
+"exact_match" = "Točno podudaranje";
+"fuzzy_match" = "Netočno podudaranje";
+"hot_apps" = "Popularne aplikacije";
+"new_apps" = "Nove aplikacije";
+"recommended_apps" = "Preporučene aplikacije";
+"top_charts" = "Najbolje ljestvice";
+
+// MARK: - Status
+"status" = "Status";
+"status_normal" = "Normalno";
+"status_abnormal" = "Nenormalno";
+"status_pending" = "Na čekanju";
+"status_processing" = "Obrada";
+"status_completed" = "Dovršeno";
+"status_failed" = "Neuspjelo";
+"status_cancelled" = "Otkazano";
+"status_expired" = "Isteklo";
+"status_active" = "Aktivno";
+"status_inactive" = "Neaktivno";
+"status_idle" = "Neaktivno";
+"status_busy" = "Zauzeto";
+
+// MARK: - Tips
+"tips" = "Savjeti";
+"tip_download_speed" = "Brzina preuzimanja ovisi o vašoj mrežnoj vezi";
+"tip_wifi_download" = "Preporučuje se preuzimanje velikih datoteka putem Wi-Fi mreže";
+"tip_storage_space" = "Pobrinite se da imate dovoljno prostora na skladištu";
+"tip_account_security" = "Čuvajte podatke o računu sigurnima";
+"dont_show_again" = "Ne prikazuj više";
+"remind_later" = "Podsjeti me kasnije";
+"view_details" = "Prikaži pojedinosti";
+"learn_more" = "Saznajte više";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "s";
+"unit_minutes" = "min";
+"unit_hours" = "sat";
+"unit_days" = "dan";
+"unit_weeks" = "tjed";
+"unit_months" = "mjes";
+"unit_years" = "god";
+"today" = "Danas";
+"yesterday" = "Jučer";
+"day_before_yesterday" = "Prekjučer";
+"just_now" = "Upravo sad";
+"minutes_ago" = "prije %@ min";
+"hours_ago" = "prije %@ sat";
+"days_ago" = "prije %@ dan";
+
+// MARK: - Actions
+"action_open" = "Otvori";
+"action_close" = "Zatvori";
+"action_view" = "Prikaži";
+"action_edit" = "Uredi";
+"action_delete" = "Izbriši";
+"action_share" = "Podijeli";
+"action_copy" = "Kopiraj";
+"action_paste" = "Zalijepi";
+"action_select" = "Odaberi";
+"action_select_all" = "Odaberi sve";
+"action_deselect" = "Poništi odabir";
+"action_refresh" = "Osvježi";
+"action_reload" = "Ponovno učitaj";
+"action_scroll_top" = "Pomakni se na vrh";
+"action_scroll_bottom" = "Pomakni se na dno";
+"action_favorite" = "Dodaj u omiljene";
+"action_unfavorite" = "Ukloni iz omiljenih";
+"action_like" = "Sviđa mi se";
+"action_unlike" = "Ne sviđa mi se";
+"action_follow" = "Prati";
+"action_unfollow" = "Ne prati";
+"action_report" = "Prijavi";
+"action_block" = "Blokiraj";
+"action_rename" = "Preimenuj";
+"action_move" = "Premjesti";
+"action_compress" = "Komprimiraj";
+"action_extract" = "Raspakiraj";
+"action_upload" = "Učitaj";
+"action_download" = "Preuzmi";
+"action_install" = "Instaliraj";
+"action_uninstall" = "Deinstaliraj";
+"action_update" = "Ažuriraj";
+"action_upgrade" = "Nadogradi";
+"action_downgrade" = "Ponisti nadogradnju";
+"action_scan_qr" = "Skeniraj QR kod";
+"action_generate_qr" = "Generiraj QR kod";
+"action_print" = "Ispiši";
+"action_send" = "Pošalji";
+"action_receive" = "Primi";
+"action_reject" = "Odbij";
+"action_accept" = "Prihvati";
+"action_declined" = "Odbijeno";
+"action_accepted" = "Prihvaćeno";
+
+// MARK: - Theme
+"theme_settings" = "Postavke teme";
+"light_theme" = "Svijetla tema";
+"dark_theme" = "Tamna tema";
+"system_theme" = "Sistemska tema";
+"pure_black" = "Čista crna";
+"auto_switch" = "Automatsko prebacivanje";
+"custom_theme" = "Prilagođena tema";
+"theme_color" = "Boja teme";
+"background_color" = "Boja pozadine";
+"text_color" = "Boja teksta";
+"font_size" = "Veličina fonta";
+"font_style" = "Stil fonta";
+
+// MARK: - App Detail More
+"feature_tags" = "Oznake značajki";
+"free" = "Preuzmi";
+"get" = "Preuzmi";
+"view" = "Prikaži";
+"get_reviews_failed" = "Dohvaćanje recenzija nije uspjelo: %@";
+"x_ratings" = "%@ ocjena";
+"age_rating" = "Dobna ocjena";
+"x_languages" = "%@ jezika";
+"whats_new" = "Što je novo";
+"tech_info" = "Tehnički podaci";
+"first_release" = "Prvo izdanje";
+"last_updated" = "Zadnje ažurirano";
+"requires_ios" = "Zahtijeva iOS %@ ili noviji";
+
+// MARK: - Search More
+"search_placeholder" = "Pretraži igre, aplikacije";
+"login" = "Prijavi se";
+"clear_all" = "Očisti sve";
+"x_results_found" = "Pronađeno %@ rezultata";
+"finding_best_results" = "Pronalazimo najbolje rezultate za vas";
+"app_downgrade" = "Poništavanje nadogradnje aplikacije";
+"search_error" = "Greška pretraživanja";
+"load_more" = "Učitaj više...";
+"purchasing" = "Kupovina";
+"purchase" = "Kupi";
+"please_login_first" = "Prijavite se prvo kako biste mogli preuzimati aplikacije";
+"loading_versions" = "Učitavanje povijesti verzija...";
+"load_failed" = "Učitavanje nije uspjelo";
+"no_versions_desc" = "Za ovu aplikaciju nema dostupnih prethodnih verzija";
+"x_versions" = "%@ verzija";
+"version_x_date" = "Verzija %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Prijavi se";
+"current" = "Trenutni";
+"switch" = "Prebaci";
+"x_accounts" = "%@ računa";
+"add_new_account" = "Dodaj novi račun";
+"account_management" = "Upravljanje računima";
+"use_account" = "Koristi račun";
+"connection_lost" = "Veza je prekinuta";
+"reconnecting" = "Ponovno spajanje";
+"connected" = "Povezano";
+"apple_id_disconnected" = "Apple ID je odspojen. Dodirnite za ponovnu provjeru ili se ponovno prijavite.";
+"apple_id_reconnecting" = "Automatsko ponovno spajanje na Apple ID, pričekajte...";
+"apple_id_connected" = "Apple ID je povezan. Normalno pretražujte i preuzimajte aplikacije.";
+"login_apple_id" = "Prijavite se pomoću Apple ID-a";
+"login_apple_id_desc" = "Preuzimajte i upravljajte aplikacijama pomoću svog Apple ID-a";
+"login_apple_id_btn" = "Prijavite se pomoću Apple ID-a";
+"view_account_details" = "Prikaži pojedinosti o računu";
+"media_purchases" = "Mediji i kupnje";
+"media_purchases_header" = "Mediji i kupnje";
+"sign_in_apple_id" = "Prijavite se na svom iPhoneu";
+"sign_in_apple_id_desc" = "Koristite svoj Apple ID na ovom iPhoneu";
+"apple_id" = "Apple ID";
+"name" = "Ime";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Ime, e-pošta";
+"account_identifier_header" = "Identifikator računa";
+"country_region" = "Zemlja/regija";
+"region_header" = "Regija";
+"sign_out" = "Odjavi se";
+"login_your_account" = "Prijavite se u svoj račun";
+"enter_apple_id" = "Unesite svoj Apple ID";
+"password" = "Lozinka";
+"enter_password" = "Unesite svoju lozinku";
+"two_factor_code" = "Dvofaktorski kod";
+"enter_6digit_code" = "Unesite 6-znamenkasti kod";
+"check_trusted_device" = "Provjerite svoje pouzdane uređaje ili poruke SMS za kod";
+"verifying" = "Provjera...";
+"enter_full_credentials" = "Unesite svoje puni Apple ID i lozinku";
+"enter_6digit_code_verify" = "Unesite 6-znamenkasti provjerni kod";
+"wrong_credentials" = "Apple ID ili lozinka su netočni. Pokušajte ponovno.";
+"account_locked" = "Vaš Apple ID je zaključan. Pokušajte ponovno kasnije ili obratite se podršci Apple.";
+"network_error_retry" = "Greška mrežne veze. Provjerite postavke mreže i pokušajte ponovno.";
+"auth_failed" = "Autentikacija nije uspjela. Provjerite svoju mrežnu vezu i podatke o računu.";
+"invalid_server_response" = "Neispravan odgovor poslužitelja. Pokušajte ponovno kasnije.";
+"unknown_error" = "Nepoznata greška. Pokušajte ponovno kasnije.";
+"auth_error" = "Dogodila se greška tijekom autentikacije: %@";
+"check_apple_device_code" = "Provjerite svoj Apple uređaj za provjerni kod";
+"wrong_verification_code" = "Netocan provjerni kod. Pokušajte ponovno.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Neispravna IPA datoteka";
+"install_failed_with_reason" = "Instalacija nije uspjela: %@";
+"install_timeout" = "Vrijeme isteka instalacije";
+"installing_app" = "Instalacija %@";
+"version_x" = "Verzija %@";
+"install_starting" = "Pokretanje instalacije...";
+"install_manual_hint" = "Ako automatska instalacija ne uspije, dodirnite gumb ispod za ručnu instalaciju:";
+"manual_install" = "Ručna instalacija";
+"install_success_desc" = "Pogledajte svoj početni zaslon, aplikacija se instalira...";
+"install_contact_author" = "U slučaju problema kontaktirajte programera pxx917144686";
+"install_start_failed" = "Instalaciju nije uspjelo pokrenuti";
+"retry_install" = "Ponovi instalaciju";
+"view_source_code" = "👉 Prikaži izvorni kod";
+"file_size_x" = "Veličina datoteke: %@";
+"no_purchase_record" = "Nema zapisa o kupnji, preusmjeravanje u App Store";
+"file_saved_to" = "Datoteka spremljena u:";
+"preparing" = "Priprema...";
+"waiting_confirm" = "Čekanje na potvrdu...";
+"install_completed" = "Instalacija je dovršena";
+"waiting" = "Čekanje...";
+"start_install" = "Pokreni instalaciju";
+"unknown_path" = "Nepoznata putanja";
+"share_ipa" = "Podijeli IPA";
+"install_background_hint" = "Aplikacija se instalira u pozadini. Možete se vratiti na početni zaslon i provjeriti napredak.";
+"ipa_not_found" = "IPA datoteka nije pronađena, preuzmite je ponovno";
+"preparing_install" = "Priprema instalacije...";
+"install_in_progress" = "Instalacija je već u tijeku";
+"verifying_package" = "Provjera paketa...";
+"starting_install_service" = "Pokretanje usluge instalacije...";
+"install_service_timeout" = "Vrijeme isteka usluge instalacije. Pokušajte ponovno.";
+"opening_install_page" = "Otvaranje stranice za instalaciju...";
+"download_record_file" = "Zapis o preuzimanju";
+"delete_file" = "Izbriši datoteku";
+"delete_file_confirm" = "Jeste li sigurni da želite izbrisati %@? Ova se akcija ne može poništiti.";
+"delete_success" = "Uspješno izbrisano";
+"delete_success_desc" = "Datoteka je uspješno izbrisana.";
+"no_ipa_found" = "Nema pronađenih IPA datoteka";
+"no_ipa_found_desc" = "Nema IPA datoteka u mapi skladišta aplikacije";
+
+// MARK: - Account Detail
+"basic_info" = "Osnovni podaci";
+"account_identifier" = "Identifikator računa";
+"country_region" = "Zemlja/regija";
+"password_token" = "Token lozinke";
+"auth_info" = "Podaci o autentikaciji";
+"password_token_hint" = "Token lozinke koristi se za automatsku autentikaciju. Nemojte ga dijeliti s drugima.";
+"delete_this_account" = "Izbriši ovaj račun";
+"delete_account_confirm_detail" = "Jeste li sigurni da želite izbrisati račun %@ s ovog uređaja?\n\nSvi podaci za prijavu i kolačići za ovaj račun bit će uklonjeni.";
+"dsid" = "DSID";
+"no_value" = "Nema";
+"region_title" = "Regija";
+
+// MARK: - Appearance More
+"overall_color" = "Boja naglaska";
+"quick_select" = "Brzi odabir";
+"auto" = "Auto";
+"unknown" = "Nepoznato";

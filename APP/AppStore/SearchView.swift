@@ -127,7 +127,7 @@ struct EnhancedAppCard: SwiftUI.View {
 
     private var featuresSection: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("功能标签")
+            Text("feature_tags".localized)
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.primary)
 
@@ -228,7 +228,7 @@ struct EnhancedAppCard: SwiftUI.View {
             } else {
 
                 Button(action: onGetAction) {
-                    Text(app.formattedPrice == "免费" || app.price == 0 ? "获取" : (app.formattedPrice ?? "查看"))
+                    Text(app.formattedPrice == "free".localized || app.price == 0 ? "get".localized : (app.formattedPrice ?? "view".localized))
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundColor(.white)
                         .padding(EdgeInsets(top: 8, leading: 20, bottom: 8, trailing: 20))
@@ -404,7 +404,7 @@ struct AppReviewsView: SwiftUI.View {
                     .foregroundColor(.red)
                     .padding()
             } else if reviews.isEmpty {
-                EmptyStateView(message: "暂无评论", imageName: "star.fill")
+                EmptyStateView(message: "no_reviews".localized, imageName: "star.fill")
             } else {
                 List(reviews) { review in
                     ReviewCard(review: review)
@@ -443,7 +443,7 @@ struct AppReviewsView: SwiftUI.View {
                     }
                 }
             } catch {
-                self.errorMessage = "获取评论失败: \(error.localizedDescription)"
+                self.errorMessage = String(format: "get_reviews_failed".localized, error.localizedDescription)
                 print("评论获取错误: \(error)")
             }
             self.isLoading = false
@@ -484,7 +484,7 @@ struct ReviewCard: SwiftUI.View {
                 .lineLimit(3)
 
             HStack {
-                Text("版本 \(review.version)")
+                Text(String(format: "version_x".localized, review.version))
                     .font(.caption)
                     .foregroundColor(.secondary)
                 Spacer()
@@ -634,7 +634,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
 
     private func screenshotsSection(_ screenshots: [String]) -> some SwiftUI.View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("预览")
+            Text("screenshots".localized)
                 .font(.system(size: 20, weight: .bold))
 
             ScrollView(.horizontal, showsIndicators: false) {
@@ -664,7 +664,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
 
     private var ratingsSection: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("评分与评论")
+            Text("ratings_and_reviews".localized)
                 .font(.system(size: 20, weight: .bold))
 
             HStack(spacing: 40) {
@@ -682,7 +682,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
                     }
 
                     if let count = app.userRatingCount {
-                        Text("\(formatNumber(count)) 个评分")
+                        Text(String(format: "x_ratings".localized, formatNumber(count)))
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -721,7 +721,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
 
     private func descriptionSection(_ description: String) -> some SwiftUI.View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("描述")
+            Text("description".localized)
                 .font(.system(size: 20, weight: .bold))
 
             Text(description)
@@ -733,40 +733,40 @@ struct EnhancedAppDetailView: SwiftUI.View {
 
     private var informationSection: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("信息")
+            Text("info".localized)
                 .font(.system(size: 20, weight: .bold))
 
             VStack(spacing: 12) {
                 if let seller = app.sellerName {
-                    infoRow(title: "开发者", value: seller)
+                    infoRow(title: "developer".localized, value: seller)
                 }
 
                 if let size = app.fileSizeBytes, !size.isEmpty {
-                    infoRow(title: "大小", value: formatFileSize(size))
+                    infoRow(title: "size".localized, value: formatFileSize(size))
                 }
 
                 if let category = app.primaryGenreName {
-                    infoRow(title: "类别", value: category)
+                    infoRow(title: "category".localized, value: category)
                 }
 
                 if let genres = app.genres, !genres.isEmpty {
-                    infoRow(title: "分类", value: genres.joined(separator: ", "))
+                    infoRow(title: "category".localized, value: genres.joined(separator: ", "))
                 }
 
                 if !app.version.isEmpty {
-                    infoRow(title: "当前版本", value: app.version)
+                    infoRow(title: "current_version".localized, value: app.version)
                 }
 
                 if let minOS = app.minimumOsVersion, !minOS.isEmpty {
-                    infoRow(title: "兼容性", value: "需要 iOS \(minOS) 或更高版本")
+                    infoRow(title: "compatibility".localized, value: String(format: "requires_ios".localized, minOS))
                 }
 
                 if let rating = app.contentAdvisoryRating, !rating.isEmpty {
-                    infoRow(title: "年龄分级", value: rating)
+                    infoRow(title: "age_rating".localized, value: rating)
                 }
 
                 if let languages = app.languageCodesISO2A, !languages.isEmpty {
-                    infoRow(title: "语言", value: "\(languages.count) 种语言")
+                    infoRow(title: "language".localized, value: String(format: "x_languages".localized, String(languages.count)))
                 }
             }
         }
@@ -774,12 +774,12 @@ struct EnhancedAppDetailView: SwiftUI.View {
 
     private func updateNotesSection(_ notes: String) -> some SwiftUI.View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("更新信息")
+            Text("whats_new".localized)
                 .font(.system(size: 20, weight: .bold))
 
             VStack(alignment: .leading, spacing: 8) {
                 if !app.version.isEmpty {
-                    Text("版本 \(app.version)")
+                    Text(String(format: "version_x".localized, app.version))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -794,7 +794,7 @@ struct EnhancedAppDetailView: SwiftUI.View {
 
     private var technicalInfoSection: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("技术信息")
+            Text("tech_info".localized)
                 .font(.system(size: 20, weight: .bold))
 
             VStack(spacing: 12) {
@@ -802,11 +802,11 @@ struct EnhancedAppDetailView: SwiftUI.View {
                 infoRow(title: "Track ID", value: String(app.trackId))
 
                 if let releaseDate = app.releaseDate, !releaseDate.isEmpty {
-                    infoRow(title: "首次发布", value: formatReleaseDate(releaseDate))
+                    infoRow(title: "first_release".localized, value: formatReleaseDate(releaseDate))
                 }
 
                 if let updateDate = app.currentVersionReleaseDate, !updateDate.isEmpty {
-                    infoRow(title: "最后更新", value: formatReleaseDate(updateDate))
+                    infoRow(title: "last_updated".localized, value: formatReleaseDate(updateDate))
                 }
             }
         }
@@ -859,12 +859,12 @@ struct EnhancedAppDetailView: SwiftUI.View {
     var buttonTitle: String {
         if let fp = app.formattedPrice {
             let lower = fp.lowercased()
-            if lower.contains("free") || fp == "免费" || app.price == 0 {
-                return "获取"
+            if lower.contains("free") || fp == "free".localized || app.price == 0 {
+                return "get".localized
             }
             return fp
         }
-        return "获取"
+        return "get".localized
     }
 }
 
@@ -1135,7 +1135,7 @@ struct SearchView: SwiftUI.View {
                 Image(systemName: "magnifyingglass")
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(.secondary)
-                TextField("游戏、App", text: $searchKey)
+                TextField("search_placeholder".localized, text: $searchKey)
                     .font(.body)
                     .focused($searchKeyFocused)
                     .onChange(of: searchKey) { newValue in
@@ -1219,7 +1219,7 @@ struct SearchView: SwiftUI.View {
                 Button(action: {
                     showAccountSheet = true
                 }) {
-                    AccountAvatarButton(size: 36)
+                    AccountAvatarButton(size: 36, isEditable: false)
                         .environmentObject(appStore)
                         .environmentObject(themeManager)
                 }
@@ -1271,7 +1271,7 @@ struct SearchView: SwiftUI.View {
                         HStack(spacing: 8) {
                             Image(systemName: "rectangle.portrait.and.arrow.right")
                                 .font(.caption)
-                            Text("登出")
+                            Text("logout".localized)
                                 .font(.caption)
                         }
                         .foregroundColor(.secondary)
@@ -1311,7 +1311,7 @@ struct SearchView: SwiftUI.View {
                         HStack(spacing: 8) {
                             Image(systemName: "person.crop.circle.fill.badge.plus")
                                 .font(.caption)
-                            Text("登录")
+                            Text("login".localized)
                                 .font(.caption)
                         }
                         .foregroundColor(.white)
@@ -1347,7 +1347,7 @@ struct SearchView: SwiftUI.View {
     var searchHistorySection: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Label("最近搜索", systemImage: "clock.arrow.circlepath")
+                Label("search_history".localized, systemImage: "clock.arrow.circlepath")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 Spacer()
@@ -1356,7 +1356,7 @@ struct SearchView: SwiftUI.View {
                         clearSearchHistory()
                     }
                 }) {
-                    Text("清除全部")
+                    Text("clear_all".localized)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -1411,10 +1411,10 @@ struct SearchView: SwiftUI.View {
             HStack {
                 Image(systemName: "lightbulb.fill")
                     .font(.system(size: 16, weight: .medium))
-                Text("搜索建议")
+                Text("search_suggestions".localized)
                     .font(.title3)
                 Spacer()
-                Button("关闭") {
+                Button("close".localized) {
                     withAnimation(.easeInOut(duration: 0.2)) {
                         showSearchSuggestions = false
                     }
@@ -1477,7 +1477,7 @@ struct SearchView: SwiftUI.View {
 
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("找到 \(searchResult.count) 个结果")
+                        Text(String(format: "x_results_found".localized, String(searchResult.count)))
                             .font(.title2)
                             .foregroundColor(.primary)
                     }
@@ -1524,10 +1524,10 @@ struct SearchView: SwiftUI.View {
                     )
             }
             VStack(spacing: 8) {
-                Text("正在搜索...")
+                Text("searching".localized)
                     .font(.title2)
                     .foregroundColor(.primary)
-                Text("为您寻找最佳结果")
+                Text("finding_best_results".localized)
                     .font(.body)
                     .foregroundColor(.secondary)
             }
@@ -1551,7 +1551,7 @@ struct SearchView: SwiftUI.View {
                     value: animateCards
                 )
             VStack(spacing: 8) {
-                Text("APP降级")
+                Text("app_downgrade".localized)
                     .font(.title)
                     .foregroundColor(.primary)
                     .font(.body)
@@ -1562,7 +1562,7 @@ struct SearchView: SwiftUI.View {
 
             if !searchHistory.isEmpty {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("搜索历史")
+                    Text("search_history".localized)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     HStack(spacing: 8) {
@@ -1626,7 +1626,7 @@ struct SearchView: SwiftUI.View {
                     .foregroundColor(.red.opacity(0.8))
             }
             VStack(spacing: 8) {
-                Text("搜索出现问题")
+                Text("search_error".localized)
                     .font(.title)
                     .foregroundColor(.primary)
                 Text(error)
@@ -1645,7 +1645,7 @@ struct SearchView: SwiftUI.View {
                 HStack(spacing: 8) {
                     Image(systemName: "arrow.clockwise")
                         .font(.system(size: 16, weight: .medium))
-                    Text("重试")
+                    Text("retry".localized)
                         .font(.subheadline)
                 }
                 .foregroundColor(.white)
@@ -1688,7 +1688,7 @@ struct SearchView: SwiftUI.View {
                 HStack(spacing: 8) {
                     ProgressView()
                         .scaleEffect(0.8)
-                    Text("加载更多...")
+                    Text("load_more".localized)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -1937,7 +1937,7 @@ struct SearchView: SwiftUI.View {
                     HStack(spacing: 6) {
                         let loading = (purchasingTrackId == (item.trackId))
                         if loading { ProgressView().scaleEffect(0.7) }
-                        Text(loading ? "购买中" : "购买")
+                        Text(loading ? "purchasing".localized : "purchase".localized)
                             .font(.system(size: 12, weight: .semibold))
                     }
                     .padding(.horizontal, 10)
@@ -1947,8 +1947,8 @@ struct SearchView: SwiftUI.View {
                 }
                 .disabled(purchasingTrackId != nil && purchasingTrackId != item.trackId)
                 .buttonStyle(.plain)
-                .alert("提示", isPresented: $showPurchaseAlert) {
-                    Button("好的", role: .cancel) {}
+                .alert("tips".localized, isPresented: $showPurchaseAlert) {
+                    Button("got_it".localized, role: .cancel) {}
                 } message: {
                     Text(purchaseAlertText)
                 }
@@ -1958,7 +1958,7 @@ struct SearchView: SwiftUI.View {
 
     func purchaseFreeAppIfNeeded(item: iTunesSearchResult) async {
         guard let account = appStore.selectedAccount else {
-            purchaseAlertText = "请先登录账号再获取app"
+            purchaseAlertText = "please_login_first".localized
             showPurchaseAlert = true
             return
         }
@@ -2092,7 +2092,7 @@ struct SearchView: SwiftUI.View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("返回") {
+                    Button("back".localized) {
                         showVersionPicker = false
                     }
                     .foregroundColor(themeManager.accentColor)
@@ -2106,7 +2106,7 @@ struct SearchView: SwiftUI.View {
         VStack(spacing: 24) {
             ProgressView()
                 .scaleEffect(1.2)
-            Text("正在加载历史版本...")
+            Text("loading_versions".localized)
                 .font(.body)
                 .foregroundColor(.secondary)
         }
@@ -2117,13 +2117,13 @@ struct SearchView: SwiftUI.View {
             Image(systemName: "exclamationmark.triangle")
                 .font(.system(size: 48))
                 .foregroundColor(.red)
-            Text("加载失败")
+            Text("load_failed".localized)
                 .font(.system(size: 22, weight: .semibold))
             Text(error)
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
-            Button("重试") {
+            Button("retry".localized) {
                 if let app = selectedApp {
                     loadVersionsForApp(app)
                 }
@@ -2138,9 +2138,9 @@ struct SearchView: SwiftUI.View {
             Image(systemName: "clock.arrow.circlepath")
                 .font(.system(size: 48))
                 .foregroundColor(.secondary)
-            Text("暂无历史版本")
+            Text("no_versions".localized)
                 .font(.system(size: 22, weight: .semibold))
-            Text("该app暂时没有可用的历史版本")
+            Text("no_versions_desc".localized)
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -2183,13 +2183,13 @@ struct SearchView: SwiftUI.View {
                 .padding(.top, 24)
 
                 HStack {
-                    Text("历史版本")
+                    Text("version_history".localized)
                         .font(.system(size: 22, weight: .bold))
                         .foregroundColor(.primary)
 
                     Spacer()
 
-                    Text("\(availableVersions.count) 个版本")
+                    Text(String(format: "x_versions".localized, String(availableVersions.count)))
                         .font(.caption2)
                         .foregroundColor(.secondary)
                         .padding(.horizontal, 8)
@@ -2273,7 +2273,7 @@ struct SearchView: SwiftUI.View {
                 HStack(spacing: 8) {
                     Image(systemName: "arrow.down.circle.fill")
                         .font(.caption)
-                    Text("下载")
+                    Text("download".localized)
                         .font(.system(size: 11, weight: .medium))
                 }
                 .foregroundColor(.white)
@@ -2306,26 +2306,26 @@ struct SearchView: SwiftUI.View {
     private func displayVersionTitle(version: StoreAppVersion) -> String {
 
         if let date = version.formattedReleaseDate {
-            return "版本 \(version.versionString) · \(date)"
+            return String(format: "version_x_date".localized, version.versionString, date)
         }
 
         if let h = versionHistory.first(where: { $0.version == version.versionString }) {
-            return "版本 \(h.version) · \(h.formattedDate)"
+            return String(format: "version_x_date".localized, h.version, h.formattedDate)
         }
 
         if let h = versionHistory.first(where: { version.versionString.hasPrefix($0.version) || $0.version.hasPrefix(version.versionString) }) {
-            return "版本 \(version.versionString) · \(h.formattedDate)"
+            return String(format: "version_x_date".localized, version.versionString, h.formattedDate)
         }
 
         if let latestVersion = versionHistory.first {
-            return "版本 \(version.versionString) · \(latestVersion.formattedDate)"
+            return String(format: "version_x_date".localized, version.versionString, latestVersion.formattedDate)
         }
 
-        return "版本 \(version.versionString)"
+        return String(format: "version_x".localized, version.versionString)
     }
 
     private func getVersionNumber(version: StoreAppVersion) -> String {
-        return "版本 \(version.versionString)"
+        return String(format: "version_x".localized, version.versionString)
     }
 
     private func getVersionDate(version: StoreAppVersion) -> String? {
@@ -2396,7 +2396,7 @@ struct SearchView: SwiftUI.View {
                         .font(.system(size: 48))
                         .foregroundColor(.secondary)
 
-                    Button("登录账户") {
+                    Button("login_account".localized) {
                         showAccountMenu = false
                         showLoginSheet = true
                     }
@@ -2414,11 +2414,11 @@ struct SearchView: SwiftUI.View {
                     )
                     .ignoresSafeArea()
                 )
-                .navigationTitle("账户信息")
+                .navigationTitle("account_info".localized)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("关闭") {
+                        Button("close".localized) {
                             showAccountMenu = false
                         }
                         .foregroundColor(themeManager.accentColor)
@@ -2442,7 +2442,7 @@ struct SearchView: SwiftUI.View {
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
                 } header: {
-                    Text("当前账户")
+                    Text("current_account".localized)
                         .font(.headline)
                         .foregroundColor(.primary)
                 }
@@ -2467,7 +2467,7 @@ struct SearchView: SwiftUI.View {
                                     .foregroundColor(.secondary)
 
                                 if isSelected {
-                                    Text("当前")
+                                    Text("current".localized)
                                         .font(.caption2)
                                         .foregroundColor(.white)
                                         .padding(.horizontal, 6)
@@ -2484,7 +2484,7 @@ struct SearchView: SwiftUI.View {
 
                         HStack(spacing: 8) {
                             if !isSelected {
-                                Button("切换") {
+                                Button("switch".localized) {
                                     appStore.switchToAccount(at: index)
                                 }
                                 .font(.caption)
@@ -2497,7 +2497,7 @@ struct SearchView: SwiftUI.View {
                                 )
                             }
 
-                            Button("删除") {
+                            Button("delete".localized) {
                                 appStore.deleteAccount(account)
                             }
                             .font(.caption)
@@ -2514,11 +2514,11 @@ struct SearchView: SwiftUI.View {
                 }
             } header: {
                 HStack {
-                    Text("所有账户")
+                    Text("all_accounts".localized)
                         .font(.headline)
                         .foregroundColor(.primary)
                     Spacer()
-                    Text("\(appStore.savedAccounts.count) 个账户")
+                    Text(String(format: "x_accounts".localized, String(appStore.savedAccounts.count)))
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.horizontal, 8)
@@ -2531,7 +2531,7 @@ struct SearchView: SwiftUI.View {
             }
 
             Section {
-                Button("添加新账户") {
+                Button("add_new_account".localized) {
                     showAccountMenu = false
                     showLoginSheet = true
                 }
@@ -2563,11 +2563,11 @@ struct SearchView: SwiftUI.View {
             )
             .ignoresSafeArea()
         )
-        .navigationTitle("账户管理")
+        .navigationTitle("account_management".localized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("关闭") {
+                Button("close".localized) {
                     showAccountMenu = false
                 }
                 .foregroundColor(themeManager.accentColor)
@@ -2590,7 +2590,7 @@ struct SearchView: SwiftUI.View {
 
             VStack(alignment: .leading, spacing: 2) {
                 if let account = appStore.selectedAccount {
-                    Text("当前使用账户")
+                    Text("current_account".localized)
                         .font(.caption2)
                         .foregroundColor(.secondary)
 
@@ -2616,7 +2616,7 @@ struct SearchView: SwiftUI.View {
             Spacer()
 
             if appStore.hasMultipleAccounts {
-                Button("切换账户") {
+                Button("switch_account".localized) {
                     showAccountMenu = true
                 }
                 .font(.caption)
@@ -2639,7 +2639,7 @@ struct SearchView: SwiftUI.View {
 
             VStack(alignment: .leading, spacing: 2) {
                 if let account = appStore.selectedAccount {
-                    Text("使用账户")
+                    Text("use_account".localized)
                         .font(.caption2)
                         .foregroundColor(.secondary)
 
@@ -2666,7 +2666,7 @@ struct SearchView: SwiftUI.View {
             Spacer()
 
             if appStore.hasMultipleAccounts {
-                Button("切换") {
+                Button("switch".localized) {
                     showVersionPicker = false
                     showAccountMenu = true
                 }
@@ -2774,21 +2774,21 @@ struct SearchView: SwiftUI.View {
 
     private var cacheStatusText: String {
         if !sessionManager.isSessionValid {
-            return "连接断开"
+            return "connection_lost".localized
         } else if sessionManager.isReconnecting {
-            return "重新连接中"
+            return "reconnecting".localized
         } else {
-            return "已连接"
+            return "connected".localized
         }
     }
 
     private var cacheStatusTooltip: String {
         if !sessionManager.isSessionValid {
-            return "Apple ID连接已断开，请点击重新验证或重新登录"
+            return "apple_id_disconnected".localized
         } else if sessionManager.isReconnecting {
-            return "正在自动重新连接Apple ID，请稍候..."
+            return "apple_id_reconnecting".localized
         } else {
-            return "Apple ID连接正常，可以正常搜索和下载app"
+            return "apple_id_connected".localized
         }
     }
 

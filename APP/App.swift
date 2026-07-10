@@ -5,12 +5,19 @@ import UIKit
 struct App: SwiftUI.App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var themeManager = ThemeManager.shared
+    @StateObject private var languageManager = LanguageManager.shared
+    @State private var languageToggle = false
 
     var body: some SwiftUI.Scene {
         WindowGroup {
             TabbarView()
                 .environmentObject(themeManager)
                 .environmentObject(AppStore.this)
+                .environmentObject(languageManager)
+                .id(languageToggle)
+                .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("AppLanguageChanged"))) { _ in
+                    languageToggle.toggle()
+                }
         }
     }
 }

@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Inställningar";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Nedladdningar";
+"tab_search" = "Sök";
+
+// MARK: - Common
+"cancel" = "Avbryt";
+"confirm" = "Bekräfta";
+"ok" = "OK";
+"done" = "Klar";
+"back" = "Tillbaka";
+"save" = "Spara";
+"delete" = "Radera";
+"edit" = "Redigera";
+"add" = "Lägg till";
+"close" = "Stäng";
+"refresh" = "Uppdatera";
+"retry" = "Försök igen";
+"loading" = "Laddar...";
+"success" = "Lyckades";
+"failed" = "Misslyckades";
+"error" = "Fel";
+"warning" = "Varning";
+"info" = "Info";
+"search" = "Sök";
+"download" = "Ladda ner";
+"install" = "Installera";
+"update" = "Uppdatera";
+"more" = "Mer";
+"all" = "Alla";
+"none" = "Ingen";
+"default" = "Standard";
+"copy" = "Kopiera";
+"share" = "Dela";
+"export" = "Exportera";
+"import" = "Importera";
+"clear" = "Rensa";
+"reset" = "Återställ";
+"continue" = "Fortsätt";
+"confirm_delete" = "Bekräfta radering";
+"confirm_delete_message" = "Är du säker på att du vill radera detta? Denna åtgärd kan inte ångras.";
+"copied" = "Kopierad";
+"copy_failed" = "Kopiering misslyckades";
+"no_data" = "Ingen data";
+"no_result" = "Inga resultat hittades";
+"try_again" = "Försök igen";
+"got_it" = "Förstått";
+
+// MARK: - Settings
+"settings" = "Inställningar";
+"appearance" = "Utseende";
+"theme" = "Tema";
+"color" = "Färg";
+"icon" = "Ikon";
+"language" = "Språk";
+"general" = "Allmänt";
+"about" = "Om";
+"version" = "Version";
+"version_number" = "Versionsnummer";
+"follow_system" = "Systemstandard";
+"light_mode" = "Ljust";
+"dark_mode" = "Mörkt";
+"accent_color" = "Accentfärg";
+"app_icon" = "Appikon";
+"select_icon" = "Välj ikon";
+"icon_changed_success" = "Ikonen har ändrats";
+"icon_changed_failed" = "Misslyckades att ändra ikon";
+"language_select" = "Välj språk";
+"language_footer" = "Efter att du har bytt språk måste appen startas om för att ändringarna ska träda i kraft helt.";
+"language_switch" = "Byt språk";
+"language_switch_message" = "Appgränssnittet uppdateras omedelbart efter att du har bytt språk. Vissa systemkomponenter kan kräva en omstart för att träda i kraft helt.";
+"confirm_switch" = "Bekräfta byte";
+"app_icon" = "Appikon";
+"icon_default" = "Standard";
+"icon_author" = "Ikon";
+"icon_love" = "Kärlek";
+"icon_peek" = "Titta";
+"icon_set_success" = "Ikonen har angetts";
+"system_language" = "Systemspråk";
+"language_system_settings" = "Ändra i systeminställningar";
+"language_system_hint" = "Gå till Inställningar → APP → Språk";
+"language_recommended" = "Rekommenderas";
+"lang_chinese_simplified" = "Kinesiska (förenklad)";
+"lang_english" = "Engelska";
+"lang_japanese" = "Japanska";
+"lang_korean" = "Koreanska";
+"lang_spanish" = "Spanska";
+"lang_french" = "Franska";
+"lang_german" = "Tyska";
+"lang_italian" = "Italienska";
+"lang_portuguese" = "Portugisiska";
+"lang_russian" = "Ryska";
+"lang_arabic" = "Arabiska";
+"lang_hindi" = "Hindi";
+"lang_thai" = "Thailändska";
+"lang_vietnamese" = "Vietnamesiska";
+"lang_indonesian" = "Indonesiska";
+"lang_malay" = "Malajiska";
+"lang_dutch" = "Nederländska";
+"lang_swedish" = "Svenska";
+"lang_danish" = "Danska";
+"lang_finnish" = "Finska";
+"lang_norwegian" = "Norska";
+"lang_polish" = "Polska";
+"lang_czech" = "Tjeckiska";
+"lang_hungarian" = "Ungerska";
+"lang_romanian" = "Rumänska";
+"lang_turkish" = "Turkiska";
+"lang_ukrainian" = "Ukrainska";
+"lang_greek" = "Grekiska";
+"lang_hebrew" = "Hebreiska";
+"lang_slovak" = "Slovakiska";
+"lang_croatian" = "Kroatiska";
+"lang_catalan" = "Katalanska";
+
+// MARK: - Download
+"download_title" = "Nedladdningar";
+"downloading" = "Laddar ner";
+"download_paused" = "Pausad";
+"download_completed" = "Slutförd";
+"download_failed" = "Nedladdning misslyckades";
+"download_cancelled" = "Avbruten";
+"download_waiting" = "Väntar";
+"download_speed" = "Nedladdningshastighet";
+"download_progress" = "Nedladdningsförlopp";
+"download_size" = "Nedladdningsstorlek";
+"download_time" = "Nedladdningstid";
+"pause_download" = "Pausa nedladdning";
+"resume_download" = "Återuppta nedladdning";
+"cancel_download" = "Avbryt nedladdning";
+"retry_download" = "Försök ladda ner igen";
+"delete_download" = "Radera nedladdning";
+"all_pause" = "Pausa alla";
+"all_start" = "Starta alla";
+"clear_completed" = "Rensa slutförda";
+"download_queue" = "Nedladdningskö";
+"download_history" = "Nedladdningshistorik";
+"no_downloads" = "Inga nedladdningar";
+"download_settings" = "Nedladdningsinställningar";
+"wifi_only_download" = "Endast nedladdning via Wi-Fi";
+"max_concurrent_downloads" = "Max samtidiga nedladdningar";
+"download_path" = "Nedladdningssökväg";
+
+// MARK: - Account
+"account" = "Konto";
+"apple_id" = "Apple ID";
+"add_account" = "Lägg till Apple ID";
+"switch_account" = "Byt konto";
+"current_account" = "Aktuellt konto";
+"all_accounts" = "Alla konton";
+"account_info" = "Kontoinformation";
+"region" = "Region";
+"delete_account" = "Radera konto";
+"logout" = "Logga ut";
+"logout_confirm" = "Bekräfta utloggning";
+"logout_confirm_message" = "Är du säker på att du vill logga ut från det aktuella kontot?";
+"delete_account_confirm" = "Bekräfta radering av konto";
+"delete_account_message" = "Är du säker på att du vill radera konto %@? Detta kan inte ångras och du måste lägga till det igen.";
+"account_detail" = "Kontouppgifter";
+"verified" = "Verifierad";
+"unverified" = "Overifierad";
+"no_account" = "Inte inloggad";
+"no_account_description" = "Lägg till ett Apple ID för att komma igång";
+"name" = "Namn";
+"email" = "E-post";
+"country" = "Land/Region";
+
+// MARK: - App Icon
+"app_icon_settings" = "Appikon";
+"default_icon" = "Standard";
+
+// MARK: - Search
+"search_placeholder" = "Sök efter appar, spel, utvecklare";
+"search_history" = "Sökhistorik";
+"search_suggestions" = "Sökförslag";
+"search_results" = "Sökresultat";
+"clear_history" = "Rensa historik";
+"hot_search" = "Populära sökningar";
+"no_results" = "Inga resultat hittades";
+"try_different_keywords" = "Prova andra sökord";
+"searching" = "Söker...";
+
+// MARK: - Version Picker
+"version_picker" = "Välj version";
+"current_version" = "Aktuell version";
+"available_versions" = "Tillgängliga versioner";
+"no_versions" = "Inga tillgängliga versioner";
+"load_versions_failed" = "Misslyckades att ladda versioner";
+"select_version_to_download" = "Välj version att ladda ner";
+"version_history" = "Versionshistorik";
+"release_date" = "Utgivningsdatum";
+"size" = "Storlek";
+"build_number" = "Byggnummer";
+
+// MARK: - App Detail
+"app_detail" = "Appuppgifter";
+"get" = "Hämta";
+"icloud_sync" = "iCloud-synkronisering";
+"screenshots" = "Skärmdumpar";
+"description" = "Beskrivning";
+"whats_new" = "Vad är nytt";
+"ratings_and_reviews" = "Betyg och recensioner";
+"developer" = "Utvecklare";
+"category" = "Kategori";
+"compatibility" = "Kompatibilitet";
+"privacy" = "Sekretess";
+"privacy_policy" = "Sekretesspolicy";
+"user_agreement" = "Användaravtal";
+"rating" = "Betyg";
+"no_reviews" = "Inga recensioner";
+"no_reviews_description" = "Denna app har inga användarrecensioner ännu";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Inga TestFlight-appar";
+"install_tf_app" = "Installera TestFlight-version";
+"testing_status" = "Teststatus";
+"testing" = "Testar";
+"expired" = "Utgången";
+"full" = "Full";
+"test_duration" = "Testperiod";
+"remaining_seats" = "Återstående platser";
+"redeem_code" = "Inlösenkod";
+"enter_redeem_code" = "Ange inlösenkod";
+
+// MARK: - Filter & Sort
+"filter" = "Filter";
+"sort" = "Sortera";
+"sort_by_name" = "Sortera efter namn";
+"sort_by_date" = "Sortera efter datum";
+"sort_by_size" = "Sortera efter storlek";
+"sort_by_status" = "Sortera efter status";
+"ascending" = "Stigande";
+"descending" = "Fallande";
+
+// MARK: - Notification
+"notifications" = "Aviseringar";
+"push_notifications" = "Push-aviseringar";
+"download_complete_notification" = "Avisering när nedladdning är klar";
+"notification_sound" = "Aviseringsljud";
+"notification_vibrate" = "Vibrera";
+"notification_badge" = "Märke";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Sekretess och säkerhet";
+"clear_cache" = "Rensa cache";
+"cache_size" = "Cachestorlek";
+"calculating_cache" = "Beräknar...";
+"clear_cache_confirm" = "Bekräfta rensning av cache";
+"clear_cache_message" = "Är du säker på att du vill rensa all cache? Detta tar inte bort nedladdade appar.";
+"cache_cleared" = "Cache rensad";
+
+// MARK: - Storage
+"storage" = "Lagring";
+"total_storage" = "Totalt";
+"used_storage" = "Använt";
+"available_storage" = "Tillgängligt";
+"app_size" = "Appstorlek";
+"documents_size" = "Dokumentstorlek";
+
+// MARK: - Download Manager
+"download_manager" = "Nedladdningshanterare";
+"batch_operations" = "Batchåtgärder";
+"select_all" = "Välj alla";
+"deselect_all" = "Avmarkera alla";
+"selected_count" = "%@ valda";
+
+// MARK: - App Information
+"app_name" = "Appnamn";
+"app_version" = "Appversion";
+"app_rating" = "Appbetyg";
+"app_developer" = "Utvecklare";
+"app_category" = "Kategori";
+"last_updated" = "Senast uppdaterad";
+"language_support" = "Språkstöd";
+"content_rating" = "Innehållsbetyg";
+
+// MARK: - Account Management
+"account_management" = "Kontohantering";
+"login_status" = "Inloggningsstatus";
+"two_factor_auth" = "Tvåfaktorsautentisering";
+"remember_password" = "Kom ihåg lösenord";
+"auto_login" = "Automatisk inloggning";
+"login_expired" = "Inloggning har upphört";
+"please_relogin" = "Logga in igen";
+
+// MARK: - Settings More
+"advanced_settings" = "Avancerade inställningar";
+"developer_options" = "Utvecklaralternativ";
+"check_update" = "Sök efter uppdateringar";
+"new_version_available" = "Ny version tillgänglig";
+"already_latest_version" = "Redan uppdaterad";
+"feedback" = "Feedback";
+"rate_app" = "Betygsätt appen";
+"share_app" = "Dela app";
+
+// MARK: - Network
+"network" = "Nätverk";
+"network_status" = "Nätverksstatus";
+"wifi" = "Wi-Fi";
+"cellular" = "Mobilnät";
+"no_network" = "Ingen nätverksanslutning";
+"network_error" = "Nätverksfel";
+"network_error_message" = "Nätverksanslutningen misslyckades. Kontrollera dina nätverksinställningar.";
+"network_speed" = "Nätverkshastighet";
+"network_usage" = "Dataanvändning";
+
+// MARK: - Installation
+"installation" = "Installation";
+"installing" = "Installerar...";
+"install_success" = "Installationen lyckades";
+"install_failed" = "Installationen misslyckades";
+"install_failed_message" = "Installationen misslyckades. Försök igen.";
+"uninstall" = "Avinstallera";
+"uninstall_confirm" = "Bekräfta avinstallation";
+"uninstall_message" = "Är du säker på att du vill avinstallera denna app? All data kommer att raderas.";
+"ipa_file" = "IPA-fil";
+"ipa_signature" = "IPA-signatur";
+"signed" = "Signerad";
+"unsigned" = "Osignerad";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Testinbjudan";
+"testflight_build" = "Byggnad";
+"testflight_group" = "Testgrupp";
+"testflight_tester" = "Testare";
+"testflight_feedback" = "Testfeedback";
+"testflight_expired" = "Testet har upphört";
+"testflight_full" = "Testet är fullt";
+"testflight_join" = "Gå med i testet";
+"testflight_leave" = "Lämna testet";
+
+// MARK: - Search More
+"search_filter" = "Sökfilter";
+"search_result_count" = "%@ resultat hittades";
+"exact_match" = "Exakt matchning";
+"fuzzy_match" = "Fuzzy matchning";
+"hot_apps" = "Populära appar";
+"new_apps" = "Nya appar";
+"recommended_apps" = "Rekommenderade appar";
+"top_charts" = "Topplistor";
+
+// MARK: - Status
+"status" = "Status";
+"status_normal" = "Normal";
+"status_abnormal" = "Onormal";
+"status_pending" = "Väntar";
+"status_processing" = "Bearbetar";
+"status_completed" = "Slutförd";
+"status_failed" = "Misslyckad";
+"status_cancelled" = "Avbruten";
+"status_expired" = "Utgången";
+"status_active" = "Aktiv";
+"status_inactive" = "Inaktiv";
+"status_idle" = "Väntar";
+"status_busy" = "Upptagen";
+
+// MARK: - Tips
+"tips" = "Tips";
+"tip_download_speed" = "Nedladdningshastigheten beror på din nätverksanslutning";
+"tip_wifi_download" = "Det rekommenderas att ladda ner stora filer via Wi-Fi";
+"tip_storage_space" = "Se till att du har tillräckligt med lagringsutrymme";
+"tip_account_security" = "Se till att din kontoinformation är säker";
+"dont_show_again" = "Visa inte igen";
+"remind_later" = "Påminn mig senare";
+"view_details" = "Visa detaljer";
+"learn_more" = "Läs mer";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "sek";
+"unit_minutes" = "min";
+"unit_hours" = "t";
+"unit_days" = "dag";
+"unit_weeks" = "v";
+"unit_months" = "mån";
+"unit_years" = "år";
+"today" = "Idag";
+"yesterday" = "Igår";
+"day_before_yesterday" = "I går";
+"just_now" = "Just nu";
+"minutes_ago" = "%@ min sedan";
+"hours_ago" = "%@ t sedan";
+"days_ago" = "%@ dag sedan";
+
+// MARK: - Actions
+"action_open" = "Öppna";
+"action_close" = "Stäng";
+"action_view" = "Visa";
+"action_edit" = "Redigera";
+"action_delete" = "Radera";
+"action_share" = "Dela";
+"action_copy" = "Kopiera";
+"action_paste" = "Klistra in";
+"action_select" = "Välj";
+"action_select_all" = "Välj alla";
+"action_deselect" = "Avmarkera";
+"action_refresh" = "Uppdatera";
+"action_reload" = "Ladda om";
+"action_scroll_top" = "Rulla till toppen";
+"action_scroll_bottom" = "Rulla till botten";
+"action_favorite" = "Favorit";
+"action_unfavorite" = "Ta bort favorit";
+"action_like" = "Gilla";
+"action_unlike" = "Sluta gilla";
+"action_follow" = "Följ";
+"action_unfollow" = "Sluta följa";
+"action_report" = "Rapportera";
+"action_block" = "Blockera";
+"action_rename" = "Byt namn";
+"action_move" = "Flytta";
+"action_compress" = "Komprimera";
+"action_extract" = "Extrahera";
+"action_upload" = "Ladda upp";
+"action_download" = "Ladda ner";
+"action_install" = "Installera";
+"action_uninstall" = "Avinstallera";
+"action_update" = "Uppdatera";
+"action_upgrade" = "Uppgradera";
+"action_downgrade" = "Nedgradera";
+"action_scan_qr" = "Skanna QR-kod";
+"action_generate_qr" = "Generera QR-kod";
+"action_print" = "Skriv ut";
+"action_send" = "Skicka";
+"action_receive" = "Ta emot";
+"action_reject" = "Avvisa";
+"action_accept" = "Acceptera";
+"action_declined" = "Avvisad";
+"action_accepted" = "Accepterad";
+
+// MARK: - Theme
+"theme_settings" = "Temainställningar";
+"light_theme" = "Ljust tema";
+"dark_theme" = "Mörkt tema";
+"system_theme" = "Systemtema";
+"pure_black" = "Rent svart";
+"auto_switch" = "Automatisk växling";
+"custom_theme" = "Anpassat tema";
+"theme_color" = "Temafärg";
+"background_color" = "Bakgrundsfärg";
+"text_color" = "Textfärg";
+"font_size" = "Teckenstorlek";
+"font_style" = "Teckenstil";
+
+// MARK: - App Detail More
+"feature_tags" = "Funktionstaggar";
+"free" = "Hämta";
+"get" = "Hämta";
+"view" = "Visa";
+"get_reviews_failed" = "Misslyckades att hämta recensioner: %@";
+"x_ratings" = "%@ betyg";
+"age_rating" = "Åldersgräns";
+"x_languages" = "%@ språk";
+"whats_new" = "Vad är nytt";
+"tech_info" = "Teknisk info";
+"first_release" = "Första utgåvan";
+"last_updated" = "Senast uppdaterad";
+"requires_ios" = "Kräver iOS %@ eller senare";
+
+// MARK: - Search More
+"search_placeholder" = "Sök efter spel, appar";
+"login" = "Logga in";
+"clear_all" = "Rensa alla";
+"x_results_found" = "%@ resultat hittades";
+"finding_best_results" = "Letar efter de bästa resultaten för dig";
+"app_downgrade" = "Appnedgradering";
+"search_error" = "Sökfel";
+"load_more" = "Ladda mer...";
+"purchasing" = "Köper";
+"purchase" = "Köp";
+"please_login_first" = "Logga in först för att ladda ner appar";
+"loading_versions" = "Laddar versionshistorik...";
+"load_failed" = "Misslyckades att ladda";
+"no_versions_desc" = "Inga tidigare versioner tillgängliga för denna app";
+"x_versions" = "%@ versioner";
+"version_x_date" = "Version %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Logga in";
+"current" = "Aktuell";
+"switch" = "Byt";
+"x_accounts" = "%@ konton";
+"add_new_account" = "Lägg till nytt konto";
+"account_management" = "Kontohantering";
+"use_account" = "Använd konto";
+"connection_lost" = "Anslutningen bröts";
+"reconnecting" = "Återansluter";
+"connected" = "Ansluten";
+"apple_id_disconnected" = "Apple ID har kopplats från. Tryck för att återverifiera eller logga in igen.";
+"apple_id_reconnecting" = "Återansluter automatiskt till Apple ID, vänta...";
+"apple_id_connected" = "Apple ID ansluten. Sök och ladda ner appar som vanligt.";
+"login_apple_id" = "Logga in med Apple ID";
+"login_apple_id_desc" = "Ladda ner och hantera appar med ditt Apple ID";
+"login_apple_id_btn" = "Logga in med Apple ID";
+"view_account_details" = "Visa kontouppgifter";
+"media_purchases" = "Media och inköp";
+"media_purchases_header" = "Media och inköp";
+"sign_in_apple_id" = "Logga in på din iPhone";
+"sign_in_apple_id_desc" = "Använd ditt Apple ID på denna iPhone";
+"apple_id" = "Apple ID";
+"name" = "Namn";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Namn, e-post";
+"account_identifier_header" = "Kontoidentifierare";
+"country_region" = "Land/Region";
+"region_header" = "Region";
+"sign_out" = "Logga ut";
+"login_your_account" = "Logga in på ditt konto";
+"enter_apple_id" = "Ange ditt Apple ID";
+"password" = "Lösenord";
+"enter_password" = "Ange ditt lösenord";
+"two_factor_code" = "Tvåfaktorskod";
+"enter_6digit_code" = "Ange 6-siffrig kod";
+"check_trusted_device" = "Kontrollera dina betrodda enheter eller SMS för koden";
+"verifying" = "Verifierar...";
+"enter_full_credentials" = "Ange ditt fullständiga Apple ID och lösenord";
+"enter_6digit_code_verify" = "Ange 6-siffrig verifieringskod";
+"wrong_credentials" = "Apple ID eller lösenord är felaktigt. Försök igen.";
+"account_locked" = "Ditt Apple ID har låsts. Försök igen senare eller kontakta Apple-support.";
+"network_error_retry" = "Nätverksanslutningsfel. Kontrollera dina nätverksinställningar och försök igen.";
+"auth_failed" = "Autentiseringen misslyckades. Kontrollera din nätverksanslutning och kontoinformation.";
+"invalid_server_response" = "Ogiltigt serversvar. Försök igen senare.";
+"unknown_error" = "Okänt fel. Försök igen senare.";
+"auth_error" = "Ett fel inträffade under autentiseringen: %@";
+"check_apple_device_code" = "Kontrollera verifieringskoden på din Apple-enhet";
+"wrong_verification_code" = "Felaktig verifieringskod. Försök igen.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Ogiltig IPA-fil";
+"install_failed_with_reason" = "Installationen misslyckades: %@";
+"install_timeout" = "Installationstidsgräns uppnådd";
+"installing_app" = "Installerar %@";
+"version_x" = "Version %@";
+"install_starting" = "Påbörjar installation...";
+"install_manual_hint" = "Om automatisk installation misslyckas, tryck på knappen nedan för att installera manuellt:";
+"manual_install" = "Installera manuellt";
+"install_success_desc" = "Kolla din hemskärm, appen installeras...";
+"install_contact_author" = "Kontakta utvecklare pxx917144686 om du stöter på problem";
+"install_start_failed" = "Misslyckades att starta installation";
+"retry_install" = "Försök installera igen";
+"view_source_code" = "👉 Visa källkod";
+"file_size_x" = "Filstorlek: %@";
+"no_purchase_record" = "Ingen köpregistrering hittades, omdirigerar till App Store";
+"file_saved_to" = "Fil sparad i:";
+"preparing" = "Förbereder...";
+"waiting_confirm" = "Väntar på bekräftelse...";
+"install_completed" = "Installation slutförd";
+"waiting" = "Väntar...";
+"start_install" = "Starta installation";
+"unknown_path" = "Okänd sökväg";
+"share_ipa" = "Dela IPA";
+"install_background_hint" = "Appen installeras i bakgrunden. Du kan återgå till hemskärmen för att kontrollera förloppet.";
+"ipa_not_found" = "IPA-fil hittades inte, ladda ner den igen";
+"preparing_install" = "Förbereder installation...";
+"install_in_progress" = "Installation pågår redan";
+"verifying_package" = "Verifierar paket...";
+"starting_install_service" = "Startar installationstjänst...";
+"install_service_timeout" = "Installationstjänsten tog för lång tid. Försök igen.";
+"opening_install_page" = "Öppnar installationssida...";
+"download_record_file" = "Nedladdningsregister";
+"delete_file" = "Radera fil";
+"delete_file_confirm" = "Är du säker på att du vill radera %@? Denna åtgärd kan inte ångras.";
+"delete_success" = "Raderad";
+"delete_success_desc" = "Filen har raderats.";
+"no_ipa_found" = "Inga IPA-filer hittades";
+"no_ipa_found_desc" = "Inga IPA-filer hittades i appens lagringskatalog";
+
+// MARK: - Account Detail
+"basic_info" = "Grundläggande information";
+"account_identifier" = "Kontoidentifierare";
+"country_region" = "Land/Region";
+"password_token" = "Lösenordstoken";
+"auth_info" = "Autentiseringsinformation";
+"password_token_hint" = "Lösenordstoken används för automatisk autentisering. Dela den inte med andra.";
+"delete_this_account" = "Radera detta konto";
+"delete_account_confirm_detail" = "Är du säker på att du vill radera konto %@ från denna enhet?\n\nAll inloggningsinformation och cookies för detta konto kommer att tas bort.";
+"dsid" = "DSID";
+"no_value" = "Ingen";
+"region_title" = "Region";
+
+// MARK: - Appearance More
+"overall_color" = "Accentfärg";
+"quick_select" = "Snabbval";
+"auto" = "Auto";
+"unknown" = "Okänd";

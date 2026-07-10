@@ -5,21 +5,45 @@ struct AccountAvatarButton: View {
     @EnvironmentObject private var appStore: AppStore
     @EnvironmentObject private var themeManager: ThemeManager
 
-    @State private var cachedAvatarImage: UIImage?
+    @State private var customAvatarImage: UIImage?
+    @State private var showImagePicker = false
 
     var size: CGFloat = 36
+    var isEditable: Bool = true
 
     var body: some View {
-        avatarView
-            .onAppear { loadAvatar() }
-            .onChange(of: appStore.selectedAccount?.email) { _ in
-                loadAvatar()
+        Group {
+            if isEditable {
+                Button {
+                    showImagePicker = true
+                } label: {
+                    avatarView
+                }
+                .buttonStyle(.plain)
+            } else {
+                avatarView
             }
+        }
+        .onAppear { loadCustomAvatar() }
+        .onChange(of: appStore.selectedAccount?.email) { _ in
+            loadCustomAvatar()
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker { image in
+                if let image = image {
+                    let cropped = cropToSquare(image: image)
+                    saveCustomAvatar(cropped)
+                    customAvatarImage = cropped
+                }
+                showImagePicker = false
+            }
+            .ignoresSafeArea()
+        }
     }
 
     private var avatarView: some View {
         Group {
-            if let image = cachedAvatarImage {
+            if let image = customAvatarImage {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
@@ -36,46 +60,83 @@ struct AccountAvatarButton: View {
             }
         }
         .frame(width: size, height: size)
+        .overlay(alignment: .bottomTrailing) {
+            if isEditable && appStore.selectedAccount != nil {
+                Image(systemName: "camera.circle.fill")
+                    .font(.system(size: size * 0.35))
+                    .foregroundStyle(.white, themeManager.accentColor)
+                    .offset(x: 2, y: 2)
+            }
+        }
     }
 
-    private func loadAvatar() {
+    private func loadCustomAvatar() {
         guard let account = appStore.selectedAccount else {
-            cachedAvatarImage = nil
+            customAvatarImage = nil
             return
         }
-        let cacheKey = "appleid_avatar_\(account.email)"
+        let cacheKey = "custom_avatar_\(account.email)"
         if let cached = UserDefaults.standard.data(forKey: cacheKey),
            let image = UIImage(data: cached) {
-            cachedAvatarImage = image
-            return
+            customAvatarImage = image
+        } else {
+            customAvatarImage = nil
         }
-        Task {
-            AuthenticationManager.shared.setCookies(account.cookies)
-            try? await Task.sleep(nanoseconds: 500_000_000)
-            guard let cookies = HTTPCookieStorage.shared.cookies,
-                  !cookies.isEmpty else { return }
-            let config = URLSessionConfiguration.default
-            let cookieStorage = HTTPCookieStorage()
-            cookies.filter { $0.domain.contains("apple.com") }.forEach { cookieStorage.setCookie($0) }
-            config.httpCookieStorage = cookieStorage
-            let session = URLSession(configuration: config)
-            guard let url = URL(string: "https://appleid.apple.com/account/photo") else { return }
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.setValue("https://appleid.apple.com", forHTTPHeaderField: "Referer")
-            do {
-                let (data, response) = try await session.data(for: request)
-                if let httpResponse = response as? HTTPURLResponse,
-                   httpResponse.statusCode == 200,
-                   let image = UIImage(data: data) {
-                    cachedAvatarImage = image
-                    if let pngData = image.pngData() {
-                        UserDefaults.standard.set(pngData, forKey: cacheKey)
-                    }
-                }
-            } catch {
-                print("[AccountAvatarButton] 加载头像失败: \(error.localizedDescription)")
-            }
+    }
+
+    private func saveCustomAvatar(_ image: UIImage) {
+        guard let account = appStore.selectedAccount else { return }
+        let cacheKey = "custom_avatar_\(account.email)"
+        if let pngData = image.pngData() {
+            UserDefaults.standard.set(pngData, forKey: cacheKey)
+        }
+    }
+
+    private func cropToSquare(image: UIImage) -> UIImage {
+        let imageSize = image.size
+        let sideLength = min(imageSize.width, imageSize.height)
+        let x = (imageSize.width - sideLength) / 2
+        let y = (imageSize.height - sideLength) / 2
+        let cropRect = CGRect(x: x, y: y, width: sideLength, height: sideLength)
+        if let cgImage = image.cgImage?.cropping(to: cropRect) {
+            return UIImage(cgImage: cgImage, scale: image.scale, orientation: image.imageOrientation)
+        }
+        return image
+    }
+}
+
+struct ImagePicker: UIViewControllerRepresentable {
+    var onPicked: (UIImage?) -> Void
+
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        picker.modalPresentationStyle = .fullScreen
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        let parent: ImagePicker
+
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage
+            parent.onPicked(image)
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            parent.onPicked(nil)
         }
     }
 }

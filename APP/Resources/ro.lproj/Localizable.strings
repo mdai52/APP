@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Setări";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Descărcări";
+"tab_search" = "Căutare";
+
+// MARK: - Common
+"cancel" = "Anulare";
+"confirm" = "Confirmare";
+"ok" = "OK";
+"done" = "Gata";
+"back" = "Înapoi";
+"save" = "Salvare";
+"delete" = "Ștergere";
+"edit" = "Editare";
+"add" = "Adăugare";
+"close" = "Închidere";
+"refresh" = "Reîmprospătare";
+"retry" = "Reîncercare";
+"loading" = "Se încarcă...";
+"success" = "Succes";
+"failed" = "Eșuat";
+"error" = "Eroare";
+"warning" = "Avertisment";
+"info" = "Informații";
+"search" = "Căutare";
+"download" = "Descărcare";
+"install" = "Instalare";
+"update" = "Actualizare";
+"more" = "Mai mult";
+"all" = "Toate";
+"none" = "Niciunul";
+"default" = "Implicit";
+"copy" = "Copiere";
+"share" = "Partajare";
+"export" = "Export";
+"import" = "Import";
+"clear" = "Ștergere";
+"reset" = "Resetare";
+"continue" = "Continuare";
+"confirm_delete" = "Confirmare ștergere";
+"confirm_delete_message" = "Sigur doriți să ștergeți acest lucru? Această acțiune nu poate fi anulată.";
+"copied" = "Copiat";
+"copy_failed" = "Copiere eșuată";
+"no_data" = "Fără date";
+"no_result" = "Niciun rezultat";
+"try_again" = "Vă rugăm să încercați din nou";
+"got_it" = "Am înțeles";
+
+// MARK: - Settings
+"settings" = "Setări";
+"appearance" = "Aspect";
+"theme" = "Temă";
+"color" = "Culoare";
+"icon" = "Pictogramă";
+"language" = "Limbă";
+"general" = "General";
+"about" = "Despre";
+"version" = "Versiune";
+"version_number" = "Număr versiune";
+"follow_system" = "Implicit sistem";
+"light_mode" = "Luminos";
+"dark_mode" = "Întunecat";
+"accent_color" = "Culoare accent";
+"app_icon" = "Pictogramă aplicație";
+"select_icon" = "Selectare pictogramă";
+"icon_changed_success" = "Pictogramă schimbată cu succes";
+"icon_changed_failed" = "Schimbare pictogramă eșuată";
+"language_select" = "Selectare limbă";
+"language_footer" = "După schimbarea limbii, aplicația trebuie repornită pentru ca modificările să aibă efect complet.";
+"language_switch" = "Schimbare limbă";
+"language_switch_message" = "Interfața aplicației se va actualiza imediat după schimbarea limbii. Unele componente ale sistemului pot necesita o repornire pentru a avea efect complet.";
+"confirm_switch" = "Confirmare schimbare";
+"app_icon" = "Pictogramă aplicație";
+"icon_default" = "Implicit";
+"icon_author" = "Pictogramă";
+"icon_love" = "Dragoste";
+"icon_peek" = "Privire";
+"icon_set_success" = "Pictogramă setată cu succes";
+"system_language" = "Limba sistemului";
+"language_system_settings" = "Schimbare în setările sistemului";
+"language_system_hint" = "Mergeți la Setări → APP → Limbă";
+"language_recommended" = "Recomandat";
+"lang_chinese_simplified" = "Chineză simplificată";
+"lang_english" = "Engleză";
+"lang_japanese" = "Japoneză";
+"lang_korean" = "Coreeană";
+"lang_spanish" = "Spaniolă";
+"lang_french" = "Franceză";
+"lang_german" = "Germană";
+"lang_italian" = "Italiană";
+"lang_portuguese" = "Portugheză";
+"lang_russian" = "Rusă";
+"lang_arabic" = "Arabă";
+"lang_hindi" = "Hindi";
+"lang_thai" = "Thailandeză";
+"lang_vietnamese" = "Vietnameză";
+"lang_indonesian" = "Indoneziană";
+"lang_malay" = "Malaeză";
+"lang_dutch" = "Olandeză";
+"lang_swedish" = "Suedeză";
+"lang_danish" = "Daneză";
+"lang_finnish" = "Finlandeză";
+"lang_norwegian" = "Norvegiană";
+"lang_polish" = "Poloneză";
+"lang_czech" = "Cehă";
+"lang_hungarian" = "Maghiară";
+"lang_romanian" = "Română";
+"lang_turkish" = "Turcă";
+"lang_ukrainian" = "Ucraineană";
+"lang_greek" = "Greacă";
+"lang_hebrew" = "Ebraică";
+"lang_slovak" = "Slovacă";
+"lang_croatian" = "Croată";
+"lang_catalan" = "Catalană";
+
+// MARK: - Download
+"download_title" = "Descărcări";
+"downloading" = "Se descarcă";
+"download_paused" = "Întrerupt";
+"download_completed" = "Finalizat";
+"download_failed" = "Descărcare eșuată";
+"download_cancelled" = "Anulat";
+"download_waiting" = "În așteptare";
+"download_speed" = "Viteză descărcare";
+"download_progress" = "Progres descărcare";
+"download_size" = "Dimensiune descărcare";
+"download_time" = "Timp descărcare";
+"pause_download" = "Întrerupere descărcare";
+"resume_download" = "Reluare descărcare";
+"cancel_download" = "Anulare descărcare";
+"retry_download" = "Reîncercare descărcare";
+"delete_download" = "Ștergere descărcare";
+"all_pause" = "Întrerupe toate";
+"all_start" = "Pornește toate";
+"clear_completed" = "Șterge finalizate";
+"download_queue" = "Coadă descărcări";
+"download_history" = "Istoric descărcări";
+"no_downloads" = "Fără descărcări";
+"download_settings" = "Setări descărcare";
+"wifi_only_download" = "Descărcare doar Wi-Fi";
+"max_concurrent_downloads" = "Număr maxim descărcări simultane";
+"download_path" = "Cale descărcare";
+
+// MARK: - Account
+"account" = "Cont";
+"apple_id" = "Apple ID";
+"add_account" = "Adăugare Apple ID";
+"switch_account" = "Schimbare cont";
+"current_account" = "Cont curent";
+"all_accounts" = "Toate conturile";
+"account_info" = "Informații cont";
+"region" = "Regiune";
+"delete_account" = "Ștergere cont";
+"logout" = "Deconectare";
+"logout_confirm" = "Confirmare deconectare";
+"logout_confirm_message" = "Sigur doriți să vă deconectați de la contul curent?";
+"delete_account_confirm" = "Confirmare ștergere cont";
+"delete_account_message" = "Sigur doriți să ștergeți contul %@? Această acțiune nu poate fi anulată și va trebui să îl adăugați din nou.";
+"account_detail" = "Detalii cont";
+"verified" = "Verificat";
+"unverified" = "Neverificat";
+"no_account" = "Neconectat";
+"no_account_description" = "Vă rugăm să adăugați un Apple ID pentru a începe";
+"name" = "Nume";
+"email" = "E-mail";
+"country" = "Țară/Regiune";
+
+// MARK: - App Icon
+"app_icon_settings" = "Pictogramă aplicație";
+"default_icon" = "Implicit";
+
+// MARK: - Search
+"search_placeholder" = "Căutați aplicații, jocuri, dezvoltatori";
+"search_history" = "Istoric căutări";
+"search_suggestions" = "Sugestii căutare";
+"search_results" = "Rezultate căutare";
+"clear_history" = "Ștergere istoric";
+"hot_search" = "Căutări populare";
+"no_results" = "Niciun rezultat";
+"try_different_keywords" = "Încercați cuvinte cheie diferite";
+"searching" = "Se caută...";
+
+// MARK: - Version Picker
+"version_picker" = "Selectare versiune";
+"current_version" = "Versiune curentă";
+"available_versions" = "Versiuni disponibile";
+"no_versions" = "Fără versiuni disponibile";
+"load_versions_failed" = "Încărcare versiuni eșuată";
+"select_version_to_download" = "Selectați versiunea de descărcat";
+"version_history" = "Istoric versiuni";
+"release_date" = "Data lansării";
+"size" = "Dimensiune";
+"build_number" = "Număr build";
+
+// MARK: - App Detail
+"app_detail" = "Detalii aplicație";
+"get" = "Obțineți";
+"icloud_sync" = "Sincronizare iCloud";
+"screenshots" = "Capturi de ecran";
+"description" = "Descriere";
+"whats_new" = "Ce este nou";
+"ratings_and_reviews" = "Evaluari și recenzii";
+"developer" = "Dezvoltator";
+"category" = "Categorie";
+"compatibility" = "Compatibilitate";
+"privacy" = "Confidențialitate";
+"privacy_policy" = "Politica de confidențialitate";
+"user_agreement" = "Acord utilizator";
+"rating" = "Evaluare";
+"no_reviews" = "Fără recenzii";
+"no_reviews_description" = "Această aplicație nu are încă recenzii de utilizatori";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Fără aplicații TestFlight";
+"install_tf_app" = "Instalare versiune TestFlight";
+"testing_status" = "Stare testare";
+"testing" = "Testare";
+"expired" = "Expirat";
+"full" = "Complet";
+"test_duration" = "Durată testare";
+"remaining_seats" = "Locuri rămase";
+"redeem_code" = "Cod de răscumpărare";
+"enter_redeem_code" = "Introduceți codul de răscumpărare";
+
+// MARK: - Filter & Sort
+"filter" = "Filtru";
+"sort" = "Sortare";
+"sort_by_name" = "Sortare după nume";
+"sort_by_date" = "Sortare după dată";
+"sort_by_size" = "Sortare după dimensiune";
+"sort_by_status" = "Sortare după stare";
+"ascending" = "Crescător";
+"descending" = "Descrescător";
+
+// MARK: - Notification
+"notifications" = "Notificări";
+"push_notifications" = "Notificări push";
+"download_complete_notification" = "Notificare finalizare descărcare";
+"notification_sound" = "Sunet notificare";
+"notification_vibrate" = "Vibrație";
+"notification_badge" = "Insemnă";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Confidențialitate și securitate";
+"clear_cache" = "Ștergere cache";
+"cache_size" = "Dimensiune cache";
+"calculating_cache" = "Se calculează...";
+"clear_cache_confirm" = "Confirmare ștergere cache";
+"clear_cache_message" = "Sigur doriți să ștergeți tot cache-ul? Aceasta nu va șterge aplicațiile descărcate.";
+"cache_cleared" = "Cache șters";
+
+// MARK: - Storage
+"storage" = "Stocare";
+"total_storage" = "Total";
+"used_storage" = "Utilizat";
+"available_storage" = "Disponibil";
+"app_size" = "Dimensiune aplicație";
+"documents_size" = "Dimensiune documente";
+
+// MARK: - Download Manager
+"download_manager" = "Manager descărcări";
+"batch_operations" = "Operații în lot";
+"select_all" = "Selectează toate";
+"deselect_all" = "Deselectează toate";
+"selected_count" = "%@ selectate";
+
+// MARK: - App Information
+"app_name" = "Nume aplicație";
+"app_version" = "Versiune aplicație";
+"app_rating" = "Evaluare aplicație";
+"app_developer" = "Dezvoltator";
+"app_category" = "Categorie";
+"last_updated" = "Ultima actualizare";
+"language_support" = "Suport lingvistic";
+"content_rating" = "Clasificare conținut";
+
+// MARK: - Account Management
+"account_management" = "Gestionare conturi";
+"login_status" = "Stare conectare";
+"two_factor_auth" = "Autentificare cu doi factori";
+"remember_password" = "Memorare parolă";
+"auto_login" = "Autentificare automată";
+"login_expired" = "Sesiune expirată";
+"please_relogin" = "Vă rugăm să vă conectați din nou";
+
+// MARK: - Settings More
+"advanced_settings" = "Setări avansate";
+"developer_options" = "Opțiuni dezvoltator";
+"check_update" = "Căutare actualizări";
+"new_version_available" = "Versiune nouă disponibilă";
+"already_latest_version" = "Deja la cea mai recentă versiune";
+"feedback" = "Feedback";
+"rate_app" = "Evaluați-ne";
+"share_app" = "Partajați aplicația";
+
+// MARK: - Network
+"network" = "Rețea";
+"network_status" = "Stare rețea";
+"wifi" = "Wi-Fi";
+"cellular" = "Cellular";
+"no_network" = "Fără conexiune la rețea";
+"network_error" = "Eroare rețea";
+"network_error_message" = "Conexiunea la rețea a eșuat. Vă rugăm să verificați setările de rețea.";
+"network_speed" = "Viteză rețea";
+"network_usage" = "Utilizare date";
+
+// MARK: - Installation
+"installation" = "Instalare";
+"installing" = "Se instalează...";
+"install_success" = "Instalare reușită";
+"install_failed" = "Instalare eșuată";
+"install_failed_message" = "Instalare eșuată. Vă rugăm să încercați din nou.";
+"uninstall" = "Dezinstalare";
+"uninstall_confirm" = "Confirmare dezinstalare";
+"uninstall_message" = "Sigur doriți să dezinstalați această aplicație? Toate datele vor fi șterse.";
+"ipa_file" = "Fișier IPA";
+"ipa_signature" = "Semnătură IPA";
+"signed" = "Semnat";
+"unsigned" = "Nesemnat";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Invitație test";
+"testflight_build" = "Build";
+"testflight_group" = "Grup test";
+"testflight_tester" = "Tester";
+"testflight_feedback" = "Feedback test";
+"testflight_expired" = "Test expirat";
+"testflight_full" = "Test complet";
+"testflight_join" = "Alătură-te testului";
+"testflight_leave" = "Părăsește testul";
+
+// MARK: - Search More
+"search_filter" = "Filtru căutare";
+"search_result_count" = "%@ rezultate găsite";
+"exact_match" = "Potrivire exactă";
+"fuzzy_match" = "Potrivire aproximativă";
+"hot_apps" = "Aplicații populare";
+"new_apps" = "Aplicații noi";
+"recommended_apps" = "Aplicații recomandate";
+"top_charts" = "Top liste";
+
+// MARK: - Status
+"status" = "Stare";
+"status_normal" = "Normal";
+"status_abnormal" = "Anormal";
+"status_pending" = "În așteptare";
+"status_processing" = "În procesare";
+"status_completed" = "Finalizat";
+"status_failed" = "Eșuat";
+"status_cancelled" = "Anulat";
+"status_expired" = "Expirat";
+"status_active" = "Activ";
+"status_inactive" = "Inactiv";
+"status_idle" = "Inactiv";
+"status_busy" = "Ocupat";
+
+// MARK: - Tips
+"tips" = "Sfaturi";
+"tip_download_speed" = "Viteza de descărcare depinde de conexiunea la rețea";
+"tip_wifi_download" = "Este recomandat să descărcați fișiere mari prin Wi-Fi";
+"tip_storage_space" = "Vă rugăm să asigurați că aveți spațiu de stocare suficient";
+"tip_account_security" = "Vă rugăm să păstrați securizate informațiile contului";
+"dont_show_again" = "Nu mai arăta";
+"remind_later" = "Amintește-mi mai târziu";
+"view_details" = "Vizualizare detalii";
+"learn_more" = "Aflați mai mult";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "sec";
+"unit_minutes" = "min";
+"unit_hours" = "ore";
+"unit_days" = "zile";
+"unit_weeks" = "săpt";
+"unit_months" = "luni";
+"unit_years" = "ani";
+"today" = "Astăzi";
+"yesterday" = "Ieri";
+"day_before_yesterday" = "Alaltăieri";
+"just_now" = "Chiar acum";
+"minutes_ago" = "acum %@ min";
+"hours_ago" = "acum %@ ore";
+"days_ago" = "acum %@ zile";
+
+// MARK: - Actions
+"action_open" = "Deschidere";
+"action_close" = "Închidere";
+"action_view" = "Vizualizare";
+"action_edit" = "Editare";
+"action_delete" = "Ștergere";
+"action_share" = "Partajare";
+"action_copy" = "Copiere";
+"action_paste" = "Lipire";
+"action_select" = "Selectare";
+"action_select_all" = "Selectează toate";
+"action_deselect" = "Deselectare";
+"action_refresh" = "Reîmprospătare";
+"action_reload" = "Reîncărcare";
+"action_scroll_top" = "Derulați în sus";
+"action_scroll_bottom" = "Derulați în jos";
+"action_favorite" = "Favorit";
+"action_unfavorite" = "Elimină din favorite";
+"action_like" = "Apreciere";
+"action_unlike" = "Nu mai aprecia";
+"action_follow" = "Urmărire";
+"action_unfollow" = "Anulare urmărire";
+"action_report" = "Raportare";
+"action_block" = "Blocare";
+"action_rename" = "Redenumire";
+"action_move" = "Mutare";
+"action_compress" = "Comprimare";
+"action_extract" = "Extragere";
+"action_upload" = "Încărcare";
+"action_download" = "Descărcare";
+"action_install" = "Instalare";
+"action_uninstall" = "Dezinstalare";
+"action_update" = "Actualizare";
+"action_upgrade" = "Upgrade";
+"action_downgrade" = "Downgrade";
+"action_scan_qr" = "Scanare cod QR";
+"action_generate_qr" = "Generare cod QR";
+"action_print" = "Imprimare";
+"action_send" = "Trimitere";
+"action_receive" = "Primire";
+"action_reject" = "Respingere";
+"action_accept" = "Acceptare";
+"action_declined" = "Respins";
+"action_accepted" = "Acceptat";
+
+// MARK: - Theme
+"theme_settings" = "Setări temă";
+"light_theme" = "Temă luminoasă";
+"dark_theme" = "Temă întunecată";
+"system_theme" = "Temă sistem";
+"pure_black" = "Negru pur";
+"auto_switch" = "Comutare automată";
+"custom_theme" = "Temă personalizată";
+"theme_color" = "Culoare temă";
+"background_color" = "Culoare fundal";
+"text_color" = "Culoare text";
+"font_size" = "Dimensiune font";
+"font_style" = "Stil font";
+
+// MARK: - App Detail More
+"feature_tags" = "Etichete caracteristici";
+"free" = "Obțineți";
+"get" = "Obțineți";
+"view" = "Vizualizare";
+"get_reviews_failed" = "Obținerea recenziilor a eșuat: %@";
+"x_ratings" = "%@ evaluări";
+"age_rating" = "Clasificare de vârstă";
+"x_languages" = "%@ limbi";
+"whats_new" = "Ce este nou";
+"tech_info" = "Informații tehnice";
+"first_release" = "Prima lansare";
+"last_updated" = "Ultima actualizare";
+"requires_ios" = "Necesită iOS %@ sau mai recent";
+
+// MARK: - Search More
+"search_placeholder" = "Căutați jocuri, aplicații";
+"login" = "Conectare";
+"clear_all" = "Șterge toate";
+"x_results_found" = "%@ rezultate găsite";
+"finding_best_results" = "Găsim cele mai bune rezultate pentru dvs.";
+"app_downgrade" = "Downgrade aplicație";
+"search_error" = "Eroare căutare";
+"load_more" = "Încarcă mai mult...";
+"purchasing" = "Cumpărare";
+"purchase" = "Cumpărare";
+"please_login_first" = "Vă rugăm să vă conectați întâi pentru a descărca aplicații";
+"loading_versions" = "Se încarcă istoricul versiunilor...";
+"load_failed" = "Încărcare eșuată";
+"no_versions_desc" = "Nu există versiuni anterioare pentru această aplicație";
+"x_versions" = "%@ versiuni";
+"version_x_date" = "Versiunea %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Conectare";
+"current" = "Curent";
+"switch" = "Schimbare";
+"x_accounts" = "%@ conturi";
+"add_new_account" = "Adăugare cont nou";
+"account_management" = "Gestionare conturi";
+"use_account" = "Utilizare cont";
+"connection_lost" = "Conexiune pierdută";
+"reconnecting" = "Reconectare";
+"connected" = "Conectat";
+"apple_id_disconnected" = "Conexiunea Apple ID a fost întreruptă. Atingeți pentru a reverifica sau conectați-vă din nou.";
+"apple_id_reconnecting" = "Reconectare automată la Apple ID, vă rugăm să așteptați...";
+"apple_id_connected" = "Apple ID conectat. Căutați și descărcați aplicații normal.";
+"login_apple_id" = "Conectare cu Apple ID";
+"login_apple_id_desc" = "Descărcați și gestionați aplicațiile cu Apple ID-ul dvs.";
+"login_apple_id_btn" = "Conectare cu Apple ID";
+"view_account_details" = "Vizualizare detalii cont";
+"media_purchases" = "Media și cumpărături";
+"media_purchases_header" = "Media și cumpărături";
+"sign_in_apple_id" = "Conectați-vă pe iPhone-ul dvs.";
+"sign_in_apple_id_desc" = "Utilizați Apple ID-ul dvs. pe acest iPhone";
+"apple_id" = "Apple ID";
+"name" = "Nume";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Nume, E-mail";
+"account_identifier_header" = "Identificator cont";
+"country_region" = "Țară/Regiune";
+"region_header" = "Regiune";
+"sign_out" = "Deconectare";
+"login_your_account" = "Conectați-vă la contul dvs.";
+"enter_apple_id" = "Introduceți Apple ID-ul dvs.";
+"password" = "Parolă";
+"enter_password" = "Introduceți parola";
+"two_factor_code" = "Cod cu doi factori";
+"enter_6digit_code" = "Introduceți codul de 6 cifre";
+"check_trusted_device" = "Verificați dispozitivele de încredere sau SMS pentru cod";
+"verifying" = "Se verifică...";
+"enter_full_credentials" = "Vă rugăm să introduceți Apple ID-ul și parola completă";
+"enter_6digit_code_verify" = "Vă rugăm să introduceți codul de verificare de 6 cifre";
+"wrong_credentials" = "Apple ID sau parolă incorectă. Vă rugăm să încercați din nou.";
+"account_locked" = "Apple ID-ul dvs. a fost blocat. Vă rugăm să încercați din nou mai târziu sau să contactați Asistența Apple.";
+"network_error_retry" = "Eroare de conexiune la rețea. Vă rugăm să verificați setările de rețea și să încercați din nou.";
+"auth_failed" = "Autentificare eșuată. Vă rugăm să verificați conexiunea la rețea și informațiile contului.";
+"invalid_server_response" = "Răspuns server invalid. Vă rugăm să încercați din nou mai târziu.";
+"unknown_error" = "Eroare necunoscută. Vă rugăm să încercați din nou mai târziu.";
+"auth_error" = "A apărut o eroare în timpul autentificării: %@";
+"check_apple_device_code" = "Verificați dispozitivul Apple pentru codul de verificare";
+"wrong_verification_code" = "Cod de verificare incorect. Vă rugăm să încercați din nou.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Fișier IPA invalid";
+"install_failed_with_reason" = "Instalare eșuată: %@";
+"install_timeout" = "Timp expirat pentru instalare";
+"installing_app" = "Instalare %@";
+"version_x" = "Versiunea %@";
+"install_starting" = "Începere instalare...";
+"install_manual_hint" = "Dacă instalarea automată eșuează, atingeți butonul de mai jos pentru a instala manual:";
+"manual_install" = "Instalare manuală";
+"install_success_desc" = "Verificați ecranul principal, aplicația se instalează...";
+"install_contact_author" = "Contactați dezvoltatorul pxx917144686 dacă întâmpinați probleme";
+"install_start_failed" = "Pornirea instalării a eșuat";
+"retry_install" = "Reîncercare instalare";
+"view_source_code" = "👉 Vizualizare cod sursă";
+"file_size_x" = "Dimensiune fișier: %@";
+"no_purchase_record" = "Nu a fost găsit niciun record de cumpărare, redirecționare către App Store";
+"file_saved_to" = "Fișier salvat la:";
+"preparing" = "Se pregătește...";
+"waiting_confirm" = "În așteptare confirmare...";
+"install_completed" = "Instalare completă";
+"waiting" = "În așteptare...";
+"start_install" = "Începe instalarea";
+"unknown_path" = "Cale necunoscută";
+"share_ipa" = "Partajare IPA";
+"install_background_hint" = "Aplicația se instalează în fundal. Puteți să vă întoarceți la ecranul principal pentru a verifica progresul.";
+"ipa_not_found" = "Fișierul IPA nu a fost găsit, vă rugăm să descărcați din nou";
+"preparing_install" = "Pregătire instalare...";
+"install_in_progress" = "Instalare deja în desfășurare";
+"verifying_package" = "Se verifică pachetul...";
+"starting_install_service" = "Pornire serviciu de instalare...";
+"install_service_timeout" = "Timp expirat pentru serviciul de instalare. Vă rugăm să încercați din nou.";
+"opening_install_page" = "Deschidere pagină de instalare...";
+"download_record_file" = "Record descărcare";
+"delete_file" = "Ștergere fișier";
+"delete_file_confirm" = "Sigur doriți să ștergeți %@? Această acțiune nu poate fi anulată.";
+"delete_success" = "Șters cu succes";
+"delete_success_desc" = "Fișierul a fost șters cu succes.";
+"no_ipa_found" = "Nu au fost găsite fișiere IPA";
+"no_ipa_found_desc" = "Nu au fost găsite fișiere IPA în directorul de stocare al aplicației";
+
+// MARK: - Account Detail
+"basic_info" = "Informații de bază";
+"account_identifier" = "Identificator cont";
+"country_region" = "Țară/Regiune";
+"password_token" = "Token parolă";
+"auth_info" = "Informații autentificare";
+"password_token_hint" = "Token-ul de parolă este utilizat pentru autentificare automată. Vă rugăm să nu îl împărtășiți cu alții.";
+"delete_this_account" = "Ștergeți acest cont";
+"delete_account_confirm_detail" = "Sigur doriți să ștergeți contul %@ de pe acest dispozitiv?\n\nToate informațiile de conectare și cookie-urile pentru acest cont vor fi eliminate.";
+"dsid" = "DSID";
+"no_value" = "Niciuna";
+"region_title" = "Regiune";
+
+// MARK: - Appearance More
+"overall_color" = "Culoare accent";
+"quick_select" = "Selectare rapidă";
+"auto" = "Automat";
+"unknown" = "Necunoscut";

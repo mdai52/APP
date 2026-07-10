@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Configuració";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Baixades";
+"tab_search" = "Cerca";
+
+// MARK: - Common
+"cancel" = "Cancel·la";
+"confirm" = "Confirma";
+"ok" = "D'acord";
+"done" = "Fet";
+"back" = "Enrere";
+"save" = "Desa";
+"delete" = "Suprimeix";
+"edit" = "Edita";
+"add" = "Afegeix";
+"close" = "Tanca";
+"refresh" = "Actualitza";
+"retry" = "Reintenta";
+"loading" = "S'està carregant...";
+"success" = "Èxit";
+"failed" = "S'ha produït un error";
+"error" = "Error";
+"warning" = "Avís";
+"info" = "Informació";
+"search" = "Cerca";
+"download" = "Baixa";
+"install" = "Instal·la";
+"update" = "Actualitza";
+"more" = "Més";
+"all" = "Tot";
+"none" = "Cap";
+"default" = "Per defecte";
+"copy" = "Copia";
+"share" = "Comparteix";
+"export" = "Exporta";
+"import" = "Importa";
+"clear" = "Neteja";
+"reset" = "Restableix";
+"continue" = "Continua";
+"confirm_delete" = "Confirma la supressió";
+"confirm_delete_message" = "Esteu segur que voleu suprimir això? Aquesta acció no es pot desfer.";
+"copied" = "Copiat";
+"copy_failed" = "La còpia ha fallat";
+"no_data" = "Sense dades";
+"no_result" = "No s'han trobat resultats";
+"try_again" = "Torneu-ho a provar";
+"got_it" = "D'acord";
+
+// MARK: - Settings
+"settings" = "Configuració";
+"appearance" = "Aparença";
+"theme" = "Tema";
+"color" = "Color";
+"icon" = "Icona";
+"language" = "Idioma";
+"general" = "General";
+"about" = "Quant a";
+"version" = "Versió";
+"version_number" = "Número de versió";
+"follow_system" = "Segons el sistema";
+"light_mode" = "Clar";
+"dark_mode" = "Fosc";
+"accent_color" = "Color d'èmfasi";
+"app_icon" = "Icona de l'app";
+"select_icon" = "Selecciona icona";
+"icon_changed_success" = "Icona canviada correctament";
+"icon_changed_failed" = "No s'ha pogut canviar la icona";
+"language_select" = "Selecciona idioma";
+"language_footer" = "Després de canviar l'idioma, cal reiniciar l'app perquè els canvis tinguin efecte completament.";
+"language_switch" = "Canvia idioma";
+"language_switch_message" = "La interfície de l'app s'actualitzarà immediatament després de canviar l'idioma. És possible que alguns components del sistema requereixin un reinici.";
+"confirm_switch" = "Confirma el canvi";
+"app_icon" = "Icona de l'app";
+"icon_default" = "Per defecte";
+"icon_author" = "Icona";
+"icon_love" = "Amor";
+"icon_peek" = "Mirada";
+"icon_set_success" = "Icona configurada correctament";
+"system_language" = "Idioma del sistema";
+"language_system_settings" = "Canvia-ho als ajustos del sistema";
+"language_system_hint" = "Aneu a Ajustos → APP → Idioma";
+"language_recommended" = "Recomanat";
+"lang_chinese_simplified" = "Xinés (simplificat)";
+"lang_english" = "Anglès";
+"lang_japanese" = "Japonès";
+"lang_korean" = "Coreà";
+"lang_spanish" = "Espanyol";
+"lang_french" = "Francès";
+"lang_german" = "Alemany";
+"lang_italian" = "Italià";
+"lang_portuguese" = "Portuguès";
+"lang_russian" = "Rus";
+"lang_arabic" = "Àrab";
+"lang_hindi" = "Hindi";
+"lang_thai" = "Tailandès";
+"lang_vietnamese" = "Vietnamita";
+"lang_indonesian" = "Indonesi";
+"lang_malay" = "Malai";
+"lang_dutch" = "Neerlandès";
+"lang_swedish" = "Suec";
+"lang_danish" = "Dànés";
+"lang_finnish" = "Finlandès";
+"lang_norwegian" = "Noruec";
+"lang_polish" = "Polac";
+"lang_czech" = "Txec";
+"lang_hungarian" = "Hongarès";
+"lang_romanian" = "Romanès";
+"lang_turkish" = "Turc";
+"lang_ukrainian" = "Ucraïnès";
+"lang_greek" = "Grec";
+"lang_hebrew" = "Hebreu";
+"lang_slovak" = "Eslovac";
+"lang_croatian" = "Croat";
+"lang_catalan" = "Català";
+
+// MARK: - Download
+"download_title" = "Baixades";
+"downloading" = "S'està baixant";
+"download_paused" = "En pausa";
+"download_completed" = "Completat";
+"download_failed" = "La baixada ha fallat";
+"download_cancelled" = "Cancel·lat";
+"download_waiting" = "Esperant";
+"download_speed" = "Velocitat de baixada";
+"download_progress" = "Progrés de la baixada";
+"download_size" = "Mida de la baixada";
+"download_time" = "Temps de baixada";
+"pause_download" = "Pausa la baixada";
+"resume_download" = "Repren la baixada";
+"cancel_download" = "Cancel·la la baixada";
+"retry_download" = "Reintenta la baixada";
+"delete_download" = "Suprimeix la baixada";
+"all_pause" = "Pausa-ho tot";
+"all_start" = "Inicia-ho tot";
+"clear_completed" = "Neteja completats";
+"download_queue" = "Cua de baixades";
+"download_history" = "Historial de baixades";
+"no_downloads" = "Sense baixades";
+"download_settings" = "Ajustos de baixada";
+"wifi_only_download" = "Baixa només per Wi-Fi";
+"max_concurrent_downloads" = "Màxim de baixades simultànies";
+"download_path" = "Ruta de baixada";
+
+// MARK: - Account
+"account" = "Compte";
+"apple_id" = "Apple ID";
+"add_account" = "Afegeix Apple ID";
+"switch_account" = "Canvia de compte";
+"current_account" = "Compte actual";
+"all_accounts" = "Tots els comptes";
+"account_info" = "Informació del compte";
+"region" = "Regió";
+"delete_account" = "Suprimeix el compte";
+"logout" = "Tanca la sessió";
+"logout_confirm" = "Confirma la sortida";
+"logout_confirm_message" = "Esteu segur que voleu tancar la sessió del compte actual?";
+"delete_account_confirm" = "Confirma la supressió del compte";
+"delete_account_message" = "Esteu segur que voleu suprimir el compte %@? Això no es pot desfer i haureu de tornar-lo a afegir.";
+"account_detail" = "Detalls del compte";
+"verified" = "Verificat";
+"unverified" = "No verificat";
+"no_account" = "No heu iniciat sessió";
+"no_account_description" = "Afegiu un Apple ID per començar";
+"name" = "Nom";
+"email" = "Correu electrònic";
+"country" = "País/regió";
+
+// MARK: - App Icon
+"app_icon_settings" = "Icona de l'app";
+"default_icon" = "Per defecte";
+
+// MARK: - Search
+"search_placeholder" = "Cerca apps, jocs, desenvolupadors";
+"search_history" = "Historial de cerca";
+"search_suggestions" = "Suggeriments de cerca";
+"search_results" = "Resultats de la cerca";
+"clear_history" = "Neteja l'historial";
+"hot_search" = "Tendències";
+"no_results" = "No s'han trobat resultats";
+"try_different_keywords" = "Proveu amb paraules clau diferents";
+"searching" = "Cercant...";
+
+// MARK: - Version Picker
+"version_picker" = "Selecciona versió";
+"current_version" = "Versió actual";
+"available_versions" = "Versions disponibles";
+"no_versions" = "No hi ha versions disponibles";
+"load_versions_failed" = "No s'han pogut carregar les versions";
+"select_version_to_download" = "Selecciona versió per baixar";
+"version_history" = "Historial de versions";
+"release_date" = "Data de llançament";
+"size" = "Mida";
+"build_number" = "Número de compilació";
+
+// MARK: - App Detail
+"app_detail" = "Detalls de l'app";
+"get" = "Obtén";
+"icloud_sync" = "Sincronització iCloud";
+"screenshots" = "Captures de pantalla";
+"description" = "Descripció";
+"whats_new" = "Novetats";
+"ratings_and_reviews" = "Valoracions i ressenyes";
+"developer" = "Desenvolupador";
+"category" = "Categoria";
+"compatibility" = "Compatibilitat";
+"privacy" = "Privacitat";
+"privacy_policy" = "Política de privacitat";
+"user_agreement" = "Acord d'ús";
+"rating" = "Valoració";
+"no_reviews" = "Sense ressenyes";
+"no_reviews_description" = "Aquesta app encara no té ressenyes d'usuaris";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Sense apps de TestFlight";
+"install_tf_app" = "Instal·la versió TestFlight";
+"testing_status" = "Estat de proves";
+"testing" = "Proves";
+"expired" = "Vençut";
+"full" = "Ple";
+"test_duration" = "Durada de la prova";
+"remaining_seats" = "Llocs restants";
+"redeem_code" = "Canvia codi";
+"enter_redeem_code" = "Introduïu el codi de bescanvi";
+
+// MARK: - Filter & Sort
+"filter" = "Filtre";
+"sort" = "Ordena";
+"sort_by_name" = "Ordena per nom";
+"sort_by_date" = "Ordena per data";
+"sort_by_size" = "Ordena per mida";
+"sort_by_status" = "Ordena per estat";
+"ascending" = "Ascendent";
+"descending" = "Descendent";
+
+// MARK: - Notification
+"notifications" = "Notificacions";
+"push_notifications" = "Notificacions push";
+"download_complete_notification" = "Notificació de baixada completada";
+"notification_sound" = "So de notificació";
+"notification_vibrate" = "Vibració";
+"notification_badge" = "Insígnia";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Privacitat i seguretat";
+"clear_cache" = "Neteja la memòria cau";
+"cache_size" = "Mida de la memòria cau";
+"calculating_cache" = "S'està calculant...";
+"clear_cache_confirm" = "Confirma la neteja de la memòria cau";
+"clear_cache_message" = "Esteu segur que voleu netejar tota la memòria cau? Això no suprimirà les apps baixades.";
+"cache_cleared" = "Memòria cau netejada";
+
+// MARK: - Storage
+"storage" = "Emmagatzematge";
+"total_storage" = "Total";
+"used_storage" = "Utilitzat";
+"available_storage" = "Disponible";
+"app_size" = "Mida de l'app";
+"documents_size" = "Mida dels documents";
+
+// MARK: - Download Manager
+"download_manager" = "Gestor de baixades";
+"batch_operations" = "Operacions per lots";
+"select_all" = "Selecciona-ho tot";
+"deselect_all" = "Deselecciona-ho tot";
+"selected_count" = "Seleccionats: %@";
+
+// MARK: - App Information
+"app_name" = "Nom de l'app";
+"app_version" = "Versió de l'app";
+"app_rating" = "Valoració de l'app";
+"app_developer" = "Desenvolupador";
+"app_category" = "Categoria";
+"last_updated" = "Darrera actualització";
+"language_support" = "Suport d'idiomes";
+"content_rating" = "Classificació de contingut";
+
+// MARK: - Account Management
+"account_management" = "Gestió de comptes";
+"login_status" = "Estat de la sessió";
+"two_factor_auth" = "Autenticació de dos factors";
+"remember_password" = "Recorda la contrasenya";
+"auto_login" = "Inici de sessió automàtic";
+"login_expired" = "La sessió ha vençut";
+"please_relogin" = "Torneu a iniciar sessió";
+
+// MARK: - Settings More
+"advanced_settings" = "Ajustos avançats";
+"developer_options" = "Opcions de desenvolupador";
+"check_update" = "Comprova actualitzacions";
+"new_version_available" = "Hi ha una nova versió disponible";
+"already_latest_version" = "Ja teniu la versió més recent";
+"feedback" = "Comentaris";
+"rate_app" = "Valora l'app";
+"share_app" = "Comparteix l'app";
+
+// MARK: - Network
+"network" = "Xarxa";
+"network_status" = "Estat de la xarxa";
+"wifi" = "Wi-Fi";
+"cellular" = "Dades mòbils";
+"no_network" = "Sense connexió a la xarxa";
+"network_error" = "Error de xarxa";
+"network_error_message" = "La connexió a la xarxa ha fallat. Comproveu els ajustos de xarxa.";
+"network_speed" = "Velocitat de la xarxa";
+"network_usage" = "Ús de dades";
+
+// MARK: - Installation
+"installation" = "Instal·lació";
+"installing" = "S'està instal·lant...";
+"install_success" = "Instal·lació correcta";
+"install_failed" = "La instal·lació ha fallat";
+"install_failed_message" = "La instal·lació ha fallat. Torneu-ho a provar.";
+"uninstall" = "Desinstal·la";
+"uninstall_confirm" = "Confirma la desinstal·lació";
+"uninstall_message" = "Esteu segur que voleu desinstal·lar aquesta app? S'eliminaran totes les dades.";
+"ipa_file" = "Fitxer IPA";
+"ipa_signature" = "Signatura IPA";
+"signed" = "Signat";
+"unsigned" = "No signat";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Invitació de prova";
+"testflight_build" = "Compilació";
+"testflight_group" = "Grup de proves";
+"testflight_tester" = "Proves";
+"testflight_feedback" = "Comentaris de la prova";
+"testflight_expired" = "La prova ha vençut";
+"testflight_full" = "La prova està plena";
+"testflight_join" = "Uneix-te a la prova";
+"testflight_leave" = "Deixa la prova";
+
+// MARK: - Search More
+"search_filter" = "Filtre de cerca";
+"search_result_count" = "S'han trobat %@ resultats";
+"exact_match" = "Coincidència exacta";
+"fuzzy_match" = "Coincidència aproximada";
+"hot_apps" = "Apps tendència";
+"new_apps" = "Apps noves";
+"recommended_apps" = "Apps recomanades";
+"top_charts" = "Més populars";
+
+// MARK: - Status
+"status" = "Estat";
+"status_normal" = "Normal";
+"status_abnormal" = "Anormal";
+"status_pending" = "Pendent";
+"status_processing" = "S'està processant";
+"status_completed" = "Completat";
+"status_failed" = "Fallat";
+"status_cancelled" = "Cancel·lat";
+"status_expired" = "Vençut";
+"status_active" = "Actiu";
+"status_inactive" = "Inactiu";
+"status_idle" = "Inactiu";
+"status_busy" = "Ocupat";
+
+// MARK: - Tips
+"tips" = "Consells";
+"tip_download_speed" = "La velocitat de baixada depèn de la vostra connexió a la xarxa";
+"tip_wifi_download" = "Es recomana baixar fitxers grans per Wi-Fi";
+"tip_storage_space" = "Assegureu-vos de tenir prou espai d'emmagatzematge";
+"tip_account_security" = "Mantingueu les dades del vostre compte segures";
+"dont_show_again" = "No ho mostris més";
+"remind_later" = "Recorda-m'ho més tard";
+"view_details" = "Mostra detalls";
+"learn_more" = "Més informació";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "s";
+"unit_minutes" = "min";
+"unit_hours" = "h";
+"unit_days" = "d";
+"unit_weeks" = "set";
+"unit_months" = "mes";
+"unit_years" = "any";
+"today" = "Avui";
+"yesterday" = "Ahir";
+"day_before_yesterday" = "Abans d'ahir";
+"just_now" = "Ara mateix";
+"minutes_ago" = "fa %@ min";
+"hours_ago" = "fa %@ h";
+"days_ago" = "fa %@ d";
+
+// MARK: - Actions
+"action_open" = "Obre";
+"action_close" = "Tanca";
+"action_view" = "Mostra";
+"action_edit" = "Edita";
+"action_delete" = "Suprimeix";
+"action_share" = "Comparteix";
+"action_copy" = "Copia";
+"action_paste" = "Enganxa";
+"action_select" = "Selecciona";
+"action_select_all" = "Selecciona-ho tot";
+"action_deselect" = "Deselecciona";
+"action_refresh" = "Actualitza";
+"action_reload" = "Torna a carregar";
+"action_scroll_top" = "Desplaça-te a dalt";
+"action_scroll_bottom" = "Desplaça-te a baix";
+"action_favorite" = "Afegeix a preferits";
+"action_unfavorite" = "Elimina de preferits";
+"action_like" = "M'agrada";
+"action_unlike" = "No m'agrada";
+"action_follow" = "Segueix";
+"action_unfollow" = "No segueixis";
+"action_report" = "Informa";
+"action_block" = "Bloqueja";
+"action_rename" = "Reanomena";
+"action_move" = "Mou";
+"action_compress" = "Comprimeix";
+"action_extract" = "Descomprimeix";
+"action_upload" = "Puja";
+"action_download" = "Baixa";
+"action_install" = "Instal·la";
+"action_uninstall" = "Desinstal·la";
+"action_update" = "Actualitza";
+"action_upgrade" = "Actualitza";
+"action_downgrade" = "Tornar a versió anterior";
+"action_scan_qr" = "Escaneja codi QR";
+"action_generate_qr" = "Genera codi QR";
+"action_print" = "Imprimeix";
+"action_send" = "Envia";
+"action_receive" = "Rep";
+"action_reject" = "Rebutja";
+"action_accept" = "Accepta";
+"action_declined" = "Rebutjat";
+"action_accepted" = "Acceptat";
+
+// MARK: - Theme
+"theme_settings" = "Ajustos del tema";
+"light_theme" = "Tema clar";
+"dark_theme" = "Tema fosc";
+"system_theme" = "Tema del sistema";
+"pure_black" = "Negre pur";
+"auto_switch" = "Canvi automàtic";
+"custom_theme" = "Tema personalitzat";
+"theme_color" = "Color del tema";
+"background_color" = "Color de fons";
+"text_color" = "Color del text";
+"font_size" = "Mida de la lletra";
+"font_style" = "Estil de lletra";
+
+// MARK: - App Detail More
+"feature_tags" = "Etiquetes de característiques";
+"free" = "Obtén";
+"get" = "Obtén";
+"view" = "Mostra";
+"get_reviews_failed" = "No s'han pogut obtenir les ressenyes: %@";
+"x_ratings" = "%@ valoracions";
+"age_rating" = "Classificació per edats";
+"x_languages" = "%@ idiomes";
+"whats_new" = "Novetats";
+"tech_info" = "Informació tècnica";
+"first_release" = "Primer llançament";
+"last_updated" = "Darrera actualització";
+"requires_ios" = "Requereix iOS %@ o posterior";
+
+// MARK: - Search More
+"search_placeholder" = "Cerca jocs, apps";
+"login" = "Inicia sessió";
+"clear_all" = "Neteja-ho tot";
+"x_results_found" = "S'han trobat %@ resultats";
+"finding_best_results" = "Estem cercant els millors resultats per a tu";
+"app_downgrade" = "Tornar a versió anterior de l'app";
+"search_error" = "Error de cerca";
+"load_more" = "Carrega més...";
+"purchasing" = "Compra";
+"purchase" = "Compra";
+"please_login_first" = "Inicia sessió primer per poder baixar apps";
+"loading_versions" = "S'està carregant l'historial de versions...";
+"load_failed" = "No s'ha pogut carregar";
+"no_versions_desc" = "No hi ha versions anteriors disponibles per a aquesta app";
+"x_versions" = "%@ versions";
+"version_x_date" = "Versió %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Inicia sessió";
+"current" = "Actual";
+"switch" = "Canvia";
+"x_accounts" = "%@ comptes";
+"add_new_account" = "Afegeix un compte nou";
+"account_management" = "Gestió de comptes";
+"use_account" = "Utilitza el compte";
+"connection_lost" = "S'ha perdut la connexió";
+"reconnecting" = "S'està reconnectant";
+"connected" = "Connectat";
+"apple_id_disconnected" = "Apple ID desconnectat. Toca per verificar de nou o tornar a iniciar sessió.";
+"apple_id_reconnecting" = "S'està reconnectant automàticament a Apple ID, espera...";
+"apple_id_connected" = "Apple ID connectat. Cerca i baixa apps amb normalitat.";
+"login_apple_id" = "Inicia sessió amb Apple ID";
+"login_apple_id_desc" = "Baixa i gestiona apps amb el teu Apple ID";
+"login_apple_id_btn" = "Inicia sessió amb Apple ID";
+"view_account_details" = "Mostra detalls del compte";
+"media_purchases" = "Mèdia i compres";
+"media_purchases_header" = "Mèdia i compres";
+"sign_in_apple_id" = "Inicia sessió al teu iPhone";
+"sign_in_apple_id_desc" = "Utilitza el teu Apple ID en aquest iPhone";
+"apple_id" = "Apple ID";
+"name" = "Nom";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Nom, correu electrònic";
+"account_identifier_header" = "Identificador del compte";
+"country_region" = "País/regió";
+"region_header" = "Regió";
+"sign_out" = "Tanca la sessió";
+"login_your_account" = "Inicia sessió al teu compte";
+"enter_apple_id" = "Introdueix el teu Apple ID";
+"password" = "Contrasenya";
+"enter_password" = "Introdueix la teva contrasenya";
+"two_factor_code" = "Codi de dos factors";
+"enter_6digit_code" = "Introdueix el codi de 6 dígits";
+"check_trusted_device" = "Comprova els teus dispositius de confiança o els missatges de text per al codi";
+"verifying" = "S'està verificant...";
+"enter_full_credentials" = "Introdueix el teu Apple ID i contrasenya complets";
+"enter_6digit_code_verify" = "Introdueix el codi de verificació de 6 dígits";
+"wrong_credentials" = "Apple ID o contrasenya incorrectes. Torna-ho a provar.";
+"account_locked" = "El teu Apple ID ha estat bloquejat. Torna-ho a provar més tard o contacta amb el suport d'Apple.";
+"network_error_retry" = "Error de connexió de xarxa. Comprova els ajustos de xarxa i torna-ho a provar.";
+"auth_failed" = "L'autenticació ha fallat. Comprova la connexió de xarxa i les dades del compte.";
+"invalid_server_response" = "Resposta del servidor no vàlida. Torna-ho a provar més tard.";
+"unknown_error" = "Error desconegut. Torna-ho a provar més tard.";
+"auth_error" = "S'ha produït un error durant l'autenticació: %@";
+"check_apple_device_code" = "Comprova el teu dispositiu Apple per al codi de verificació";
+"wrong_verification_code" = "Codi de verificació incorrecte. Torna-ho a provar.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Fitxer IPA no vàlid";
+"install_failed_with_reason" = "La instal·lació ha fallat: %@";
+"install_timeout" = "S'ha esgotat el temps d'instal·lació";
+"installing_app" = "S'està instal·lant %@";
+"version_x" = "Versió %@";
+"install_starting" = "S'està iniciant la instal·lació...";
+"install_manual_hint" = "Si la instal·lació automàtica falla, toca el botó de sota per a la instal·lació manual:";
+"manual_install" = "Instal·lació manual";
+"install_success_desc" = "Mira la pantalla d'inici, s'està instal·lant l'app...";
+"install_contact_author" = "Si tens problemes, contacta amb el desenvolupador pxx917144686";
+"install_start_failed" = "No s'ha pogut iniciar la instal·lació";
+"retry_install" = "Reintenta la instal·lació";
+"view_source_code" = "👉 Mostra codi font";
+"file_size_x" = "Mida del fitxer: %@";
+"no_purchase_record" = "No s'ha trobat cap registre de compra, s'està redirigint a l'App Store";
+"file_saved_to" = "Fitxer desat a:";
+"preparing" = "S'està preparant...";
+"waiting_confirm" = "Esperant confirmació...";
+"install_completed" = "Instal·lació completada";
+"waiting" = "Esperant...";
+"start_install" = "Inicia la instal·lació";
+"unknown_path" = "Ruta desconeguda";
+"share_ipa" = "Comparteix IPA";
+"install_background_hint" = "L'app s'està instal·lant en segon pla. Pots tornar a la pantalla d'inici per comprovar el progrés.";
+"ipa_not_found" = "No s'ha trobat el fitxer IPA, baixa-lo de nou";
+"preparing_install" = "S'està preparant la instal·lació...";
+"install_in_progress" = "Ja hi ha una instal·lació en curs";
+"verifying_package" = "S'està verificant el paquet...";
+"starting_install_service" = "S'està iniciant el servei d'instal·lació...";
+"install_service_timeout" = "S'ha esgotat el temps del servei d'instal·lació. Torna-ho a provar.";
+"opening_install_page" = "S'està obrint la pàgina d'instal·lació...";
+"download_record_file" = "Registre de baixada";
+"delete_file" = "Suprimeix el fitxer";
+"delete_file_confirm" = "Esteu segur que voleu suprimir %@? Aquesta acció no es pot desfer.";
+"delete_success" = "S'ha suprimit correctament";
+"delete_success_desc" = "El fitxer s'ha suprimit correctament.";
+"no_ipa_found" = "No s'han trobat fitxers IPA";
+"no_ipa_found_desc" = "No s'han trobat fitxers IPA al directori d'emmagatzematge de l'app";
+
+// MARK: - Account Detail
+"basic_info" = "Informació bàsica";
+"account_identifier" = "Identificador del compte";
+"country_region" = "País/regió";
+"password_token" = "Token de contrasenya";
+"auth_info" = "Informació d'autenticació";
+"password_token_hint" = "El token de contrasenya s'utilitza per a l'autenticació automàtica. No el comparteixis amb ningú.";
+"delete_this_account" = "Suprimeix aquest compte";
+"delete_account_confirm_detail" = "Esteu segur que voleu suprimir el compte %@ d'aquest dispositiu?\n\nS'eliminaran totes les dades d'inici de sessió i les galetes per a aquest compte.";
+"dsid" = "DSID";
+"no_value" = "Cap";
+"region_title" = "Regió";
+
+// MARK: - Appearance More
+"overall_color" = "Color d'èmfasi";
+"quick_select" = "Selecció ràpida";
+"auto" = "Auto";
+"unknown" = "Desconegut";

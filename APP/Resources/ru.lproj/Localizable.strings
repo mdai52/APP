@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Настройки";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Загрузки";
+"tab_search" = "Поиск";
+
+// MARK: - Common
+"cancel" = "Отмена";
+"confirm" = "Подтвердить";
+"ok" = "ОК";
+"done" = "Готово";
+"back" = "Назад";
+"save" = "Сохранить";
+"delete" = "Удалить";
+"edit" = "Редактировать";
+"add" = "Добавить";
+"close" = "Закрыть";
+"refresh" = "Обновить";
+"retry" = "Повторить";
+"loading" = "Загрузка...";
+"success" = "Успех";
+"failed" = "Не удалось";
+"error" = "Ошибка";
+"warning" = "Предупреждение";
+"info" = "Информация";
+"search" = "Поиск";
+"download" = "Загрузить";
+"install" = "Установить";
+"update" = "Обновить";
+"more" = "Ещё";
+"all" = "Все";
+"none" = "Нет";
+"default" = "По умолчанию";
+"copy" = "Копировать";
+"share" = "Поделиться";
+"export" = "Экспорт";
+"import" = "Импорт";
+"clear" = "Очистить";
+"reset" = "Сбросить";
+"continue" = "Продолжить";
+"confirm_delete" = "Подтвердить удаление";
+"confirm_delete_message" = "Вы уверены, что хотите удалить это? Это действие нельзя отменить.";
+"copied" = "Скопировано";
+"copy_failed" = "Ошибка копирования";
+"no_data" = "Нет данных";
+"no_result" = "Нет результатов";
+"try_again" = "Пожалуйста, попробуйте снова";
+"got_it" = "Понятно";
+
+// MARK: - Settings
+"settings" = "Настройки";
+"appearance" = "Внешний вид";
+"theme" = "Тема";
+"color" = "Цвет";
+"icon" = "Значок";
+"language" = "Язык";
+"general" = "Основные";
+"about" = "О приложении";
+"version" = "Версия";
+"version_number" = "Номер версии";
+"follow_system" = "Системная";
+"light_mode" = "Светлая";
+"dark_mode" = "Тёмная";
+"accent_color" = "Цвет акцента";
+"app_icon" = "Значок приложения";
+"select_icon" = "Выбрать значок";
+"icon_changed_success" = "Значок успешно изменён";
+"icon_changed_failed" = "Не удалось изменить значок";
+"language_select" = "Выбрать язык";
+"language_footer" = "После смены языка приложение нужно перезапустить, чтобы изменения вступили в силу полностью.";
+"language_switch" = "Сменить язык";
+"language_switch_message" = "Интерфейс приложения обновится сразу после смены языка. Некоторые системные компоненты могут потребовать перезапуска для полного вступления в силу.";
+"confirm_switch" = "Подтвердить смену";
+"app_icon" = "Значок приложения";
+"icon_default" = "По умолчанию";
+"icon_author" = "Значок";
+"icon_love" = "Любовь";
+"icon_peek" = "Взгляд";
+"icon_set_success" = "Значок успешно установлен";
+"system_language" = "Язык системы";
+"language_system_settings" = "Изменить в настройках системы";
+"language_system_hint" = "Перейти в Настройки → APP → Язык";
+"language_recommended" = "Рекомендуемый";
+"lang_chinese_simplified" = "Китайский (упрощённый)";
+"lang_english" = "Английский";
+"lang_japanese" = "Японский";
+"lang_korean" = "Корейский";
+"lang_spanish" = "Испанский";
+"lang_french" = "Французский";
+"lang_german" = "Немецкий";
+"lang_italian" = "Итальянский";
+"lang_portuguese" = "Португальский";
+"lang_russian" = "Русский";
+"lang_arabic" = "Арабский";
+"lang_hindi" = "Хинди";
+"lang_thai" = "Тайский";
+"lang_vietnamese" = "Вьетнамский";
+"lang_indonesian" = "Индонезийский";
+"lang_malay" = "Малайский";
+"lang_dutch" = "Нидерландский";
+"lang_swedish" = "Шведский";
+"lang_danish" = "Датский";
+"lang_finnish" = "Финский";
+"lang_norwegian" = "Норвежский";
+"lang_polish" = "Польский";
+"lang_czech" = "Чешский";
+"lang_hungarian" = "Венгерский";
+"lang_romanian" = "Румынский";
+"lang_turkish" = "Турецкий";
+"lang_ukrainian" = "Украинский";
+"lang_greek" = "Греческий";
+"lang_hebrew" = "Иврит";
+"lang_slovak" = "Словацкий";
+"lang_croatian" = "Хорватский";
+"lang_catalan" = "Каталанский";
+
+// MARK: - Download
+"download_title" = "Загрузки";
+"downloading" = "Загрузка";
+"download_paused" = "Приостановлено";
+"download_completed" = "Завершено";
+"download_failed" = "Ошибка загрузки";
+"download_cancelled" = "Отменено";
+"download_waiting" = "Ожидание";
+"download_speed" = "Скорость загрузки";
+"download_progress" = "Прогресс загрузки";
+"download_size" = "Размер загрузки";
+"download_time" = "Время загрузки";
+"pause_download" = "Приостановить загрузку";
+"resume_download" = "Возобновить загрузку";
+"cancel_download" = "Отменить загрузку";
+"retry_download" = "Повторить загрузку";
+"delete_download" = "Удалить загрузку";
+"all_pause" = "Приостановить все";
+"all_start" = "Начать все";
+"clear_completed" = "Очистить завершённые";
+"download_queue" = "Очередь загрузок";
+"download_history" = "История загрузок";
+"no_downloads" = "Нет загрузок";
+"download_settings" = "Настройки загрузки";
+"wifi_only_download" = "Только Wi-Fi";
+"max_concurrent_downloads" = "Макс. одновременных загрузок";
+"download_path" = "Путь загрузки";
+
+// MARK: - Account
+"account" = "Учётная запись";
+"apple_id" = "Apple ID";
+"add_account" = "Добавить Apple ID";
+"switch_account" = "Сменить учётную запись";
+"current_account" = "Текущая учётная запись";
+"all_accounts" = "Все учётные записи";
+"account_info" = "Информация об учётной записи";
+"region" = "Регион";
+"delete_account" = "Удалить учётную запись";
+"logout" = "Выйти";
+"logout_confirm" = "Подтвердить выход";
+"logout_confirm_message" = "Вы уверены, что хотите выйти из текущей учётной записи?";
+"delete_account_confirm" = "Подтвердить удаление учётной записи";
+"delete_account_message" = "Вы уверены, что хотите удалить учётную запись %@? Это нельзя отменить, и вам нужно будет добавить её заново.";
+"account_detail" = "Детали учётной записи";
+"verified" = "Проверено";
+"unverified" = "Не проверено";
+"no_account" = "Не выполнен вход";
+"no_account_description" = "Пожалуйста, добавьте Apple ID, чтобы начать";
+"name" = "Имя";
+"email" = "Эл. почта";
+"country" = "Страна/регион";
+
+// MARK: - App Icon
+"app_icon_settings" = "Значок приложения";
+"default_icon" = "По умолчанию";
+
+// MARK: - Search
+"search_placeholder" = "Поиск приложений, игр, разработчиков";
+"search_history" = "История поиска";
+"search_suggestions" = "Предложения поиска";
+"search_results" = "Результаты поиска";
+"clear_history" = "Очистить историю";
+"hot_search" = "Популярные запросы";
+"no_results" = "Результатов не найдено";
+"try_different_keywords" = "Попробуйте другие ключевые слова";
+"searching" = "Поиск...";
+
+// MARK: - Version Picker
+"version_picker" = "Выбрать версию";
+"current_version" = "Текущая версия";
+"available_versions" = "Доступные версии";
+"no_versions" = "Нет доступных версий";
+"load_versions_failed" = "Не удалось загрузить версии";
+"select_version_to_download" = "Выбрать версию для загрузки";
+"version_history" = "История версий";
+"release_date" = "Дата выпуска";
+"size" = "Размер";
+"build_number" = "Номер сборки";
+
+// MARK: - App Detail
+"app_detail" = "Информация о приложении";
+"get" = "Получить";
+"icloud_sync" = "Синхронизация iCloud";
+"screenshots" = "Скриншоты";
+"description" = "Описание";
+"whats_new" = "Что нового";
+"ratings_and_reviews" = "Рейтинги и отзывы";
+"developer" = "Разработчик";
+"category" = "Категория";
+"compatibility" = "Совместимость";
+"privacy" = "Конфиденциальность";
+"privacy_policy" = "Политика конфиденциальности";
+"user_agreement" = "Пользовательское соглашение";
+"rating" = "Рейтинг";
+"no_reviews" = "Нет отзывов";
+"no_reviews_description" = "У этого приложения ещё нет отзывов пользователей";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Нет приложений TestFlight";
+"install_tf_app" = "Установить версию TestFlight";
+"testing_status" = "Статус тестирования";
+"testing" = "Тестируется";
+"expired" = "Истёк";
+"full" = "Полный";
+"test_duration" = "Длительность теста";
+"remaining_seats" = "Оставшиеся места";
+"redeem_code" = "Активировать код";
+"enter_redeem_code" = "Ввести код активации";
+
+// MARK: - Filter & Sort
+"filter" = "Фильтр";
+"sort" = "Сортировка";
+"sort_by_name" = "Сортировать по имени";
+"sort_by_date" = "Сортировать по дате";
+"sort_by_size" = "Сортировать по размеру";
+"sort_by_status" = "Сортировать по статусу";
+"ascending" = "По возрастанию";
+"descending" = "По убыванию";
+
+// MARK: - Notification
+"notifications" = "Уведомления";
+"push_notifications" = "Push-уведомления";
+"download_complete_notification" = "Уведомление о завершении загрузки";
+"notification_sound" = "Звук уведомления";
+"notification_vibrate" = "Вибрация";
+"notification_badge" = "Значок";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Конфиденциальность и безопасность";
+"clear_cache" = "Очистить кэш";
+"cache_size" = "Размер кэша";
+"calculating_cache" = "Вычисление...";
+"clear_cache_confirm" = "Подтвердить очистку кэша";
+"clear_cache_message" = "Вы уверены, что хотите очистить весь кэш? Это не удалит загруженные приложения.";
+"cache_cleared" = "Кэш очищен";
+
+// MARK: - Storage
+"storage" = "Хранилище";
+"total_storage" = "Всего";
+"used_storage" = "Использовано";
+"available_storage" = "Доступно";
+"app_size" = "Размер приложения";
+"documents_size" = "Размер документов";
+
+// MARK: - Download Manager
+"download_manager" = "Менеджер загрузок";
+"batch_operations" = "Групповые операции";
+"select_all" = "Выбрать все";
+"deselect_all" = "Снять выбор со всех";
+"selected_count" = "Выбрано: %@";
+
+// MARK: - App Information
+"app_name" = "Название приложения";
+"app_version" = "Версия приложения";
+"app_rating" = "Рейтинг приложения";
+"app_developer" = "Разработчик";
+"app_category" = "Категория";
+"last_updated" = "Последнее обновление";
+"language_support" = "Поддержка языков";
+"content_rating" = "Возрастной рейтинг";
+
+// MARK: - Account Management
+"account_management" = "Управление учётными записями";
+"login_status" = "Статус входа";
+"two_factor_auth" = "Двухфакторная аутентификация";
+"remember_password" = "Запомнить пароль";
+"auto_login" = "Автовход";
+"login_expired" = "Срок действия входа истёк";
+"please_relogin" = "Пожалуйста, войдите снова";
+
+// MARK: - Settings More
+"advanced_settings" = "Расширенные настройки";
+"developer_options" = "Параметры разработчика";
+"check_update" = "Проверить обновления";
+"new_version_available" = "Доступна новая версия";
+"already_latest_version" = "Уже актуальная версия";
+"feedback" = "Обратная связь";
+"rate_app" = "Оценить приложение";
+"share_app" = "Поделиться приложением";
+
+// MARK: - Network
+"network" = "Сеть";
+"network_status" = "Статус сети";
+"wifi" = "Wi-Fi";
+"cellular" = "Мобильные данные";
+"no_network" = "Нет подключения к сети";
+"network_error" = "Ошибка сети";
+"network_error_message" = "Ошибка подключения к сети. Проверьте настройки сети.";
+"network_speed" = "Скорость сети";
+"network_usage" = "Использование данных";
+
+// MARK: - Installation
+"installation" = "Установка";
+"installing" = "Установка...";
+"install_success" = "Установка завершена";
+"install_failed" = "Ошибка установки";
+"install_failed_message" = "Ошибка установки. Пожалуйста, попробуйте снова.";
+"uninstall" = "Удалить";
+"uninstall_confirm" = "Подтвердить удаление";
+"uninstall_message" = "Вы уверены, что хотите удалить это приложение? Все данные будут удалены.";
+"ipa_file" = "Файл IPA";
+"ipa_signature" = "Подпись IPA";
+"signed" = "Подписан";
+"unsigned" = "Не подписан";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Приглашение на тест";
+"testflight_build" = "Сборка";
+"testflight_group" = "Группа тестирования";
+"testflight_tester" = "Тестировщик";
+"testflight_feedback" = "Отзыв о тесте";
+"testflight_expired" = "Тест истёк";
+"testflight_full" = "Тест заполнен";
+"testflight_join" = "Присоединиться к тесту";
+"testflight_leave" = "Покинуть тест";
+
+// MARK: - Search More
+"search_filter" = "Фильтр поиска";
+"search_result_count" = "Найдено результатов: %@";
+"exact_match" = "Точное совпадение";
+"fuzzy_match" = "Нечёткое совпадение";
+"hot_apps" = "Популярные приложения";
+"new_apps" = "Новые приложения";
+"recommended_apps" = "Рекомендуемые приложения";
+"top_charts" = "Топ-чарты";
+
+// MARK: - Status
+"status" = "Статус";
+"status_normal" = "Нормальный";
+"status_abnormal" = "Ненормальный";
+"status_pending" = "Ожидание";
+"status_processing" = "Обработка";
+"status_completed" = "Завершено";
+"status_failed" = "Не удалось";
+"status_cancelled" = "Отменено";
+"status_expired" = "Истёк";
+"status_active" = "Активно";
+"status_inactive" = "Неактивно";
+"status_idle" = "Бездействие";
+"status_busy" = "Занято";
+
+// MARK: - Tips
+"tips" = "Советы";
+"tip_download_speed" = "Скорость загрузки зависит от вашего сетевого подключения";
+"tip_wifi_download" = "Рекомендуется загружать большие файлы через Wi-Fi";
+"tip_storage_space" = "Убедитесь, что у вас достаточно места в хранилище";
+"tip_account_security" = "Храните данные своей учётной записи в безопасности";
+"dont_show_again" = "Больше не показывать";
+"remind_later" = "Напомнить позже";
+"view_details" = "Подробнее";
+"learn_more" = "Узнать больше";
+
+// MARK: - Units
+"unit_bytes" = "Б";
+"unit_kilobytes" = "КБ";
+"unit_megabytes" = "МБ";
+"unit_gigabytes" = "ГБ";
+"unit_terabytes" = "ТБ";
+"unit_seconds" = "сек";
+"unit_minutes" = "мин";
+"unit_hours" = "ч";
+"unit_days" = "дн";
+"unit_weeks" = "нед";
+"unit_months" = "мес";
+"unit_years" = "г";
+"today" = "Сегодня";
+"yesterday" = "Вчера";
+"day_before_yesterday" = "Позавчера";
+"just_now" = "Только что";
+"minutes_ago" = "%@ мин назад";
+"hours_ago" = "%@ ч назад";
+"days_ago" = "%@ дн назад";
+
+// MARK: - Actions
+"action_open" = "Открыть";
+"action_close" = "Закрыть";
+"action_view" = "Просмотр";
+"action_edit" = "Редактировать";
+"action_delete" = "Удалить";
+"action_share" = "Поделиться";
+"action_copy" = "Копировать";
+"action_paste" = "Вставить";
+"action_select" = "Выбрать";
+"action_select_all" = "Выбрать все";
+"action_deselect" = "Снять выбор";
+"action_refresh" = "Обновить";
+"action_reload" = "Перезагрузить";
+"action_scroll_top" = "Вверх";
+"action_scroll_bottom" = "Вниз";
+"action_favorite" = "В избранное";
+"action_unfavorite" = "Убрать из избранного";
+"action_like" = "Нравится";
+"action_unlike" = "Не нравится";
+"action_follow" = "Подписаться";
+"action_unfollow" = "Отписаться";
+"action_report" = "Пожаловаться";
+"action_block" = "Заблокировать";
+"action_rename" = "Переименовать";
+"action_move" = "Переместить";
+"action_compress" = "Сжать";
+"action_extract" = "Извлечь";
+"action_upload" = "Загрузить";
+"action_download" = "Скачать";
+"action_install" = "Установить";
+"action_uninstall" = "Удалить";
+"action_update" = "Обновить";
+"action_upgrade" = "Улучшить";
+"action_downgrade" = "Откатить";
+"action_scan_qr" = "Сканировать QR-код";
+"action_generate_qr" = "Создать QR-код";
+"action_print" = "Печать";
+"action_send" = "Отправить";
+"action_receive" = "Получить";
+"action_reject" = "Отклонить";
+"action_accept" = "Принять";
+"action_declined" = "Отклонено";
+"action_accepted" = "Принято";
+
+// MARK: - Theme
+"theme_settings" = "Настройки темы";
+"light_theme" = "Светлая тема";
+"dark_theme" = "Тёмная тема";
+"system_theme" = "Системная тема";
+"pure_black" = "Чистый чёрный";
+"auto_switch" = "Автосмена";
+"custom_theme" = "Пользовательская тема";
+"theme_color" = "Цвет темы";
+"background_color" = "Цвет фона";
+"text_color" = "Цвет текста";
+"font_size" = "Размер шрифта";
+"font_style" = "Стиль шрифта";
+
+// MARK: - App Detail More
+"feature_tags" = "Теги функций";
+"free" = "Получить";
+"get" = "Получить";
+"view" = "Просмотр";
+"get_reviews_failed" = "Не удалось получить отзывы: %@";
+"x_ratings" = "%@ оценок";
+"age_rating" = "Возрастной рейтинг";
+"x_languages" = "%@ языков";
+"whats_new" = "Что нового";
+"tech_info" = "Техническая информация";
+"first_release" = "Первый выпуск";
+"last_updated" = "Последнее обновление";
+"requires_ios" = "Требуется iOS %@ или новее";
+
+// MARK: - Search More
+"search_placeholder" = "Поиск игр, приложений";
+"login" = "Войти";
+"clear_all" = "Очистить всё";
+"x_results_found" = "Найдено результатов: %@";
+"finding_best_results" = "Поиск лучших результатов для вас";
+"app_downgrade" = "Откат версии приложения";
+"search_error" = "Ошибка поиска";
+"load_more" = "Загрузить ещё...";
+"purchasing" = "Покупка";
+"purchase" = "Купить";
+"please_login_first" = "Войдите, чтобы скачивать приложения";
+"loading_versions" = "Загрузка истории версий...";
+"load_failed" = "Ошибка загрузки";
+"no_versions_desc" = "Для этого приложения нет предыдущих версий";
+"x_versions" = "%@ версий";
+"version_x_date" = "Версия %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Войти";
+"current" = "Текущий";
+"switch" = "Сменить";
+"x_accounts" = "%@ учётных записей";
+"add_new_account" = "Добавить новую учётную запись";
+"account_management" = "Управление учётными записями";
+"use_account" = "Использовать учётную запись";
+"connection_lost" = "Соединение потеряно";
+"reconnecting" = "Восстановление соединения";
+"connected" = "Подключено";
+"apple_id_disconnected" = "Apple ID отключён. Нажмите для повторной проверки или входа.";
+"apple_id_reconnecting" = "Автоматическое восстановление соединения с Apple ID, подождите...";
+"apple_id_connected" = "Apple ID подключён. Ищите и скачивайте приложения как обычно.";
+"login_apple_id" = "Войти с Apple ID";
+"login_apple_id_desc" = "Скачивайте и управляйте приложениями с вашим Apple ID";
+"login_apple_id_btn" = "Войти с Apple ID";
+"view_account_details" = "Посмотреть детали учётной записи";
+"media_purchases" = "Медиа и покупки";
+"media_purchases_header" = "Медиа и покупки";
+"sign_in_apple_id" = "Войти на вашем iPhone";
+"sign_in_apple_id_desc" = "Используйте ваш Apple ID на этом iPhone";
+"apple_id" = "Apple ID";
+"name" = "Имя";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Имя, эл. почта";
+"account_identifier_header" = "Идентификатор учётной записи";
+"country_region" = "Страна/регион";
+"region_header" = "Регион";
+"sign_out" = "Выйти";
+"login_your_account" = "Войдите в свою учётную запись";
+"enter_apple_id" = "Введите ваш Apple ID";
+"password" = "Пароль";
+"enter_password" = "Введите ваш пароль";
+"two_factor_code" = "Двухфакторный код";
+"enter_6digit_code" = "Введите 6-значный код";
+"check_trusted_device" = "Проверьте ваши доверенные устройства или SMS для получения кода";
+"verifying" = "Проверка...";
+"enter_full_credentials" = "Введите полный Apple ID и пароль";
+"enter_6digit_code_verify" = "Введите 6-значный код проверки";
+"wrong_credentials" = "Apple ID или пароль неверны. Попробуйте снова.";
+"account_locked" = "Ваш Apple ID заблокирован. Попробуйте позже или свяжитесь с поддержкой Apple.";
+"network_error_retry" = "Ошибка сетевого подключения. Проверьте настройки сети и попробуйте снова.";
+"auth_failed" = "Ошибка аутентификации. Проверьте сетевое подключение и данные учётной записи.";
+"invalid_server_response" = "Неверный ответ сервера. Попробуйте позже.";
+"unknown_error" = "Неизвестная ошибка. Попробуйте позже.";
+"auth_error" = "Произошла ошибка при аутентификации: %@";
+"check_apple_device_code" = "Проверьте ваше устройство Apple для получения кода проверки";
+"wrong_verification_code" = "Неверный код проверки. Попробуйте снова.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Неверный файл IPA";
+"install_failed_with_reason" = "Ошибка установки: %@";
+"install_timeout" = "Превышено время ожидания установки";
+"installing_app" = "Установка %@";
+"version_x" = "Версия %@";
+"install_starting" = "Начало установки...";
+"install_manual_hint" = "Если автоматическая установка не удалась, нажмите кнопку ниже для ручной установки:";
+"manual_install" = "Установить вручную";
+"install_success_desc" = "Проверьте экран «Домой», приложение устанавливается...";
+"install_contact_author" = "Свяжитесь с разработчиком pxx917144686 при возникновении проблем";
+"install_start_failed" = "Не удалось начать установку";
+"retry_install" = "Повторить установку";
+"view_source_code" = "👉 Посмотреть исходный код";
+"file_size_x" = "Размер файла: %@";
+"no_purchase_record" = "Запись о покупке не найдена, перенаправление в App Store";
+"file_saved_to" = "Файл сохранён в:";
+"preparing" = "Подготовка...";
+"waiting_confirm" = "Ожидание подтверждения...";
+"install_completed" = "Установка завершена";
+"waiting" = "Ожидание...";
+"start_install" = "Начать установку";
+"unknown_path" = "Неизвестный путь";
+"share_ipa" = "Поделиться IPA";
+"install_background_hint" = "Приложение устанавливается в фоновом режиме. Вы можете вернуться на экран «Домой», чтобы проверить прогресс.";
+"ipa_not_found" = "Файл IPA не найден, пожалуйста, скачайте его снова";
+"preparing_install" = "Подготовка к установке...";
+"install_in_progress" = "Установка уже выполняется";
+"verifying_package" = "Проверка пакета...";
+"starting_install_service" = "Запуск службы установки...";
+"install_service_timeout" = "Превышено время ожидания службы установки. Попробуйте снова.";
+"opening_install_page" = "Открытие страницы установки...";
+"download_record_file" = "Запись о загрузке";
+"delete_file" = "Удалить файл";
+"delete_file_confirm" = "Вы уверены, что хотите удалить %@? Это действие нельзя отменить.";
+"delete_success" = "Успешно удалено";
+"delete_success_desc" = "Файл был успешно удалён.";
+"no_ipa_found" = "Файлы IPA не найдены";
+"no_ipa_found_desc" = "Файлы IPA не найдены в каталоге хранилища приложения";
+
+// MARK: - Account Detail
+"basic_info" = "Основная информация";
+"account_identifier" = "Идентификатор учётной записи";
+"country_region" = "Страна/регион";
+"password_token" = "Токен пароля";
+"auth_info" = "Информация об аутентификации";
+"password_token_hint" = "Токен пароля используется для автоматической аутентификации. Не передавайте его другим лицам.";
+"delete_this_account" = "Удалить эту учётную запись";
+"delete_account_confirm_detail" = "Вы уверены, что хотите удалить учётную запись %@ с этого устройства?\n\nВсе данные входа и файлы cookie для этой учётной записи будут удалены.";
+"dsid" = "DSID";
+"no_value" = "Нет";
+"region_title" = "Регион";
+
+// MARK: - Appearance More
+"overall_color" = "Цвет акцента";
+"quick_select" = "Быстрый выбор";
+"auto" = "Авто";
+"unknown" = "Неизвестно";

@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Ρυθμίσεις";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Λήψεις";
+"tab_search" = "Αναζήτηση";
+
+// MARK: - Common
+"cancel" = "Ακύρωση";
+"confirm" = "Επιβεβαίωση";
+"ok" = "OK";
+"done" = "Έγινε";
+"back" = "Πίσω";
+"save" = "Αποθήκευση";
+"delete" = "Διαγραφή";
+"edit" = "Επεξεργασία";
+"add" = "Προσθήκη";
+"close" = "Κλείσιμο";
+"refresh" = "Ανανέωση";
+"retry" = "Προσπάθεια ξανά";
+"loading" = "Φόρτωση...";
+"success" = "Επιτυχία";
+"failed" = "Αποτυχία";
+"error" = "Σφάλμα";
+"warning" = "Προειδοποίηση";
+"info" = "Πληροφορία";
+"search" = "Αναζήτηση";
+"download" = "Λήψη";
+"install" = "Εγκατάσταση";
+"update" = "Ενημέρωση";
+"more" = "Περισσότερα";
+"all" = "Όλα";
+"none" = "Κανένα";
+"default" = "Προεπιλογή";
+"copy" = "Αντιγραφή";
+"share" = "Κοινή χρήση";
+"export" = "Εξαγωγή";
+"import" = "Εισαγωγή";
+"clear" = "Εκκαθάριση";
+"reset" = "Επαναφορά";
+"continue" = "Συνέχεια";
+"confirm_delete" = "Επιβεβαίωση διαγραφής";
+"confirm_delete_message" = "Είστε βέβαιοι ότι θέλετε να το διαγράψετε; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.";
+"copied" = "Αντιγράφηκε";
+"copy_failed" = "Αποτυχία αντιγραφής";
+"no_data" = "Χωρίς δεδομένα";
+"no_result" = "Δεν βρέθηκαν αποτελέσματα";
+"try_again" = "Δοκιμάστε ξανά";
+"got_it" = "Το κατάλαβα";
+
+// MARK: - Settings
+"settings" = "Ρυθμίσεις";
+"appearance" = "Εμφάνιση";
+"theme" = "Θέμα";
+"color" = "Χρώμα";
+"icon" = "Εικονίδιο";
+"language" = "Γλώσσα";
+"general" = "Γενικά";
+"about" = "Σχετικά";
+"version" = "Έκδοση";
+"version_number" = "Αριθμός έκδοσης";
+"follow_system" = "Προεπιλογή συστήματος";
+"light_mode" = "Φωτεινό";
+"dark_mode" = "Σκοτεινό";
+"accent_color" = "Χρώμα έμφασης";
+"app_icon" = "Εικονίδιο εφαρμογής";
+"select_icon" = "Επιλογή εικονιδίου";
+"icon_changed_success" = "Το εικονίδιο άλλαξε με επιτυχία";
+"icon_changed_failed" = "Αποτυχία αλλαγής εικονιδίου";
+"language_select" = "Επιλογή γλώσσας";
+"language_footer" = "Μετά την αλλαγή γλώσσας, η εφαρμογή πρέπει να επανεκκινηθεί για να τεθούν σε πλήρη ισχύ οι αλλαγές.";
+"language_switch" = "Αλλαγή γλώσσας";
+"language_switch_message" = "Η διεπαφή της εφαρμογής θα ενημερωθεί αμέσως μετά την αλλαγή γλώσσας. Ορισμένα συστατικά του συστήματος ενδέχεται να απαιτούν επανεκκίνηση για πλήρη ισχύ.";
+"confirm_switch" = "Επιβεβαίωση αλλαγής";
+"app_icon" = "Εικονίδιο εφαρμογής";
+"icon_default" = "Προεπιλογή";
+"icon_author" = "Εικονίδιο";
+"icon_love" = "Αγάπη";
+"icon_peek" = "Κουράνα";
+"icon_set_success" = "Το εικονίδιο ορίστηκε με επιτυχία";
+"system_language" = "Γλώσσα συστήματος";
+"language_system_settings" = "Αλλαγή στις ρυθμίσεις συστήματος";
+"language_system_hint" = "Μεταβείτε στις Ρυθμίσεις → APP → Γλώσσα";
+"language_recommended" = "Προτεινόμενο";
+"lang_chinese_simplified" = "Κινέζικα (απλοποιημένα)";
+"lang_english" = "Αγγλικά";
+"lang_japanese" = "Ιαπωνικά";
+"lang_korean" = "Κορεατικά";
+"lang_spanish" = "Ισπανικά";
+"lang_french" = "Γαλλικά";
+"lang_german" = "Γερμανικά";
+"lang_italian" = "Ιταλικά";
+"lang_portuguese" = "Πορτογαλικά";
+"lang_russian" = "Ρωσικά";
+"lang_arabic" = "Αραβικά";
+"lang_hindi" = "Χίντι";
+"lang_thai" = "Ταϊλανδικά";
+"lang_vietnamese" = "Βιετναμικά";
+"lang_indonesian" = "Ινδονησιακά";
+"lang_malay" = "Μαλάι";
+"lang_dutch" = "Ολλανδικά";
+"lang_swedish" = "Σουηδικά";
+"lang_danish" = "Δανικά";
+"lang_finnish" = "Φινλανδικά";
+"lang_norwegian" = "Νορβηγικά";
+"lang_polish" = "Πολωνικά";
+"lang_czech" = "Τσεχικά";
+"lang_hungarian" = "Ουγγρικά";
+"lang_romanian" = "Ρουμανικά";
+"lang_turkish" = "Τουρκικά";
+"lang_ukrainian" = "Ουκρανικά";
+"lang_greek" = "Ελληνικά";
+"lang_hebrew" = "Εβραϊκά";
+"lang_slovak" = "Σλοβακικά";
+"lang_croatian" = "Κροατικά";
+"lang_catalan" = "Καταλανικά";
+
+// MARK: - Download
+"download_title" = "Λήψεις";
+"downloading" = "Λήψη";
+"download_paused" = "Παύση";
+"download_completed" = "Ολοκληρώθηκε";
+"download_failed" = "Αποτυχία λήψης";
+"download_cancelled" = "Ακυρώθηκε";
+"download_waiting" = "Αναμονή";
+"download_speed" = "Ταχύτητα λήψης";
+"download_progress" = "Πρόοδος λήψης";
+"download_size" = "Μέγεθος λήψης";
+"download_time" = "Χρόνος λήψης";
+"pause_download" = "Παύση λήψης";
+"resume_download" = "Συνέχιση λήψης";
+"cancel_download" = "Ακύρωση λήψης";
+"retry_download" = "Επανάληψη λήψης";
+"delete_download" = "Διαγραφή λήψης";
+"all_pause" = "Παύση όλων";
+"all_start" = "Εκκίνηση όλων";
+"clear_completed" = "Εκκαθάριση ολοκληρωμένων";
+"download_queue" = "Ουρά λήψεων";
+"download_history" = "Ιστορικό λήψεων";
+"no_downloads" = "Χωρίς λήψεις";
+"download_settings" = "Ρυθμίσεις λήψης";
+"wifi_only_download" = "Λήψη μόνο μέσω Wi-Fi";
+"max_concurrent_downloads" = "Μέγιστος αριθμός ταυτόχρονων λήψεων";
+"download_path" = "Διαδρομή λήψης";
+
+// MARK: - Account
+"account" = "Λογαριασμός";
+"apple_id" = "Apple ID";
+"add_account" = "Προσθήκη Apple ID";
+"switch_account" = "Αλλαγή λογαριασμού";
+"current_account" = "Τρέχων λογαριασμός";
+"all_accounts" = "Όλοι οι λογαριασμοί";
+"account_info" = "Πληροφορίες λογαριασμού";
+"region" = "Περιοχή";
+"delete_account" = "Διαγραφή λογαριασμού";
+"logout" = "Αποσύνδεση";
+"logout_confirm" = "Επιβεβαίωση αποσύνδεσης";
+"logout_confirm_message" = "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε από τον τρέχοντα λογαριασμό;";
+"delete_account_confirm" = "Επιβεβαίωση διαγραφής λογαριασμού";
+"delete_account_message" = "Είστε βέβαιοι ότι θέλετε να διαγράψετε τον λογαριασμό %@; Αυτό δεν μπορεί να αναιρεθεί και θα πρέπει να τον προσθέσετε ξανά.";
+"account_detail" = "Λεπτομέρειες λογαριασμού";
+"verified" = "Επαληθευμένο";
+"unverified" = "Μη επαληθευμένο";
+"no_account" = "Δεν έχει συνδεθεί";
+"no_account_description" = "Προσθέστε ένα Apple ID για να ξεκινήσετε";
+"name" = "Όνομα";
+"email" = "Ηλεκτρονικό ταχυδρομείο";
+"country" = "Χώρα/Περιοχή";
+
+// MARK: - App Icon
+"app_icon_settings" = "Εικονίδιο εφαρμογής";
+"default_icon" = "Προεπιλογή";
+
+// MARK: - Search
+"search_placeholder" = "Αναζήτηση εφαρμογών, παιχνιδιών, προγραμματιστών";
+"search_history" = "Ιστορικό αναζήτησης";
+"search_suggestions" = "Προτάσεις αναζήτησης";
+"search_results" = "Αποτελέσματα αναζήτησης";
+"clear_history" = "Εκκαθάριση ιστορικού";
+"hot_search" = "Δημοφιλείς αναζητήσεις";
+"no_results" = "Δεν βρέθηκαν αποτελέσματα";
+"try_different_keywords" = "Δοκιμάστε διαφορετικές λέξεις-κλειδιά";
+"searching" = "Αναζήτηση...";
+
+// MARK: - Version Picker
+"version_picker" = "Επιλογή έκδοσης";
+"current_version" = "Τρέχουσα έκδοση";
+"available_versions" = "Διαθέσιμες εκδόσεις";
+"no_versions" = "Δεν υπάρχουν διαθέσιμες εκδόσεις";
+"load_versions_failed" = "Αποτυχία φόρτωσης εκδόσεων";
+"select_version_to_download" = "Επιλέξτε έκδοση για λήψη";
+"version_history" = "Ιστορικό εκδόσεων";
+"release_date" = "Ημερομηνία κυκλοφορίας";
+"size" = "Μέγεθος";
+"build_number" = "Αριθμός κατασκευής";
+
+// MARK: - App Detail
+"app_detail" = "Λεπτομέρειες εφαρμογής";
+"get" = "Λήψη";
+"icloud_sync" = "Συγχρονισμός iCloud";
+"screenshots" = "Στιγμιότυπα";
+"description" = "Περιγραφή";
+"whats_new" = "Τι νέο υπάρχει";
+"ratings_and_reviews" = "Βαθμολογίες και κριτικές";
+"developer" = "Κατασκευαστής";
+"category" = "Κατηγορία";
+"compatibility" = "Συμβατότητα";
+"privacy" = "Απόρρητο";
+"privacy_policy" = "Πολιτική απορρήτου";
+"user_agreement" = "Συμφωνία χρήστη";
+"rating" = "Βαθμολογία";
+"no_reviews" = "Χωρίς κριτικές";
+"no_reviews_description" = "Αυτή η εφαρμογή δεν έχει ακόμα κριτικές χρηστών";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Δεν υπάρχουν εφαρμογές TestFlight";
+"install_tf_app" = "Εγκατάσταση έκδοσης TestFlight";
+"testing_status" = "Κατάσταση δοκιμής";
+"testing" = "Δοκιμή";
+"expired" = "Έληξε";
+"full" = "Γεμάτο";
+"test_duration" = "Διάρκεια δοκιμής";
+"remaining_seats" = "Υπολοίπουσες θέσεις";
+"redeem_code" = "Κωδικός εξαργύρωσης";
+"enter_redeem_code" = "Εισαγάγετε τον κωδικό εξαργύρωσης";
+
+// MARK: - Filter & Sort
+"filter" = "Φίλτρο";
+"sort" = "Ταξινόμηση";
+"sort_by_name" = "Ταξινόμηση ανά όνομα";
+"sort_by_date" = "Ταξινόμηση ανά ημερομηνία";
+"sort_by_size" = "Ταξινόμηση ανά μέγεθος";
+"sort_by_status" = "Ταξινόμηση ανά κατάσταση";
+"ascending" = "Αύξουσα";
+"descending" = "Φθίνουσα";
+
+// MARK: - Notification
+"notifications" = "Ειδοποιήσεις";
+"push_notifications" = "Ειδοποιήσεις push";
+"download_complete_notification" = "Ειδοποίηση ολοκλήρωσης λήψης";
+"notification_sound" = "Ήχος ειδοποίησης";
+"notification_vibrate" = "Δόνηση";
+"notification_badge" = "Σήμα";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Απόρρητο και ασφάλεια";
+"clear_cache" = "Εκκαθάριση προσωρινής μνήμης";
+"cache_size" = "Μέγεθος προσωρινής μνήμης";
+"calculating_cache" = "Υπολογισμός...";
+"clear_cache_confirm" = "Επιβεβαίωση εκκαθάρισης προσωρινής μνήμης";
+"clear_cache_message" = "Είστε βέβαιοι ότι θέλετε να εκκαθαρίσετε όλη την προσωρινή μνήμη; Αυτό δεν θα διαγράψει τις ληφθείσες εφαρμογές.";
+"cache_cleared" = "Η προσωρινή μνήμη εκκαθαρίστηκε";
+
+// MARK: - Storage
+"storage" = "Αποθηκευτικός χώρος";
+"total_storage" = "Σύνολο";
+"used_storage" = "Χρησιμοποιούμενο";
+"available_storage" = "Διαθέσιμο";
+"app_size" = "Μέγεθος εφαρμογής";
+"documents_size" = "Μέγεθος εγγράφων";
+
+// MARK: - Download Manager
+"download_manager" = "Διαχειριστής λήψεων";
+"batch_operations" = "Μαζικές λειτουργίες";
+"select_all" = "Επιλογή όλων";
+"deselect_all" = "Απεπιλογή όλων";
+"selected_count" = "%@ επιλεγμένα";
+
+// MARK: - App Information
+"app_name" = "Όνομα εφαρμογής";
+"app_version" = "Έκδοση εφαρμογής";
+"app_rating" = "Βαθμολογία εφαρμογής";
+"app_developer" = "Κατασκευαστής";
+"app_category" = "Κατηγορία";
+"last_updated" = "Τελευταία ενημέρωση";
+"language_support" = "Υποστήριξη γλωσσών";
+"content_rating" = "Βαθμολογία περιεχομένου";
+
+// MARK: - Account Management
+"account_management" = "Διαχείριση λογαριασμών";
+"login_status" = "Κατάσταση σύνδεσης";
+"two_factor_auth" = "Έλεγχος ταυτότητας δύο παραγόντων";
+"remember_password" = "Απομνημόνευση κωδικού πρόσβασης";
+"auto_login" = "Αυτόματη σύνδεση";
+"login_expired" = "Η σύνδεση έληξε";
+"please_relogin" = "Συνδεθείτε ξανά";
+
+// MARK: - Settings More
+"advanced_settings" = "Για προχωρημένους";
+"developer_options" = "Επιλογές προγραμματιστή";
+"check_update" = "Έλεγχος για ενημερώσεις";
+"new_version_available" = "Διαθέσιμη νέα έκδοση";
+"already_latest_version" = "Είναι ήμαστε η τελευταία έκδοση";
+"feedback" = "Ανατροφοδότηση";
+"rate_app" = "Αξιολόγηση";
+"share_app" = "Κοινή χρήση εφαρμογής";
+
+// MARK: - Network
+"network" = "Δίκτυο";
+"network_status" = "Κατάσταση δικτύου";
+"wifi" = "Wi-Fi";
+"cellular" = "Κινητό";
+"no_network" = "Χωρίς σύνδεση δικτύου";
+"network_error" = "Σφάλμα δικτύου";
+"network_error_message" = "Η σύνδεση δικτύου απέτυχε. Ελέγξτε τις ρυθμίσεις δικτύου σας.";
+"network_speed" = "Ταχύτητα δικτύου";
+"network_usage" = "Χρήση δεδομένων";
+
+// MARK: - Installation
+"installation" = "Εγκατάσταση";
+"installing" = "Εγκατάσταση...";
+"install_success" = "Επιτυχής εγκατάσταση";
+"install_failed" = "Αποτυχία εγκατάστασης";
+"install_failed_message" = "Η εγκατάσταση απέτυχε. Δοκιμάστε ξανά.";
+"uninstall" = "Απεγκατάσταση";
+"uninstall_confirm" = "Επιβεβαίωση απεγκατάστασης";
+"uninstall_message" = "Είστε βέβαιοι ότι θέλετε να απεγκαταστήσετε αυτήν την εφαρμογή; Όλα τα δεδομένα θα διαγραφούν.";
+"ipa_file" = "Αρχείο IPA";
+"ipa_signature" = "Υπογραφή IPA";
+"signed" = "Υπογεγραμμένο";
+"unsigned" = "Μη υπογεγραμμένο";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Πρόσκληση δοκιμής";
+"testflight_build" = "Κατασκευή";
+"testflight_group" = "Ομάδα δοκιμής";
+"testflight_tester" = "Δοκιμαστής";
+"testflight_feedback" = "Ανατροφοδότηση δοκιμής";
+"testflight_expired" = "Η δοκιμή έληξε";
+"testflight_full" = "Η δοκιμή είναι γεμάτη";
+"testflight_join" = "Συμμετοχή στη δοκιμή";
+"testflight_leave" = "Έξοδος από τη δοκιμή";
+
+// MARK: - Search More
+"search_filter" = "Φίλτρο αναζήτησης";
+"search_result_count" = "Βρέθηκαν %@ αποτελέσματα";
+"exact_match" = "Ακριβής αντιστοιχία";
+"fuzzy_match" = "Ασαφής αντιστοιχία";
+"hot_apps" = "Δημοφιλείς εφαρμογές";
+"new_apps" = "Νέες εφαρμογές";
+"recommended_apps" = "Προτεινόμενες εφαρμογές";
+"top_charts" = "Κορυφαίες λίστες";
+
+// MARK: - Status
+"status" = "Κατάσταση";
+"status_normal" = "Κανονική";
+"status_abnormal" = "Ανώμαλη";
+"status_pending" = "Εκκρεμές";
+"status_processing" = "Επεξεργασία";
+"status_completed" = "Ολοκληρώθηκε";
+"status_failed" = "Απέτυχε";
+"status_cancelled" = "Ακυρώθηκε";
+"status_expired" = "Έληξε";
+"status_active" = "Ενεργό";
+"status_inactive" = "Ανενεργό";
+"status_idle" = "Αδρανές";
+"status_busy" = "Απασχολημένο";
+
+// MARK: - Tips
+"tips" = "Συμβουλές";
+"tip_download_speed" = "Η ταχύτητα λήψης εξαρτάται από τη σύνδεσή σας στο δίκτυο";
+"tip_wifi_download" = "Συνιστάται η λήψη μεγάλων αρχείων μέσω Wi-Fi";
+"tip_storage_space" = "Βεβαιωθείτε ότι διαθέτετε επαρκή χώρο αποθήκευσης";
+"tip_account_security" = "Διατηρήστε ασφαλή τις πληροφορίες του λογαριασμού σας";
+"dont_show_again" = "Να μην εμφανιστεί ξανά";
+"remind_later" = "Υπενθύμιση αργότερα";
+"view_details" = "Προβολή λεπτομερειών";
+"learn_more" = "Μάθετε περισσότερα";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "δευτ";
+"unit_minutes" = "λεπ";
+"unit_hours" = "ώρ";
+"unit_days" = "ημέρ";
+"unit_weeks" = "εβδ";
+"unit_months" = "μήν";
+"unit_years" = "ετ";
+"today" = "Σήμερα";
+"yesterday" = "Χθες";
+"day_before_yesterday" = "Προχθές";
+"just_now" = "Μόλις τώρα";
+"minutes_ago" = "πριν %@ λεπτά";
+"hours_ago" = "πριν %@ ώρες";
+"days_ago" = "πριν %@ ημέρες";
+
+// MARK: - Actions
+"action_open" = "Άνοιγμα";
+"action_close" = "Κλείσιμο";
+"action_view" = "Προβολή";
+"action_edit" = "Επεξεργασία";
+"action_delete" = "Διαγραφή";
+"action_share" = "Κοινή χρήση";
+"action_copy" = "Αντιγραφή";
+"action_paste" = "Επικόλληση";
+"action_select" = "Επιλογή";
+"action_select_all" = "Επιλογή όλων";
+"action_deselect" = "Απεπιλογή";
+"action_refresh" = "Ανανέωση";
+"action_reload" = "Επαναφόρτωση";
+"action_scroll_top" = "Κύλιση στην κορυφή";
+"action_scroll_bottom" = "Κύλιση στο τέλος";
+"action_favorite" = "Αγαπημένο";
+"action_unfavorite" = "Αφαίρεση από αγαπημένα";
+"action_like" = "Μου αρέσει";
+"action_unlike" = "Δεν μου αρέσει πια";
+"action_follow" = "Ακολούθηση";
+"action_unfollow" = "Κατάργηση ακολούθησης";
+"action_report" = "Αναφορά";
+"action_block" = "Αποκλεισμός";
+"action_rename" = "Μετονομασία";
+"action_move" = "Μετακίνηση";
+"action_compress" = "Συμπίεση";
+"action_extract" = "Εξαγωγή";
+"action_upload" = "Ανέβασμα";
+"action_download" = "Λήψη";
+"action_install" = "Εγκατάσταση";
+"action_uninstall" = "Απεγκατάσταση";
+"action_update" = "Ενημέρωση";
+"action_upgrade" = "Αναβάθμιση";
+"action_downgrade" = "Υποβάθμιση";
+"action_scan_qr" = "Σάρωση κωδικού QR";
+"action_generate_qr" = "Δημιουργία κωδικού QR";
+"action_print" = "Εκτύπωση";
+"action_send" = "Αποστολή";
+"action_receive" = "Παραλαβή";
+"action_reject" = "Απόρριψη";
+"action_accept" = "Αποδοχή";
+"action_declined" = "Απορρίφθηκε";
+"action_accepted" = "Αποδέχτηκε";
+
+// MARK: - Theme
+"theme_settings" = "Ρυθμίσεις θέματος";
+"light_theme" = "Φωτεινό θέμα";
+"dark_theme" = "Σκοτεινό θέμα";
+"system_theme" = "Θέμα συστήματος";
+"pure_black" = "Καθαρό μαύρο";
+"auto_switch" = "Αυτόματη εναλλαγή";
+"custom_theme" = "Προσαρμοσμένο θέμα";
+"theme_color" = "Χρώμα θέματος";
+"background_color" = "Χρώμα υπόβαθρου";
+"text_color" = "Χρώμα κειμένου";
+"font_size" = "Μέγεθος γραμματοσειράς";
+"font_style" = "Στυλ γραμματοσειράς";
+
+// MARK: - App Detail More
+"feature_tags" = "Ετικέτες λειτουργιών";
+"free" = "Λήψη";
+"get" = "Λήψη";
+"view" = "Προβολή";
+"get_reviews_failed" = "Αποτυχία λήψης κριτικών: %@";
+"x_ratings" = "%@ βαθμολογίες";
+"age_rating" = "Βαθμολογία ηλικίας";
+"x_languages" = "%@ γλώσσες";
+"whats_new" = "Τι νέο υπάρχει";
+"tech_info" = "Τεχνικές πληροφορίες";
+"first_release" = "Πρώτη κυκλοφορία";
+"last_updated" = "Τελευταία ενημέρωση";
+"requires_ios" = "Απαιτεί iOS %@ ή νεότερη έκδοση";
+
+// MARK: - Search More
+"search_placeholder" = "Αναζήτηση παιχνιδιών, εφαρμογών";
+"login" = "Σύνδεση";
+"clear_all" = "Εκκαθάριση όλων";
+"x_results_found" = "Βρέθηκαν %@ αποτελέσματα";
+"finding_best_results" = "Εύρεση των καλύτερων αποτελεσμάτων για εσάς";
+"app_downgrade" = "Υποβάθμιση εφαρμογής";
+"search_error" = "Σφάλμα αναζήτησης";
+"load_more" = "Φόρτωση περισσότερων...";
+"purchasing" = "Αγορά";
+"purchase" = "Αγορά";
+"please_login_first" = "Συνδεθείτε πρώτα για να κατεβάσετε εφαρμογές";
+"loading_versions" = "Φόρτωση ιστορικού εκδόσεων...";
+"load_failed" = "Αποτυχία φόρτωσης";
+"no_versions_desc" = "Δεν υπάρχουν προηγούμενες εκδόσεις για αυτήν την εφαρμογή";
+"x_versions" = "%@ εκδόσεις";
+"version_x_date" = "Έκδοση %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Σύνδεση";
+"current" = "Τρέχων";
+"switch" = "Εναλλαγή";
+"x_accounts" = "%@ λογαριασμοί";
+"add_new_account" = "Προσθήκη νέου λογαριασμού";
+"account_management" = "Διαχείριση λογαριασμών";
+"use_account" = "Χρήση λογαριασμού";
+"connection_lost" = "Η σύνδεση διακόπηκε";
+"reconnecting" = "Επανασύνδεση";
+"connected" = "Συνδέθηκε";
+"apple_id_disconnected" = "Η σύνδεση Apple ID διακόπηκε. Πατήστε για επαναεπαλήθευση ή συνδεθείτε ξανά.";
+"apple_id_reconnecting" = "Αυτόματη επανασύνδεση με το Apple ID, παρακαλώ περιμένετε...";
+"apple_id_connected" = "Το Apple ID συνδέθηκε. Αναζητήστε και κατεβάστε εφαρμογές κανονικά.";
+"login_apple_id" = "Σύνδεση με Apple ID";
+"login_apple_id_desc" = "Κατεβάστε και διαχειριστείτε εφαρμογές με το Apple ID σας";
+"login_apple_id_btn" = "Σύνδεση με Apple ID";
+"view_account_details" = "Προβολή λεπτομερειών λογαριασμού";
+"media_purchases" = "Μέσα και αγορές";
+"media_purchases_header" = "Μέσα και αγορές";
+"sign_in_apple_id" = "Συνδεθείτε στο iPhone σας";
+"sign_in_apple_id_desc" = "Χρησιμοποιήστε το Apple ID σας σε αυτό το iPhone";
+"apple_id" = "Apple ID";
+"name" = "Όνομα";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Όνομα, Ηλεκτρονικό ταχυδρομείο";
+"account_identifier_header" = "Αναγνωριστικό λογαριασμού";
+"country_region" = "Χώρα/Περιοχή";
+"region_header" = "Περιοχή";
+"sign_out" = "Αποσύνδεση";
+"login_your_account" = "Συνδεθείτε στον λογαριασμό σας";
+"enter_apple_id" = "Εισαγάγετε το Apple ID σας";
+"password" = "Κωδικός πρόσβασης";
+"enter_password" = "Εισαγάγετε τον κωδικό πρόσβασης";
+"two_factor_code" = "Κωδικός δύο παραγόντων";
+"enter_6digit_code" = "Εισαγάγετε τον 6ψήφιο κωδικό";
+"check_trusted_device" = "Ελέγξτε τις αξιόπιστες συσκευές σας ή το SMS για τον κωδικό";
+"verifying" = "Επαλήθευση...";
+"enter_full_credentials" = "Εισαγάγετε το πλήρες Apple ID και τον κωδικό πρόσβασης";
+"enter_6digit_code_verify" = "Εισαγάγετε τον 6ψήφιο κωδικό επαλήθευσης";
+"wrong_credentials" = "Λανθασμένο Apple ID ή κωδικός πρόσβασης. Δοκιμάστε ξανά.";
+"account_locked" = "Το Apple ID σας έχει κλειδωθεί. Δοκιμάστε ξανά αργότερα ή επικοινωνήστε με την Υποστήριξη Apple.";
+"network_error_retry" = "Σφάλμα σύνδεσης δικτύου. Ελέγξτε τις ρυθμίσεις δικτύου σας και δοκιμάστε ξανά.";
+"auth_failed" = "Η αυθεντικοποίηση απέτυχε. Ελέγξτε τη σύνδεση δικτύου και τις πληροφορίες λογαριασμού σας.";
+"invalid_server_response" = "Μη έγκυρη απάντηση διακομιστή. Δοκιμάστε ξανά αργότερα.";
+"unknown_error" = "Άγνωστο σφάλμα. Δοκιμάστε ξανά αργότερα.";
+"auth_error" = "Προέκυψε σφάλμα κατά την αυθεντικοποίηση: %@";
+"check_apple_device_code" = "Ελέγξτε τη συσκευή Apple για τον κωδικό επαλήθευσης";
+"wrong_verification_code" = "Λανθασμένος κωδικός επαλήθευσης. Δοκιμάστε ξανά.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Μη έγκυρο αρχείο IPA";
+"install_failed_with_reason" = "Η εγκατάσταση απέτυχε: %@";
+"install_timeout" = "Λήξη χρόνου εγκατάστασης";
+"installing_app" = "Εγκατάσταση %@";
+"version_x" = "Έκδοση %@";
+"install_starting" = "Έναρξη εγκατάστασης...";
+"install_manual_hint" = "Εάν η αυτόματη εγκατάσταση αποτύχει, πατήστε το παρακάτω κουμπί για μη αυτόματη εγκατάσταση:";
+"manual_install" = "Μη αυτόματη εγκατάσταση";
+"install_success_desc" = "Ελέγξτε την αρχική οθόνη, η εφαρμογή εγκαθίσταται...";
+"install_contact_author" = "Επικοινωνήστε με τον προγραμματιστή pxx917144686 εάν αντιμετωπίσετε προβλήματα";
+"install_start_failed" = "Αποτυχία έναρξης εγκατάστασης";
+"retry_install" = "Επανάληψη εγκατάστασης";
+"view_source_code" = "👉 Προβολή πηγαίου κώδικα";
+"file_size_x" = "Μέγεθος αρχείου: %@";
+"no_purchase_record" = "Δεν βρέθηκε εγγραφή αγοράς, ανακατεύθυνση στο App Store";
+"file_saved_to" = "Το αρχείο αποθηκεύτηκε σε:";
+"preparing" = "Προετοιμασία...";
+"waiting_confirm" = "Αναμονή για επιβεβαίωση...";
+"install_completed" = "Η εγκατάσταση ολοκληρώθηκε";
+"waiting" = "Αναμονή...";
+"start_install" = "Έναρξη εγκατάστασης";
+"unknown_path" = "Άγνωστη διαδρομή";
+"share_ipa" = "Κοινή χρήση IPA";
+"install_background_hint" = "Η εφαρμογή εγκαθίσταται στο παρασκήνιο. Μπορείτε να επιστρέψετε στην αρχική οθόνη για να ελέγξετε την πρόοδο.";
+"ipa_not_found" = "Το αρχείο IPA δεν βρέθηκε, κατεβάστε το ξανά";
+"preparing_install" = "Προετοιμασία εγκατάστασης...";
+"install_in_progress" = "Η εγκατάσταση είναι ήδη σε εξέλιξη";
+"verifying_package" = "Επαλήθευση πακέτου...";
+"starting_install_service" = "Έναρξη υπηρεσίας εγκατάστασης...";
+"install_service_timeout" = "Η υπηρεσία εγκατάστασης έληξε. Δοκιμάστε ξανά.";
+"opening_install_page" = "Άνοιγμα σελίδας εγκατάστασης...";
+"download_record_file" = "Αρχείο καταγραφής λήψεων";
+"delete_file" = "Διαγραφή αρχείου";
+"delete_file_confirm" = "Είστε βέβαιοι ότι θέλετε να διαγράψετε το %@; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.";
+"delete_success" = "Διαγράφηκε με επιτυχία";
+"delete_success_desc" = "Το αρχείο διαγράφηκε με επιτυχία.";
+"no_ipa_found" = "Δεν βρέθηκαν αρχεία IPA";
+"no_ipa_found_desc" = "Δεν βρέθηκαν αρχεία IPA στον κατάλογο αποθήκευσης της εφαρμογής";
+
+// MARK: - Account Detail
+"basic_info" = "Βασικές πληροφορίες";
+"account_identifier" = "Αναγνωριστικό λογαριασμού";
+"country_region" = "Χώρα/Περιοχή";
+"password_token" = "Διακριτικό κωδικού πρόσβασης";
+"auth_info" = "Πληροφορίες αυθεντικοποίησης";
+"password_token_hint" = "Το διακριτικό κωδικού πρόσβασης χρησιμοποιείται για αυτόματη αυθεντικοποίηση. Παρακαλώ μην το μοιράζεστε με άλλους.";
+"delete_this_account" = "Διαγραφή αυτού του λογαριασμού";
+"delete_account_confirm_detail" = "Είστε βέβαιοι ότι θέλετε να διαγράψετε τον λογαριασμό %@ από αυτήν τη συσκευή;\n\nΌλες οι πληροφορίες σύνδεσης και τα cookie για αυτόν τον λογαριασμό θα αφαιρεθούν.";
+"dsid" = "DSID";
+"no_value" = "Κανένα";
+"region_title" = "Περιοχή";
+
+// MARK: - Appearance More
+"overall_color" = "Χρώμα έμφασης";
+"quick_select" = "Γρήγορη επιλογή";
+"auto" = "Αυτόματο";
+"unknown" = "Άγνωστο";

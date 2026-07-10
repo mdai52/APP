@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Asetukset";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Lataukset";
+"tab_search" = "Haku";
+
+// MARK: - Common
+"cancel" = "Peruuta";
+"confirm" = "Vahvista";
+"ok" = "OK";
+"done" = "Valmis";
+"back" = "Takaisin";
+"save" = "Tallenna";
+"delete" = "Poista";
+"edit" = "Muokkaa";
+"add" = "Lisää";
+"close" = "Sulje";
+"refresh" = "Päivitä";
+"retry" = "Yritä uudelleen";
+"loading" = "Ladataan...";
+"success" = "Onnistui";
+"failed" = "Epäonnistui";
+"error" = "Virhe";
+"warning" = "Varoitus";
+"info" = "Tiedot";
+"search" = "Hae";
+"download" = "Lataa";
+"install" = "Asenna";
+"update" = "Päivitä";
+"more" = "Lisää";
+"all" = "Kaikki";
+"none" = "Ei yhtään";
+"default" = "Oletus";
+"copy" = "Kopioi";
+"share" = "Jaa";
+"export" = "Vie";
+"import" = "Tuo";
+"clear" = "Tyhjennä";
+"reset" = "Nollaa";
+"continue" = "Jatka";
+"confirm_delete" = "Vahvista poisto";
+"confirm_delete_message" = "Haluatko varmasti poistaa tämän? Tätä toimintoa ei voi kumota.";
+"copied" = "Kopioitu";
+"copy_failed" = "Kopiointi epäonnistui";
+"no_data" = "Ei dataa";
+"no_result" = "Ei tuloksia";
+"try_again" = "Yritä uudelleen";
+"got_it" = "Ymmärretty";
+
+// MARK: - Settings
+"settings" = "Asetukset";
+"appearance" = "Ulkoasu";
+"theme" = "Teema";
+"color" = "Väri";
+"icon" = "Kuvake";
+"language" = "Kieli";
+"general" = "Yleinen";
+"about" = "Tietoja";
+"version" = "Versio";
+"version_number" = "Versionumero";
+"follow_system" = "Järjestelmän oletus";
+"light_mode" = "Vaalea";
+"dark_mode" = "Tumma";
+"accent_color" = "Korostusväri";
+"app_icon" = "Sovelluksen kuvake";
+"select_icon" = "Valitse kuvake";
+"icon_changed_success" = "Kuvake vaihdettu onnistuneesti";
+"icon_changed_failed" = "Kuvakkeen vaihtaminen epäonnistui";
+"language_select" = "Valitse kieli";
+"language_footer" = "Kielen vaihdon jälkeen sovellus on käynnistettävä uudelleen, jotta muutokset tulevat täysin voimaan.";
+"language_switch" = "Vaihda kieli";
+"language_switch_message" = "Sovelluksen käyttöliittymä päivittyy heti kielen vaihdon jälkeen. Jotkut järjestelmäkomponentit voivat vaatia uudelleenkäynnistystä toimiakseen täysin.";
+"confirm_switch" = "Vahvista vaihto";
+"app_icon" = "Sovelluksen kuvake";
+"icon_default" = "Oletus";
+"icon_author" = "Kuvake";
+"icon_love" = "Rakkaus";
+"icon_peek" = "Katsotaan";
+"icon_set_success" = "Kuvake asetettu onnistuneesti";
+"system_language" = "Järjestelmäkieli";
+"language_system_settings" = "Muuta järjestelmäasetuksissa";
+"language_system_hint" = "Siirry asetuksiin → APP → Kieli";
+"language_recommended" = "Suositeltu";
+"lang_chinese_simplified" = "Kiina (yksinkertaistettu)";
+"lang_english" = "Englanti";
+"lang_japanese" = "Japani";
+"lang_korean" = "Korea";
+"lang_spanish" = "Espanja";
+"lang_french" = "Ranska";
+"lang_german" = "Saksa";
+"lang_italian" = "Italia";
+"lang_portuguese" = "Portugali";
+"lang_russian" = "Venäjä";
+"lang_arabic" = "Arabia";
+"lang_hindi" = "Hindi";
+"lang_thai" = "Thai";
+"lang_vietnamese" = "Vietnam";
+"lang_indonesian" = "Indonesia";
+"lang_malay" = "Malaiji";
+"lang_dutch" = "Hollanti";
+"lang_swedish" = "Ruotsi";
+"lang_danish" = "Tanska";
+"lang_finnish" = "Suomi";
+"lang_norwegian" = "Norja";
+"lang_polish" = "Puola";
+"lang_czech" = "Tšekki";
+"lang_hungarian" = "Unkari";
+"lang_romanian" = "Romania";
+"lang_turkish" = "Turkki";
+"lang_ukrainian" = "Ukraina";
+"lang_greek" = "Kreikka";
+"lang_hebrew" = "Heprea";
+"lang_slovak" = "Slovakia";
+"lang_croatian" = "Kroatia";
+"lang_catalan" = "Katalonia";
+
+// MARK: - Download
+"download_title" = "Lataukset";
+"downloading" = "Ladataan";
+"download_paused" = "Pysäytetty";
+"download_completed" = "Valmis";
+"download_failed" = "Lataus epäonnistui";
+"download_cancelled" = "Peruutettu";
+"download_waiting" = "Odottaa";
+"download_speed" = "Latausnopeus";
+"download_progress" = "Latauksen edistyminen";
+"download_size" = "Latauksen koko";
+"download_time" = "Latausaika";
+"pause_download" = "Pysäytä lataus";
+"resume_download" = "Jatka latausta";
+"cancel_download" = "Peruuta lataus";
+"retry_download" = "Yritä ladata uudelleen";
+"delete_download" = "Poista lataus";
+"all_pause" = "Pysäytä kaikki";
+"all_start" = "Käynnistä kaikki";
+"clear_completed" = "Tyhjennä valmiit";
+"download_queue" = "Latausjono";
+"download_history" = "Lataushistoria";
+"no_downloads" = "Ei latauksia";
+"download_settings" = "Latausasetukset";
+"wifi_only_download" = "Lataa vain Wi-Fi:n kautta";
+"max_concurrent_downloads" = "Enintään samanaikaisia latauksia";
+"download_path" = "Latauspolku";
+
+// MARK: - Account
+"account" = "Tili";
+"apple_id" = "Apple ID";
+"add_account" = "Lisää Apple ID";
+"switch_account" = "Vaihda tiliä";
+"current_account" = "Nykyinen tili";
+"all_accounts" = "Kaikki tilit";
+"account_info" = "Tilin tiedot";
+"region" = "Alue";
+"delete_account" = "Poista tili";
+"logout" = "Kirjaudu ulos";
+"logout_confirm" = "Vahvista uloskirjautuminen";
+"logout_confirm_message" = "Haluatko varmasti kirjautua ulos nykyisestä tilistä?";
+"delete_account_confirm" = "Vahvista tilin poisto";
+"delete_account_message" = "Haluatko varmasti poistaa tilin %@? Tätä ei voi kumota, ja sinun on lisättävä se uudelleen.";
+"account_detail" = "Tilin tiedot";
+"verified" = "Vahvistettu";
+"unverified" = "Vahvistamaton";
+"no_account" = "Ei kirjauduttu";
+"no_account_description" = "Lisää Apple ID aloittaaksesi";
+"name" = "Nimi";
+"email" = "Sähköposti";
+"country" = "Maa/Alue";
+
+// MARK: - App Icon
+"app_icon_settings" = "Sovelluksen kuvake";
+"default_icon" = "Oletus";
+
+// MARK: - Search
+"search_placeholder" = "Hae sovelluksia, pelejä, kehittäjiä";
+"search_history" = "Hakuhistoria";
+"search_suggestions" = "Hakuehdotukset";
+"search_results" = "Hakutulokset";
+"clear_history" = "Tyhjennä historia";
+"hot_search" = "Suositut haut";
+"no_results" = "Ei tuloksia";
+"try_different_keywords" = "Kokeile eri avainsanoja";
+"searching" = "Haetaan...";
+
+// MARK: - Version Picker
+"version_picker" = "Valitse versio";
+"current_version" = "Nykyinen versio";
+"available_versions" = "Saatavilla olevat versiot";
+"no_versions" = "Ei saatavilla olevia versioita";
+"load_versions_failed" = "Versioiden lataaminen epäonnistui";
+"select_version_to_download" = "Valitse ladattava versio";
+"version_history" = "Versiohistoria";
+"release_date" = "Julkaisupäivä";
+"size" = "Koko";
+"build_number" = "Rakennusnumero";
+
+// MARK: - App Detail
+"app_detail" = "Sovelluksen tiedot";
+"get" = "Hae";
+"icloud_sync" = "iCloud-synkronointi";
+"screenshots" = "Kuvankaappaukset";
+"description" = "Kuvaus";
+"whats_new" = "Uutiset";
+"ratings_and_reviews" = "Arvostelut ja arvostelut";
+"developer" = "Kehittäjä";
+"category" = "Kategoria";
+"compatibility" = "Yhteensopivuus";
+"privacy" = "Yksityisyys";
+"privacy_policy" = "Tietosuojakäytäntö";
+"user_agreement" = "Käyttöehdot";
+"rating" = "Arvio";
+"no_reviews" = "Ei arvosteluja";
+"no_reviews_description" = "Tällä sovelluksella ei ole vielä käyttäjäarvosteluja";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Ei TestFlight-sovelluksia";
+"install_tf_app" = "Asenna TestFlight-versio";
+"testing_status" = "Testausstatus";
+"testing" = "Testataan";
+"expired" = "Vanhentunut";
+"full" = "Täynnä";
+"test_duration" = "Testauskesto";
+"remaining_seats" = "Jäljellä olevat paikat";
+"redeem_code" = "Lunastuskoodi";
+"enter_redeem_code" = "Syötä lunastuskoodi";
+
+// MARK: - Filter & Sort
+"filter" = "Suodata";
+"sort" = "Lajittele";
+"sort_by_name" = "Lajittele nimen mukaan";
+"sort_by_date" = "Lajittele päivämäärän mukaan";
+"sort_by_size" = "Lajittele koon mukaan";
+"sort_by_status" = "Lajittele tilan mukaan";
+"ascending" = "Nouseva";
+"descending" = "Laskeva";
+
+// MARK: - Notification
+"notifications" = "Ilmoitukset";
+"push_notifications" = "Push-ilmoitukset";
+"download_complete_notification" = "Ilmoitus valmiista latauksesta";
+"notification_sound" = "Ilmoitusääni";
+"notification_vibrate" = "Värinä";
+"notification_badge" = "Merkki";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Yksityisyys ja tietoturva";
+"clear_cache" = "Tyhjennä välimuisti";
+"cache_size" = "Välimuistin koko";
+"calculating_cache" = "Lasketaan...";
+"clear_cache_confirm" = "Vahvista välimuistin tyhjennys";
+"clear_cache_message" = "Haluatko varmasti tyhjentää kaiken välimuistin? Tämä ei poista ladattuja sovelluksia.";
+"cache_cleared" = "Välimuisti tyhjennetty";
+
+// MARK: - Storage
+"storage" = "Tallennustila";
+"total_storage" = "Yhteensä";
+"used_storage" = "Käytetty";
+"available_storage" = "Saatavilla";
+"app_size" = "Sovelluksen koko";
+"documents_size" = "Asiakirjojen koko";
+
+// MARK: - Download Manager
+"download_manager" = "Lataushallinta";
+"batch_operations" = "Erätoiminnot";
+"select_all" = "Valitse kaikki";
+"deselect_all" = "Poista kaikki valinnat";
+"selected_count" = "%@ valittu";
+
+// MARK: - App Information
+"app_name" = "Sovelluksen nimi";
+"app_version" = "Sovelluksen versio";
+"app_rating" = "Sovelluksen arvostelu";
+"app_developer" = "Kehittäjä";
+"app_category" = "Kategoria";
+"last_updated" = "Viimeksi päivitetty";
+"language_support" = "Kieletuki";
+"content_rating" = "Sisällön luokitus";
+
+// MARK: - Account Management
+"account_management" = "Tilien hallinta";
+"login_status" = "Kirjautumistila";
+"two_factor_auth" = "Kaksivaiheinen tunnistautuminen";
+"remember_password" = "Muista salasana";
+"auto_login" = "Automaattinen kirjautuminen";
+"login_expired" = "Kirjautuminen vanhentui";
+"please_relogin" = "Kirjaudu uudelleen";
+
+// MARK: - Settings More
+"advanced_settings" = "Lisäasetukset";
+"developer_options" = "Kehittäjän asetukset";
+"check_update" = "Tarkista päivitykset";
+"new_version_available" = "Uusi versio saatavilla";
+"already_latest_version" = "Jo viimeisin versio";
+"feedback" = "Palaute";
+"rate_app" = "Arvostele sovellus";
+"share_app" = "Jaa sovellus";
+
+// MARK: - Network
+"network" = "Verkko";
+"network_status" = "Verkkotila";
+"wifi" = "Wi-Fi";
+"cellular" = "Matkapuhelinverkko";
+"no_network" = "Ei verkkoyhteyttä";
+"network_error" = "Verkkovirhe";
+"network_error_message" = "Verkkoyhteys epäonnistui. Tarkista verkkopäivitykset.";
+"network_speed" = "Verkkonopeus";
+"network_usage" = "Datan käyttö";
+
+// MARK: - Installation
+"installation" = "Asennus";
+"installing" = "Asennetaan...";
+"install_success" = "Asennus onnistui";
+"install_failed" = "Asennus epäonnistui";
+"install_failed_message" = "Asennus epäonnistui. Yritä uudelleen.";
+"uninstall" = "Poista asennus";
+"uninstall_confirm" = "Vahvista poisto";
+"uninstall_message" = "Haluatko varmasti poistaa tämän sovelluksen? Kaikki data poistetaan.";
+"ipa_file" = "IPA-tiedosto";
+"ipa_signature" = "IPA-allekirjoitus";
+"signed" = "Allekirjoitettu";
+"unsigned" = "Allekirjoittamaton";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Testikutsu";
+"testflight_build" = "Rakennus";
+"testflight_group" = "Testiryhmä";
+"testflight_tester" = "Testaaja";
+"testflight_feedback" = "Testipalaute";
+"testflight_expired" = "Testaus vanhentui";
+"testflight_full" = "Testaus on täynnä";
+"testflight_join" = "Liity testiin";
+"testflight_leave" = "Poistu testistä";
+
+// MARK: - Search More
+"search_filter" = "Hakusuodatin";
+"search_result_count" = "%@ tulosta löytyi";
+"exact_match" = "Täsmällinen vastaavuus";
+"fuzzy_match" = "Epämääräinen vastaavuus";
+"hot_apps" = "Suositut sovellukset";
+"new_apps" = "Uudet sovellukset";
+"recommended_apps" = "Suositellut sovellukset";
+"top_charts" = "Top-listat";
+
+// MARK: - Status
+"status" = "Tila";
+"status_normal" = "Normaali";
+"status_abnormal" = "Epänormaali";
+"status_pending" = "Odottaa";
+"status_processing" = "Käsitellään";
+"status_completed" = "Valmis";
+"status_failed" = "Epäonnistunut";
+"status_cancelled" = "Peruutettu";
+"status_expired" = "Vanhentunut";
+"status_active" = "Aktiivinen";
+"status_inactive" = "Ei aktiivinen";
+"status_idle" = "Tyhjä";
+"status_busy" = "Kiireinen";
+
+// MARK: - Tips
+"tips" = "Vinkit";
+"tip_download_speed" = "Latausnopeus riippuu verkkoyhteydestä";
+"tip_wifi_download" = "Suositellaan lataamaan suuria tiedostoja Wi-Fi:n kautta";
+"tip_storage_space" = "Varmista, että sinulla on tarpeeksi tallennustilaa";
+"tip_account_security" = "Pidä tilisi tiedot turvassa";
+"dont_show_again" = "Älä näytä uudelleen";
+"remind_later" = "Muistuta myöhemmin";
+"view_details" = "Näytä tiedot";
+"learn_more" = "Lisätietoja";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "s";
+"unit_minutes" = "min";
+"unit_hours" = "t";
+"unit_days" = "pv";
+"unit_weeks" = "vk";
+"unit_months" = "kk";
+"unit_years" = "v";
+"today" = "Tänään";
+"yesterday" = "Eilen";
+"day_before_yesterday" = "Toissapäivänä";
+"just_now" = "Juuri nyt";
+"minutes_ago" = "%@ min sitten";
+"hours_ago" = "%@ t sitten";
+"days_ago" = "%@ pv sitten";
+
+// MARK: - Actions
+"action_open" = "Avaa";
+"action_close" = "Sulje";
+"action_view" = "Näytä";
+"action_edit" = "Muokkaa";
+"action_delete" = "Poista";
+"action_share" = "Jaa";
+"action_copy" = "Kopioi";
+"action_paste" = "Liitä";
+"action_select" = "Valitse";
+"action_select_all" = "Valitse kaikki";
+"action_deselect" = "Poista valinta";
+"action_refresh" = "Päivitä";
+"action_reload" = "Lataa uudelleen";
+"action_scroll_top" = "Vieritä ylös";
+"action_scroll_bottom" = "Vieritä alas";
+"action_favorite" = "Suosikki";
+"action_unfavorite" = "Poista suosikki";
+"action_like" = "Tykkää";
+"action_unlike" = "Poista tykkäys";
+"action_follow" = "Seuraa";
+"action_unfollow" = "Lopeta seuraaminen";
+"action_report" = "Ilmianna";
+"action_block" = "Estä";
+"action_rename" = "Nimeä uudelleen";
+"action_move" = "Siirrä";
+"action_compress" = "Pakkaa";
+"action_extract" = "Pura";
+"action_upload" = "Lataa ylös";
+"action_download" = "Lataa";
+"action_install" = "Asenna";
+"action_uninstall" = "Poista asennus";
+"action_update" = "Päivitä";
+"action_upgrade" = "Päivitä";
+"action_downgrade" = "Alenna versioa";
+"action_scan_qr" = "Skannaa QR-koodi";
+"action_generate_qr" = "Luo QR-koodi";
+"action_print" = "Tulosta";
+"action_send" = "Lähetä";
+"action_receive" = "Vastaanota";
+"action_reject" = "Hylkää";
+"action_accept" = "Hyväksy";
+"action_declined" = "Hylätty";
+"action_accepted" = "Hyväksytty";
+
+// MARK: - Theme
+"theme_settings" = "Teema-asetukset";
+"light_theme" = "Vaalea teema";
+"dark_theme" = "Tumma teema";
+"system_theme" = "Järjestelmäteema";
+"pure_black" = "Puhtaan musta";
+"auto_switch" = "Automaattinen vaihto";
+"custom_theme" = "Mukautettu teema";
+"theme_color" = "Teemaväri";
+"background_color" = "Taustaväri";
+"text_color" = "Tekstin väri";
+"font_size" = "Fonttikoko";
+"font_style" = "Fonttityyli";
+
+// MARK: - App Detail More
+"feature_tags" = "Ominaisuustagit";
+"free" = "Hae";
+"get" = "Hae";
+"view" = "Näytä";
+"get_reviews_failed" = "Arvostelujen hakeminen epäonnistui: %@";
+"x_ratings" = "%@ arvostelua";
+"age_rating" = "Ikärajoitus";
+"x_languages" = "%@ kieltä";
+"whats_new" = "Uutiset";
+"tech_info" = "Tekniset tiedot";
+"first_release" = "Ensimmäinen julkaisu";
+"last_updated" = "Viimeksi päivitetty";
+"requires_ios" = "Vaatii iOS %@ tai uudemman";
+
+// MARK: - Search More
+"search_placeholder" = "Hae pelejä, sovelluksia";
+"login" = "Kirjaudu sisään";
+"clear_all" = "Tyhjennä kaikki";
+"x_results_found" = "%@ tulosta löytyi";
+"finding_best_results" = "Etsitään sinulle parhaita tuloksia";
+"app_downgrade" = "Sovelluksen version alennus";
+"search_error" = "Hakuvirhe";
+"load_more" = "Lataa lisää...";
+"purchasing" = "Ostetaan";
+"purchase" = "Osta";
+"please_login_first" = "Kirjaudu ensin sisään ladataksesi sovelluksia";
+"loading_versions" = "Ladataan versiohistoriaa...";
+"load_failed" = "Lataaminen epäonnistui";
+"no_versions_desc" = "Tälle sovellukselle ei ole saatavilla aiempia versioita";
+"x_versions" = "%@ versiota";
+"version_x_date" = "Versio %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Kirjaudu sisään";
+"current" = "Nykyinen";
+"switch" = "Vaihda";
+"x_accounts" = "%@ tiliä";
+"add_new_account" = "Lisää uusi tili";
+"account_management" = "Tilien hallinta";
+"use_account" = "Käytä tiliä";
+"connection_lost" = "Yhteys katkesi";
+"reconnecting" = "Yhdistetään uudelleen";
+"connected" = "Yhdistetty";
+"apple_id_disconnected" = "Apple ID-yhteys katkesi. Napauta vahvistaaksesi uudelleen tai kirjaudu uudelleen.";
+"apple_id_reconnecting" = "Yhdistetään automaattisesti uudelleen Apple ID:een, odota...";
+"apple_id_connected" = "Apple ID yhdistetty. Hae ja lataa sovelluksia normaalisti.";
+"login_apple_id" = "Kirjaudu sisään Apple ID:llä";
+"login_apple_id_desc" = "Lataa ja hallitse sovelluksia Apple ID:lläsi";
+"login_apple_id_btn" = "Kirjaudu sisään Apple ID:llä";
+"view_account_details" = "Näytä tilin tiedot";
+"media_purchases" = "Media ja ostokset";
+"media_purchases_header" = "Media ja ostokset";
+"sign_in_apple_id" = "Kirjaudu iPhone:llesi";
+"sign_in_apple_id_desc" = "Käytä Apple ID:täsi tällä iPhone:lla";
+"apple_id" = "Apple ID";
+"name" = "Nimi";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Nimi, sähköposti";
+"account_identifier_header" = "Tilin tunniste";
+"country_region" = "Maa/Alue";
+"region_header" = "Alue";
+"sign_out" = "Kirjaudu ulos";
+"login_your_account" = "Kirjaudu tilillesi";
+"enter_apple_id" = "Syötä Apple ID:si";
+"password" = "Salasana";
+"enter_password" = "Syötä salasanasi";
+"two_factor_code" = "Kaksivaiheinen koodi";
+"enter_6digit_code" = "Syötä 6-numeroinen koodi";
+"check_trusted_device" = "Tarkista luotetut laitteet tai tekstiviestit koodista";
+"verifying" = "Vahvistetaan...";
+"enter_full_credentials" = "Syötä täydellinen Apple ID ja salasana";
+"enter_6digit_code_verify" = "Syötä 6-numeroinen vahvistuskoodi";
+"wrong_credentials" = "Väärä Apple ID tai salasana. Yritä uudelleen.";
+"account_locked" = "Apple ID:si on lukittu. Yritä uudelleen myöhemmin tai ota yhteyttä Apple-tukeen.";
+"network_error_retry" = "Verkkoyhteysvirhe. Tarkista verkkopäivitykset ja yritä uudelleen.";
+"auth_failed" = "Tunnistautuminen epäonnistui. Tarkista verkkoyhteys ja tilin tiedot.";
+"invalid_server_response" = "Virheellinen palvelinvastaus. Yritä uudelleen myöhemmin.";
+"unknown_error" = "Tuntematon virhe. Yritä uudelleen myöhemmin.";
+"auth_error" = "Tunnistautumisessa tapahtui virhe: %@";
+"check_apple_device_code" = "Tarkista vahvistuskoodi Apple-laitteessasi";
+"wrong_verification_code" = "Väärä vahvistuskoodi. Yritä uudelleen.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Virheellinen IPA-tiedosto";
+"install_failed_with_reason" = "Asennus epäonnistui: %@";
+"install_timeout" = "Asennus aikakatkaistiin";
+"installing_app" = "Asennetaan %@";
+"version_x" = "Versio %@";
+"install_starting" = "Aloitetaan asennus...";
+"install_manual_hint" = "Jos automaattinen asennus epäonnistuu, napauta alla olevaa painiketta asentaaksesi manuaalisesti:";
+"manual_install" = "Asenna manuaalisesti";
+"install_success_desc" = "Tarkita aloitusnäyttö, sovellusta asennetaan...";
+"install_contact_author" = "Ota yhteyttä kehittäjään pxx917144686, jos kohtaat ongelmia";
+"install_start_failed" = "Asennuksen aloittaminen epäonnistui";
+"retry_install" = "Yritä asentaa uudelleen";
+"view_source_code" = "👉 Näytä lähdekoodi";
+"file_size_x" = "Tiedoston koko: %@";
+"no_purchase_record" = "Ostotietoja ei löytynyt, ohjataan App Storeen";
+"file_saved_to" = "Tiedosto tallennettu:";
+"preparing" = "Valmistellaan...";
+"waiting_confirm" = "Odota vahvistusta...";
+"install_completed" = "Asennus valmis";
+"waiting" = "Odottaa...";
+"start_install" = "Aloita asennus";
+"unknown_path" = "Tuntematon polku";
+"share_ipa" = "Jaa IPA";
+"install_background_hint" = "Sovellusta asennetaan taustalla. Voit palata aloitusnäyttöön tarkistaaksesi edistymisen.";
+"ipa_not_found" = "IPA-tiedostoa ei löytynyt, lataa se uudelleen";
+"preparing_install" = "Valmistellaan asennusta...";
+"install_in_progress" = "Asennus on jo meneillään";
+"verifying_package" = "Vahvistetaan pakettia...";
+"starting_install_service" = "Käynnistetään asennuspalvelu...";
+"install_service_timeout" = "Asennuspalvelu aikakatkaistiin. Yritä uudelleen.";
+"opening_install_page" = "Avataan asennussivua...";
+"download_record_file" = "Lataustietue";
+"delete_file" = "Poista tiedosto";
+"delete_file_confirm" = "Haluatko varmasti poistaa %@? Tätä toimintoa ei voi kumota.";
+"delete_success" = "Poistettu onnistuneesti";
+"delete_success_desc" = "Tiedosto on poistettu onnistuneesti.";
+"no_ipa_found" = "Ei IPA-tiedostoja";
+"no_ipa_found_desc" = "Ei IPA-tiedostoja sovelluksen tallennushakemistossa";
+
+// MARK: - Account Detail
+"basic_info" = "Perustiedot";
+"account_identifier" = "Tilin tunniste";
+"country_region" = "Maa/Alue";
+"password_token" = "Salasana-symboli";
+"auth_info" = "Tunnistautumistiedot";
+"password_token_hint" = "Salasana-symbolia käytetään automaattiseen tunnistautumiseen. Älä jaa sitä muiden kanssa.";
+"delete_this_account" = "Poista tämä tili";
+"delete_account_confirm_detail" = "Haluatko varmasti poistaa tilin %@ tästä laitteesta?\n\nKaikki kirjautumistiedot ja evästeet tästä tilistä poistetaan.";
+"dsid" = "DSID";
+"no_value" = "Ei mitään";
+"region_title" = "Alue";
+
+// MARK: - Appearance More
+"overall_color" = "Korostusväri";
+"quick_select" = "Nopea valinta";
+"auto" = "Auto";
+"unknown" = "Tuntematon";

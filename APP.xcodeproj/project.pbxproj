@@ -142,44 +142,36 @@
 				Base,
 				"zh-Hans",
 				en,
-				es,
-				it,
-				en_AU,
-				es_419,
-				en_GB,
-				de,
-				fr_CA,
-				el,
-				ar,
-				ca,
-				fi,
-				da,
-				cs,
-				fr,
-				he,
 				ja,
-				uk,
-				zh_CN,
-				pt_BR,
-				sk,
-				pt_PT,
-				ms,
-				sv,
 				ko,
-				no,
-				hu,
-				zh_HK,
-				tr,
-				pl,
-				zh_TW,
-				vi,
+				es,
+				fr,
+				de,
+				it,
+				pt,
 				ru,
-				id,
 				nl,
-				th,
+				sv,
+				nb,
+				da,
+				fi,
+				pl,
+				cs,
+				sk,
+				hu,
 				ro,
 				hr,
+				el,
+				uk,
+				tr,
+				he,
+				ar,
+				th,
+				vi,
+				id,
+				ms,
 				hi,
+				ca,
 			);
 			mainGroup = 851FD9562E578774002136BA;
 			minimizedProjectReferenceProxies = 1;
@@ -348,7 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL__NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = APP/Resources/APP.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -379,7 +371,7 @@
 				);
 				MARKETING_VERSION = 2.5.2;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App12345;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
@@ -399,7 +391,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL__NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = APP/Resources/APP.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -431,7 +423,7 @@
 				);
 				MARKETING_VERSION = 2.5.2;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App12345;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pxx917144686.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;

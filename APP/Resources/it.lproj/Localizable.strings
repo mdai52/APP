@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Impostazioni";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Download";
+"tab_search" = "Cerca";
+
+// MARK: - Common
+"cancel" = "Annulla";
+"confirm" = "Conferma";
+"ok" = "OK";
+"done" = "Fatto";
+"back" = "Indietro";
+"save" = "Salva";
+"delete" = "Elimina";
+"edit" = "Modifica";
+"add" = "Aggiungi";
+"close" = "Chiudi";
+"refresh" = "Aggiorna";
+"retry" = "Riprova";
+"loading" = "Caricamento...";
+"success" = "Successo";
+"failed" = "Fallito";
+"error" = "Errore";
+"warning" = "Avviso";
+"info" = "Info";
+"search" = "Cerca";
+"download" = "Scarica";
+"install" = "Installa";
+"update" = "Aggiorna";
+"more" = "Altro";
+"all" = "Tutto";
+"none" = "Nessuno";
+"default" = "Predefinito";
+"copy" = "Copia";
+"share" = "Condividi";
+"export" = "Esporta";
+"import" = "Importa";
+"clear" = "Cancella";
+"reset" = "Ripristina";
+"continue" = "Continua";
+"confirm_delete" = "Conferma eliminazione";
+"confirm_delete_message" = "Sei sicuro di voler eliminare questo? Questa azione non può essere annullata.";
+"copied" = "Copiato";
+"copy_failed" = "Copia fallita";
+"no_data" = "Nessun dato";
+"no_result" = "Nessun risultato";
+"try_again" = "Per favore riprova";
+"got_it" = "Capito";
+
+// MARK: - Settings
+"settings" = "Impostazioni";
+"appearance" = "Aspetto";
+"theme" = "Tema";
+"color" = "Colore";
+"icon" = "Icona";
+"language" = "Lingua";
+"general" = "Generale";
+"about" = "Informazioni";
+"version" = "Versione";
+"version_number" = "Numero di versione";
+"follow_system" = "Predefinito di sistema";
+"light_mode" = "Chiaro";
+"dark_mode" = "Scuro";
+"accent_color" = "Colore accento";
+"app_icon" = "Icona dell'app";
+"select_icon" = "Seleziona icona";
+"icon_changed_success" = "Icona cambiata con successo";
+"icon_changed_failed" = "Impossibile cambiare l'icona";
+"language_select" = "Seleziona lingua";
+"language_footer" = "Dopo aver cambiato lingua, l'app deve essere riavviata affinché le modifiche abbiano effetto completo.";
+"language_switch" = "Cambia lingua";
+"language_switch_message" = "L'interfaccia dell'app si aggiornerà immediatamente dopo il cambio di lingua. Alcuni componenti di sistema potrebbero richiedere un riavvio per avere effetto completo.";
+"confirm_switch" = "Conferma cambio";
+"app_icon" = "Icona dell'app";
+"icon_default" = "Predefinito";
+"icon_author" = "Icona";
+"icon_love" = "Amore";
+"icon_peek" = "Occhiata";
+"icon_set_success" = "Icona impostata con successo";
+"system_language" = "Lingua di sistema";
+"language_system_settings" = "Cambia nelle impostazioni di sistema";
+"language_system_hint" = "Vai a Impostazioni → APP → Lingua";
+"language_recommended" = "Consigliato";
+"lang_chinese_simplified" = "Cinese semplificato";
+"lang_english" = "Inglese";
+"lang_japanese" = "Giapponese";
+"lang_korean" = "Coreano";
+"lang_spanish" = "Spagnolo";
+"lang_french" = "Francese";
+"lang_german" = "Tedesco";
+"lang_italian" = "Italiano";
+"lang_portuguese" = "Portoghese";
+"lang_russian" = "Russo";
+"lang_arabic" = "Arabo";
+"lang_hindi" = "Hindi";
+"lang_thai" = "Thailandese";
+"lang_vietnamese" = "Vietnamita";
+"lang_indonesian" = "Indonesiano";
+"lang_malay" = "Malese";
+"lang_dutch" = "Olandese";
+"lang_swedish" = "Svedese";
+"lang_danish" = "Danese";
+"lang_finnish" = "Finlandese";
+"lang_norwegian" = "Norvegese";
+"lang_polish" = "Polacco";
+"lang_czech" = "Ceco";
+"lang_hungarian" = "Ungherese";
+"lang_romanian" = "Rumeno";
+"lang_turkish" = "Turco";
+"lang_ukrainian" = "Ucraino";
+"lang_greek" = "Greco";
+"lang_hebrew" = "Ebraico";
+"lang_slovak" = "Slovacco";
+"lang_croatian" = "Croato";
+"lang_catalan" = "Catalano";
+
+// MARK: - Download
+"download_title" = "Download";
+"downloading" = "Scaricamento";
+"download_paused" = "In pausa";
+"download_completed" = "Completato";
+"download_failed" = "Download fallito";
+"download_cancelled" = "Annullato";
+"download_waiting" = "In attesa";
+"download_speed" = "Velocità di download";
+"download_progress" = "Avanzamento download";
+"download_size" = "Dimensione download";
+"download_time" = "Tempo di download";
+"pause_download" = "Metti in pausa";
+"resume_download" = "Riprendi download";
+"cancel_download" = "Annulla download";
+"retry_download" = "Riprova download";
+"delete_download" = "Elimina download";
+"all_pause" = "Metti tutto in pausa";
+"all_start" = "Avvia tutto";
+"clear_completed" = "Cancella completati";
+"download_queue" = "Coda di download";
+"download_history" = "Cronologia download";
+"no_downloads" = "Nessun download";
+"download_settings" = "Impostazioni download";
+"wifi_only_download" = "Solo Wi-Fi";
+"max_concurrent_downloads" = "Max download simultanei";
+"download_path" = "Percorso download";
+
+// MARK: - Account
+"account" = "Account";
+"apple_id" = "Apple ID";
+"add_account" = "Aggiungi Apple ID";
+"switch_account" = "Cambia account";
+"current_account" = "Account corrente";
+"all_accounts" = "Tutti gli account";
+"account_info" = "Informazioni account";
+"region" = "Regione";
+"delete_account" = "Elimina account";
+"logout" = "Esci";
+"logout_confirm" = "Conferma uscita";
+"logout_confirm_message" = "Sei sicuro di voler uscire dall'account corrente?";
+"delete_account_confirm" = "Conferma eliminazione account";
+"delete_account_message" = "Sei sicuro di voler eliminare l'account %@? Questa azione non può essere annullata e dovrai aggiungerlo di nuovo.";
+"account_detail" = "Dettagli account";
+"verified" = "Verificato";
+"unverified" = "Non verificato";
+"no_account" = "Non hai effettuato l'accesso";
+"no_account_description" = "Aggiungi un Apple ID per iniziare";
+"name" = "Nome";
+"email" = "Email";
+"country" = "Paese/Regione";
+
+// MARK: - App Icon
+"app_icon_settings" = "Icona dell'app";
+"default_icon" = "Predefinito";
+
+// MARK: - Search
+"search_placeholder" = "Cerca app, giochi, sviluppatori";
+"search_history" = "Cronologia ricerche";
+"search_suggestions" = "Suggerimenti di ricerca";
+"search_results" = "Risultati di ricerca";
+"clear_history" = "Cancella cronologia";
+"hot_search" = "Ricerche popolari";
+"no_results" = "Nessun risultato";
+"try_different_keywords" = "Prova con parole chiave diverse";
+"searching" = "Ricerca in corso...";
+
+// MARK: - Version Picker
+"version_picker" = "Seleziona versione";
+"current_version" = "Versione corrente";
+"available_versions" = "Versioni disponibili";
+"no_versions" = "Nessuna versione disponibile";
+"load_versions_failed" = "Impossibile caricare le versioni";
+"select_version_to_download" = "Seleziona versione da scaricare";
+"version_history" = "Cronologia versioni";
+"release_date" = "Data di rilascio";
+"size" = "Dimensione";
+"build_number" = "Numero build";
+
+// MARK: - App Detail
+"app_detail" = "Dettagli app";
+"get" = "Ottieni";
+"icloud_sync" = "Sincronizzazione iCloud";
+"screenshots" = "Screenshot";
+"description" = "Descrizione";
+"whats_new" = "Novità";
+"ratings_and_reviews" = "Valutazioni e recensioni";
+"developer" = "Sviluppatore";
+"category" = "Categoria";
+"compatibility" = "Compatibilità";
+"privacy" = "Privacy";
+"privacy_policy" = "Informativa sulla privacy";
+"user_agreement" = "Accordo utente";
+"rating" = "Valutazione";
+"no_reviews" = "Nessuna recensione";
+"no_reviews_description" = "Questa app non ha ancora recensioni di utenti";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Nessuna app TestFlight";
+"install_tf_app" = "Installa versione TestFlight";
+"testing_status" = "Stato di test";
+"testing" = "In test";
+"expired" = "Scaduto";
+"full" = "Pieno";
+"test_duration" = "Durata test";
+"remaining_seats" = "Posti rimanenti";
+"redeem_code" = "Riscatta codice";
+"enter_redeem_code" = "Inserisci codice di riscatto";
+
+// MARK: - Filter & Sort
+"filter" = "Filtro";
+"sort" = "Ordina";
+"sort_by_name" = "Ordina per nome";
+"sort_by_date" = "Ordina per data";
+"sort_by_size" = "Ordina per dimensione";
+"sort_by_status" = "Ordina per stato";
+"ascending" = "Crescente";
+"descending" = "Decrescente";
+
+// MARK: - Notification
+"notifications" = "Notifiche";
+"push_notifications" = "Notifiche push";
+"download_complete_notification" = "Notifica download completato";
+"notification_sound" = "Suono notifica";
+"notification_vibrate" = "Vibrazione";
+"notification_badge" = "Badge";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Privacy e sicurezza";
+"clear_cache" = "Svuota cache";
+"cache_size" = "Dimensione cache";
+"calculating_cache" = "Calcolo...";
+"clear_cache_confirm" = "Conferma svuotamento cache";
+"clear_cache_message" = "Sei sicuro di voler svuotare tutta la cache? Questo non eliminerà le app scaricate.";
+"cache_cleared" = "Cache svuotata";
+
+// MARK: - Storage
+"storage" = "Archiviazione";
+"total_storage" = "Totale";
+"used_storage" = "Utilizzato";
+"available_storage" = "Disponibile";
+"app_size" = "Dimensione app";
+"documents_size" = "Dimensione documenti";
+
+// MARK: - Download Manager
+"download_manager" = "Gestore download";
+"batch_operations" = "Operazioni batch";
+"select_all" = "Seleziona tutto";
+"deselect_all" = "Deseleziona tutto";
+"selected_count" = "%@ selezionati";
+
+// MARK: - App Information
+"app_name" = "Nome app";
+"app_version" = "Versione app";
+"app_rating" = "Valutazione app";
+"app_developer" = "Sviluppatore";
+"app_category" = "Categoria";
+"last_updated" = "Ultimo aggiornamento";
+"language_support" = "Supporto lingue";
+"content_rating" = "Classificazione contenuti";
+
+// MARK: - Account Management
+"account_management" = "Gestione account";
+"login_status" = "Stato accesso";
+"two_factor_auth" = "Autenticazione a due fattori";
+"remember_password" = "Ricorda password";
+"auto_login" = "Accesso automatico";
+"login_expired" = "Accesso scaduto";
+"please_relogin" = "Per favore accedi di nuovo";
+
+// MARK: - Settings More
+"advanced_settings" = "Impostazioni avanzate";
+"developer_options" = "Opzioni sviluppatore";
+"check_update" = "Verifica aggiornamenti";
+"new_version_available" = "Nuova versione disponibile";
+"already_latest_version" = "Già aggiornato";
+"feedback" = "Feedback";
+"rate_app" = "Valutaci";
+"share_app" = "Condividi app";
+
+// MARK: - Network
+"network" = "Rete";
+"network_status" = "Stato rete";
+"wifi" = "Wi-Fi";
+"cellular" = "Cellulare";
+"no_network" = "Nessuna connessione di rete";
+"network_error" = "Errore di rete";
+"network_error_message" = "Connessione di rete fallita. Controlla le impostazioni di rete.";
+"network_speed" = "Velocità rete";
+"network_usage" = "Utilizzo dati";
+
+// MARK: - Installation
+"installation" = "Installazione";
+"installing" = "Installazione in corso...";
+"install_success" = "Installazione riuscita";
+"install_failed" = "Installazione fallita";
+"install_failed_message" = "Installazione fallita. Riprova.";
+"uninstall" = "Disinstalla";
+"uninstall_confirm" = "Conferma disinstallazione";
+"uninstall_message" = "Sei sicuro di voler disinstallare questa app? Tutti i dati verranno eliminati.";
+"ipa_file" = "File IPA";
+"ipa_signature" = "Firma IPA";
+"signed" = "Firmato";
+"unsigned" = "Non firmato";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Invito test";
+"testflight_build" = "Build";
+"testflight_group" = "Gruppo di test";
+"testflight_tester" = "Tester";
+"testflight_feedback" = "Feedback test";
+"testflight_expired" = "Test scaduto";
+"testflight_full" = "Test pieno";
+"testflight_join" = "Unisciti al test";
+"testflight_leave" = "Abbandona test";
+
+// MARK: - Search More
+"search_filter" = "Filtro ricerca";
+"search_result_count" = "%@ risultati trovati";
+"exact_match" = "Corrispondenza esatta";
+"fuzzy_match" = "Corrispondenza approssimativa";
+"hot_apps" = "App popolari";
+"new_apps" = "App nuove";
+"recommended_apps" = "App consigliate";
+"top_charts" = "Top classifiche";
+
+// MARK: - Status
+"status" = "Stato";
+"status_normal" = "Normale";
+"status_abnormal" = "Anormale";
+"status_pending" = "In attesa";
+"status_processing" = "In elaborazione";
+"status_completed" = "Completato";
+"status_failed" = "Fallito";
+"status_cancelled" = "Annullato";
+"status_expired" = "Scaduto";
+"status_active" = "Attivo";
+"status_inactive" = "Inattivo";
+"status_idle" = "Inattivo";
+"status_busy" = "Occupato";
+
+// MARK: - Tips
+"tips" = "Suggerimenti";
+"tip_download_speed" = "La velocità di download dipende dalla tua connessione di rete";
+"tip_wifi_download" = "Si consiglia di scaricare file di grandi dimensioni tramite Wi-Fi";
+"tip_storage_space" = "Assicurati di avere spazio di archiviazione sufficiente";
+"tip_account_security" = "Mantieni al sicuro le informazioni del tuo account";
+"dont_show_again" = "Non mostrare più";
+"remind_later" = "Ricordamelo più tardi";
+"view_details" = "Visualizza dettagli";
+"learn_more" = "Scopri di più";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "sec";
+"unit_minutes" = "min";
+"unit_hours" = "ore";
+"unit_days" = "gg";
+"unit_weeks" = "sett";
+"unit_months" = "mesi";
+"unit_years" = "anni";
+"today" = "Oggi";
+"yesterday" = "Ieri";
+"day_before_yesterday" = "L'altro ieri";
+"just_now" = "Proprio ora";
+"minutes_ago" = "%@ min fa";
+"hours_ago" = "%@ ore fa";
+"days_ago" = "%@ gg fa";
+
+// MARK: - Actions
+"action_open" = "Apri";
+"action_close" = "Chiudi";
+"action_view" = "Visualizza";
+"action_edit" = "Modifica";
+"action_delete" = "Elimina";
+"action_share" = "Condividi";
+"action_copy" = "Copia";
+"action_paste" = "Incolla";
+"action_select" = "Seleziona";
+"action_select_all" = "Seleziona tutto";
+"action_deselect" = "Deseleziona";
+"action_refresh" = "Aggiorna";
+"action_reload" = "Ricarica";
+"action_scroll_top" = "Scorri in alto";
+"action_scroll_bottom" = "Scorri in basso";
+"action_favorite" = "Preferito";
+"action_unfavorite" = "Rimuovi dai preferiti";
+"action_like" = "Mi piace";
+"action_unlike" = "Non mi piace";
+"action_follow" = "Segui";
+"action_unfollow" = "Non seguire più";
+"action_report" = "Segnala";
+"action_block" = "Blocca";
+"action_rename" = "Rinomina";
+"action_move" = "Sposta";
+"action_compress" = "Comprimi";
+"action_extract" = "Estrai";
+"action_upload" = "Carica";
+"action_download" = "Scarica";
+"action_install" = "Installa";
+"action_uninstall" = "Disinstalla";
+"action_update" = "Aggiorna";
+"action_upgrade" = "Aggiorna";
+"action_downgrade" = "Declassa";
+"action_scan_qr" = "Scansiona codice QR";
+"action_generate_qr" = "Genera codice QR";
+"action_print" = "Stampa";
+"action_send" = "Invia";
+"action_receive" = "Ricevi";
+"action_reject" = "Rifiuta";
+"action_accept" = "Accetta";
+"action_declined" = "Rifiutato";
+"action_accepted" = "Accettato";
+
+// MARK: - Theme
+"theme_settings" = "Impostazioni tema";
+"light_theme" = "Tema chiaro";
+"dark_theme" = "Tema scuro";
+"system_theme" = "Tema di sistema";
+"pure_black" = "Nero puro";
+"auto_switch" = "Cambio automatico";
+"custom_theme" = "Tema personalizzato";
+"theme_color" = "Colore tema";
+"background_color" = "Colore sfondo";
+"text_color" = "Colore testo";
+"font_size" = "Dimensione carattere";
+"font_style" = "Stile carattere";
+
+// MARK: - App Detail More
+"feature_tags" = "Tag funzionalità";
+"free" = "Ottieni";
+"get" = "Ottieni";
+"view" = "Visualizza";
+"get_reviews_failed" = "Impossibile ottenere le recensioni: %@";
+"x_ratings" = "%@ valutazioni";
+"age_rating" = "Classificazione età";
+"x_languages" = "%@ lingue";
+"whats_new" = "Novità";
+"tech_info" = "Info tecniche";
+"first_release" = "Primo rilascio";
+"last_updated" = "Ultimo aggiornamento";
+"requires_ios" = "Richiede iOS %@ o versione successiva";
+
+// MARK: - Search More
+"search_placeholder" = "Cerca giochi, app";
+"login" = "Accedi";
+"clear_all" = "Cancella tutto";
+"x_results_found" = "%@ risultati trovati";
+"finding_best_results" = "Ricerca dei migliori risultati per te";
+"app_downgrade" = "Declassamento app";
+"search_error" = "Errore di ricerca";
+"load_more" = "Carica altro...";
+"purchasing" = "Acquisto in corso";
+"purchase" = "Acquista";
+"please_login_first" = "Accedi prima per scaricare app";
+"loading_versions" = "Caricamento cronologia versioni...";
+"load_failed" = "Caricamento fallito";
+"no_versions_desc" = "Nessuna versione precedente disponibile per questa app";
+"x_versions" = "%@ versioni";
+"version_x_date" = "Versione %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Accedi";
+"current" = "Corrente";
+"switch" = "Cambia";
+"x_accounts" = "%@ account";
+"add_new_account" = "Aggiungi nuovo account";
+"account_management" = "Gestione account";
+"use_account" = "Usa account";
+"connection_lost" = "Connessione persa";
+"reconnecting" = "Riconnessione in corso";
+"connected" = "Connesso";
+"apple_id_disconnected" = "Apple ID disconnesso. Tocca per ri-verificare o accedere di nuovo.";
+"apple_id_reconnecting" = "Riconnessione automatica all'Apple ID in corso, attendere...";
+"apple_id_connected" = "Apple ID connesso. Cerca e scarica app normalmente.";
+"login_apple_id" = "Accedi con Apple ID";
+"login_apple_id_desc" = "Scarica e gestisci app con il tuo Apple ID";
+"login_apple_id_btn" = "Accedi con Apple ID";
+"view_account_details" = "Visualizza dettagli account";
+"media_purchases" = "Media e acquisti";
+"media_purchases_header" = "Media e acquisti";
+"sign_in_apple_id" = "Accedi sul tuo iPhone";
+"sign_in_apple_id_desc" = "Usa il tuo Apple ID su questo iPhone";
+"apple_id" = "Apple ID";
+"name" = "Nome";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Nome, Email";
+"account_identifier_header" = "Identificatore account";
+"country_region" = "Paese/Regione";
+"region_header" = "Regione";
+"sign_out" = "Esci";
+"login_your_account" = "Accedi al tuo account";
+"enter_apple_id" = "Inserisci il tuo Apple ID";
+"password" = "Password";
+"enter_password" = "Inserisci la tua password";
+"two_factor_code" = "Codice a due fattori";
+"enter_6digit_code" = "Inserisci codice a 6 cifre";
+"check_trusted_device" = "Controlla i tuoi dispositivi fidati o SMS per il codice";
+"verifying" = "Verifica in corso...";
+"enter_full_credentials" = "Inserisci il tuo Apple ID e password completi";
+"enter_6digit_code_verify" = "Inserisci il codice di verifica a 6 cifre";
+"wrong_credentials" = "Apple ID o password errati. Riprova.";
+"account_locked" = "Il tuo Apple ID è stato bloccato. Riprova più tardi o contatta il supporto Apple.";
+"network_error_retry" = "Errore di connessione di rete. Controlla le impostazioni di rete e riprova.";
+"auth_failed" = "Autenticazione fallita. Controlla la connessione di rete e le informazioni dell'account.";
+"invalid_server_response" = "Risposta del server non valida. Riprova più tardi.";
+"unknown_error" = "Errore sconosciuto. Riprova più tardi.";
+"auth_error" = "Si è verificato un errore durante l'autenticazione: %@";
+"check_apple_device_code" = "Controlla il tuo dispositivo Apple per il codice di verifica";
+"wrong_verification_code" = "Codice di verifica errato. Riprova.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "File IPA non valido";
+"install_failed_with_reason" = "Installazione fallita: %@";
+"install_timeout" = "Timeout installazione";
+"installing_app" = "Installazione di %@ in corso";
+"version_x" = "Versione %@";
+"install_starting" = "Avvio installazione...";
+"install_manual_hint" = "Se l'installazione automatica fallisce, tocca il pulsante qui sotto per installare manualmente:";
+"manual_install" = "Installa manualmente";
+"install_success_desc" = "Controlla la schermata Home, l'app si sta installando...";
+"install_contact_author" = "Contatta lo sviluppatore pxx917144686 se riscontri problemi";
+"install_start_failed" = "Impossibile avviare l'installazione";
+"retry_install" = "Riprova installazione";
+"view_source_code" = "👉 Visualizza codice sorgente";
+"file_size_x" = "Dimensione file: %@";
+"no_purchase_record" = "Nessun record di acquisto trovato, reindirizzamento all'App Store";
+"file_saved_to" = "File salvato in:";
+"preparing" = "Preparazione...";
+"waiting_confirm" = "In attesa di conferma...";
+"install_completed" = "Installazione completata";
+"waiting" = "Attendere...";
+"start_install" = "Avvia installazione";
+"unknown_path" = "Percorso sconosciuto";
+"share_ipa" = "Condividi IPA";
+"install_background_hint" = "L'app si sta installando in background. Puoi tornare alla schermata Home per verificare l'avanzamento.";
+"ipa_not_found" = "File IPA non trovato, per favore scaricalo di nuovo";
+"preparing_install" = "Preparazione installazione...";
+"install_in_progress" = "Installazione già in corso";
+"verifying_package" = "Verifica pacchetto...";
+"starting_install_service" = "Avvio servizio installazione...";
+"install_service_timeout" = "Timeout servizio installazione. Riprova.";
+"opening_install_page" = "Apertura pagina installazione...";
+"download_record_file" = "Record download";
+"delete_file" = "Elimina file";
+"delete_file_confirm" = "Sei sicuro di voler eliminare %@? Questa azione non può essere annullata.";
+"delete_success" = "Eliminato con successo";
+"delete_success_desc" = "Il file è stato eliminato con successo.";
+"no_ipa_found" = "Nessun file IPA trovato";
+"no_ipa_found_desc" = "Nessun file IPA trovato nella directory di archiviazione dell'app";
+
+// MARK: - Account Detail
+"basic_info" = "Informazioni di base";
+"account_identifier" = "Identificatore account";
+"country_region" = "Paese/Regione";
+"password_token" = "Token password";
+"auth_info" = "Informazioni autenticazione";
+"password_token_hint" = "Il token password viene utilizzato per l'autenticazione automatica. Non condividerlo con altri.";
+"delete_this_account" = "Elimina questo account";
+"delete_account_confirm_detail" = "Sei sicuro di voler eliminare l'account %@ da questo dispositivo?\n\nTutte le informazioni di accesso e i cookie per questo account verranno rimossi.";
+"dsid" = "DSID";
+"no_value" = "Nessuno";
+"region_title" = "Regione";
+
+// MARK: - Appearance More
+"overall_color" = "Colore accento";
+"quick_select" = "Selezione rapida";
+"auto" = "Auto";
+"unknown" = "Sconosciuto";

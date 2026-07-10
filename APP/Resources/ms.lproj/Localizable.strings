@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Tetapan";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Muat Turun";
+"tab_search" = "Cari";
+
+// MARK: - Common
+"cancel" = "Batal";
+"confirm" = "Sahkan";
+"ok" = "OK";
+"done" = "Selesai";
+"back" = "Kembali";
+"save" = "Simpan";
+"delete" = "Padam";
+"edit" = "Edit";
+"add" = "Tambah";
+"close" = "Tutup";
+"refresh" = "Segar";
+"retry" = "Cuba Lagi";
+"loading" = "Memuatkan...";
+"success" = "Berjaya";
+"failed" = "Gagal";
+"error" = "Ralat";
+"warning" = "Amaran";
+"info" = "Maklumat";
+"search" = "Cari";
+"download" = "Muat Turun";
+"install" = "Pasang";
+"update" = "Kemas Kini";
+"more" = "Lagi";
+"all" = "Semua";
+"none" = "Tiada";
+"default" = "Lalai";
+"copy" = "Salin";
+"share" = "Kongsi";
+"export" = "Eksport";
+"import" = "Import";
+"clear" = "Kosongkan";
+"reset" = "Tetapkan Semula";
+"continue" = "Teruskan";
+"confirm_delete" = "Sahkan Padam";
+"confirm_delete_message" = "Adakah anda pasti mahu memadam ini? Tindakan ini tidak dapat dibatalkan.";
+"copied" = "Disalin";
+"copy_failed" = "Salin Gagal";
+"no_data" = "Tiada Data";
+"no_result" = "Tiada Keputusan Dijumpai";
+"try_again" = "Sila Cuba Lagi";
+"got_it" = "Faham";
+
+// MARK: - Settings
+"settings" = "Tetapan";
+"appearance" = "Penampilan";
+"theme" = "Tema";
+"color" = "Warna";
+"icon" = "Ikon";
+"language" = "Bahasa";
+"general" = "Umum";
+"about" = "Mengenai";
+"version" = "Versi";
+"version_number" = "Nombor Versi";
+"follow_system" = "Ikut Sistem";
+"light_mode" = "Cerah";
+"dark_mode" = "Gelap";
+"accent_color" = "Warna Aksen";
+"app_icon" = "Ikon Aplikasi";
+"select_icon" = "Pilih Ikon";
+"icon_changed_success" = "Ikon Berjaya Diubah";
+"icon_changed_failed" = "Gagal Mengubah Ikon";
+"language_select" = "Pilih Bahasa";
+"language_footer" = "Selepas menukar bahasa, aplikasi perlu dimulakan semula supaya perubahan berkuat kuasa sepenuhnya.";
+"language_switch" = "Tukar Bahasa";
+"language_switch_message" = "Antara muka aplikasi akan dikemas kini serta-merta selepas menukar bahasa. Sesetengah komponen sistem mungkin memerlukan mulakan semula untuk berkuat kuasa sepenuhnya.";
+"confirm_switch" = "Sahkan Tukar";
+"app_icon" = "Ikon Aplikasi";
+"icon_default" = "Lalai";
+"icon_author" = "Ikon";
+"icon_love" = "Cinta";
+"icon_peek" = "Mengintai";
+"icon_set_success" = "Ikon berjaya ditetapkan";
+"system_language" = "Bahasa Sistem";
+"language_system_settings" = "Tukar dalam Tetapan Sistem";
+"language_system_hint" = "Pergi ke Tetapan → APP → Bahasa";
+"language_recommended" = "Disyorkan";
+"lang_chinese_simplified" = "Cina (Ringkas)";
+"lang_english" = "Inggeris";
+"lang_japanese" = "Jepun";
+"lang_korean" = "Korea";
+"lang_spanish" = "Sepanyol";
+"lang_french" = "Perancis";
+"lang_german" = "Jerman";
+"lang_italian" = "Itali";
+"lang_portuguese" = "Portugis";
+"lang_russian" = "Rusia";
+"lang_arabic" = "Arab";
+"lang_hindi" = "Hindi";
+"lang_thai" = "Thai";
+"lang_vietnamese" = "Vietnam";
+"lang_indonesian" = "Indonesia";
+"lang_malay" = "Melayu";
+"lang_dutch" = "Belanda";
+"lang_swedish" = "Sweden";
+"lang_danish" = "Denmark";
+"lang_finnish" = "Finland";
+"lang_norwegian" = "Norway";
+"lang_polish" = "Poland";
+"lang_czech" = "Czech";
+"lang_hungarian" = "Hungary";
+"lang_romanian" = "Romania";
+"lang_turkish" = "Turki";
+"lang_ukrainian" = "Ukraine";
+"lang_greek" = "Yunani";
+"lang_hebrew" = "Ibrani";
+"lang_slovak" = "Slovakia";
+"lang_croatian" = "Croatia";
+"lang_catalan" = "Catalonia";
+
+// MARK: - Download
+"download_title" = "Muat Turun";
+"downloading" = "Memuat Turun";
+"download_paused" = "Dijeda";
+"download_completed" = "Selesai";
+"download_failed" = "Muat Turun Gagal";
+"download_cancelled" = "Dibatalkan";
+"download_waiting" = "Menunggu";
+"download_speed" = "Kelajuan Muat Turun";
+"download_progress" = "Kemajuan Muat Turun";
+"download_size" = "Saiz Muat Turun";
+"download_time" = "Masa Muat Turun";
+"pause_download" = "Jeda Muat Turun";
+"resume_download" = "Sambung Muat Turun";
+"cancel_download" = "Batalkan Muat Turun";
+"retry_download" = "Cuba Muat Turun Lagi";
+"delete_download" = "Padam Muat Turun";
+"all_pause" = "Jeda Semua";
+"all_start" = "Mula Semua";
+"clear_completed" = "Kosongkan Yang Selesai";
+"download_queue" = "Barisan Muat Turun";
+"download_history" = "Sejarah Muat Turun";
+"no_downloads" = "Tiada Muat Turun";
+"download_settings" = "Tetapan Muat Turun";
+"wifi_only_download" = "Muat Turun Hanya di Wi-Fi";
+"max_concurrent_downloads" = "Maks Muat Turun Serentak";
+"download_path" = "Laluan Muat Turun";
+
+// MARK: - Account
+"account" = "Akaun";
+"apple_id" = "Apple ID";
+"add_account" = "Tambah Apple ID";
+"switch_account" = "Tukar Akaun";
+"current_account" = "Akaun Semasa";
+"all_accounts" = "Semua Akaun";
+"account_info" = "Maklumat Akaun";
+"region" = "Wilayah";
+"delete_account" = "Padam Akaun";
+"logout" = "Log Keluar";
+"logout_confirm" = "Sahkan Log Keluar";
+"logout_confirm_message" = "Adakah anda pasti mahu log keluar daripada akaun semasa?";
+"delete_account_confirm" = "Sahkan Padam Akaun";
+"delete_account_message" = "Adakah anda pasti mahu memadam akaun %@? Ini tidak dapat dibatalkan dan anda perlu menambahnya semula.";
+"account_detail" = "Butiran Akaun";
+"verified" = "Disahkan";
+"unverified" = "Tidak Disahkan";
+"no_account" = "Belum Log Masuk";
+"no_account_description" = "Sila tambah Apple ID untuk bermula";
+"name" = "Nama";
+"email" = "E-mel";
+"country" = "Negara/Wilayah";
+
+// MARK: - App Icon
+"app_icon_settings" = "Ikon Aplikasi";
+"default_icon" = "Lalai";
+
+// MARK: - Search
+"search_placeholder" = "Cari aplikasi, permainan, pembangun";
+"search_history" = "Sejarah Carian";
+"search_suggestions" = "Cadangan Carian";
+"search_results" = "Keputusan Carian";
+"clear_history" = "Kosongkan Sejarah";
+"hot_search" = "Carian Trending";
+"no_results" = "Tiada Keputusan Dijumpai";
+"try_different_keywords" = "Cuba kata kunci berbeza";
+"searching" = "Mencari...";
+
+// MARK: - Version Picker
+"version_picker" = "Pilih Versi";
+"current_version" = "Versi Semasa";
+"available_versions" = "Versi Tersedia";
+"no_versions" = "Tiada Versi Tersedia";
+"load_versions_failed" = "Gagal Memuat Versi";
+"select_version_to_download" = "Pilih Versi untuk Dimuat Turun";
+"version_history" = "Sejarah Versi";
+"release_date" = "Tarikh Keluaran";
+"size" = "Saiz";
+"build_number" = "Nombor Binaan";
+
+// MARK: - App Detail
+"app_detail" = "Butiran Aplikasi";
+"get" = "Dapatkan";
+"icloud_sync" = "Penyegerakan iCloud";
+"screenshots" = "Tangkapan Skrin";
+"description" = "Penerangan";
+"whats_new" = "Apa Yang Baru";
+"ratings_and_reviews" = "Penilaian & Ulasan";
+"developer" = "Pembangun";
+"category" = "Kategori";
+"compatibility" = "Keserasian";
+"privacy" = "Privasi";
+"privacy_policy" = "Dasar Privasi";
+"user_agreement" = "Perjanjian Pengguna";
+"rating" = "Penilaian";
+"no_reviews" = "Tiada Ulasan";
+"no_reviews_description" = "Aplikasi ini belum mempunyai ulasan pengguna";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Tiada Aplikasi TestFlight";
+"install_tf_app" = "Pasang Versi TestFlight";
+"testing_status" = "Status Ujian";
+"testing" = "Menguji";
+"expired" = "Tamat Tempoh";
+"full" = "Penuh";
+"test_duration" = "Tempoh Ujian";
+"remaining_seats" = "Tempat Kosong";
+"redeem_code" = "Kod Tebusan";
+"enter_redeem_code" = "Masukkan Kod Tebusan";
+
+// MARK: - Filter & Sort
+"filter" = "Penapis";
+"sort" = "Isih";
+"sort_by_name" = "Isih Mengikut Nama";
+"sort_by_date" = "Isih Mengikut Tarikh";
+"sort_by_size" = "Isih Mengikut Saiz";
+"sort_by_status" = "Isih Mengikut Status";
+"ascending" = "Menaik";
+"descending" = "Menurun";
+
+// MARK: - Notification
+"notifications" = "Pemberitahuan";
+"push_notifications" = "Pemberitahuan Tolak";
+"download_complete_notification" = "Pemberitahuan Muat Turun Selesai";
+"notification_sound" = "Bunyi Pemberitahuan";
+"notification_vibrate" = "Getaran";
+"notification_badge" = "Lencana";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Privasi & Keselamatan";
+"clear_cache" = "Kosongkan Cache";
+"cache_size" = "Saiz Cache";
+"calculating_cache" = "Mengira...";
+"clear_cache_confirm" = "Sahkan Kosongkan Cache";
+"clear_cache_message" = "Adakah anda pasti mahu mengosongkan semua cache? Ini tidak akan memadam aplikasi yang dimuat turun.";
+"cache_cleared" = "Cache Dikosongkan";
+
+// MARK: - Storage
+"storage" = "Storan";
+"total_storage" = "Jumlah";
+"used_storage" = "Digunakan";
+"available_storage" = "Tersedia";
+"app_size" = "Saiz Aplikasi";
+"documents_size" = "Saiz Dokumen";
+
+// MARK: - Download Manager
+"download_manager" = "Pengurus Muat Turun";
+"batch_operations" = "Operasi Kumpulan";
+"select_all" = "Pilih Semua";
+"deselect_all" = "Nyahpilih Semua";
+"selected_count" = "%@ Dipilih";
+
+// MARK: - App Information
+"app_name" = "Nama Aplikasi";
+"app_version" = "Versi Aplikasi";
+"app_rating" = "Penilaian Aplikasi";
+"app_developer" = "Pembangun";
+"app_category" = "Kategori";
+"last_updated" = "Kemas Kini Terakhir";
+"language_support" = "Sokongan Bahasa";
+"content_rating" = "Penilaian Kandungan";
+
+// MARK: - Account Management
+"account_management" = "Pengurusan Akaun";
+"login_status" = "Status Log Masuk";
+"two_factor_auth" = "Pengesahan Dua Faktor";
+"remember_password" = "Ingat Kata Laluan";
+"auto_login" = "Log Masuk Automatik";
+"login_expired" = "Log Masuk Tamat Tempoh";
+"please_relogin" = "Sila Log Masuk Lagi";
+
+// MARK: - Settings More
+"advanced_settings" = "Tetapan Lanjutan";
+"developer_options" = "Pilihan Pembangun";
+"check_update" = "Semak Kemas Kini";
+"new_version_available" = "Versi Baharu Tersedia";
+"already_latest_version" = "Sudah Versi Terbaharu";
+"feedback" = "Maklum Balas";
+"rate_app" = "Nilaikan Aplikasi";
+"share_app" = "Kongsi Aplikasi";
+
+// MARK: - Network
+"network" = "Rangkaian";
+"network_status" = "Status Rangkaian";
+"wifi" = "Wi-Fi";
+"cellular" = "Selular";
+"no_network" = "Tiada Sambungan Rangkaian";
+"network_error" = "Ralat Rangkaian";
+"network_error_message" = "Sambungan rangkaian gagal. Sila semak tetapan rangkaian anda.";
+"network_speed" = "Kelajuan Rangkaian";
+"network_usage" = "Penggunaan Data";
+
+// MARK: - Installation
+"installation" = "Pemasangan";
+"installing" = "Memasang...";
+"install_success" = "Pemasangan Berjaya";
+"install_failed" = "Pemasangan Gagal";
+"install_failed_message" = "Pemasangan gagal. Sila cuba lagi.";
+"uninstall" = "Nyahpasang";
+"uninstall_confirm" = "Sahkan Nyahpasang";
+"uninstall_message" = "Adakah anda pasti mahu menyahpasang aplikasi ini? Semua data akan dipadam.";
+"ipa_file" = "Fail IPA";
+"ipa_signature" = "Tandatangan IPA";
+"signed" = "Ditandatangani";
+"unsigned" = "Tidak Ditandatangani";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Jemputan Ujian";
+"testflight_build" = "Binaan";
+"testflight_group" = "Kumpulan Ujian";
+"testflight_tester" = "Penguji";
+"testflight_feedback" = "Maklum Balas Ujian";
+"testflight_expired" = "Ujian Tamat Tempoh";
+"testflight_full" = "Ujian Penuh";
+"testflight_join" = "Sertai Ujian";
+"testflight_leave" = "Tinggalkan Ujian";
+
+// MARK: - Search More
+"search_filter" = "Penapis Carian";
+"search_result_count" = "Dijumpai %@ Keputusan";
+"exact_match" = "Padanan Tepat";
+"fuzzy_match" = "Padanan Kabur";
+"hot_apps" = "Aplikasi Trending";
+"new_apps" = "Aplikasi Baharu";
+"recommended_apps" = "Aplikasi Disyorkan";
+"top_charts" = "Carta Teratas";
+
+// MARK: - Status
+"status" = "Status";
+"status_normal" = "Normal";
+"status_abnormal" = "Tidak Normal";
+"status_pending" = "Menunggu";
+"status_processing" = "Memproses";
+"status_completed" = "Selesai";
+"status_failed" = "Gagal";
+"status_cancelled" = "Dibatalkan";
+"status_expired" = "Tamat Tempoh";
+"status_active" = "Aktif";
+"status_inactive" = "Tidak Aktif";
+"status_idle" = "Terbiar";
+"status_busy" = "Sibuk";
+
+// MARK: - Tips
+"tips" = "Petua";
+"tip_download_speed" = "Kelajuan muat turun bergantung pada sambungan rangkaian anda";
+"tip_wifi_download" = "Disyorkan memuat turun fail besar melalui Wi-Fi";
+"tip_storage_space" = "Sila pastikan anda mempunyai ruang storan yang mencukupi";
+"tip_account_security" = "Sila pastikan maklumat akaun anda selamat";
+"dont_show_again" = "Jangan Tunjuk Lagi";
+"remind_later" = "Ingatkan Saya Nanti";
+"view_details" = "Lihat Butiran";
+"learn_more" = "Ketahui Lebih Lanjut";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "saat";
+"unit_minutes" = "minit";
+"unit_hours" = "jam";
+"unit_days" = "hari";
+"unit_weeks" = "minggu";
+"unit_months" = "bulan";
+"unit_years" = "tahun";
+"today" = "Hari Ini";
+"yesterday" = "Semalam";
+"day_before_yesterday" = "Kelmarin";
+"just_now" = "Sebentar Tadi";
+"minutes_ago" = "%@ minit yang lalu";
+"hours_ago" = "%@ jam yang lalu";
+"days_ago" = "%@ hari yang lalu";
+
+// MARK: - Actions
+"action_open" = "Buka";
+"action_close" = "Tutup";
+"action_view" = "Lihat";
+"action_edit" = "Edit";
+"action_delete" = "Padam";
+"action_share" = "Kongsi";
+"action_copy" = "Salin";
+"action_paste" = "Tampal";
+"action_select" = "Pilih";
+"action_select_all" = "Pilih Semua";
+"action_deselect" = "Nyahpilih";
+"action_refresh" = "Segar";
+"action_reload" = "Muat Semula";
+"action_scroll_top" = "Tatal ke Atas";
+"action_scroll_bottom" = "Tatal ke Bawah";
+"action_favorite" = "Kegemaran";
+"action_unfavorite" = "Buang Kegemaran";
+"action_like" = "Suka";
+"action_unlike" = "Tidak Suka";
+"action_follow" = "Ikuti";
+"action_unfollow" = "Berhenti Ikuti";
+"action_report" = "Laporkan";
+"action_block" = "Sekat";
+"action_rename" = "Tukar Nama";
+"action_move" = "Pindah";
+"action_compress" = "Mampat";
+"action_extract" = "Ekstrak";
+"action_upload" = "Muat Naik";
+"action_download" = "Muat Turun";
+"action_install" = "Pasang";
+"action_uninstall" = "Nyahpasang";
+"action_update" = "Kemas Kini";
+"action_upgrade" = "Naik Taraf";
+"action_downgrade" = "Turun Taraf";
+"action_scan_qr" = "Imbas Kod QR";
+"action_generate_qr" = "Jana Kod QR";
+"action_print" = "Cetak";
+"action_send" = "Hantar";
+"action_receive" = "Terima";
+"action_reject" = "Tolak";
+"action_accept" = "Terima";
+"action_declined" = "Ditolak";
+"action_accepted" = "Diterima";
+
+// MARK: - Theme
+"theme_settings" = "Tetapan Tema";
+"light_theme" = "Tema Cerah";
+"dark_theme" = "Tema Gelap";
+"system_theme" = "Tema Sistem";
+"pure_black" = "Hitam Pekat";
+"auto_switch" = "Tukar Automatik";
+"custom_theme" = "Tema Tersuai";
+"theme_color" = "Warna Tema";
+"background_color" = "Warna Latar Belakang";
+"text_color" = "Warna Teks";
+"font_size" = "Saiz Fon";
+"font_style" = "Gaya Fon";
+
+// MARK: - App Detail More
+"feature_tags" = "Tag Ciri";
+"free" = "Dapatkan";
+"get" = "Dapatkan";
+"view" = "Lihat";
+"get_reviews_failed" = "Gagal mendapatkan ulasan: %@";
+"x_ratings" = "%@ Penilaian";
+"age_rating" = "Penilaian Umur";
+"x_languages" = "%@ Bahasa";
+"whats_new" = "Apa Yang Baru";
+"tech_info" = "Maklumat Teknikal";
+"first_release" = "Keluaran Pertama";
+"last_updated" = "Kemas Kini Terakhir";
+"requires_ios" = "Memerlukan iOS %@ atau lebih baharu";
+
+// MARK: - Search More
+"search_placeholder" = "Cari permainan, aplikasi";
+"login" = "Log Masuk";
+"clear_all" = "Kosongkan Semua";
+"x_results_found" = "Dijumpai %@ Keputusan";
+"finding_best_results" = "Mencari keputusan terbaik untuk anda";
+"app_downgrade" = "Turun Taraf Aplikasi";
+"search_error" = "Ralat Carian";
+"load_more" = "Muat Lebih Banyak...";
+"purchasing" = "Membeli";
+"purchase" = "Beli";
+"please_login_first" = "Sila log masuk terlebih dahulu untuk memuat turun aplikasi";
+"loading_versions" = "Memuatkan sejarah versi...";
+"load_failed" = "Gagal Memuat";
+"no_versions_desc" = "Tiada versi terdahulu yang tersedia untuk aplikasi ini";
+"x_versions" = "%@ Versi";
+"version_x_date" = "Versi %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Log Masuk";
+"current" = "Semasa";
+"switch" = "Tukar";
+"x_accounts" = "%@ Akaun";
+"add_new_account" = "Tambah Akaun Baharu";
+"account_management" = "Pengurusan Akaun";
+"use_account" = "Gunakan Akaun";
+"connection_lost" = "Sambungan Terputus";
+"reconnecting" = "Menyambung Semula";
+"connected" = "Tersambung";
+"apple_id_disconnected" = "Apple ID terputus. Ketik untuk sahkan semula atau log masuk lagi.";
+"apple_id_reconnecting" = "Menyambung semula ke Apple ID secara automatik, sila tunggu...";
+"apple_id_connected" = "Apple ID tersambung. Cari dan muat turun aplikasi seperti biasa.";
+"login_apple_id" = "Log Masuk dengan Apple ID";
+"login_apple_id_desc" = "Muat turun dan urus aplikasi dengan Apple ID anda";
+"login_apple_id_btn" = "Log Masuk dengan Apple ID";
+"view_account_details" = "Lihat Butiran Akaun";
+"media_purchases" = "Media & Pembelian";
+"media_purchases_header" = "Media & Pembelian";
+"sign_in_apple_id" = "Log Masuk pada iPhone anda";
+"sign_in_apple_id_desc" = "Gunakan Apple ID anda pada iPhone ini";
+"apple_id" = "Apple ID";
+"name" = "Nama";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Nama, E-mel";
+"account_identifier_header" = "Pengenal Akaun";
+"country_region" = "Negara/Wilayah";
+"region_header" = "Wilayah";
+"sign_out" = "Log Keluar";
+"login_your_account" = "Log Masuk ke Akaun Anda";
+"enter_apple_id" = "Masukkan Apple ID anda";
+"password" = "Kata Laluan";
+"enter_password" = "Masukkan kata laluan anda";
+"two_factor_code" = "Kod Dua Faktor";
+"enter_6digit_code" = "Masukkan kod 6 digit";
+"check_trusted_device" = "Semak peranti dipercayai atau SMS untuk kod";
+"verifying" = "Mengesahkan...";
+"enter_full_credentials" = "Sila masukkan Apple ID dan kata laluan lengkap anda";
+"enter_6digit_code_verify" = "Sila masukkan kod pengesahan 6 digit";
+"wrong_credentials" = "Apple ID atau kata laluan salah. Sila cuba lagi.";
+"account_locked" = "Apple ID anda telah dikunci. Sila cuba lagi nanti atau hubungi Sokongan Apple.";
+"network_error_retry" = "Ralat sambungan rangkaian. Sila semak tetapan rangkaian dan cuba lagi.";
+"auth_failed" = "Pengesahan gagal. Sila semak sambungan rangkaian dan maklumat akaun anda.";
+"invalid_server_response" = "Tindak balas pelayan tidak sah. Sila cuba lagi nanti.";
+"unknown_error" = "Ralat tidak diketahui. Sila cuba lagi nanti.";
+"auth_error" = "Ralat berlaku semasa pengesahan: %@";
+"check_apple_device_code" = "Semak kod pengesahan pada peranti Apple anda";
+"wrong_verification_code" = "Kod pengesahan salah. Sila cuba lagi.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Fail IPA Tidak Sah";
+"install_failed_with_reason" = "Pemasangan gagal: %@";
+"install_timeout" = "Had Masa Pemasangan";
+"installing_app" = "Memasang %@";
+"version_x" = "Versi %@";
+"install_starting" = "Memulakan pemasangan...";
+"install_manual_hint" = "Jika pemasangan automatik gagal, ketik butang di bawah untuk memasang secara manual:";
+"manual_install" = "Pasang Secara Manual";
+"install_success_desc" = "Semak skrin utama anda, aplikasi sedang dipasang...";
+"install_contact_author" = "Jika menghadapi masalah, sila hubungi pembangun pxx917144686";
+"install_start_failed" = "Gagal Memulakan Pemasangan";
+"retry_install" = "Cuba Pasang Lagi";
+"view_source_code" = "👉 Lihat Kod Sumber";
+"file_size_x" = "Saiz Fail: %@";
+"no_purchase_record" = "Tiada rekod pembelian ditemui, mengarahkan ke App Store";
+"file_saved_to" = "Fail disimpan ke:";
+"preparing" = "Menyediakan...";
+"waiting_confirm" = "Menunggu Pengesahan...";
+"install_completed" = "Pemasangan Selesai";
+"waiting" = "Menunggu...";
+"start_install" = "Mula Pemasangan";
+"unknown_path" = "Laluan Tidak Diketahui";
+"share_ipa" = "Kongsi IPA";
+"install_background_hint" = "Aplikasi sedang dipasang di latar belakang. Anda boleh kembali ke skrin utama untuk memeriksa kemajuan.";
+"ipa_not_found" = "Fail IPA tidak dijumpai, sila muat turun lagi";
+"preparing_install" = "Menyediakan pemasangan...";
+"install_in_progress" = "Pemasangan sedang dijalankan";
+"verifying_package" = "Mengesahkan pakej...";
+"starting_install_service" = "Memulakan perkhidmatan pemasangan...";
+"install_service_timeout" = "Perkhidmatan pemasangan tamat tempoh. Sila cuba lagi.";
+"opening_install_page" = "Membuka halaman pemasangan...";
+"download_record_file" = "Rekod Muat Turun";
+"delete_file" = "Padam Fail";
+"delete_file_confirm" = "Adakah anda pasti mahu memadam %@? Tindakan ini tidak dapat dibatalkan.";
+"delete_success" = "Berjaya Dipadam";
+"delete_success_desc" = "Fail telah berjaya dipadam.";
+"no_ipa_found" = "Tiada Fail IPA Dijumpai";
+"no_ipa_found_desc" = "Tiada fail IPA dalam direktori storan aplikasi";
+
+// MARK: - Account Detail
+"basic_info" = "Maklumat Asas";
+"account_identifier" = "Pengenal Akaun";
+"country_region" = "Negara/Wilayah";
+"password_token" = "Token Kata Laluan";
+"auth_info" = "Maklumat Pengesahan";
+"password_token_hint" = "Token kata laluan digunakan untuk pengesahan automatik. Jangan kongsikan dengan orang lain.";
+"delete_this_account" = "Padam Akaun Ini";
+"delete_account_confirm_detail" = "Adakah anda pasti mahu memadam akaun %@ daripada peranti ini?\n\nSemua maklumat log masuk dan kuki untuk akaun ini akan dipadam.";
+"dsid" = "DSID";
+"no_value" = "Tiada";
+"region_title" = "Wilayah";
+
+// MARK: - Appearance More
+"overall_color" = "Warna Aksen";
+"quick_select" = "Pilih Pantas";
+"auto" = "Auto";
+"unknown" = "Tidak Diketahui";

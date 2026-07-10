@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "الإعدادات";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "التنزيلات";
+"tab_search" = "بحث";
+
+// MARK: - Common
+"cancel" = "إلغاء";
+"confirm" = "تأكيد";
+"ok" = "موافق";
+"done" = "تم";
+"back" = "رجوع";
+"save" = "حفظ";
+"delete" = "حذف";
+"edit" = "تعديل";
+"add" = "إضافة";
+"close" = "إغلاق";
+"refresh" = "تحديث";
+"retry" = "إعادة المحاولة";
+"loading" = "جارٍ التحميل...";
+"success" = "نجاح";
+"failed" = "فشل";
+"error" = "خطأ";
+"warning" = "تحذير";
+"info" = "معلومات";
+"search" = "بحث";
+"download" = "تنزيل";
+"install" = "تثبيت";
+"update" = "تحديث";
+"more" = "المزيد";
+"all" = "الكل";
+"none" = "لا شيء";
+"default" = "افتراضي";
+"copy" = "نسخ";
+"share" = "مشاركة";
+"export" = "تصدير";
+"import" = "استيراد";
+"clear" = "مسح";
+"reset" = "إعادة تعيين";
+"continue" = "متابعة";
+"confirm_delete" = "تأكيد الحذف";
+"confirm_delete_message" = "هل أنت متأكد من أنك تريد حذف هذا؟ لا يمكن التراجع عن هذا الإجراء.";
+"copied" = "تم النسخ";
+"copy_failed" = "فشل النسخ";
+"no_data" = "لا توجد بيانات";
+"no_result" = "لا توجد نتائج";
+"try_again" = "يرجى المحاولة مرة أخرى";
+"got_it" = "فهمت";
+
+// MARK: - Settings
+"settings" = "الإعدادات";
+"appearance" = "المظهر";
+"theme" = "السمة";
+"color" = "اللون";
+"icon" = "الأيقونة";
+"language" = "اللغة";
+"general" = "عام";
+"about" = "حول";
+"version" = "الإصدار";
+"version_number" = "رقم الإصدار";
+"follow_system" = "افتراضي النظام";
+"light_mode" = "فاتح";
+"dark_mode" = "داكن";
+"accent_color" = "لون التمييز";
+"app_icon" = "أيقونة التطبيق";
+"select_icon" = "اختر أيقونة";
+"icon_changed_success" = "تم تغيير الأيقونة بنجاح";
+"icon_changed_failed" = "فشل تغيير الأيقونة";
+"language_select" = "اختر اللغة";
+"language_footer" = "بعد تبديل اللغة، يجب إعادة تشغيل التطبيق حتى تسري التغييرات بالكامل.";
+"language_switch" = "تبديل اللغة";
+"language_switch_message" = "سيتم تحديث واجهة التطبيق فورًا بعد تبديل اللغة. قد تتطلب بعض مكونات النظام إعادة تشغيل لتسري بالكامل.";
+"confirm_switch" = "تأكيد التبديل";
+"app_icon" = "أيقونة التطبيق";
+"icon_default" = "افتراضي";
+"icon_author" = "أيقونة";
+"icon_love" = "حب";
+"icon_peek" = "نظرة";
+"icon_set_success" = "تم تعيين الأيقونة بنجاح";
+"system_language" = "لغة النظام";
+"language_system_settings" = "التغيير في إعدادات النظام";
+"language_system_hint" = "اذهب إلى الإعدادات → APP → اللغة";
+"language_recommended" = "موصى به";
+"lang_chinese_simplified" = "الصينية المبسطة";
+"lang_english" = "الإنجليزية";
+"lang_japanese" = "اليابانية";
+"lang_korean" = "الكورية";
+"lang_spanish" = "الإسبانية";
+"lang_french" = "الفرنسية";
+"lang_german" = "الألمانية";
+"lang_italian" = "الإيطالية";
+"lang_portuguese" = "البرتغالية";
+"lang_russian" = "الروسية";
+"lang_arabic" = "العربية";
+"lang_hindi" = "الهندية";
+"lang_thai" = "التايلاندية";
+"lang_vietnamese" = "الفيتنامية";
+"lang_indonesian" = "الإندونيسية";
+"lang_malay" = "الماليزية";
+"lang_dutch" = "الهولندية";
+"lang_swedish" = "السويدية";
+"lang_danish" = "الدانماركية";
+"lang_finnish" = "الفنلندية";
+"lang_norwegian" = "النرويجية";
+"lang_polish" = "البولندية";
+"lang_czech" = "التشيكية";
+"lang_hungarian" = "المجرية";
+"lang_romanian" = "الرومانية";
+"lang_turkish" = "التركية";
+"lang_ukrainian" = "الأوكرانية";
+"lang_greek" = "اليونانية";
+"lang_hebrew" = "العبرية";
+"lang_slovak" = "السلوفاكية";
+"lang_croatian" = "الكرواتية";
+"lang_catalan" = "الكتالانية";
+
+// MARK: - Download
+"download_title" = "التنزيلات";
+"downloading" = "جارٍ التنزيل";
+"download_paused" = "متوقف مؤقتًا";
+"download_completed" = "مكتمل";
+"download_failed" = "فشل التنزيل";
+"download_cancelled" = "تم الإلغاء";
+"download_waiting" = "في انتظار";
+"download_speed" = "سرعة التنزيل";
+"download_progress" = "تقدم التنزيل";
+"download_size" = "حجم التنزيل";
+"download_time" = "وقت التنزيل";
+"pause_download" = "إيقاف التنزيل مؤقتًا";
+"resume_download" = "استئناف التنزيل";
+"cancel_download" = "إلغاء التنزيل";
+"retry_download" = "إعادة محاولة التنزيل";
+"delete_download" = "حذف التنزيل";
+"all_pause" = "إيقاف الكل مؤقتًا";
+"all_start" = "بدء الكل";
+"clear_completed" = "مسح المكتمل";
+"download_queue" = "قائمة الانتظار";
+"download_history" = "سجل التنزيلات";
+"no_downloads" = "لا توجد تنزيلات";
+"download_settings" = "إعدادات التنزيل";
+"wifi_only_download" = "Wi-Fi فقط";
+"max_concurrent_downloads" = "الحد الأقصى للتنزيلات المتزامنة";
+"download_path" = "مسار التنزيل";
+
+// MARK: - Account
+"account" = "الحساب";
+"apple_id" = "Apple ID";
+"add_account" = "إضافة Apple ID";
+"switch_account" = "تبديل الحساب";
+"current_account" = "الحساب الحالي";
+"all_accounts" = "جميع الحسابات";
+"account_info" = "معلومات الحساب";
+"region" = "المنطقة";
+"delete_account" = "حذف الحساب";
+"logout" = "تسجيل الخروج";
+"logout_confirm" = "تأكيد تسجيل الخروج";
+"logout_confirm_message" = "هل أنت متأكد من أنك تريد تسجيل الخروج من الحساب الحالي؟";
+"delete_account_confirm" = "تأكيد حذف الحساب";
+"delete_account_message" = "هل أنت متأكد من أنك تريد حذف الحساب %@؟ لا يمكن التراجع عن هذا وستحتاج إلى إضافته مرة أخرى.";
+"account_detail" = "تفاصيل الحساب";
+"verified" = "تم التحقق";
+"unverified" = "لم يتم التحقق";
+"no_account" = "لم تسجل الدخول";
+"no_account_description" = "يرجى إضافة Apple ID للبدء";
+"name" = "الاسم";
+"email" = "البريد الإلكتروني";
+"country" = "البلد/المنطقة";
+
+// MARK: - App Icon
+"app_icon_settings" = "أيقونة التطبيق";
+"default_icon" = "افتراضي";
+
+// MARK: - Search
+"search_placeholder" = "البحث عن تطبيقات، ألعاب، مطورين";
+"search_history" = "سجل البحث";
+"search_suggestions" = "اقتراحات البحث";
+"search_results" = "نتائج البحث";
+"clear_history" = "مسح السجل";
+"hot_search" = "عمليات بحث شائعة";
+"no_results" = "لا توجد نتائج";
+"try_different_keywords" = "جرّب كلمات مفتاحية مختلفة";
+"searching" = "جارٍ البحث...";
+
+// MARK: - Version Picker
+"version_picker" = "اختر الإصدار";
+"current_version" = "الإصدار الحالي";
+"available_versions" = "الإصدارات المتاحة";
+"no_versions" = "لا توجد إصدارات متاحة";
+"load_versions_failed" = "فشل تحميل الإصدارات";
+"select_version_to_download" = "اختر إصدارًا للتنزيل";
+"version_history" = "سجل الإصدارات";
+"release_date" = "تاريخ الإصدار";
+"size" = "الحجم";
+"build_number" = "رقم البناء";
+
+// MARK: - App Detail
+"app_detail" = "تفاصيل التطبيق";
+"get" = "الحصول";
+"icloud_sync" = "مزامنة iCloud";
+"screenshots" = "لقطات الشاشة";
+"description" = "الوصف";
+"whats_new" = "ما الجديد";
+"ratings_and_reviews" = "التقييمات والمراجعات";
+"developer" = "المطور";
+"category" = "الفئة";
+"compatibility" = "التوافق";
+"privacy" = "الخصوصية";
+"privacy_policy" = "سياسة الخصوصية";
+"user_agreement" = "اتفاقية المستخدم";
+"rating" = "التقييم";
+"no_reviews" = "لا توجد مراجعات";
+"no_reviews_description" = "هذا التطبيق ليس لديه مراجعات مستخدمين بعد";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "لا توجد تطبيقات TestFlight";
+"install_tf_app" = "تثبيت نسخة TestFlight";
+"testing_status" = "حالة الاختبار";
+"testing" = "اختبار";
+"expired" = "منتهي الصلاحية";
+"full" = "ممتلئ";
+"test_duration" = "مدة الاختبار";
+"remaining_seats" = "المقاعد المتبقية";
+"redeem_code" = "استرداد الرمز";
+"enter_redeem_code" = "أدخل رمز الاسترداد";
+
+// MARK: - Filter & Sort
+"filter" = "تصفية";
+"sort" = "ترتيب";
+"sort_by_name" = "ترتيب حسب الاسم";
+"sort_by_date" = "ترتيب حسب التاريخ";
+"sort_by_size" = "ترتيب حسب الحجم";
+"sort_by_status" = "ترتيب حسب الحالة";
+"ascending" = "تصاعدي";
+"descending" = "تنازلي";
+
+// MARK: - Notification
+"notifications" = "الإشعارات";
+"push_notifications" = "إشعارات الدفع";
+"download_complete_notification" = "إشعار اكتمال التنزيل";
+"notification_sound" = "صوت الإشعار";
+"notification_vibrate" = "الاهتزاز";
+"notification_badge" = "الشارة";
+
+// MARK: - Privacy & Security
+"privacy_security" = "الخصوصية والأمان";
+"clear_cache" = "مسح ذاكرة التخزين المؤقت";
+"cache_size" = "حجم ذاكرة التخزين المؤقت";
+"calculating_cache" = "جارٍ الحساب...";
+"clear_cache_confirm" = "تأكيد مسح ذاكرة التخزين المؤقت";
+"clear_cache_message" = "هل أنت متأكد من أنك تريد مسح ذاكرة التخزين المؤقت بالكامل؟ لن يؤدي هذا إلى حذف التطبيقات التي تم تنزيلها.";
+"cache_cleared" = "تم مسح ذاكرة التخزين المؤقت";
+
+// MARK: - Storage
+"storage" = "التخزين";
+"total_storage" = "المجموع";
+"used_storage" = "المستخدم";
+"available_storage" = "المتاح";
+"app_size" = "حجم التطبيق";
+"documents_size" = "حجم المستندات";
+
+// MARK: - Download Manager
+"download_manager" = "مدير التنزيلات";
+"batch_operations" = "عمليات مجمعة";
+"select_all" = "تحديد الكل";
+"deselect_all" = "إلغاء تحديد الكل";
+"selected_count" = "%@ محددة";
+
+// MARK: - App Information
+"app_name" = "اسم التطبيق";
+"app_version" = "إصدار التطبيق";
+"app_rating" = "تقييم التطبيق";
+"app_developer" = "المطور";
+"app_category" = "الفئة";
+"last_updated" = "آخر تحديث";
+"language_support" = "دعم اللغات";
+"content_rating" = "تصنيف المحتوى";
+
+// MARK: - Account Management
+"account_management" = "إدارة الحسابات";
+"login_status" = "حالة تسجيل الدخول";
+"two_factor_auth" = "المصادقة الثنائية";
+"remember_password" = "تذكر كلمة المرور";
+"auto_login" = "تسجيل الدخول التلقائي";
+"login_expired" = "انتهت صلاحية تسجيل الدخول";
+"please_relogin" = "يرجى تسجيل الدخول مرة أخرى";
+
+// MARK: - Settings More
+"advanced_settings" = "الإعدادات المتقدمة";
+"developer_options" = "خيارات المطور";
+"check_update" = "التحقق من التحديثات";
+"new_version_available" = "إصدار جديد متاح";
+"already_latest_version" = "أحدث إصدار بالفعل";
+"feedback" = "ملاحظات";
+"rate_app" = "قيّم التطبيق";
+"share_app" = "مشاركة التطبيق";
+
+// MARK: - Network
+"network" = "الشبكة";
+"network_status" = "حالة الشبكة";
+"wifi" = "Wi-Fi";
+"cellular" = "البيانات الخلوية";
+"no_network" = "لا يوجد اتصال بالشبكة";
+"network_error" = "خطأ في الشبكة";
+"network_error_message" = "فشل اتصال الشبكة. يرجى التحقق من إعدادات الشبكة.";
+"network_speed" = "سرعة الشبكة";
+"network_usage" = "استخدام البيانات";
+
+// MARK: - Installation
+"installation" = "التثبيت";
+"installing" = "جارٍ التثبيت...";
+"install_success" = "تم التثبيت بنجاح";
+"install_failed" = "فشل التثبيت";
+"install_failed_message" = "فشل التثبيت. يرجى المحاولة مرة أخرى.";
+"uninstall" = "إلغاء التثبيت";
+"uninstall_confirm" = "تأكيد إلغاء التثبيت";
+"uninstall_message" = "هل أنت متأكد من أنك تريد إلغاء تثبيت هذا التطبيق؟ سيتم حذف جميع البيانات.";
+"ipa_file" = "ملف IPA";
+"ipa_signature" = "توقيع IPA";
+"signed" = "موقّع";
+"unsigned" = "غير موقع";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "دعوة اختبار";
+"testflight_build" = "البناء";
+"testflight_group" = "مجموعة الاختبار";
+"testflight_tester" = "المختبر";
+"testflight_feedback" = "ملاحظات الاختبار";
+"testflight_expired" = "انتهت صلاحية الاختبار";
+"testflight_full" = "الاختبار ممتلئ";
+"testflight_join" = "الانضمام إلى الاختبار";
+"testflight_leave" = "مغادرة الاختبار";
+
+// MARK: - Search More
+"search_filter" = "فلتر البحث";
+"search_result_count" = "تم العثور على %@ نتيجة";
+"exact_match" = "تطابق تام";
+"fuzzy_match" = "تطابق ضبابي";
+"hot_apps" = "تطبيقات شائعة";
+"new_apps" = "تطبيقات جديدة";
+"recommended_apps" = "تطبيقات موصى بها";
+"top_charts" = "أفضل المخططات";
+
+// MARK: - Status
+"status" = "الحالة";
+"status_normal" = "طبيعي";
+"status_abnormal" = "غير طبيعي";
+"status_pending" = "قيد الانتظار";
+"status_processing" = "قيد المعالجة";
+"status_completed" = "مكتمل";
+"status_failed" = "فشل";
+"status_cancelled" = "تم الإلغاء";
+"status_expired" = "منتهي الصلاحية";
+"status_active" = "نشط";
+"status_inactive" = "غير نشط";
+"status_idle" = "خامل";
+"status_busy" = "مشغول";
+
+// MARK: - Tips
+"tips" = "نصائح";
+"tip_download_speed" = "سرعة التنزيل تعتمد على اتصال الشبكة الخاص بك";
+"tip_wifi_download" = "يوصى بتنزيل الملفات الكبيرة عبر Wi-Fi";
+"tip_storage_space" = "يرجى التأكد من أن لديك مساحة تخزين كافية";
+"tip_account_security" = "يرجى الحفاظ على أمان معلومات حسابك";
+"dont_show_again" = "لا تظهر مرة أخرى";
+"remind_later" = "تذكيري لاحقًا";
+"view_details" = "عرض التفاصيل";
+"learn_more" = "معرفة المزيد";
+
+// MARK: - Units
+"unit_bytes" = "ب";
+"unit_kilobytes" = "كيلوبايت";
+"unit_megabytes" = "ميجابايت";
+"unit_gigabytes" = "جيجابايت";
+"unit_terabytes" = "تيتابايت";
+"unit_seconds" = "ثانية";
+"unit_minutes" = "دقيقة";
+"unit_hours" = "ساعة";
+"unit_days" = "يوم";
+"unit_weeks" = "أسبوع";
+"unit_months" = "شهر";
+"unit_years" = "سنة";
+"today" = "اليوم";
+"yesterday" = "أمس";
+"day_before_yesterday" = "أول أمس";
+"just_now" = "الآن";
+"minutes_ago" = "منذ %@ دقيقة";
+"hours_ago" = "منذ %@ ساعة";
+"days_ago" = "منذ %@ يوم";
+
+// MARK: - Actions
+"action_open" = "فتح";
+"action_close" = "إغلاق";
+"action_view" = "عرض";
+"action_edit" = "تعديل";
+"action_delete" = "حذف";
+"action_share" = "مشاركة";
+"action_copy" = "نسخ";
+"action_paste" = "لصق";
+"action_select" = "تحديد";
+"action_select_all" = "تحديد الكل";
+"action_deselect" = "إلغاء التحديد";
+"action_refresh" = "تحديث";
+"action_reload" = "إعادة تحميل";
+"action_scroll_top" = "التمرير للأعلى";
+"action_scroll_bottom" = "التمرير للأسفل";
+"action_favorite" = "المفضلة";
+"action_unfavorite" = "إزالة من المفضلة";
+"action_like" = "إعجاب";
+"action_unlike" = "عدم الإعجاب";
+"action_follow" = "متابعة";
+"action_unfollow" = "إلغاء المتابعة";
+"action_report" = "الإبلاغ";
+"action_block" = "حظر";
+"action_rename" = "إعادة تسمية";
+"action_move" = "نقل";
+"action_compress" = "ضغط";
+"action_extract" = "استخراج";
+"action_upload" = "رفع";
+"action_download" = "تنزيل";
+"action_install" = "تثبيت";
+"action_uninstall" = "إلغاء التثبيت";
+"action_update" = "تحديث";
+"action_upgrade" = "ترقية";
+"action_downgrade" = "خفض الإصدار";
+"action_scan_qr" = "مسح رمز الاستجابة السريعة";
+"action_generate_qr" = "إنشاء رمز الاستجابة السريعة";
+"action_print" = "طباعة";
+"action_send" = "إرسال";
+"action_receive" = "استلام";
+"action_reject" = "رفض";
+"action_accept" = "قبول";
+"action_declined" = "مرفوض";
+"action_accepted" = "مقبول";
+
+// MARK: - Theme
+"theme_settings" = "إعدادات السمة";
+"light_theme" = "سمة فاتحة";
+"dark_theme" = "سمة داكنة";
+"system_theme" = "سمة النظام";
+"pure_black" = "أسود نقي";
+"auto_switch" = "تبديل تلقائي";
+"custom_theme" = "سمة مخصصة";
+"theme_color" = "لون السمة";
+"background_color" = "لون الخلفية";
+"text_color" = "لون النص";
+"font_size" = "حجم الخط";
+"font_style" = "نمط الخط";
+
+// MARK: - App Detail More
+"feature_tags" = "علامات الميزات";
+"free" = "الحصول";
+"get" = "الحصول";
+"view" = "عرض";
+"get_reviews_failed" = "فشل الحصول على المراجعات: %@";
+"x_ratings" = "%@ تقييمات";
+"age_rating" = "تصنيف العمر";
+"x_languages" = "%@ لغات";
+"whats_new" = "ما الجديد";
+"tech_info" = "المعلومات التقنية";
+"first_release" = "الإصدار الأول";
+"last_updated" = "آخر تحديث";
+"requires_ios" = "يتطلب iOS %@ أو أحدث";
+
+// MARK: - Search More
+"search_placeholder" = "البحث عن ألعاب، تطبيقات";
+"login" = "تسجيل الدخول";
+"clear_all" = "مسح الكل";
+"x_results_found" = "تم العثور على %@ نتيجة";
+"finding_best_results" = "البحث عن أفضل النتائج لك";
+"app_downgrade" = "خفض إصدار التطبيق";
+"search_error" = "خطأ في البحث";
+"load_more" = "تحميل المزيد...";
+"purchasing" = "جارٍ الشراء";
+"purchase" = "شراء";
+"please_login_first" = "يرجى تسجيل الدخول أولاً لتنزيل التطبيقات";
+"loading_versions" = "جارٍ تحميل سجل الإصدارات...";
+"load_failed" = "فشل التحميل";
+"no_versions_desc" = "لا توجد إصدارات سابقة متاحة لهذا التطبيق";
+"x_versions" = "%@ إصدارات";
+"version_x_date" = "الإصدار %@ · %@";
+
+// MARK: - Account More
+"login_account" = "تسجيل الدخول";
+"current" = "الحالي";
+"switch" = "تبديل";
+"x_accounts" = "%@ حسابات";
+"add_new_account" = "إضافة حساب جديد";
+"account_management" = "إدارة الحسابات";
+"use_account" = "استخدام الحساب";
+"connection_lost" = "فقدان الاتصال";
+"reconnecting" = "جارٍ إعادة الاتصال";
+"connected" = "متصل";
+"apple_id_disconnected" = "تم فصل Apple ID. انقر لإعادة التحقق أو تسجيل الدخول مرة أخرى.";
+"apple_id_reconnecting" = "جارٍ إعادة الاتصال تلقائيًا بـ Apple ID، يرجى الانتظار...";
+"apple_id_connected" = "تم توصيل Apple ID. ابحث وقم بتنزيل التطبيقات بشكل طبيعي.";
+"login_apple_id" = "تسجيل الدخول باستخدام Apple ID";
+"login_apple_id_desc" = "قم بتنزيل وإدارة التطبيقات باستخدام Apple ID الخاص بك";
+"login_apple_id_btn" = "تسجيل الدخول باستخدام Apple ID";
+"view_account_details" = "عرض تفاصيل الحساب";
+"media_purchases" = "الوسائط والمشتريات";
+"media_purchases_header" = "الوسائط والمشتريات";
+"sign_in_apple_id" = "تسجيل الدخول على جهاز iPhone الخاص بك";
+"sign_in_apple_id_desc" = "استخدم Apple ID الخاص بك على هذا iPhone";
+"apple_id" = "Apple ID";
+"name" = "الاسم";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "الاسم، البريد الإلكتروني";
+"account_identifier_header" = "معرف الحساب";
+"country_region" = "البلد/المنطقة";
+"region_header" = "المنطقة";
+"sign_out" = "تسجيل الخروج";
+"login_your_account" = "تسجيل الدخول إلى حسابك";
+"enter_apple_id" = "أدخل Apple ID الخاص بك";
+"password" = "كلمة المرور";
+"enter_password" = "أدخل كلمة المرور الخاصة بك";
+"two_factor_code" = "الرمز الثنائي";
+"enter_6digit_code" = "أدخل الرمز المكون من 6 أرقام";
+"check_trusted_device" = "تحقق من أجهزتك الموثوقة أو الرسائل القصيرة للحصول على الرمز";
+"verifying" = "جارٍ التحقق...";
+"enter_full_credentials" = "يرجى إدخال Apple ID وكلمة المرور الكاملين";
+"enter_6digit_code_verify" = "يرجى إدخال رمز التحقق المكون من 6 أرقام";
+"wrong_credentials" = "Apple ID أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.";
+"account_locked" = "تم قفل Apple ID الخاص بك. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بدعم Apple.";
+"network_error_retry" = "خطأ في اتصال الشبكة. يرجى التحقق من إعدادات الشبكة والمحاولة مرة أخرى.";
+"auth_failed" = "فشل المصادقة. يرجى التحقق من اتصال الشبكة ومعلومات الحساب.";
+"invalid_server_response" = "استجابة خادم غير صالحة. يرجى المحاولة مرة أخرى لاحقًا.";
+"unknown_error" = "خطأ غير معروف. يرجى المحاولة مرة أخرى لاحقًا.";
+"auth_error" = "حدث خطأ أثناء المصادقة: %@";
+"check_apple_device_code" = "تحقق من جهاز Apple الخاص بك للحصول على رمز التحقق";
+"wrong_verification_code" = "رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "ملف IPA غير صالح";
+"install_failed_with_reason" = "فشل التثبيت: %@";
+"install_timeout" = "انتهت مهلة التثبيت";
+"installing_app" = "جارٍ تثبيت %@";
+"version_x" = "الإصدار %@";
+"install_starting" = "جارٍ بدء التثبيت...";
+"install_manual_hint" = "إذا فشل التثبيت التلقائي، انقر على الزر أدناه للتثبيت يدويًا:";
+"manual_install" = "تثبيت يدوي";
+"install_success_desc" = "تحقق من الشاشة الرئيسية، التطبيق قيد التثبيت...";
+"install_contact_author" = "اتصل بالمطور pxx917144686 إذا واجهت مشكلات";
+"install_start_failed" = "فشل بدء التثبيت";
+"retry_install" = "إعادة محاولة التثبيت";
+"view_source_code" = "👉 عرض الكود المصدري";
+"file_size_x" = "حجم الملف: %@";
+"no_purchase_record" = "لم يتم العثور على سجل شراء، جارٍ التحويل إلى App Store";
+"file_saved_to" = "تم حفظ الملف في:";
+"preparing" = "جارٍ التحضير...";
+"waiting_confirm" = "في انتظار التأكيد...";
+"install_completed" = "اكتمل التثبيت";
+"waiting" = "انتظار...";
+"start_install" = "بدء التثبيت";
+"unknown_path" = "مسار غير معروف";
+"share_ipa" = "مشاركة IPA";
+"install_background_hint" = "التطبيق قيد التثبيت في الخلفية. يمكنك العودة إلى الشاشة الرئيسية للتحقق من التقدم.";
+"ipa_not_found" = "ملف IPA غير موجود، يرجى التنزيل مرة أخرى";
+"preparing_install" = "جارٍ التحضير للتثبيت...";
+"install_in_progress" = "التثبيت قيد التقدم بالفعل";
+"verifying_package" = "جارٍ التحقق من الحزمة...";
+"starting_install_service" = "جارٍ بدء خدمة التثبيت...";
+"install_service_timeout" = "انتهت مهلة خدمة التثبيت. يرجى المحاولة مرة أخرى.";
+"opening_install_page" = "جارٍ فتح صفحة التثبيت...";
+"download_record_file" = "سجل التنزيل";
+"delete_file" = "حذف الملف";
+"delete_file_confirm" = "هل أنت متأكد من أنك تريد حذف %@؟ لا يمكن التراجع عن هذا الإجراء.";
+"delete_success" = "تم الحذف بنجاح";
+"delete_success_desc" = "تم حذف الملف بنجاح.";
+"no_ipa_found" = "لم يتم العثور على ملفات IPA";
+"no_ipa_found_desc" = "لم يتم العثور على ملفات IPA في دليل تخزين التطبيق";
+
+// MARK: - Account Detail
+"basic_info" = "المعلومات الأساسية";
+"account_identifier" = "معرف الحساب";
+"country_region" = "البلد/المنطقة";
+"password_token" = "رمز كلمة المرور";
+"auth_info" = "معلومات المصادقة";
+"password_token_hint" = "يتم استخدام رمز كلمة المرور للمصادقة التلقائية. يرجى عدم مشاركته مع الآخرين.";
+"delete_this_account" = "حذف هذا الحساب";
+"delete_account_confirm_detail" = "هل أنت متأكد من أنك تريد حذف الحساب %@ من هذا الجهاز؟\n\nسيتم إزالة جميع معلومات تسجيل الدخول وملفات تعريف الارتباط لهذا الحساب.";
+"dsid" = "DSID";
+"no_value" = "لا شيء";
+"region_title" = "المنطقة";
+
+// MARK: - Appearance More
+"overall_color" = "لون التمييز";
+"quick_select" = "اختيار سريع";
+"auto" = "تلقائي";
+"unknown" = "غير معروف";

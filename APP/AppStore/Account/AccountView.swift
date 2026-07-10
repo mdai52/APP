@@ -44,12 +44,12 @@ struct AccountView: View {
                                     accountToDelete = account
                                     showDeleteAlert = true
                                 } label: {
-                                    Label("删除", systemImage: "trash")
+                                    Label("delete".localized, systemImage: "trash")
                                 }
                             }
                         }
                     } header: {
-                        Text("所有账户")
+                        Text("all_accounts".localized)
                     }
                 }
 
@@ -62,7 +62,7 @@ struct AccountView: View {
                             Image(systemName: "plus.circle.fill")
                                 .font(.system(size: 22))
                                 .foregroundColor(.green)
-                            Text("添加 Apple ID")
+                            Text("add_account".localized)
                                 .font(.system(size: 15))
                                 .foregroundColor(.primary)
                             Spacer()
@@ -83,7 +83,7 @@ struct AccountView: View {
                                 Image(systemName: "rectangle.portrait.and.arrow.right.fill")
                                     .font(.system(size: 22))
                                     .foregroundColor(.red)
-                                Text("退出登录")
+                                Text("logout".localized)
                                     .font(.system(size: 15))
                                     .foregroundColor(.red)
                                 Spacer()
@@ -97,7 +97,7 @@ struct AccountView: View {
                     Section {
                         NavigationLink(destination: AccountDetailView(account: account)) {
                             HStack {
-                                Text("地区")
+                                Text("region".localized)
                                     .font(.system(size: 15))
                                     .foregroundColor(.primary)
                                 Spacer()
@@ -108,7 +108,7 @@ struct AccountView: View {
                         }
 
                         HStack {
-                            Text("DSID")
+                            Text("dsid".localized)
                                 .font(.system(size: 15))
                                 .foregroundColor(.primary)
                             Spacer()
@@ -119,12 +119,12 @@ struct AccountView: View {
                                 .truncationMode(.middle)
                         }
                     } header: {
-                        Text("账户信息")
+                        Text("account_info".localized)
                     }
                 }
             }
             .listStyle(.insetGrouped)
-            .navigationTitle("Apple ID")
+            .navigationTitle("apple_id".localized)
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -149,11 +149,11 @@ struct AccountView: View {
                 .environmentObject(appStore)
                 .environmentObject(themeManager)
             }
-            .alert("确认删除", isPresented: $showDeleteAlert) {
-                Button("取消", role: .cancel) {
+            .alert("confirm_delete".localized, isPresented: $showDeleteAlert) {
+                Button("cancel".localized, role: .cancel) {
                     accountToDelete = nil
                 }
-                Button("删除", role: .destructive) {
+                Button("delete".localized, role: .destructive) {
                     if let account = accountToDelete {
                         if appStore.savedAccounts.count == 1 {
                             appStore.logoutAccount()
@@ -168,7 +168,7 @@ struct AccountView: View {
                 }
             } message: {
                 if let account = accountToDelete {
-                    Text("确定要删除账户 \(account.email) 吗？此操作无法撤销。")
+                    Text(String(format: "delete_account_message".localized, account.email))
                 }
             }
         }
@@ -184,11 +184,11 @@ struct AccountView: View {
                 .foregroundColor(.secondary.opacity(0.5))
 
             VStack(spacing: 6) {
-                Text("登录您的 Apple ID")
+                Text("login_apple_id".localized)
                     .font(.system(size: 22, weight: .bold))
                     .foregroundColor(.primary)
 
-                Text("使用 Apple ID 下载和管理应用")
+                Text("login_apple_id_desc".localized)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -196,7 +196,7 @@ struct AccountView: View {
             Button(action: {
                 addSheet.toggle()
             }) {
-                Text("登录 Apple ID")
+                Text("login_apple_id_btn".localized)
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -322,22 +322,8 @@ struct AccountView: View {
     }
 
     private func countryName(_ code: String) -> String {
-        let chineseNames: [String: String] = [
-            "CN": "中国大陆", "US": "美国", "JP": "日本", "KR": "韩国",
-            "HK": "香港", "TW": "台湾", "SG": "新加坡", "GB": "英国",
-            "DE": "德国", "FR": "法国", "AU": "澳大利亚", "CA": "加拿大",
-            "BR": "巴西", "IN": "印度", "RU": "俄罗斯", "IT": "意大利",
-            "ES": "西班牙", "MX": "墨西哥", "NL": "荷兰", "SE": "瑞典",
-            "TR": "土耳其", "AR": "阿根廷", "CL": "智利", "CO": "哥伦比亚",
-            "PE": "秘鲁", "PL": "波兰", "SA": "沙特阿拉伯", "TH": "泰国",
-            "PH": "菲律宾", "MY": "马来西亚", "ID": "印度尼西亚", "VN": "越南",
-            "ZA": "南非", "AE": "阿联酋", "EG": "埃及", "NG": "尼日利亚",
-            "IL": "以色列", "BE": "比利时", "CH": "瑞士", "AT": "奥地利",
-            "DK": "丹麦", "FI": "芬兰", "NO": "挪威", "IE": "爱尔兰",
-            "PT": "葡萄牙", "CZ": "捷克", "HU": "匈牙利", "RO": "罗马尼亚",
-            "GR": "希腊", "NZ": "新西兰", "PK": "巴基斯坦", "BD": "孟加拉国"
-        ]
-        return chineseNames[code.uppercased()] ?? Locale.current.localizedString(forRegionCode: code) ?? code.uppercased()
+        let locale = LanguageManager.shared.locale
+        return locale.localizedString(forRegionCode: code) ?? code.uppercased()
     }
 }
 

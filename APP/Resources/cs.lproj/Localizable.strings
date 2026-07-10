@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Nastavení";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "Stahování";
+"tab_search" = "Hledat";
+
+// MARK: - Common
+"cancel" = "Zrušit";
+"confirm" = "Potvrdit";
+"ok" = "OK";
+"done" = "Hotovo";
+"back" = "Zpět";
+"save" = "Uložit";
+"delete" = "Smazat";
+"edit" = "Upravit";
+"add" = "Přidat";
+"close" = "Zavřít";
+"refresh" = "Obnovit";
+"retry" = "Zkusit znovu";
+"loading" = "Načítání...";
+"success" = "Úspěch";
+"failed" = "Selhalo";
+"error" = "Chyba";
+"warning" = "Varování";
+"info" = "Informace";
+"search" = "Hledat";
+"download" = "Stáhnout";
+"install" = "Nainstalovat";
+"update" = "Aktualizovat";
+"more" = "Více";
+"all" = "Vše";
+"none" = "Žádný";
+"default" = "Výchozí";
+"copy" = "Kopírovat";
+"share" = "Sdílet";
+"export" = "Exportovat";
+"import" = "Importovat";
+"clear" = "Vymazat";
+"reset" = "Resetovat";
+"continue" = "Pokračovat";
+"confirm_delete" = "Potvrdit smazání";
+"confirm_delete_message" = "Opravdu chcete toto smazat? Tuto akci nelze vrátit zpět.";
+"copied" = "Zkopírováno";
+"copy_failed" = "Kopírování selhalo";
+"no_data" = "Žádná data";
+"no_result" = "Nebyly nalezeny žádné výsledky";
+"try_again" = "Zkuste to znovu";
+"got_it" = "Rozumím";
+
+// MARK: - Settings
+"settings" = "Nastavení";
+"appearance" = "Vzhled";
+"theme" = "Téma";
+"color" = "Barva";
+"icon" = "Ikona";
+"language" = "Jazyk";
+"general" = "Obecné";
+"about" = "O aplikaci";
+"version" = "Verze";
+"version_number" = "Číslo verze";
+"follow_system" = "Systémové výchozí";
+"light_mode" = "Světlý";
+"dark_mode" = "Tmavý";
+"accent_color" = "Akcentová barva";
+"app_icon" = "Ikona aplikace";
+"select_icon" = "Vybrat ikonu";
+"icon_changed_success" = "Ikona byla úspěšně změněna";
+"icon_changed_failed" = "Změna ikony selhala";
+"language_select" = "Vybrat jazyk";
+"language_footer" = "Po změně jazyka je třeba aplikaci restartovat, aby se změny plně projevily.";
+"language_switch" = "Změnit jazyk";
+"language_switch_message" = "Rozhraní aplikace se okamžitě aktualizuje po změně jazyka. Některé systémové komponenty mohou vyžadovat restart, aby se plně projevily.";
+"confirm_switch" = "Potvrdit změnu";
+"app_icon" = "Ikona aplikace";
+"icon_default" = "Výchozí";
+"icon_author" = "Ikona";
+"icon_love" = "Láska";
+"icon_peek" = "Náhled";
+"icon_set_success" = "Ikona byla úspěšně nastavena";
+"system_language" = "Jazyk systému";
+"language_system_settings" = "Změnit v systémových nastaveních";
+"language_system_hint" = "Přejděte do Nastavení → APP → Jazyk";
+"language_recommended" = "Doporučené";
+"lang_chinese_simplified" = "Čínština (zjednodušená)";
+"lang_english" = "Angličtina";
+"lang_japanese" = "Japonština";
+"lang_korean" = "Korejština";
+"lang_spanish" = "Španělština";
+"lang_french" = "Francouzština";
+"lang_german" = "Němčina";
+"lang_italian" = "Italština";
+"lang_portuguese" = "Portugalština";
+"lang_russian" = "Ruština";
+"lang_arabic" = "Arabština";
+"lang_hindi" = "Hindština";
+"lang_thai" = "Thajština";
+"lang_vietnamese" = "Vietnamština";
+"lang_indonesian" = "Indonéština";
+"lang_malay" = "Malajština";
+"lang_dutch" = "Nizozemština";
+"lang_swedish" = "Švédština";
+"lang_danish" = "Dánština";
+"lang_finnish" = "Finština";
+"lang_norwegian" = "Norština";
+"lang_polish" = "Polština";
+"lang_czech" = "Čeština";
+"lang_hungarian" = "Maďarština";
+"lang_romanian" = "Rumunština";
+"lang_turkish" = "Turečtina";
+"lang_ukrainian" = "Ukrajinština";
+"lang_greek" = "Řečtina";
+"lang_hebrew" = "Hebrejština";
+"lang_slovak" = "Slovenština";
+"lang_croatian" = "Chorvatština";
+"lang_catalan" = "Katalánština";
+
+// MARK: - Download
+"download_title" = "Stahování";
+"downloading" = "Stahování";
+"download_paused" = "Pozastaveno";
+"download_completed" = "Dokončeno";
+"download_failed" = "Stahování selhalo";
+"download_cancelled" = "Zrušeno";
+"download_waiting" = "Čekání";
+"download_speed" = "Rychlost stahování";
+"download_progress" = "Průběh stahování";
+"download_size" = "Velikost stahování";
+"download_time" = "Čas stahování";
+"pause_download" = "Pozastavit stahování";
+"resume_download" = "Obnovit stahování";
+"cancel_download" = "Zrušit stahování";
+"retry_download" = "Zkusit stahování znovu";
+"delete_download" = "Smazat stahování";
+"all_pause" = "Pozastavit vše";
+"all_start" = "Spustit vše";
+"clear_completed" = "Vymazat dokončené";
+"download_queue" = "Fronta stahování";
+"download_history" = "Historie stahování";
+"no_downloads" = "Žádná stahování";
+"download_settings" = "Nastavení stahování";
+"wifi_only_download" = "Stahovat pouze přes Wi-Fi";
+"max_concurrent_downloads" = "Max. současných stahování";
+"download_path" = "Cesta stahování";
+
+// MARK: - Account
+"account" = "Účet";
+"apple_id" = "Apple ID";
+"add_account" = "Přidat Apple ID";
+"switch_account" = "Přepnout účet";
+"current_account" = "Aktuální účet";
+"all_accounts" = "Všechny účty";
+"account_info" = "Informace o účtu";
+"region" = "Region";
+"delete_account" = "Smazat účet";
+"logout" = "Odhlásit se";
+"logout_confirm" = "Potvrdit odhlášení";
+"logout_confirm_message" = "Opravdu se chcete odhlásit z aktuálního účtu?";
+"delete_account_confirm" = "Potvrdit smazání účtu";
+"delete_account_message" = "Opravdu chcete smazat účet %@? Tuto akci nelze vrátit zpět a budete ho muset přidat znovu.";
+"account_detail" = "Podrobnosti o účtu";
+"verified" = "Ověřeno";
+"unverified" = "Neověřeno";
+"no_account" = "Nejste přihlášeni";
+"no_account_description" = "Přidejte Apple ID, abyste mohli začít";
+"name" = "Jméno";
+"email" = "E-mail";
+"country" = "Země/Region";
+
+// MARK: - App Icon
+"app_icon_settings" = "Ikona aplikace";
+"default_icon" = "Výchozí";
+
+// MARK: - Search
+"search_placeholder" = "Hledat aplikace, hry, vývojáře";
+"search_history" = "Historie vyhledávání";
+"search_suggestions" = "Návrhy vyhledávání";
+"search_results" = "Výsledky vyhledávání";
+"clear_history" = "Vymazat historii";
+"hot_search" = "Populární vyhledávání";
+"no_results" = "Nebyly nalezeny žádné výsledky";
+"try_different_keywords" = "Zkuste jiná klíčová slova";
+"searching" = "Vyhledávání...";
+
+// MARK: - Version Picker
+"version_picker" = "Vybrat verzi";
+"current_version" = "Aktuální verze";
+"available_versions" = "Dostupné verze";
+"no_versions" = "Žádné dostupné verze";
+"load_versions_failed" = "Načtení verzí selhalo";
+"select_version_to_download" = "Vyberte verzi ke stažení";
+"version_history" = "Historie verzí";
+"release_date" = "Datum vydání";
+"size" = "Velikost";
+"build_number" = "Číslo sestavení";
+
+// MARK: - App Detail
+"app_detail" = "Podrobnosti o aplikaci";
+"get" = "Získat";
+"icloud_sync" = "iCloud synchronizace";
+"screenshots" = "Snímky obrazovky";
+"description" = "Popis";
+"whats_new" = "Co je nového";
+"ratings_and_reviews" = "Hodnocení a recenze";
+"developer" = "Vývojář";
+"category" = "Kategorie";
+"compatibility" = "Kompatibilita";
+"privacy" = "Soukromí";
+"privacy_policy" = "Zásady ochrany osobních údajů";
+"user_agreement" = "Uživatelská smlouva";
+"rating" = "Hodnocení";
+"no_reviews" = "Žádné recenze";
+"no_reviews_description" = "Tato aplikace zatím nemá žádné uživatelské recenze";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "Žádné aplikace TestFlight";
+"install_tf_app" = "Nainstalovat verzi TestFlight";
+"testing_status" = "Stav testování";
+"testing" = "Testování";
+"expired" = "Vypršelo";
+"full" = "Plné";
+"test_duration" = "Délka testu";
+"remaining_seats" = "Zbývající místa";
+"redeem_code" = "Redempční kód";
+"enter_redeem_code" = "Zadejte redempční kód";
+
+// MARK: - Filter & Sort
+"filter" = "Filtr";
+"sort" = "Seřadit";
+"sort_by_name" = "Seřadit podle názvu";
+"sort_by_date" = "Seřadit podle data";
+"sort_by_size" = "Seřadit podle velikosti";
+"sort_by_status" = "Seřadit podle stavu";
+"ascending" = "Vzestupně";
+"descending" = "Sestupně";
+
+// MARK: - Notification
+"notifications" = "Oznámení";
+"push_notifications" = "Push oznámení";
+"download_complete_notification" = "Oznámení o dokončeném stahování";
+"notification_sound" = "Zvuk oznámení";
+"notification_vibrate" = "Vibrace";
+"notification_badge" = "Odznak";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Soukromí a bezpečnost";
+"clear_cache" = "Vymazat mezipaměť";
+"cache_size" = "Velikost mezipaměti";
+"calculating_cache" = "Vypočítávání...";
+"clear_cache_confirm" = "Potvrdit vymazání mezipaměti";
+"clear_cache_message" = "Opravdu chcete vymazat celou mezipaměť? Tímto nesmažete stažené aplikace.";
+"cache_cleared" = "Mezipaměť byla vymazána";
+
+// MARK: - Storage
+"storage" = "Úložiště";
+"total_storage" = "Celkem";
+"used_storage" = "Použito";
+"available_storage" = "Dostupné";
+"app_size" = "Velikost aplikace";
+"documents_size" = "Velikost dokumentů";
+
+// MARK: - Download Manager
+"download_manager" = "Správce stahování";
+"batch_operations" = "Dávkové operace";
+"select_all" = "Vybrat vše";
+"deselect_all" = "Zrušit výběr všeho";
+"selected_count" = "%@ vybráno";
+
+// MARK: - App Information
+"app_name" = "Název aplikace";
+"app_version" = "Verze aplikace";
+"app_rating" = "Hodnocení aplikace";
+"app_developer" = "Vývojář";
+"app_category" = "Kategorie";
+"last_updated" = "Naposledy aktualizováno";
+"language_support" = "Podpora jazyků";
+"content_rating" = "Hodnocení obsahu";
+
+// MARK: - Account Management
+"account_management" = "Správa účtu";
+"login_status" = "Stav přihlášení";
+"two_factor_auth" = "Dvoufaktorové ověření";
+"remember_password" = "Zapamatovat heslo";
+"auto_login" = "Automatické přihlášení";
+"login_expired" = "Přihlášení vypršelo";
+"please_relogin" = "Přihlaste se znovu";
+
+// MARK: - Settings More
+"advanced_settings" = "Rozšířená nastavení";
+"developer_options" = "Možnosti vývojáře";
+"check_update" = "Zkontrolovat aktualizace";
+"new_version_available" = "Je k dispozici nová verze";
+"already_latest_version" = "Již používáte nejnovější verzi";
+"feedback" = "Zpětná vazba";
+"rate_app" = "Ohodnotit aplikaci";
+"share_app" = "Sdílet aplikaci";
+
+// MARK: - Network
+"network" = "Síť";
+"network_status" = "Stav sítě";
+"wifi" = "Wi-Fi";
+"cellular" = "Mobilní data";
+"no_network" = "Žádné síťové připojení";
+"network_error" = "Chyba sítě";
+"network_error_message" = "Síťové připojení selhalo. Zkontrolujte nastavení sítě.";
+"network_speed" = "Rychlost sítě";
+"network_usage" = "Využití dat";
+
+// MARK: - Installation
+"installation" = "Instalace";
+"installing" = "Instalace...";
+"install_success" = "Instalace byla úspěšná";
+"install_failed" = "Instalace selhala";
+"install_failed_message" = "Instalace selhala. Zkuste to znovu.";
+"uninstall" = "Odinstalovat";
+"uninstall_confirm" = "Potvrdit odinstalaci";
+"uninstall_message" = "Opravdu chcete tuto aplikaci odinstalovat? Všechna data budou smazána.";
+"ipa_file" = "Soubor IPA";
+"ipa_signature" = "Podpis IPA";
+"signed" = "Podepsáno";
+"unsigned" = "Nepodepsáno";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Pozvánka na test";
+"testflight_build" = "Sestavení";
+"testflight_group" = "Testovací skupina";
+"testflight_tester" = "Tester";
+"testflight_feedback" = "Zpětná vazba z testu";
+"testflight_expired" = "Test vypršel";
+"testflight_full" = "Test je plný";
+"testflight_join" = "Připojit se k testu";
+"testflight_leave" = "Opustit test";
+
+// MARK: - Search More
+"search_filter" = "Filtr vyhledávání";
+"search_result_count" = "Nalezeno %@ výsledků";
+"exact_match" = "Přesná shoda";
+"fuzzy_match" = "Přibližná shoda";
+"hot_apps" = "Populární aplikace";
+"new_apps" = "Nové aplikace";
+"recommended_apps" = "Doporučené aplikace";
+"top_charts" = "Žebříčky";
+
+// MARK: - Status
+"status" = "Stav";
+"status_normal" = "Normální";
+"status_abnormal" = "Abnormální";
+"status_pending" = "Čekající";
+"status_processing" = "Zpracovávání";
+"status_completed" = "Dokončeno";
+"status_failed" = "Selhalo";
+"status_cancelled" = "Zrušeno";
+"status_expired" = "Vypršelo";
+"status_active" = "Aktivní";
+"status_inactive" = "Neaktivní";
+"status_idle" = "Nečinný";
+"status_busy" = "Zaneprázdněný";
+
+// MARK: - Tips
+"tips" = "Tipy";
+"tip_download_speed" = "Rychlost stahování závisí na vašem síťovém připojení";
+"tip_wifi_download" = "Doporučuje se stahovat velké soubory přes Wi-Fi";
+"tip_storage_space" = "Ujistěte se, že máte dostatek místa v úložišti";
+"tip_account_security" = "Uchovávejte informace o účtu v bezpečí";
+"dont_show_again" = "Zobrazovat znovu";
+"remind_later" = "Připomenout později";
+"view_details" = "Zobrazit podrobnosti";
+"learn_more" = "Další informace";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "s";
+"unit_minutes" = "min";
+"unit_hours" = "hod";
+"unit_days" = "den";
+"unit_weeks" = "týd";
+"unit_months" = "měs";
+"unit_years" = "rok";
+"today" = "Dnes";
+"yesterday" = "Včera";
+"day_before_yesterday" = "Předvčerejm";
+"just_now" = "Právě teď";
+"minutes_ago" = "před %@ min";
+"hours_ago" = "před %@ hod";
+"days_ago" = "před %@ dnem";
+
+// MARK: - Actions
+"action_open" = "Otevřít";
+"action_close" = "Zavřít";
+"action_view" = "Zobrazit";
+"action_edit" = "Upravit";
+"action_delete" = "Smazat";
+"action_share" = "Sdílet";
+"action_copy" = "Kopírovat";
+"action_paste" = "Vložit";
+"action_select" = "Vybrat";
+"action_select_all" = "Vybrat vše";
+"action_deselect" = "Zrušit výběr";
+"action_refresh" = "Obnovit";
+"action_reload" = "Znovu načíst";
+"action_scroll_top" = "Posunout nahoru";
+"action_scroll_bottom" = "Posunout dolů";
+"action_favorite" = "Oblíbené";
+"action_unfavorite" = "Odebrat z oblíbených";
+"action_like" = "Líbí se";
+"action_unlike" = "Už se nelíbí";
+"action_follow" = "Sledovat";
+"action_unfollow" = "Přestat sledovat";
+"action_report" = "Nahlásit";
+"action_block" = "Blokovat";
+"action_rename" = "Přejmenovat";
+"action_move" = "Přesunout";
+"action_compress" = "Komprimovat";
+"action_extract" = "Rozbalit";
+"action_upload" = "Nahrát";
+"action_download" = "Stáhnout";
+"action_install" = "Nainstalovat";
+"action_uninstall" = "Odinstalovat";
+"action_update" = "Aktualizovat";
+"action_upgrade" = "Aktualizovat";
+"action_downgrade" = "Snížit verzi";
+"action_scan_qr" = "Skenovat QR kód";
+"action_generate_qr" = "Vygenerovat QR kód";
+"action_print" = "Vytisknout";
+"action_send" = "Odeslat";
+"action_receive" = "Přijmout";
+"action_reject" = "Odmítnout";
+"action_accept" = "Přijmout";
+"action_declined" = "Odmítnuto";
+"action_accepted" = "Přijato";
+
+// MARK: - Theme
+"theme_settings" = "Nastavení tématu";
+"light_theme" = "Světlé téma";
+"dark_theme" = "Tmavé téma";
+"system_theme" = "Systémové téma";
+"pure_black" = "Čistá černá";
+"auto_switch" = "Automatické přepínání";
+"custom_theme" = "Vlastní téma";
+"theme_color" = "Barva tématu";
+"background_color" = "Barva pozadí";
+"text_color" = "Barva textu";
+"font_size" = "Velikost písma";
+"font_style" = "Styl písma";
+
+// MARK: - App Detail More
+"feature_tags" = "Štítky funkcí";
+"free" = "Získat";
+"get" = "Získat";
+"view" = "Zobrazit";
+"get_reviews_failed" = "Načtení recenzí selhalo: %@";
+"x_ratings" = "%@ hodnocení";
+"age_rating" = "Věkové hodnocení";
+"x_languages" = "%@ jazyků";
+"whats_new" = "Co je nového";
+"tech_info" = "Technické informace";
+"first_release" = "První vydání";
+"last_updated" = "Naposledy aktualizováno";
+"requires_ios" = "Vyžaduje iOS %@ nebo novější";
+
+// MARK: - Search More
+"search_placeholder" = "Hledat hry, aplikace";
+"login" = "Přihlásit se";
+"clear_all" = "Vymazat vše";
+"x_results_found" = "Nalezeno %@ výsledků";
+"finding_best_results" = "Hledání nejlepších výsledků pro vás";
+"app_downgrade" = "Snížení verze aplikace";
+"search_error" = "Chyba vyhledávání";
+"load_more" = "Načíst více...";
+"purchasing" = "Nákup";
+"purchase" = "Koupit";
+"please_login_first" = "Nejprve se přihlaste, abyste mohli stahovat aplikace";
+"loading_versions" = "Načítání historie verzí...";
+"load_failed" = "Načítání selhalo";
+"no_versions_desc" = "Pro tuto aplikaci nejsou k dispozici žádné předchozí verze";
+"x_versions" = "%@ verzí";
+"version_x_date" = "Verze %@ · %@";
+
+// MARK: - Account More
+"login_account" = "Přihlásit se";
+"current" = "Aktuální";
+"switch" = "Přepnout";
+"x_accounts" = "%@ účtů";
+"add_new_account" = "Přidat nový účet";
+"account_management" = "Správa účtu";
+"use_account" = "Použít účet";
+"connection_lost" = "Spojení přerušeno";
+"reconnecting" = "Znovu připojování";
+"connected" = "Připojeno";
+"apple_id_disconnected" = "Apple ID bylo odpojeno. Klepněte pro opětovné ověření nebo přihlášení.";
+"apple_id_reconnecting" = "Automatické opětovné připojování k Apple ID, čekejte...";
+"apple_id_connected" = "Apple ID připojeno. Hledejte a stahujte aplikace normálně.";
+"login_apple_id" = "Přihlásit se pomocí Apple ID";
+"login_apple_id_desc" = "Stahujte a spravujte aplikace pomocí svého Apple ID";
+"login_apple_id_btn" = "Přihlásit se pomocí Apple ID";
+"view_account_details" = "Zobrazit podrobnosti o účtu";
+"media_purchases" = "Média a nákupy";
+"media_purchases_header" = "Média a nákupy";
+"sign_in_apple_id" = "Přihlaste se na svém iPhonu";
+"sign_in_apple_id_desc" = "Používejte své Apple ID na tomto iPhonu";
+"apple_id" = "Apple ID";
+"name" = "Jméno";
+"apple_id_email" = "Apple ID";
+"name_email_header" = "Jméno, e-mail";
+"account_identifier_header" = "Identifikátor účtu";
+"country_region" = "Země/Region";
+"region_header" = "Region";
+"sign_out" = "Odhlásit se";
+"login_your_account" = "Přihlaste se ke svému účtu";
+"enter_apple_id" = "Zadejte své Apple ID";
+"password" = "Heslo";
+"enter_password" = "Zadejte své heslo";
+"two_factor_code" = "Dvoufaktorový kód";
+"enter_6digit_code" = "Zadejte 6-místný kód";
+"check_trusted_device" = "Zkontrolujte důvěryhodná zařízení nebo SMS pro kód";
+"verifying" = "Ověřování...";
+"enter_full_credentials" = "Zadejte úplné Apple ID a heslo";
+"enter_6digit_code_verify" = "Zadejte 6-místný ověřovací kód";
+"wrong_credentials" = "Nesprávné Apple ID nebo heslo. Zkuste to znovu.";
+"account_locked" = "Vaše Apple ID bylo zablokováno. Zkuste to znovu později nebo kontaktujte podporu Apple.";
+"network_error_retry" = "Chyba síťového připojení. Zkontrolujte nastavení sítě a zkuste to znovu.";
+"auth_failed" = "Ověření selhalo. Zkontrolujte síťové připojení a údaje o účtu.";
+"invalid_server_response" = "Neplatná odpověď serveru. Zkuste to znovu později.";
+"unknown_error" = "Neznámá chyba. Zkuste to znovu později.";
+"auth_error" = "Při ověřování došlo k chybě: %@";
+"check_apple_device_code" = "Zkontrolujte ověřovací kód na svém zařízení Apple";
+"wrong_verification_code" = "Nesprávný ověřovací kód. Zkuste to znovu.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Neplatný soubor IPA";
+"install_failed_with_reason" = "Instalace selhala: %@";
+"install_timeout" = "Časový limit instalace vypršel";
+"installing_app" = "Instalace %@";
+"version_x" = "Verze %@";
+"install_starting" = "Zahajování instalace...";
+"install_manual_hint" = "Pokud automatická instalace selže, klepněte na tlačítko níže pro ruční instalaci:";
+"manual_install" = "Nainstalovat ručně";
+"install_success_desc" = "Podívejte se na svou hlavní obrazovku, aplikace se instaluje...";
+"install_contact_author" = "V případě problémů kontaktujte vývojáře pxx917144686";
+"install_start_failed" = "Instalaci se nepodařilo spustit";
+"retry_install" = "Zkusit instalaci znovu";
+"view_source_code" = "👉 Zobrazit zdrojový kód";
+"file_size_x" = "Velikost souboru: %@";
+"no_purchase_record" = "Nenalezen žádný záznam o nákupu, přesměrovávání do App Store";
+"file_saved_to" = "Soubor byl uložen do:";
+"preparing" = "Příprava...";
+"waiting_confirm" = "Čekání na potvrzení...";
+"install_completed" = "Instalace dokončena";
+"waiting" = "Čekání...";
+"start_install" = "Spustit instalaci";
+"unknown_path" = "Neznámá cesta";
+"share_ipa" = "Sdílet IPA";
+"install_background_hint" = "Aplikace se instaluje na pozadí. Můžete se vrátit na hlavní obrazovku a zkontrolovat průběh.";
+"ipa_not_found" = "Soubor IPA nebyl nalezen, stáhněte jej znovu";
+"preparing_install" = "Příprava instalace...";
+"install_in_progress" = "Instalace již probíhá";
+"verifying_package" = "Ověřování balíčku...";
+"starting_install_service" = "Spouštění instalační služby...";
+"install_service_timeout" = "Časový limit instalační služby vypršel. Zkuste to znovu.";
+"opening_install_page" = "Otevírání instalační stránky...";
+"download_record_file" = "Záznam stahování";
+"delete_file" = "Smazat soubor";
+"delete_file_confirm" = "Opravdu chcete smazat %@? Tuto akci nelze vrátit zpět.";
+"delete_success" = "Smazáno úspěšně";
+"delete_success_desc" = "Soubor byl úspěšně smazán.";
+"no_ipa_found" = "Nenalezeny žádné soubory IPA";
+"no_ipa_found_desc" = "V adresáři úložiště aplikace nebyly nalezeny žádné soubory IPA";
+
+// MARK: - Account Detail
+"basic_info" = "Základní informace";
+"account_identifier" = "Identifikátor účtu";
+"country_region" = "Země/Region";
+"password_token" = "Token hesla";
+"auth_info" = "Ověřovací informace";
+"password_token_hint" = "Token hesla se používá pro automatické ověřování. Nesdílejte ho s ostatními.";
+"delete_this_account" = "Smazat tento účet";
+"delete_account_confirm_detail" = "Opravdu chcete smazat účet %@ z tohoto zařízení?\n\nVšechny přihlašovací údaje a soubory cookie pro tento účet budou odebrány.";
+"dsid" = "DSID";
+"no_value" = "Žádná";
+"region_title" = "Region";
+
+// MARK: - Appearance More
+"overall_color" = "Akcentová barva";
+"quick_select" = "Rychlý výběr";
+"auto" = "Auto";
+"unknown" = "Neznámý";

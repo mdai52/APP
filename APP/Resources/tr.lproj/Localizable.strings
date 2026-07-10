@@ -1,0 +1,592 @@
+// MARK: - Tab Bar
+"tab_settings" = "Ayarlar";
+"tab_tfapps" = "TestFlight";
+"tab_downloads" = "İndirmeler";
+"tab_search" = "Arama";
+
+// MARK: - Common
+"cancel" = "İptal";
+"confirm" = "Onayla";
+"ok" = "Tamam";
+"done" = "Bitti";
+"back" = "Geri";
+"save" = "Kaydet";
+"delete" = "Sil";
+"edit" = "Düzenle";
+"add" = "Ekle";
+"close" = "Kapat";
+"refresh" = "Yenile";
+"retry" = "Tekrar Dene";
+"loading" = "Yükleniyor...";
+"success" = "Başarılı";
+"failed" = "Başarısız";
+"error" = "Hata";
+"warning" = "Uyarı";
+"info" = "Bilgi";
+"search" = "Ara";
+"download" = "İndir";
+"install" = "Kur";
+"update" = "Güncelle";
+"more" = "Daha Fazla";
+"all" = "Tümü";
+"none" = "Yok";
+"default" = "Varsayılan";
+"copy" = "Kopyala";
+"share" = "Paylaş";
+"export" = "Dışa Aktar";
+"import" = "İçe Aktar";
+"clear" = "Temizle";
+"reset" = "Sıfırla";
+"continue" = "Devam Et";
+"confirm_delete" = "Silmeyi Onayla";
+"confirm_delete_message" = "Bunu silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.";
+"copied" = "Kopyalandı";
+"copy_failed" = "Kopyalama Başarısız";
+"no_data" = "Veri Yok";
+"no_result" = "Sonuç Bulunamadı";
+"try_again" = "Lütfen Tekrar Deneyin";
+"got_it" = "Anladım";
+
+// MARK: - Settings
+"settings" = "Ayarlar";
+"appearance" = "Görünüm";
+"theme" = "Tema";
+"color" = "Renk";
+"icon" = "Simge";
+"language" = "Dil";
+"general" = "Genel";
+"about" = "Hakkında";
+"version" = "Sürüm";
+"version_number" = "Sürüm Numarası";
+"follow_system" = "Sistem Varsayılanı";
+"light_mode" = "Açık";
+"dark_mode" = "Koyu";
+"accent_color" = "Vurgu Rengi";
+"app_icon" = "Uygulama Simgesi";
+"select_icon" = "Simge Seç";
+"icon_changed_success" = "Simge Başarıyla Değiştirildi";
+"icon_changed_failed" = "Simge Değiştirme Başarısız";
+"language_select" = "Dil Seç";
+"language_footer" = "Dili değiştirdikten sonra, değişikliklerin tam olarak生效mesi için uygulamanın yeniden başlatılması gerekir.";
+"language_switch" = "Dil Değiştir";
+"language_switch_message" = "Dili değiştirdikten sonra uygulama arayüzü hemen güncellenecektir. Bazı sistem bileşenlerinin tam olarak生效mesi için yeniden başlatma gerekebilir.";
+"confirm_switch" = "Değişikliği Onayla";
+"app_icon" = "Uygulama Simgesi";
+"icon_default" = "Varsayılan";
+"icon_author" = "Simge";
+"icon_love" = "Sevgi";
+"icon_peek" = "Göz at";
+"icon_set_success" = "Simge başarıyla ayarlandı";
+"system_language" = "Sistem Dili";
+"language_system_settings" = "Sistem Ayarlarında Değiştir";
+"language_system_hint" = "Ayarlar → APP → Dil bölümüne gidin";
+"language_recommended" = "Önerilen";
+"lang_chinese_simplified" = "Basitleştirilmiş Çince";
+"lang_english" = "İngilizce";
+"lang_japanese" = "Japonca";
+"lang_korean" = "Korece";
+"lang_spanish" = "İspanyolca";
+"lang_french" = "Fransızca";
+"lang_german" = "Almanca";
+"lang_italian" = "İtalyanca";
+"lang_portuguese" = "Portekizce";
+"lang_russian" = "Rusça";
+"lang_arabic" = "Arapça";
+"lang_hindi" = "Hintçe";
+"lang_thai" = "Tayca";
+"lang_vietnamese" = "Vietnamca";
+"lang_indonesian" = "Endonezce";
+"lang_malay" = "Malayca";
+"lang_dutch" = "Flemenkçe";
+"lang_swedish" = "İsveççe";
+"lang_danish" = "Danimarkaca";
+"lang_finnish" = "Fince";
+"lang_norwegian" = "Norveççe";
+"lang_polish" = "Lehçe";
+"lang_czech" = "Çekçe";
+"lang_hungarian" = "Macarca";
+"lang_romanian" = "Romence";
+"lang_turkish" = "Türkçe";
+"lang_ukrainian" = "Ukraynaca";
+"lang_greek" = "Yunanca";
+"lang_hebrew" = "İbranice";
+"lang_slovak" = "Slovakça";
+"lang_croatian" = "Hırvatça";
+"lang_catalan" = "Katalanca";
+
+// MARK: - Download
+"download_title" = "İndirmeler";
+"downloading" = "İndiriliyor";
+"download_paused" = "Duraklatıldı";
+"download_completed" = "Tamamlandı";
+"download_failed" = "İndirme Başarısız";
+"download_cancelled" = "İptal Edildi";
+"download_waiting" = "Bekliyor";
+"download_speed" = "İndirme Hızı";
+"download_progress" = "İndirme İlerlemesi";
+"download_size" = "İndirme Boyutu";
+"download_time" = "İndirme Süresi";
+"pause_download" = "İndirmeyi Duraklat";
+"resume_download" = "İndirmeye Devam Et";
+"cancel_download" = "İndirmeyi İptal Et";
+"retry_download" = "İndirmeyi Tekrar Dene";
+"delete_download" = "İndirmeyi Sil";
+"all_pause" = "Tümünü Duraklat";
+"all_start" = "Tümünü Başlat";
+"clear_completed" = "Tamamlananları Temizle";
+"download_queue" = "İndirme Sırası";
+"download_history" = "İndirme Geçmişi";
+"no_downloads" = "İndirme Yok";
+"download_settings" = "İndirme Ayarları";
+"wifi_only_download" = "Sadece Wi-Fi ile İndir";
+"max_concurrent_downloads" = "Maksimum Eşzamanlı İndirme";
+"download_path" = "İndirme Yolu";
+
+// MARK: - Account
+"account" = "Hesap";
+"apple_id" = "Apple Kimliği";
+"add_account" = "Apple Kimliği Ekle";
+"switch_account" = "Hesap Değiştir";
+"current_account" = "Mevcut Hesap";
+"all_accounts" = "Tüm Hesaplar";
+"account_info" = "Hesap Bilgisi";
+"region" = "Bölge";
+"delete_account" = "Hesabı Sil";
+"logout" = "Oturumu Kapat";
+"logout_confirm" = "Oturumu Kapatmayı Onayla";
+"logout_confirm_message" = "Mevcut hesaptan oturumu kapatmak istediğinizden emin misiniz?";
+"delete_account_confirm" = "Hesap Silmeyi Onayla";
+"delete_account_message" = "%@ hesabını silmek istediğinizden emin misiniz? Bu işlem geri alınamaz ve tekrar eklemeniz gerekir.";
+"account_detail" = "Hesap Detayları";
+"verified" = "Doğrulandı";
+"unverified" = "Doğrulanmamış";
+"no_account" = "Oturum Açılmamış";
+"no_account_description" = "Başlamak için bir Apple Kimliği ekleyin";
+"name" = "Ad";
+"email" = "E-posta";
+"country" = "Ülke/Bölge";
+
+// MARK: - App Icon
+"app_icon_settings" = "Uygulama Simgesi";
+"default_icon" = "Varsayılan";
+
+// MARK: - Search
+"search_placeholder" = "Uygulama, oyun, geliştirici ara";
+"search_history" = "Arama Geçmişi";
+"search_suggestions" = "Arama Önerileri";
+"search_results" = "Arama Sonuçları";
+"clear_history" = "Geçmişi Temizle";
+"hot_search" = "Popüler Aramalar";
+"no_results" = "Sonuç Bulunamadı";
+"try_different_keywords" = "Farklı anahtar kelimeler deneyin";
+"searching" = "Aranıyor...";
+
+// MARK: - Version Picker
+"version_picker" = "Sürüm Seç";
+"current_version" = "Mevcut Sürüm";
+"available_versions" = "Kullanılabilir Sürümler";
+"no_versions" = "Kullanılabilir Sürüm Yok";
+"load_versions_failed" = "Sürümler Yüklenemedi";
+"select_version_to_download" = "İndirilecek Sürümü Seçin";
+"version_history" = "Sürüm Geçmişi";
+"release_date" = "Yayın Tarihi";
+"size" = "Boyut";
+"build_number" = "Derleme Numarası";
+
+// MARK: - App Detail
+"app_detail" = "Uygulama Detayları";
+"get" = "Al";
+"icloud_sync" = "iCloud Senkronizasyonu";
+"screenshots" = "Ekran Görüntüleri";
+"description" = "Açıklama";
+"whats_new" = "Yenilikler";
+"ratings_and_reviews" = "Değerlendirmeler ve Yorumlar";
+"developer" = "Geliştirici";
+"category" = "Kategori";
+"compatibility" = "Uyumluluk";
+"privacy" = "Gizlilik";
+"privacy_policy" = "Gizlilik Politikası";
+"user_agreement" = "Kullanıcı Sözleşmesi";
+"rating" = "Değerlendirme";
+"no_reviews" = "Yorum Yok";
+"no_reviews_description" = "Bu uygulamanın henüz kullanıcı yorumu yok";
+
+// MARK: - TF Apps
+"tf_apps" = "TestFlight";
+"tf_title" = "TestFlight";
+"no_tf_apps" = "TestFlight Uygulaması Yok";
+"install_tf_app" = "TestFlight Sürümünü Kur";
+"testing_status" = "Test Durumu";
+"testing" = "Test Ediliyor";
+"expired" = "Süresi Doldu";
+"full" = "Dolu";
+"test_duration" = "Test Süresi";
+"remaining_seats" = "Kalan Koltuklar";
+"redeem_code" = "Kod Kullan";
+"enter_redeem_code" = "Kodunuzu Girin";
+
+// MARK: - Filter & Sort
+"filter" = "Filtrele";
+"sort" = "Sırala";
+"sort_by_name" = "İsme Göre Sırala";
+"sort_by_date" = "Tarihe Göre Sırala";
+"sort_by_size" = "Boyuta Göre Sırala";
+"sort_by_status" = "Duruma Göre Sırala";
+"ascending" = "Artan";
+"descending" = "Azalan";
+
+// MARK: - Notification
+"notifications" = "Bildirimler";
+"push_notifications" = "Anlık Bildirimler";
+"download_complete_notification" = "İndirme Tamamlandı Bildirimi";
+"notification_sound" = "Bildirim Sesi";
+"notification_vibrate" = "Titreşim";
+"notification_badge" = "Rozet";
+
+// MARK: - Privacy & Security
+"privacy_security" = "Gizlilik ve Güvenlik";
+"clear_cache" = "Önbelleği Temizle";
+"cache_size" = "Önbellek Boyutu";
+"calculating_cache" = "Hesaplanıyor...";
+"clear_cache_confirm" = "Önbelleği Temizlemeyi Onayla";
+"clear_cache_message" = "Tüm önbelleği temizlemek istediğinizden emin misiniz? Bu, indirilen uygulamaları silmeyecektir.";
+"cache_cleared" = "Önbellek Temizlendi";
+
+// MARK: - Storage
+"storage" = "Depolama";
+"total_storage" = "Toplam";
+"used_storage" = "Kullanılan";
+"available_storage" = "Kullanılabilir";
+"app_size" = "Uygulama Boyutu";
+"documents_size" = "Belgeler Boyutu";
+
+// MARK: - Download Manager
+"download_manager" = "İndirme Yöneticisi";
+"batch_operations" = "Toplu İşlemler";
+"select_all" = "Tümünü Seç";
+"deselect_all" = "Tüm Seçimi Kaldır";
+"selected_count" = "%@ Seçildi";
+
+// MARK: - App Information
+"app_name" = "Uygulama Adı";
+"app_version" = "Uygulama Sürümü";
+"app_rating" = "Uygulama Değerlendirmesi";
+"app_developer" = "Geliştirici";
+"app_category" = "Kategori";
+"last_updated" = "Son Güncelleme";
+"language_support" = "Dil Desteği";
+"content_rating" = "İçerik Derecesi";
+
+// MARK: - Account Management
+"account_management" = "Hesap Yönetimi";
+"login_status" = "Oturum Durumu";
+"two_factor_auth" = "İki Faktörlü Doğrulama";
+"remember_password" = "Şifreyi Hatırla";
+"auto_login" = "Otomatik Giriş";
+"login_expired" = "Oturum Süresi Doldu";
+"please_relogin" = "Lütfen Tekrar Giriş Yapın";
+
+// MARK: - Settings More
+"advanced_settings" = "Gelişmiş Ayarlar";
+"developer_options" = "Geliştirici Seçenekleri";
+"check_update" = "Güncellemeleri Kontrol Et";
+"new_version_available" = "Yeni Sürüm Mevcut";
+"already_latest_version" = "Zaten En Son Sürüm";
+"feedback" = "Geri Bildirim";
+"rate_app" = "Bizi Değerlendirin";
+"share_app" = "Uygulamayı Paylaş";
+
+// MARK: - Network
+"network" = "Ağ";
+"network_status" = "Ağ Durumu";
+"wifi" = "Wi-Fi";
+"cellular" = "Hücresel";
+"no_network" = "Ağ Bağlantısı Yok";
+"network_error" = "Ağ Hatası";
+"network_error_message" = "Ağ bağlantısı başarısız. Lütfen ağ ayarlarınızı kontrol edin.";
+"network_speed" = "Ağ Hızı";
+"network_usage" = "Veri Kullanımı";
+
+// MARK: - Installation
+"installation" = "Kurulum";
+"installing" = "Kuruluyor...";
+"install_success" = "Kurulum Başarılı";
+"install_failed" = "Kurulum Başarısız";
+"install_failed_message" = "Kurulum başarısız. Lütfen tekrar deneyin.";
+"uninstall" = "Kaldır";
+"uninstall_confirm" = "Kaldırmayı Onayla";
+"uninstall_message" = "Bu uygulamayı kaldırmak istediğinizden emin misiniz? Tüm veriler silinecektir.";
+"ipa_file" = "IPA Dosyası";
+"ipa_signature" = "IPA İmzası";
+"signed" = "İmzalı";
+"unsigned" = "İmzasız";
+
+// MARK: - TestFlight
+"testflight" = "TestFlight";
+"testflight_invite" = "Test Daveti";
+"testflight_build" = "Derleme";
+"testflight_group" = "Test Grubu";
+"testflight_tester" = "Test Eden";
+"testflight_feedback" = "Test Geri Bildirimi";
+"testflight_expired" = "Test Süresi Doldu";
+"testflight_full" = "Test Dolu";
+"testflight_join" = "Teste Katıl";
+"testflight_leave" = "Testten Ayrıl";
+
+// MARK: - Search More
+"search_filter" = "Arama Filtresi";
+"search_result_count" = "%@ Sonuç Bulundu";
+"exact_match" = "Tam Eşleşme";
+"fuzzy_match" = "Bulanık Eşleşme";
+"hot_apps" = "Popüler Uygulamalar";
+"new_apps" = "Yeni Uygulamalar";
+"recommended_apps" = "Önerilen Uygulamalar";
+"top_charts" = "En Çok İndirilenler";
+
+// MARK: - Status
+"status" = "Durum";
+"status_normal" = "Normal";
+"status_abnormal" = "Anormal";
+"status_pending" = "Beklemede";
+"status_processing" = "İşleniyor";
+"status_completed" = "Tamamlandı";
+"status_failed" = "Başarısız";
+"status_cancelled" = "İptal Edildi";
+"status_expired" = "Süresi Doldu";
+"status_active" = "Aktif";
+"status_inactive" = "Pasif";
+"status_idle" = "Boşta";
+"status_busy" = "Meşgul";
+
+// MARK: - Tips
+"tips" = "İpuçları";
+"tip_download_speed" = "İndirme hızı ağ bağlantınıza bağlıdır";
+"tip_wifi_download" = "Büyük dosyaları Wi-Fi üzerinden indirmeniz önerilir";
+"tip_storage_space" = "Yeterli depolama alanınız olduğundan emin olun";
+"tip_account_security" = "Hesap bilgilerinizi güvende tutun";
+"dont_show_again" = "Tekrar Gösterme";
+"remind_later" = "Sonra Hatırlat";
+"view_details" = "Detayları Görüntüle";
+"learn_more" = "Daha Fazla Bilgi";
+
+// MARK: - Units
+"unit_bytes" = "B";
+"unit_kilobytes" = "KB";
+"unit_megabytes" = "MB";
+"unit_gigabytes" = "GB";
+"unit_terabytes" = "TB";
+"unit_seconds" = "sn";
+"unit_minutes" = "dk";
+"unit_hours" = "sa";
+"unit_days" = "gün";
+"unit_weeks" = "haft";
+"unit_months" = "ay";
+"unit_years" = "yıl";
+"today" = "Bugün";
+"yesterday" = "Dün";
+"day_before_yesterday" = "Dünden önceki gün";
+"just_now" = "Az önce";
+"minutes_ago" = "%@ dakika önce";
+"hours_ago" = "%@ saat önce";
+"days_ago" = "%@ gün önce";
+
+// MARK: - Actions
+"action_open" = "Aç";
+"action_close" = "Kapat";
+"action_view" = "Görüntüle";
+"action_edit" = "Düzenle";
+"action_delete" = "Sil";
+"action_share" = "Paylaş";
+"action_copy" = "Kopyala";
+"action_paste" = "Yapıştır";
+"action_select" = "Seç";
+"action_select_all" = "Tümünü Seç";
+"action_deselect" = "Seçimi Kaldır";
+"action_refresh" = "Yenile";
+"action_reload" = "Yeniden Yükle";
+"action_scroll_top" = "Yukarı Kaydır";
+"action_scroll_bottom" = "Aşağı Kaydır";
+"action_favorite" = "Favorilere Ekle";
+"action_unfavorite" = "Favorilerden Kaldır";
+"action_like" = "Beğen";
+"action_unlike" = "Beğenmekten Vazgeç";
+"action_follow" = "Takip Et";
+"action_unfollow" = "Takibi Bırak";
+"action_report" = "Şikayet Et";
+"action_block" = "Engelle";
+"action_rename" = "Yeniden Adlandır";
+"action_move" = "Taşı";
+"action_compress" = "Sıkıştır";
+"action_extract" = "Çıkar";
+"action_upload" = "Yükle";
+"action_download" = "İndir";
+"action_install" = "Kur";
+"action_uninstall" = "Kaldır";
+"action_update" = "Güncelle";
+"action_upgrade" = "Yükselt";
+"action_downgrade" = "Sürüm Düşür";
+"action_scan_qr" = "QR Kod Tara";
+"action_generate_qr" = "QR Kod Oluştur";
+"action_print" = "Yazdır";
+"action_send" = "Gönder";
+"action_receive" = "Al";
+"action_reject" = "Reddet";
+"action_accept" = "Kabul Et";
+"action_declined" = "Reddedildi";
+"action_accepted" = "Kabul Edildi";
+
+// MARK: - Theme
+"theme_settings" = "Tema Ayarları";
+"light_theme" = "Açık Tema";
+"dark_theme" = "Koyu Tema";
+"system_theme" = "Sistem Teması";
+"pure_black" = "Saf Siyah";
+"auto_switch" = "Otomatik Geçiş";
+"custom_theme" = "Özel Tema";
+"theme_color" = "Tema Rengi";
+"background_color" = "Arka Plan Rengi";
+"text_color" = "Metin Rengi";
+"font_size" = "Yazı Boyutu";
+"font_style" = "Yazı Stili";
+
+// MARK: - App Detail More
+"feature_tags" = "Özellik Etiketleri";
+"free" = "Al";
+"get" = "Al";
+"view" = "Görüntüle";
+"get_reviews_failed" = "Yorumlar alınamadı: %@";
+"x_ratings" = "%@ Değerlendirme";
+"age_rating" = "Yaş Derecesi";
+"x_languages" = "%@ Dil";
+"whats_new" = "Yenilikler";
+"tech_info" = "Teknik Bilgi";
+"first_release" = "İlk Sürüm";
+"last_updated" = "Son Güncelleme";
+"requires_ios" = "iOS %@ veya sonraki sürümü gerekir";
+
+// MARK: - Search More
+"search_placeholder" = "Oyun, uygulama ara";
+"login" = "Oturum Aç";
+"clear_all" = "Tümünü Temizle";
+"x_results_found" = "%@ Sonuç Bulundu";
+"finding_best_results" = "Size en iyi sonuçlar aranıyor";
+"app_downgrade" = "Uygulama Sürüm Düşürme";
+"search_error" = "Arama Hatası";
+"load_more" = "Daha Fazla Yükle...";
+"purchasing" = "Satın Alınıyor";
+"purchase" = "Satın Al";
+"please_login_first" = "Uygulama indirmek için lütfen önce oturum açın";
+"loading_versions" = "Sürüm geçmişi yükleniyor...";
+"load_failed" = "Yükleme Başarısız";
+"no_versions_desc" = "Bu uygulama için önceki sürüm mevcut değil";
+"x_versions" = "%@ Sürüm";
+"version_x_date" = "%@ Sürüm · %@";
+
+// MARK: - Account More
+"login_account" = "Oturum Aç";
+"current" = "Mevcut";
+"switch" = "Değiştir";
+"x_accounts" = "%@ Hesap";
+"add_new_account" = "Yeni Hesap Ekle";
+"account_management" = "Hesap Yönetimi";
+"use_account" = "Hesap Kullan";
+"connection_lost" = "Bağlantı Kesildi";
+"reconnecting" = "Yeniden Bağlanılıyor";
+"connected" = "Bağlandı";
+"apple_id_disconnected" = "Apple Kimliği bağlantısı kesildi. Yeniden doğrulamak için dokunun veya tekrar oturum açın.";
+"apple_id_reconnecting" = "Apple Kimliği ile otomatik olarak yeniden bağlanılıyor, lütfen bekleyin...";
+"apple_id_connected" = "Apple Kimliği bağlandı. Uygulamaları normal şekilde arayın ve indirin.";
+"login_apple_id" = "Apple Kimliği ile Oturum Aç";
+"login_apple_id_desc" = "Apple Kimliğinizle uygulama indirin ve yönetin";
+"login_apple_id_btn" = "Apple Kimliği ile Oturum Aç";
+"view_account_details" = "Hesap Detaylarını Görüntüle";
+"media_purchases" = "Medya ve Satın Alımlar";
+"media_purchases_header" = "Medya ve Satın Alımlar";
+"sign_in_apple_id" = "iPhone'unuzda Oturum Açın";
+"sign_in_apple_id_desc" = "Apple Kimliğinizi bu iPhone'da kullanın";
+"apple_id" = "Apple Kimliği";
+"name" = "Ad";
+"apple_id_email" = "Apple Kimliği";
+"name_email_header" = "Ad, E-posta";
+"account_identifier_header" = "Hesap Tanımlayıcı";
+"country_region" = "Ülke/Bölge";
+"region_header" = "Bölge";
+"sign_out" = "Oturumu Kapat";
+"login_your_account" = "Hesabınızda Oturum Açın";
+"enter_apple_id" = "Apple Kimliğinizi girin";
+"password" = "Şifre";
+"enter_password" = "Şifrenizi girin";
+"two_factor_code" = "İki Faktörlü Kod";
+"enter_6digit_code" = "6 haneli kodu girin";
+"check_trusted_device" = "Kodu güvenilir cihazlarınızda veya SMS'de kontrol edin";
+"verifying" = "Doğrulanıyor...";
+"enter_full_credentials" = "Lütfen tam Apple Kimliği ve şifrenizi girin";
+"enter_6digit_code_verify" = "Lütfen 6 haneli doğrulama kodunu girin";
+"wrong_credentials" = "Apple Kimliği veya şifre yanlış. Lütfen tekrar deneyin.";
+"account_locked" = "Apple Kimliğiniz kilitlendi. Lütfen daha sonra tekrar deneyin veya Apple Destek ile iletişime geçin.";
+"network_error_retry" = "Ağ bağlantı hatası. Lütfen ağ ayarlarınızı kontrol edin ve tekrar deneyin.";
+"auth_failed" = "Kimlik doğrulama başarısız. Lütfen ağ bağlantınızı ve hesap bilgilerinizi kontrol edin.";
+"invalid_server_response" = "Geçersiz sunucu yanıtı. Lütfen daha sonra tekrar deneyin.";
+"unknown_error" = "Bilinmeyen hata. Lütfen daha sonra tekrar deneyin.";
+"auth_error" = "Kimlik doğrulama sırasında bir hata oluştu: %@";
+"check_apple_device_code" = "Doğrulama kodu için Apple cihazınızı kontrol edin";
+"wrong_verification_code" = "Yanlış doğrulama kodu. Lütfen tekrar deneyin.";
+
+// MARK: - Download More
+"invalid_ipa_file" = "Geçersiz IPA Dosyası";
+"install_failed_with_reason" = "Kurulum başarısız: %@";
+"install_timeout" = "Kurulum Zaman Aşımı";
+"installing_app" = "%@ Kuruluyor";
+"version_x" = "%@ Sürüm";
+"install_starting" = "Kurulum başlıyor...";
+"install_manual_hint" = "Otomatik kurulum başarısız olursa, manuel kurulum için aşağıdaki düğmeye dokunun:";
+"manual_install" = "Manuel Kur";
+"install_success_desc" = "Ana ekranınızı kontrol edin, uygulama kuruluyor...";
+"install_contact_author" = "Sorun yaşarsanız geliştirici pxx917144686 ile iletişime geçin";
+"install_start_failed" = "Kurulum Başlatılamadı";
+"retry_install" = "Kurulumu Tekrar Dene";
+"view_source_code" = "👉 Kaynak Kodu Görüntüle";
+"file_size_x" = "Dosya Boyutu: %@";
+"no_purchase_record" = "Satın alma kaydı bulunamadı, App Store'a yönlendiriliyor";
+"file_saved_to" = "Dosya şuraya kaydedildi:";
+"preparing" = "Hazırlanıyor...";
+"waiting_confirm" = "Onay Bekleniyor...";
+"install_completed" = "Kurulum Tamamlandı";
+"waiting" = "Bekleniyor...";
+"start_install" = "Kurulumu Başlat";
+"unknown_path" = "Bilinmeyen Yol";
+"share_ipa" = "IPA'yı Paylaş";
+"install_background_hint" = "Uygulama arka planda kuruluyor. İlerlemeden kontrol etmek için ana ekrana dönebilirsiniz.";
+"ipa_not_found" = "IPA dosyası bulunamadı, lütfen tekrar indirin";
+"preparing_install" = "Kurulum hazırlanıyor...";
+"install_in_progress" = "Kurulum zaten devam ediyor";
+"verifying_package" = "Paket doğrulanıyor...";
+"starting_install_service" = "Kurulum hizmeti başlatılıyor...";
+"install_service_timeout" = "Kurulum hizmeti zaman aşımına uğradı. Lütfen tekrar deneyin.";
+"opening_install_page" = "Kurulum sayfası açılıyor...";
+"download_record_file" = "İndirme Kaydı";
+"delete_file" = "Dosyayı Sil";
+"delete_file_confirm" = "%@ dosyasını silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.";
+"delete_success" = "Başarıyla Silindi";
+"delete_success_desc" = "Dosya başarıyla silindi.";
+"no_ipa_found" = "IPA Dosyası Bulunamadı";
+"no_ipa_found_desc" = "Uygulama depolama dizininde IPA dosyası bulunamadı";
+
+// MARK: - Account Detail
+"basic_info" = "Temel Bilgiler";
+"account_identifier" = "Hesap Tanımlayıcı";
+"country_region" = "Ülke/Bölge";
+"password_token" = "Şifre Jetonu";
+"auth_info" = "Kimlik Doğrulama Bilgisi";
+"password_token_hint" = "Şifre jetonu otomatik kimlik doğrulama için kullanılır. Lütfen başkalarıyla paylaşmayın.";
+"delete_this_account" = "Bu Hesabı Sil";
+"delete_account_confirm_detail" = "%@ hesabını bu cihazdan silmek istediğinizden emin misiniz?\n\nBu hesap için tüm oturum açma bilgileri ve çerezler kaldırılacaktır.";
+"dsid" = "DSID";
+"no_value" = "Yok";
+"region_title" = "Bölge";
+
+// MARK: - Appearance More
+"overall_color" = "Vurgu Rengi";
+"quick_select" = "Hızlı Seçim";
+"auto" = "Otomatik";
+"unknown" = "Bilinmeyen";

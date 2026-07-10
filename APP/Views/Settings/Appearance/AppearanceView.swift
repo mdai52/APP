@@ -8,10 +8,10 @@ private extension UIUserInterfaceStyle {
 
     var displayName: String {
         switch self {
-        case .unspecified: return "自动"
-        case .light: return "浅色"
-        case .dark: return "深色"
-        @unknown default: return "未知"
+        case .unspecified: return "auto".localized
+        case .light: return "light_mode".localized
+        case .dark: return "dark_mode".localized
+        @unknown default: return "unknown".localized
         }
     }
 }
@@ -42,7 +42,7 @@ struct AppearanceView: View {
     var body: some View {
         List {
             Section {
-                Picker("外观", selection: selectedStyle) {
+                Picker("appearance".localized, selection: selectedStyle) {
                     ForEach(UIUserInterfaceStyle.allStyles, id: \.self) { style in
                         Text(style.displayName)
                             .tag(style)
@@ -56,7 +56,7 @@ struct AppearanceView: View {
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
             } header: {
-                Text("颜色")
+                Text("color".localized)
             }
         }
     }
