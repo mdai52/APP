@@ -872,16 +872,17 @@ class SimpleHTTPServer: NSObject, @unchecked Sendable {
 struct DownloadView: SwiftUI.View {
     @StateObject private var vm: UnifiedDownloadManager = UnifiedDownloadManager.shared
     @State private var animateCards = true
-    @State private var showThemeSelector = false
     @State private var showSafariWebView = false
     @State private var safariURL: URL? = nil
     @State private var showIPAFilesView = false
+    @State private var showThemeSelector = false
     @State private var isScrollingFast = false
     @State private var scrollVelocity: CGFloat = 0
 
     @SwiftUI.Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject private var globalInstallManager: GlobalInstallationManager
+    @EnvironmentObject private var tabBarStyleManager: TabBarStyleManager
     
     @State private var lastScrollOffset: CGFloat = 0
     @State private var lastScrollTime: Date = Date()
@@ -896,16 +897,22 @@ struct DownloadView: SwiftUI.View {
             }
         }
 
+        .navigationTitle("download_title".localized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
-                    showThemeSelector.toggle()
+                    let impactMed = UIImpactFeedbackGenerator(style: .light)
+                    impactMed.impactOccurred()
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        showThemeSelector.toggle()
+                    }
                 }) {
                     Image(systemName: themeManager.selectedTheme == .light ? "sun.max.fill" : "moon.fill")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(themeManager.selectedTheme == .light ? .orange : .blue)
                 }
+                .buttonStyle(.plain)
             }
         }
         .overlay(
@@ -916,16 +923,19 @@ struct DownloadView: SwiftUI.View {
             Button(action: {
                 showIPAFilesView.toggle()
             }) {
-                Image(systemName: "folder.fill")
+                Text("📁")
                     .font(.system(size: 24))
-                    .foregroundColor(.white)
                     .padding()
                     .background(LinearGradient(colors: [Color.blue, Color.purple], startPoint: .leading, endPoint: .trailing))
                     .clipShape(Circle())
                     .shadow(color: colorScheme == .dark ? Color.black.opacity(0.6) : Color.black.opacity(0.3), radius: colorScheme == .dark ? 12 : 8, x: 0, y: 4)
-                    .padding()
             }
-            .animation(.spring(), value: animateCards)
+            .padding(.trailing, 16)
+            .padding(.bottom, tabBarStyleManager.currentStyle == .floatingCard ? 88 : 16)
+            .offset(y: animateCards ? 0 : 30)
+            .opacity(animateCards ? 1 : 0)
+            .animation(.spring(response: 0.5, dampingFraction: 0.7).delay(0.2), value: animateCards)
+            .animation(.spring(response: 0.35, dampingFraction: 0.7), value: tabBarStyleManager.currentStyle)
         }
 
         .sheet(isPresented: $showIPAFilesView) {
@@ -959,9 +969,8 @@ struct DownloadView: SwiftUI.View {
         vm.syncDownloadStatus()
     }
 
-
     var downloadManagementSegmentView: some SwiftUI.View {
-        ScrollView(.vertical, showsIndicators: false) {
+        ScrollView(.vertical, showsIndicators: true) {
             LazyVStack(spacing: 16) {
                 Spacer(minLength: 16)
 
@@ -990,6 +999,9 @@ struct DownloadView: SwiftUI.View {
             }
         }
         .coordinateSpace(name: "downloadScroll")
+        .refreshable {
+            vm.syncDownloadStatus()
+        }
     }
     
     private func detectScrollVelocity(offset: CGFloat) {
@@ -1029,52 +1041,7 @@ struct DownloadView: SwiftUI.View {
             .animation(Animation.spring().delay(Double(index) * 0.1), value: animateCards)
             .animation(nil, value: isScrollingFast)
             .id(request.id)
-            .swipeActions(
-                makeSwipeActions(for: request)
-            )
         }
-    }
-
-    private func makeSwipeActions(for request: DownloadRequest) -> [SwipeAction] {
-        var actions: [SwipeAction] = []
-
-        if request.runtime.status == .completed,
-           let localFilePath = request.localFilePath,
-           FileManager.default.fileExists(atPath: localFilePath) {
-            actions.append(
-                SwipeAction(
-                    title: "share".localized,
-                    systemImage: "square.and.arrow.up",
-                    backgroundColor: .blue
-                ) {
-                    shareIPAFile(path: localFilePath, name: request.package.name)
-                }
-            )
-        }
-
-        actions.append(
-            SwipeAction(
-                title: "delete".localized,
-                systemImage: "trash",
-                backgroundColor: .red
-            ) {
-                UnifiedDownloadManager.shared.deleteDownload(request: request)
-                UnifiedDownloadManager.shared.saveDownloadTasks()
-                
-                if let localFilePath = request.localFilePath, FileManager.default.fileExists(atPath: localFilePath) {
-                    do {
-                        try FileManager.default.removeItem(atPath: localFilePath)
-                        print("[DownloadView] 左滑删除 - 已删除本地文件: \(localFilePath)")
-                    } catch {
-                        print("[DownloadView] 左滑删除 - 删除本地文件失败: \(error.localizedDescription)")
-                    }
-                }
-                
-                NotificationCenter.default.post(name: NSNotification.Name("ForceRefreshUI"), object: nil)
-            }
-        )
-
-        return actions
     }
 
     private func shareIPAFile(path: String, name: String) {
@@ -1479,31 +1446,15 @@ struct DownloadCardView: SwiftUI.View {
     private var primaryActionButton: some SwiftUI.View {
         switch request.runtime.status {
         case .downloading, .waiting, .paused:
-            Button(action: {
-                cancelDownload()
-            }) {
-                HStack(spacing: 4) {
-                    Image(systemName: "stop.circle.fill")
-                        .font(.system(size: 14, weight: .semibold))
-                    Text("cancel".localized)
-                        .font(.system(size: 14, weight: .semibold))
-                }
-                .foregroundColor(themeManager.accentColor)
-                .frame(width: 84, height: 36)
-                .background(
-                    Capsule()
-                        .fill(themeManager.accentColor.opacity(0.12))
-                )
-            }
-            .buttonStyle(PlainButtonStyle())
+            EmptyView()
 
-        case .failed:
+        case .failed, .cancelled:
             Button(action: {
                 retryDownload()
             }) {
                 HStack(spacing: 4) {
-                    Image(systemName: "arrow.clockwise.circle.fill")
-                        .font(.system(size: 14, weight: .semibold))
+                    Text("🔄")
+                        .font(.system(size: 14))
                     Text("retry".localized)
                         .font(.system(size: 14, weight: .semibold))
                 }
@@ -1527,8 +1478,8 @@ struct DownloadCardView: SwiftUI.View {
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                                 .scaleEffect(0.8)
                         } else {
-                            Image(systemName: "arrow.down.circle.fill")
-                                .font(.system(size: 16, weight: .semibold))
+                            Text("📦")
+                                .font(.system(size: 16))
                         }
                         Text(isInstalling ? "installing".localized : "install".localized)
                             .font(.system(size: 15, weight: .bold))
@@ -1548,23 +1499,16 @@ struct DownloadCardView: SwiftUI.View {
                 .buttonStyle(PlainButtonStyle())
                 .disabled(isInstalling)
             } else {
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.green)
+                Text("✅")
                     .font(.system(size: 24))
             }
-
-        case .cancelled:
-            Image(systemName: "xmark.circle")
-                .foregroundColor(.gray)
-                .font(.system(size: 20))
         }
     }
 
     private var completedStatusView: some SwiftUI.View {
         VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 4) {
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.green)
+                Text("✅")
                     .font(.caption)
 
                 Text("file_saved_to".localized)
@@ -1575,7 +1519,9 @@ struct DownloadCardView: SwiftUI.View {
             Text(request.localFilePath ?? "unknown_path".localized)
                 .font(.system(size: 11))
                 .foregroundColor(.secondary)
-                .lineLimit(1)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
+                .textSelection(.enabled)
         }
     }
 
@@ -1649,23 +1595,17 @@ struct DownloadCardView: SwiftUI.View {
         Group {
             switch request.runtime.status {
             case DownloadStatus.waiting:
-                Image(systemName: "clock")
-                    .foregroundColor(.orange)
+                Text("⏳")
             case DownloadStatus.downloading:
-                Image(systemName: "arrow.down.circle.fill")
-                    .foregroundColor(.blue)
+                Text("⬇️")
             case DownloadStatus.paused:
-                Image(systemName: "pause.circle.fill")
-                    .foregroundColor(.orange)
+                Text("⏸️")
             case DownloadStatus.completed:
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.green)
+                Text("✅")
             case DownloadStatus.failed:
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(.red)
+                Text("❌")
             case DownloadStatus.cancelled:
-                Image(systemName: "xmark.circle")
-                    .foregroundColor(.gray)
+                Text("❌")
             }
         }
         .font(.title2)
@@ -1823,6 +1763,16 @@ struct DownloadCardView: SwiftUI.View {
         print("[DownloadCardView] 取消下载: \(request.package.name)")
         UnifiedDownloadManager.shared.cancelDownload(request: request)
 
+    }
+
+    private func pauseDownload() {
+        print("[DownloadCardView] 暂停下载: \(request.package.name)")
+        UnifiedDownloadManager.shared.pauseDownload(request: request)
+    }
+
+    private func resumeDownload() {
+        print("[DownloadCardView] 恢复下载: \(request.package.name)")
+        UnifiedDownloadManager.shared.resumeDownload(request: request)
     }
 
     private func startInstallation(for request: DownloadRequest) {
@@ -2070,34 +2020,22 @@ struct IPAListView: SwiftUI.View {
                     }
                 }
             }
+            .confirmationDialog("delete_file".localized, isPresented: $showDeleteAlert, titleVisibility: .visible) {
+                Button("delete".localized, role: .destructive, action: confirmDelete)
+                Button("cancel".localized, role: .cancel) { }
+            } message: {
+                Text(String(format: "delete_file_confirm".localized, deleteFileName ?? ""))
+            }
         }
         .onAppear {
             loadIPAFiles()
-        }
-        .actionSheet(isPresented: $showDeleteAlert) {
-            ActionSheet(
-                title: Text("delete_file".localized),
-                message: Text(String(format: "delete_file_confirm".localized, deleteFileName ?? "")),
-                buttons: [
-                    .destructive(Text("delete".localized), action: confirmDelete),
-                    .cancel(Text("cancel".localized))
-                ]
-            )
-        }
-        .alert(isPresented: $lastDeleteSuccess) {
-            Alert(
-                title: Text("delete_success".localized),
-                message: Text("delete_success_desc".localized),
-                dismissButton: .default(Text("ok".localized)) { loadIPAFiles() }
-            )
         }
     }
 
     private var emptyStateView: some SwiftUI.View {
         VStack(spacing: 16) {
-            Image(systemName: "folder")
+            Text("📭")
                 .font(.system(size: 64))
-                .foregroundColor(themeManager.accentColor.opacity(0.5))
             Text("no_ipa_found".localized)
                 .font(.system(size: 22, weight: .semibold))
                 .foregroundColor(.primary)
@@ -2136,16 +2074,24 @@ struct IPAListView: SwiftUI.View {
                     Button(action: {
                         shareIPAFile(path: file.path, name: file.name)
                     }) {
-                        Label("share".localized, systemImage: "square.and.arrow.up")
+                        Label {
+                            Text("share".localized)
+                        } icon: {
+                            Text("📤")
+                        }
                     }
                     Button(action: {
                         showDeleteConfirmation(for: file.path, name: file.name)
                     }) {
-                        Label("delete".localized, systemImage: "trash")
-                            .foregroundColor(.red)
+                        Label {
+                            Text("delete".localized)
+                        } icon: {
+                            Text("🗑️")
+                        }
+                        .foregroundColor(.red)
                     }
                 } label: {
-                    Image(systemName: "ellipsis.circle")
+                    Text("⋯")
                         .font(.title2)
                         .foregroundColor(themeManager.accentColor)
                 }
@@ -2162,55 +2108,49 @@ struct IPAListView: SwiftUI.View {
         DispatchQueue.global(qos: .userInitiated).async {
 
             let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-
-            print("[IPAListView] 扫描目录: \(documentDirectory.path)")
-
-
             let libraryDirectory = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
             let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-
-
             let applicationSupportDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
             let downloadsDirectory = applicationSupportDirectory.appendingPathComponent("Downloads")
 
-
             let directoriesToScan = [documentDirectory, libraryDirectory, cachesDirectory, downloadsDirectory]
 
-
             var files: [(name: String, path: String, size: String, date: Date)] = []
+            let fileManager = FileManager.default
 
+            func scanDirectory(_ directory: URL) {
+                guard let enumerator = fileManager.enumerator(
+                    at: directory,
+                    includingPropertiesForKeys: [.fileSizeKey, .creationDateKey, .isDirectoryKey],
+                    options: [.skipsHiddenFiles, .skipsPackageDescendants]
+                ) else { return }
 
-            for directory in directoriesToScan {
-                do {
-                    let directoryContents = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: [.fileSizeKey, .creationDateKey], options: .skipsHiddenFiles)
+                for case let url as URL in enumerator {
+                    guard url.pathExtension.lowercased() == "ipa" else { continue }
 
-                    for url in directoryContents {
-                        if url.pathExtension.lowercased() == "ipa" {
-                            let fileName = url.lastPathComponent
-                            let filePath = url.path
+                    let filePath = url.path
+                    guard !files.contains(where: { $0.path == filePath }) else { continue }
 
+                    do {
+                        let attributes = try fileManager.attributesOfItem(atPath: filePath)
+                        let fileSize = attributes[.size] as? Int64 ?? 0
+                        let formatter = ByteCountFormatter()
+                        formatter.allowedUnits = [.useMB, .useGB]
+                        formatter.countStyle = .file
+                        let sizeString = formatter.string(fromByteCount: fileSize)
 
-                            let attributes = try FileManager.default.attributesOfItem(atPath: filePath)
-                            let fileSize = attributes[.size] as? Int64 ?? 0
-                            let formatter = ByteCountFormatter()
-                            formatter.allowedUnits = [.useMB, .useGB]
-                            formatter.countStyle = .file
-                            let sizeString = formatter.string(fromByteCount: fileSize)
+                        let creationDate = attributes[.creationDate] as? Date ?? Date()
 
-
-                            let creationDate = attributes[.creationDate] as? Date ?? Date()
-
-
-                            if !files.contains(where: { $0.path == filePath }) {
-                                files.append((name: fileName, path: filePath, size: sizeString, date: creationDate))
-                            }
-                        }
+                        files.append((name: url.lastPathComponent, path: filePath, size: sizeString, date: creationDate))
+                    } catch {
+                        continue
                     }
-                } catch {
-                    print("[IPAListView] 扫描目录失败: \(directory.path), 错误: \(error.localizedDescription)")
                 }
             }
 
+            for directory in directoriesToScan {
+                scanDirectory(directory)
+            }
 
             files.sort { $0.date > $1.date }
 
@@ -2331,8 +2271,6 @@ struct IPAListView: SwiftUI.View {
             deleteFilePath = nil
             deleteFileName = nil
 
-
-            lastDeleteSuccess = true
         } catch {
             print("[IPAListView] 删除文件失败: \(error.localizedDescription)")
 
@@ -2347,5 +2285,6 @@ struct DownloadView_Previews: PreviewProvider {
             DownloadView()
         }
         .environmentObject(ThemeManager.shared)
+        .environmentObject(TabBarStyleManager.shared)
     }
 }

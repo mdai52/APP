@@ -62,9 +62,8 @@ struct AccountSheetView: View {
 
     private var emptyAccountSection: some View {
         VStack(spacing: 20) {
-            Image(systemName: "person.crop.circle.badge.plus")
+            Text("👤")
                 .font(.system(size: 64))
-                .foregroundColor(.secondary.opacity(0.5))
 
             VStack(spacing: 8) {
                 Text("sign_in_apple_id".localized)
@@ -228,9 +227,8 @@ struct AccountSheetView: View {
                         Spacer()
 
                         if index == appStore.selectedAccountIndex {
-                            Image(systemName: "checkmark.circle.fill")
+                            Text("✅")
                                 .font(.system(size: 20))
-                                .foregroundColor(themeManager.accentColor)
                         }
                     }
                     .padding(.vertical, 4)
@@ -247,15 +245,14 @@ struct AccountSheetView: View {
                 showAddAccount = true
             }) {
                 HStack(spacing: 12) {
-                    Image(systemName: "plus.circle.fill")
+                    Text("➕")
                         .font(.system(size: 22))
-                        .foregroundColor(.green)
                     Text("add_account".localized)
                         .font(.system(size: 15))
                         .foregroundColor(.primary)
                     Spacer()
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 13, weight: .semibold))
+                    Text("›")
+                        .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(.secondary.opacity(0.6))
                 }
             }
@@ -265,9 +262,8 @@ struct AccountSheetView: View {
                     logoutAccount()
                 }) {
                     HStack(spacing: 12) {
-                        Image(systemName: "rectangle.portrait.and.arrow.right.fill")
+                        Text("✖️")
                             .font(.system(size: 22))
-                            .foregroundColor(.red)
                         Text("sign_out".localized)
                             .font(.system(size: 15))
                             .foregroundColor(.red)

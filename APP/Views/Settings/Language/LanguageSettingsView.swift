@@ -15,37 +15,6 @@ struct LanguageSettingsView: View {
                 }
             } header: {
                 Text("language_select".localized)
-            } footer: {
-                Text("language_footer".localized)
-            }
-
-            Section {
-                Button(action: openSystemSettings) {
-                    HStack(spacing: 12) {
-                        Image(systemName: "gearshape.fill")
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundColor(.gray)
-                            .frame(width: 28, height: 28)
-
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("language_system_settings".localized)
-                                .font(.system(size: 15, weight: .medium))
-                                .foregroundColor(themeManager.accentColor)
-
-                            Text("language_system_hint".localized)
-                                .font(.system(size: 12))
-                                .foregroundColor(.secondary)
-                        }
-
-                        Spacer()
-
-                        Image(systemName: "arrow.up.right.square")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(Color(UIColor.tertiaryLabel))
-                    }
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
             }
         }
         .listStyle(.insetGrouped)
@@ -76,7 +45,8 @@ struct LanguageSettingsView: View {
         }) {
             HStack(spacing: 12) {
                 Text(language.flag)
-                    .font(.system(size: 22))
+                    .font(.system(size: 20))
+                    .frame(width: 32, height: 32)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(language.nativeName)
@@ -93,9 +63,8 @@ struct LanguageSettingsView: View {
                 Spacer()
 
                 if selectedLanguage == language {
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(themeManager.accentColor)
+                    Text("✅")
+                        .font(.system(size: 20))
                 }
             }
             .contentShape(Rectangle())
@@ -103,11 +72,6 @@ struct LanguageSettingsView: View {
         .buttonStyle(.plain)
     }
 
-    private func openSystemSettings() {
-        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-            UIApplication.shared.open(settingsUrl)
-        }
-    }
 }
 
 #Preview {

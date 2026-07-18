@@ -32,91 +32,49 @@ extension Image {
 extension AppIconView {
 
 	static func loadIcon(_ name: String?) -> UIImage {
-		if let iconName = name {
-
-			if let path = Bundle.main.path(forResource: iconName, ofType: "png", inDirectory: "AppIcons") {
-				if let image = UIImage(contentsOfFile: path) {
-					return image
-				}
+		guard let iconName = name else {
+			if let logo = UIImage(named: "AppLogo") {
+				return logo
 			}
+			return UIImage(systemName: "app.fill") ?? UIImage()
+		}
 
-			if let image = UIImage(named: iconName) {
-				return image
-			}
-
-			let rootPath = Bundle.main.bundleURL.appendingPathComponent("\(iconName).png")
-			if let image = UIImage(contentsOfFile: rootPath.path) {
-				return image
+		if iconName == "app" {
+			if let logo = UIImage(named: "AppLogo") {
+				return logo
 			}
 		}
 
-		if let defaultIcon = UIImage(named: "AppIcon") {
-			return defaultIcon
+		if let image = UIImage(named: iconName) {
+			return image
 		}
-		if let systemIcon = UIImage(systemName: "app") {
-			return systemIcon
-		}
-		return UIImage()
+
+		return UIImage(systemName: "app.fill") ?? UIImage()
 	}
 
 	static func getAllIconsFromFolder() -> [AltIcon] {
-		var icons: [AltIcon] = []
-
-		let iconInfo: [String: (displayNameKey: String, authorKey: String)] = [
-			"app": ("icon_default", "icon_author"),
-			"kana_love": ("icon_love", "icon_author"),
-			"kana_peek": ("icon_peek", "icon_author")
+		let iconInfo: [(key: String?, displayNameKey: String, authorKey: String)] = [
+			(nil, "icon_default", "icon_author"),
+			("kana_love", "icon_love", "icon_author"),
+			("kana_peek", "icon_peek", "icon_author")
 		]
 
-		for (key, info) in iconInfo {
-			let icon = AltIcon(
+		return iconInfo.map { info in
+			AltIcon(
 				displayName: info.displayNameKey.localized,
 				author: info.authorKey.localized,
-				key: key
+				key: info.key
 			)
-
-			if !icon.image.isSymbolImage && icon.image.size.width > 1 {
-				icons.append(icon)
-			}
 		}
-
-		return icons
 	}
 }
 
 struct AppIconView: View {
 	@Binding var currentIcon: String?
 	@State private var showingSuccess = false
-	@State private var isLoading = false
 
 	var allIcons: [AltIcon] {
-		let allIcons = AppIconView.getAllIconsFromFolder()
-
-		if !allIcons.isEmpty {
-			return allIcons.sorted { icon1, icon2 in
-				if icon1.key == "app" { return true }
-				if icon2.key == "app" { return false }
-				return icon1.key ?? "" < icon2.key ?? ""
-			}
-		}
-
-		return [
-			AltIcon(
-				displayName: "icon_default".localized,
-				author: "icon_author".localized,
-				key: "app"
-			),
-			AltIcon(
-				displayName: "icon_love".localized,
-				author: "icon_author".localized,
-				key: "kana_love"
-			),
-			AltIcon(
-				displayName: "icon_peek".localized,
-				author: "icon_author".localized,
-				key: "kana_peek"
-			)
-		]
+		AppIconView.getAllIconsFromFolder()
 	}
 
 	var body: some View {
@@ -134,14 +92,7 @@ struct AppIconView: View {
 		}
 		.navigationTitle("app_icon".localized)
 		.onAppear {
-			currentIcon = UIApplication.shared.alternateIconName
-		}
-		.overlay {
-			if isLoading {
-				ProgressView()
-					.background(Color.black.opacity(0.5))
-					.ignoresSafeArea()
-			}
+			currentIcon = AppIconManager.shared.currentAlternateIconName
 		}
 	}
 }
@@ -151,40 +102,69 @@ extension AppIconView {
 	private func _icon(
 		icon: AltIcon
 	) -> some View {
-		Button {
+		let isSelected: Bool = {
+			if icon.key == "app" {
+				return currentIcon == nil
+			} else {
+				return currentIcon == icon.key
+			}
+		}()
 
-			isLoading = true
+		Button {
+			if isSelected { return }
 
 			let iconNameToSet = icon.key == "app" ? nil : icon.key
 
-			UIApplication.shared.setAlternateIconName(iconNameToSet) { error in
+			AppIconManager.shared.setAlternateIconName(iconNameToSet) { success, error in
 				DispatchQueue.main.async {
-					isLoading = false
-					currentIcon = UIApplication.shared.alternateIconName
-					if error == nil {
+					if success {
+						currentIcon = iconNameToSet
 						showingSuccess = true
+						let impactFeedback = UINotificationFeedbackGenerator()
+						impactFeedback.notificationOccurred(.success)
 					} else {
-						print("❌ [AppIcon] 设置图标失败: \(error!.localizedDescription)")
+						if let error = error {
+							print("❌ [AppIcon] 设置图标失败: \(error.localizedDescription)")
+						}
+						let impactFeedback = UINotificationFeedbackGenerator()
+						impactFeedback.notificationOccurred(.error)
 					}
 				}
 			}
 		} label: {
 			VStack(alignment: .center, spacing: 10) {
 				ZStack {
-					Image(uiImage: icon.image)
-						.appIconStyle()
+					if icon.image.size.width > 0 && icon.image.size.height > 0 {
+						Image(uiImage: icon.image)
+							.appIconStyle()
+					} else {
+						RoundedRectangle(cornerRadius: 13)
+							.fill(Color(.systemGray5))
+							.frame(width: 64, height: 64)
+							.overlay(
+								Image(systemName: "app.fill")
+									.font(.system(size: 30))
+									.foregroundColor(.secondary)
+							)
+							.padding(8)
+					}
+
+					if isSelected {
+						VStack {
+							Spacer()
+							HStack {
+								Spacer()
+								Image(systemName: "checkmark.circle.fill")
+									.font(.system(size: 24, weight: .bold))
+									.foregroundColor(.blue)
+									.background(Color.white.clipShape(Circle()))
+									.padding(.trailing, 2)
+									.padding(.bottom, 2)
+							}
+						}
+					}
 				}
 
-				VStack(alignment: .center, spacing: 2) {
-					Text(icon.displayName)
-						.font(.system(size: 15, weight: .semibold))
-						.multilineTextAlignment(.center)
-					Text(icon.author)
-						.font(.caption2)
-						.foregroundColor(.secondary)
-						.multilineTextAlignment(.center)
-				}
-				.frame(maxWidth: .infinity)
 			}
 		}
 		.buttonStyle(.plain)

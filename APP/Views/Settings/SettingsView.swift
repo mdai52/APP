@@ -2,25 +2,11 @@ import SwiftUI
 import UIKit
 import Foundation
 
-private extension UIUserInterfaceStyle {
-    static var allStyles: [UIUserInterfaceStyle] {
-        return [.unspecified, .light, .dark]
-    }
-
-    var displayName: String {
-        switch self {
-        case .unspecified: return "follow_system".localized
-        case .light: return "light_mode".localized
-        case .dark: return "dark_mode".localized
-        @unknown default: return "none".localized
-        }
-    }
-}
-
 struct SettingsView: View {
-    @State private var currentIcon = UIApplication.shared.alternateIconName
+    @State private var currentIcon = AppIconManager.shared.currentAlternateIconName
     @EnvironmentObject private var themeManager: ThemeManager
     @EnvironmentObject private var appStore: AppStore
+    @EnvironmentObject private var tabBarStyleManager: TabBarStyleManager
 
     @AppStorage("APP.userTintColor") private var selectedColorHex: String = "#007AFF"
     @State private var selectedColor = Color(hex: "#007AFF")
@@ -28,26 +14,6 @@ struct SettingsView: View {
     @State private var isIconLoading = false
     @State private var showAccountSheet = false
     @State private var showingColorPicker = false
-
-    private var selectedStyle: Binding<UIUserInterfaceStyle> {
-        Binding(
-            get: {
-                switch themeManager.selectedTheme {
-                case .system: return .unspecified
-                case .light: return .light
-                case .dark: return .dark
-                }
-            },
-            set: { newStyle in
-                switch newStyle {
-                case .unspecified: themeManager.selectedTheme = .system
-                case .light: themeManager.selectedTheme = .light
-                case .dark: themeManager.selectedTheme = .dark
-                @unknown default: break
-                }
-            }
-        )
-    }
 
     var allIcons: [AltIcon] {
         let allIcons = AppIconView.getAllIconsFromFolder()
@@ -95,9 +61,50 @@ struct SettingsView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     accountHeaderSection
-                    appearanceSection
-                    languageSection
-                    iconSection
+
+                    VStack(spacing: 0) {
+                        appearanceRow
+                    }
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .cornerRadius(16)
+                    .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
+
+                    VStack(spacing: 0) {
+                        colorRow
+                    }
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .cornerRadius(16)
+                    .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
+
+                    VStack(spacing: 0) {
+                        languageRow
+                    }
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .cornerRadius(16)
+                    .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
+
+                    VStack(spacing: 0) {
+                        tabBarRowContent
+                    }
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .cornerRadius(16)
+                    .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
+
+                    if tabBarStyleManager.currentStyle == .floatingCard {
+                        VStack(spacing: 0) {
+                            floatingTabBarSettingsContent
+                        }
+                        .background(Color(.secondarySystemGroupedBackground))
+                        .cornerRadius(16)
+                        .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
+                    }
+
+                    VStack(spacing: 0) {
+                        iconGridContent
+                    }
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .cornerRadius(16)
+                    .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
@@ -108,7 +115,7 @@ struct SettingsView: View {
             .navigationBarHidden(true)
             .onAppear {
                 selectedColor = Color(hex: selectedColorHex)
-                currentIcon = UIApplication.shared.alternateIconName
+                currentIcon = AppIconManager.shared.currentAlternateIconName
             }
             .onChange(of: selectedColorHex, perform: { newValue in
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
@@ -122,6 +129,9 @@ struct SettingsView: View {
                 AccountSheetView()
                     .environmentObject(appStore)
                     .environmentObject(themeManager)
+            }
+            .alert("icon_set_success".localized, isPresented: $showingIconSuccess) {
+                Button("ok".localized, role: .cancel) { }
             }
         }
     }
@@ -174,9 +184,8 @@ struct SettingsView: View {
                 .contentShape(Rectangle())
             } else {
                 HStack(spacing: 16) {
-                    Image(systemName: "person.circle.fill")
+                    Text("👤")
                         .font(.system(size: 64))
-                        .foregroundColor(.secondary.opacity(0.5))
                         .frame(width: 64, height: 64)
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -203,6 +212,7 @@ struct SettingsView: View {
         .buttonStyle(ScaleButtonStyle())
         .background(Color(.secondarySystemGroupedBackground))
         .cornerRadius(16)
+        .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
     }
 
     private func flag(country: String) -> String {
@@ -227,29 +237,24 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
             .environmentObject(ThemeManager.shared)
             .environmentObject(AppStore.this)
+            .environmentObject(TabBarStyleManager.shared)
     }
 }
 
 extension SettingsView {
     @ViewBuilder
-    private var appearanceSection: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("appearance".localized)
-                .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.secondary)
-                .textCase(.uppercase)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 8)
-
-            VStack(spacing: 0) {
-                appearanceRow
-                Divider()
-                    .padding(.leading, 52)
-                colorRow
+    private var tabBarRowContent: some View {
+        VStack(spacing: 0) {
+            ForEach(Array(TabBarStyle.allCases.enumerated()), id: \.element.id) { index, style in
+                tabBarStyleItem(style: style)
+                if index < TabBarStyle.allCases.count - 1 {
+                    Divider()
+                        .padding(.leading, 16)
+                }
             }
-            .background(Color(.secondarySystemGroupedBackground))
-            .cornerRadius(12)
         }
+        .padding(.horizontal, 0)
+        .padding(.vertical, 0)
     }
 
     private var appearanceRow: some View {
@@ -271,10 +276,10 @@ extension SettingsView {
                 Spacer()
             }
 
-            Picker("", selection: selectedStyle) {
-                ForEach(UIUserInterfaceStyle.allStyles, id: \.self) { style in
-                    Text(style.displayName)
-                        .tag(style)
+            Picker("", selection: $themeManager.selectedTheme) {
+                ForEach(AppTheme.allCases, id: \.self) { theme in
+                    Text(theme.displayName)
+                        .tag(theme)
                 }
             }
             .pickerStyle(.segmented)
@@ -298,10 +303,8 @@ extension SettingsView {
                                     .strokeBorder(Color.primary.opacity(0.2), lineWidth: 1)
                             )
                         
-                        Image(systemName: "eyedropper")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundColor(.white)
-                            .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
+                        Text("🎨")
+                            .font(.system(size: 14))
                     }
 
                     VStack(alignment: .leading, spacing: 2) {
@@ -324,7 +327,21 @@ extension SettingsView {
             }
             .buttonStyle(PlainButtonStyle())
             .sheet(isPresented: $showingColorPicker) {
-                ColorPickerView(selectedColor: $selectedColor)
+                NavigationView {
+                    ColorPickerView(selectedColor: $selectedColor)
+                        .navigationTitle("color".localized)
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button(action: {
+                                    showingColorPicker = false
+                                }) {
+                                    Text("ok".localized)
+                                        .fontWeight(.semibold)
+                                }
+                            }
+                        }
+                }
             }
             .onChange(of: selectedColor) { newColor in
                 selectedColorHex = newColor.toHex()
@@ -346,8 +363,8 @@ extension SettingsView {
                             )
                             .overlay(
                                 selectedColor == color ?
-                                Image(systemName: "checkmark")
-                                    .font(.system(size: 12, weight: .bold))
+                                Text("✓")
+                                    .font(.system(size: 14, weight: .bold))
                                     .foregroundColor(.white)
                                     .background(
                                         Circle()
@@ -373,70 +390,301 @@ extension SettingsView {
         .padding(.vertical, 14)
     }
 
-    private var iconSection: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("icon".localized)
-                .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.secondary)
-                .textCase(.uppercase)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 8)
+    private func tabBarStyleItem(style: TabBarStyle) -> some View {
+        Button(action: {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                tabBarStyleManager.currentStyle = style
+            }
+            let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+            impactFeedback.impactOccurred()
+        }) {
+            HStack(alignment: .center, spacing: 16) {
+                tabBarStylePreview(style: style)
+                    .frame(width: 180, height: 80, alignment: .center)
+                    .clipped()
+                    .cornerRadius(10)
 
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-                ForEach(allIcons) { icon in
-                    iconItem(icon: icon)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(style.name)
+                        .font(.system(size: 17, weight: .semibold))
+                        .foregroundColor(.primary)
+                        .lineLimit(1)
+
+                    Text(styleDescription(for: style))
+                        .font(.system(size: 13))
+                        .foregroundColor(.secondary)
+                        .lineLimit(2)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                Image(systemName: "checkmark")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(themeManager.accentColor)
+                    .opacity(tabBarStyleManager.currentStyle == style ? 1 : 0)
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 16)
-            .background(Color(.secondarySystemGroupedBackground))
-            .cornerRadius(12)
+            .padding(.vertical, 14)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+
+    private func styleDescription(for style: TabBarStyle) -> String {
+        switch style {
+        case .systemDefault:
+            return "tab_style_default_desc".localized
+        case .floatingCard:
+            return "tab_style_floating_desc".localized
+        case .searchIndependent:
+            return "tab_style_search_independent_desc".localized
         }
     }
 
-    private var languageSection: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("general".localized)
-                .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.secondary)
-                .textCase(.uppercase)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 8)
+    @ViewBuilder
+    private func tabBarStylePreview(style: TabBarStyle) -> some View {
+        ZStack {
+            Color(.systemBackground)
+                .ignoresSafeArea()
 
-            NavigationLink(destination: LanguageSettingsView().environmentObject(themeManager)) {
-                HStack(spacing: 12) {
-                    Image(systemName: "globe")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(width: 28, height: 28)
+            switch style {
+            case .systemDefault:
+                VStack(spacing: 0) {
+                    Spacer()
+                    Divider()
+                    HStack(spacing: 0) {
+                        ForEach(TabEnum.allCases, id: \.self) { tab in
+                            VStack(spacing: 3) {
+                                Text(tab.emojiIcon)
+                                    .font(.system(size: 18))
+                                Text(tab.title)
+                                    .font(.system(size: 9, weight: .regular))
+                                    .foregroundStyle(tab == .settings ? themeManager.accentColor : .secondary.opacity(0.6))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.5)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
+                    .padding(.top, 6)
+                    .padding(.bottom, 8)
+                    .background(Color(.systemBackground))
+                }
+            case .floatingCard:
+                VStack {
+                    Spacer()
+                    HStack(spacing: 8) {
+                        HStack(spacing: 0) {
+                            ForEach([TabEnum.settings, .tfapps, .downloads], id: \.self) { tab in
+                                VStack(spacing: 2) {
+                                    Text(tab.emojiIcon)
+                                        .font(.system(size: 14))
+                                    Text(tab.title)
+                                        .font(.system(size: 7, weight: .regular))
+                                        .foregroundStyle(tab == .settings ? themeManager.accentColor : .secondary.opacity(0.6))
+                                        .lineLimit(1)
+                                        .minimumScaleFactor(0.5)
+                                }
+                                .frame(width: 36)
+                            }
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 8)
                         .background(
-                            Circle()
-                                .fill(themeManager.accentColor)
+                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                .fill(.ultraThinMaterial)
+                                .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
                         )
 
-                    Text("language".localized)
-                        .font(.system(size: 16))
-                        .foregroundColor(.primary)
-
-                    Spacer()
-
-                    HStack(spacing: 6) {
-                        Text(LanguageManager.shared.currentLanguage.flag)
-                        Text(LanguageManager.shared.currentLanguage.nativeName)
-                            .font(.system(size: 14))
-                            .foregroundColor(.secondary)
+                        Circle()
+                            .fill(themeManager.accentColor)
+                            .frame(width: 36, height: 36)
+                            .overlay(
+                                Text(TabEnum.search.emojiIcon)
+                                    .font(.system(size: 16))
+                            )
+                            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 3)
                     }
-
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundColor(.secondary.opacity(0.6))
+                    .padding(.horizontal, 8)
+                    .padding(.bottom, 10)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
+            case .searchIndependent:
+                VStack(spacing: 0) {
+                    Spacer()
+                    Divider()
+                    HStack(spacing: 0) {
+                        ForEach([TabEnum.settings, .tfapps, .downloads], id: \.self) { tab in
+                            VStack(spacing: 3) {
+                                Text(tab.emojiIcon)
+                                    .font(.system(size: 18))
+                                Text(tab.title)
+                                    .font(.system(size: 9, weight: .regular))
+                                    .foregroundStyle(.secondary.opacity(0.6))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.5)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        VStack(spacing: 3) {
+                            Text(TabEnum.search.emojiIcon)
+                                .font(.system(size: 18))
+                            Text(TabEnum.search.title)
+                                .font(.system(size: 9, weight: .semibold))
+                                .foregroundStyle(themeManager.accentColor)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                        }
+                        .frame(width: 56)
+                    }
+                    .padding(.top, 6)
+                    .padding(.bottom, 8)
+                    .background(Color(.systemBackground))
+                }
             }
-            .background(Color(.secondarySystemGroupedBackground))
-            .cornerRadius(12)
         }
+    }
+
+    private var iconGridContent: some View {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+            ForEach(allIcons) { icon in
+                iconItem(icon: icon)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 16)
+    }
+
+    private var floatingTabBarSettingsContent: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Text("floating_tabbar_customize".localized)
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundColor(.primary)
+
+                Spacer()
+
+                Button(action: {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                        tabBarStyleManager.resetFloatingConfig()
+                    }
+                    let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+                    impactFeedback.impactOccurred()
+                }) {
+                    Text("reset".localized)
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(themeManager.accentColor)
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 16)
+            .padding(.bottom, 12)
+
+            VStack(spacing: 16) {
+                sliderRow(
+                    title: "floating_tabbar_horizontal_padding".localized,
+                    value: Binding(
+                        get: { tabBarStyleManager.floatingConfig.horizontalPadding },
+                        set: { tabBarStyleManager.floatingConfig.horizontalPadding = $0 }
+                    ),
+                    minValue: FloatingTabBarConfig.minHorizontalPadding,
+                    maxValue: FloatingTabBarConfig.maxHorizontalPadding,
+                    unit: "pt"
+                )
+
+                Divider()
+
+                sliderRow(
+                    title: "floating_tabbar_bottom_offset".localized,
+                    value: Binding(
+                        get: { tabBarStyleManager.floatingConfig.bottomOffset },
+                        set: { tabBarStyleManager.floatingConfig.bottomOffset = $0 }
+                    ),
+                    minValue: FloatingTabBarConfig.minBottomOffset,
+                    maxValue: FloatingTabBarConfig.maxBottomOffset,
+                    unit: "pt"
+                )
+
+                Divider()
+
+                sliderRow(
+                    title: "floating_tabbar_height".localized,
+                    value: Binding(
+                        get: { tabBarStyleManager.floatingConfig.height },
+                        set: { tabBarStyleManager.floatingConfig.height = $0 }
+                    ),
+                    minValue: FloatingTabBarConfig.minHeight,
+                    maxValue: FloatingTabBarConfig.maxHeight,
+                    unit: "pt"
+                )
+
+                Divider()
+
+                sliderRow(
+                    title: "floating_tabbar_corner_radius".localized,
+                    value: Binding(
+                        get: { tabBarStyleManager.floatingConfig.cornerRadius },
+                        set: { tabBarStyleManager.floatingConfig.cornerRadius = $0 }
+                    ),
+                    minValue: FloatingTabBarConfig.minCornerRadius,
+                    maxValue: FloatingTabBarConfig.maxCornerRadius,
+                    unit: "pt"
+                )
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
+        }
+    }
+
+    private func sliderRow(
+        title: String,
+        value: Binding<CGFloat>,
+        minValue: CGFloat,
+        maxValue: CGFloat,
+        unit: String
+    ) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(title)
+                    .font(.system(size: 14))
+                    .foregroundColor(.primary)
+
+                Spacer()
+
+                Text(String(format: "%.0f %@", value.wrappedValue, unit))
+                    .font(.system(size: 14, weight: .medium, design: .monospaced))
+                    .foregroundColor(themeManager.accentColor)
+            }
+
+            Slider(value: value, in: minValue...maxValue, step: 1)
+                .tint(themeManager.accentColor)
+        }
+    }
+
+    private var languageRow: some View {
+        NavigationLink(destination: LanguageSettingsView().environmentObject(themeManager)) {
+            HStack(spacing: 12) {
+                Text(LanguageManager.shared.currentLanguage.flag)
+                    .font(.system(size: 18))
+                    .frame(width: 28, height: 28)
+
+                Text("language".localized)
+                    .font(.system(size: 16))
+                    .foregroundColor(.primary)
+
+                Spacer()
+
+                Text(LanguageManager.shared.currentLanguage.nativeName)
+                    .font(.system(size: 14))
+                    .foregroundColor(.secondary)
+
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundColor(.secondary.opacity(0.6))
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 
     @ViewBuilder
@@ -446,14 +694,14 @@ extension SettingsView {
 
             let iconNameToSet = icon.key == "app" ? nil : icon.key
 
-            UIApplication.shared.setAlternateIconName(iconNameToSet) { error in
+            AppIconManager.shared.setAlternateIconName(iconNameToSet) { success, error in
                 DispatchQueue.main.async {
                     isIconLoading = false
-                    currentIcon = UIApplication.shared.alternateIconName
-                    if error == nil {
+                    currentIcon = AppIconManager.shared.currentAlternateIconName
+                    if success {
                         showingIconSuccess = true
-                    } else {
-                        print("❌ [AppIcon] 设置图标失败: \(error!.localizedDescription)")
+                    } else if let error = error {
+                        print("❌ [AppIcon] 设置图标失败: \(error.localizedDescription)")
                     }
                 }
             }
@@ -463,18 +711,6 @@ extension SettingsView {
                     Image(uiImage: icon.image)
                         .appIconStyle()
                 }
-
-                VStack(alignment: .center, spacing: 2) {
-                    Text(icon.displayName)
-                        .font(.system(size: 13, weight: .semibold))
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.primary)
-                    Text(icon.author)
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                }
-                .frame(maxWidth: .infinity)
             }
             .padding(.vertical, 4)
             .contentShape(Rectangle())

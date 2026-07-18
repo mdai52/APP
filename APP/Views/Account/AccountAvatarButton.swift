@@ -54,9 +54,15 @@ struct AccountAvatarButton: View {
                             .stroke(themeManager.accentColor.opacity(0.5), lineWidth: 1.5)
                     )
             } else {
-                Image(systemName: appStore.selectedAccount == nil ? "person.circle" : "person.circle.fill")
-                    .font(.system(size: size))
-                    .foregroundColor(appStore.selectedAccount == nil ? .secondary : themeManager.accentColor)
+                Image("DefaultAvatar")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: size, height: size)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle()
+                            .stroke(appStore.selectedAccount == nil ? Color.secondary.opacity(0.3) : themeManager.accentColor.opacity(0.5), lineWidth: 1.5)
+                    )
             }
         }
         .frame(width: size, height: size)

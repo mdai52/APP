@@ -8,6 +8,81 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
     }
 }
 
+struct UIKitTextField: UIViewRepresentable {
+    @Binding var text: String
+    let placeholder: String
+    var onEditingChanged: ((Bool) -> Void)?
+    var onCommit: (() -> Void)?
+    var onTextChange: ((String) -> Void)?
+
+    func makeUIView(context: Context) -> UITextField {
+        let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 34))
+        textField.placeholder = placeholder
+        textField.font = .systemFont(ofSize: 17)
+        textField.textColor = .label
+        textField.tintColor = .systemBlue
+        textField.clearButtonMode = .whileEditing
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.spellCheckingType = .no
+        textField.returnKeyType = .search
+        textField.enablesReturnKeyAutomatically = true
+        textField.delegate = context.coordinator
+        textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        textField.setContentCompressionResistancePriority(.required, for: .vertical)
+        textField.setContentHuggingPriority(.required, for: .vertical)
+        textField.addTarget(
+            context.coordinator,
+            action: #selector(Coordinator.textDidChange(_:)),
+            for: .editingChanged
+        )
+        return textField
+    }
+
+    func updateUIView(_ uiView: UITextField, context: Context) {
+        if uiView.text != text {
+            uiView.text = text
+        }
+        if uiView.placeholder != placeholder {
+            uiView.placeholder = placeholder
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, UITextFieldDelegate {
+        var parent: UIKitTextField
+
+        init(_ parent: UIKitTextField) {
+            self.parent = parent
+        }
+
+        @objc func textDidChange(_ textField: UITextField) {
+            let newText = textField.text ?? ""
+            if parent.text != newText {
+                parent.text = newText
+                parent.onTextChange?(newText)
+            }
+        }
+
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            parent.onEditingChanged?(true)
+        }
+
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            parent.onEditingChanged?(false)
+        }
+
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            parent.onCommit?()
+            textField.resignFirstResponder()
+            return true
+        }
+    }
+}
+
  extension Date {
      var iso8601: String {
          let formatter = ISO8601DateFormatter()
@@ -1081,8 +1156,6 @@ struct SearchView: SwiftUI.View {
     @StateObject private var sessionManager = SessionManager.shared
     @State var searching = false
 
-    @State var uiRefreshTrigger = UUID()
-
     @State var showLoginSheet = false
     @State var showAccountMenu = false
     @State var showAccountSheet = false
@@ -1196,10 +1269,7 @@ struct SearchView: SwiftUI.View {
     @StateObject private var suggestionsDebounce = Debounce(delay: 0.1)
     private let searchSuggestionsCache = LRUCache<String, [String]>(capacity: 50)
     @StateObject var vm = AppStore.this
-    @State private var animateHeader = false
-    @State private var animateCards = false
-    @State private var animateSearchBar = false
-    @State private var animateResults = false
+    @State private var animateLogo = false
     @State private var scrollVelocity: CGFloat = 0
     @State private var isScrollingFast = false
 
@@ -1218,52 +1288,42 @@ struct SearchView: SwiftUI.View {
     var body: some SwiftUI.View {
         NavigationView {
             ZStack {
-
                 Color(.systemBackground)
                     .ignoresSafeArea()
 
                 VStack(spacing: 0) {
 
-                    ScrollViewReader { proxy in
-                        ScrollView(.vertical, showsIndicators: false) {
-                            LazyVStack(spacing: 0) {
+                    modernSearchBar
+                        .padding(.horizontal, 16)
+                        .background(Color(.systemBackground))
 
-                                modernSearchBar
-                                    .scaleEffect(animateHeader ? 1 : 0.95)
-                                    .opacity(animateHeader ? 1 : 0)
-                                    .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1), value: animateHeader)
-                                    .id("searchBar")
+                    categorySelector
 
-                                categorySelector
-                                    .scaleEffect(animateHeader ? 1 : 0.95)
-                                    .opacity(animateHeader ? 1 : 0)
-                                    .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.2), value: animateHeader)
-
-                                searchResultsSection
-                                    .scaleEffect(animateResults ? 1 : 0.95)
-                                    .opacity(animateResults ? 1 : 0)
-                                    .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.3), value: animateResults)
-                            }
-                            .background(
-                                GeometryReader { geometry in
-                                    Color.clear
-                                        .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin.y)
-                                }
-                            )
-                            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
-                                detectScrollVelocity(offset: value)
-                            }
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 0) {
+                            searchResultsSection
                         }
-                        .coordinateSpace(name: "scroll")
-                        .refreshable {
-                            if !searchKey.isEmpty {
-                                await performSearch()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        .background(
+                            GeometryReader { geometry in
+                                Color.clear
+                                    .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin.y)
                             }
+                        )
+                        .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                            detectScrollVelocity(offset: value)
+                        }
+                    }
+                    .coordinateSpace(name: "scroll")
+                    .refreshable {
+                        if !searchKey.isEmpty {
+                            await performSearch()
                         }
                     }
                 }
             }
             .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
             .sheet(isPresented: $showVersionPicker) {
                 versionPickerSheet
@@ -1284,47 +1344,19 @@ struct SearchView: SwiftUI.View {
         .navigationViewStyle(.stack)
         .onAppear {
             loadSearchHistory()
-            print("[SearchView] 视图加载完成，开始初始化")
-
             sessionManager.startSessionMonitoring()
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                print("[SearchView] 初始化完成")
-                if let account = appStore.selectedAccount {
-                    print("  - 登录账户: \(account.email), 地区: \(account.countryCode)")
-                } else {
-                    print("  - 未登录账户，默认地区: US")
-                }
-
-                self.uiRefreshTrigger = UUID()
-            }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                print("[SearchView] 强制刷新UI")
-                startAnimations()
-            }
+            animateLogo = true
         }
         .onDisappear {
 
             sessionManager.stopSessionMonitoring()
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("ForceRefreshUI"))) { _ in
-
-            print("[SearchView] 接收到强制刷新通知")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                print("[SearchView] 真机适配强制刷新完成")
-                startAnimations()
-            }
+            animateLogo = true
         }
         .onReceive(appStore.$selectedAccount) { account in
-
             if let newAccount = account {
                 print("[SearchView] 检测到账户变化: \(newAccount.email), 地区: \(newAccount.countryCode)")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                        self.uiRefreshTrigger = UUID()
-                    }
-                }
             } else {
                 print("[SearchView] 账户已登出，使用默认地区 US")
             }
@@ -1339,10 +1371,11 @@ struct SearchView: SwiftUI.View {
                 Image(systemName: "magnifyingglass")
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(.secondary)
-                TextField("search_placeholder".localized, text: $searchKey)
-                    .font(.body)
-                    .focused($searchKeyFocused)
-                    .onChange(of: searchKeyFocused) { isFocused in
+                UIKitTextField(
+                    text: $searchKey,
+                    placeholder: "search_placeholder".localized,
+                    onEditingChanged: { isFocused in
+                        searchKeyFocused = isFocused
                         if isFocused, !searchKey.isEmpty {
                             showSearchSuggestions = true
                             searchSuggestions = getSearchSuggestions(for: searchKey)
@@ -1351,8 +1384,14 @@ struct SearchView: SwiftUI.View {
                                 searchSuggestions = combined
                             }
                         }
-                    }
-                    .onChange(of: searchKey) { newValue in
+                    },
+                    onCommit: {
+                        showSearchSuggestions = false
+                        Task {
+                            await performSearch()
+                        }
+                    },
+                    onTextChange: { newValue in
                         if !newValue.isEmpty {
                             showSearchSuggestions = true
 
@@ -1372,12 +1411,9 @@ struct SearchView: SwiftUI.View {
                             searchSuggestions = []
                         }
                     }
-                    .onSubmit {
-                        showSearchSuggestions = false
-                        Task {
-                            await performSearch()
-                        }
-                    }
+                )
+                .frame(maxWidth: .infinity)
+                .frame(height: 22)
                 if !searchKey.isEmpty {
                     Button {
                         withAnimation(.easeInOut(duration: 0.2)) {
@@ -1709,13 +1745,13 @@ struct SearchView: SwiftUI.View {
             }
 
             if let error = searchError {
-                AnyView(searchErrorView(error: error))
+                searchErrorView(error: error)
             } else if searching {
-                AnyView(searchingIndicator)
+                searchingIndicator
             } else if searchResult.isEmpty {
-                AnyView(emptyStateView)
+                emptyStateView
             } else {
-                AnyView(searchResultsGrid)
+                searchResultsGrid
             }
         }
     }
@@ -1765,11 +1801,11 @@ struct SearchView: SwiftUI.View {
                 .scaledToFit()
                 .frame(width: 120, height: 120)
                 .cornerRadius(24)
-                .scaleEffect(animateCards ? 1.1 : 1)
-                .opacity(animateCards ? 1 : 0.7)
+                .scaleEffect(animateLogo ? 1.1 : 1.0)
+                .opacity(animateLogo ? 1.0 : 0.7)
                 .animation(
                     Animation.easeInOut(duration: 2).repeatForever(autoreverses: true),
-                    value: animateCards
+                    value: animateLogo
                 )
             VStack(spacing: 8) {
                 Text("app_downgrade".localized)
@@ -1829,7 +1865,7 @@ struct SearchView: SwiftUI.View {
         .padding(.horizontal, 24)
     }
 
-    func searchErrorView(error: String) -> any SwiftUI.View {
+    func searchErrorView(error: String) -> some SwiftUI.View {
         VStack(spacing: 24) {
 
             ZStack {
@@ -1930,15 +1966,6 @@ struct SearchView: SwiftUI.View {
         .animation(nil, value: isScrollingFast)
     }
 
-    func startAnimations() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            animateHeader = true
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            animateResults = true
-        }
-    }
-    
     @State private var lastScrollOffset: CGFloat = 0
     @State private var lastScrollTime: Date = Date()
     
@@ -2870,10 +2897,6 @@ struct SearchView: SwiftUI.View {
     private func logoutAccount() {
         print("[SearchView] 用户登出")
         appStore.logoutAccount()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            self.uiRefreshTrigger = UUID()
-        }
     }
 
     private var currentAccountIndicator: some SwiftUI.View {

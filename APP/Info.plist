@@ -14,16 +14,47 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>kana_love</string>
+					<string>kana_love20x20</string>
+					<string>kana_love29x29</string>
+					<string>kana_love40x40</string>
+					<string>kana_love60x60</string>
+					<string>kana_love76x76</string>
+					<string>kana_love83.5x83.5</string>
+					<string>kana_love1024x1024</string>
 				</array>
+				<key>UIPrerenderedIcon</key>
+				<true/>
 			</dict>
 			<key>kana_peek</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>kana_peek</string>
+					<string>kana_peek20x20</string>
+					<string>kana_peek29x29</string>
+					<string>kana_peek40x40</string>
+					<string>kana_peek60x60</string>
+					<string>kana_peek76x76</string>
+					<string>kana_peek83.5x83.5</string>
+					<string>kana_peek1024x1024</string>
 				</array>
+				<key>UIPrerenderedIcon</key>
+				<true/>
 			</dict>
+		</dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>AppIcon20x20</string>
+				<string>AppIcon29x29</string>
+				<string>AppIcon40x40</string>
+				<string>AppIcon60x60</string>
+				<string>AppIcon76x76</string>
+				<string>AppIcon83.5x83.5</string>
+				<string>AppIcon1024x1024</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
@@ -35,7 +66,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.5.6</string>
+	<string>2.5.7</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>itms-services</string>
@@ -75,5 +106,9 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 </dict>
 </plist>

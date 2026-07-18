@@ -5,6 +5,7 @@ import UIKit
 struct App: SwiftUI.App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var themeManager = ThemeManager.shared
+    @StateObject private var tabBarStyleManager = TabBarStyleManager.shared
     @StateObject private var languageManager = LanguageManager.shared
     @State private var languageToggle = false
     @State private var isAppInitialized = false
@@ -15,6 +16,7 @@ struct App: SwiftUI.App {
                 if isAppInitialized {
                     TabbarView()
                         .environmentObject(themeManager)
+                        .environmentObject(tabBarStyleManager)
                         .environmentObject(AppStore.this)
                         .environmentObject(languageManager)
                         .id(languageToggle)
@@ -26,9 +28,18 @@ struct App: SwiftUI.App {
                         .environmentObject(themeManager)
                 }
             }
+            .preferredColorScheme(colorScheme)
             .onAppear {
                 performDelayedInitialization()
             }
+        }
+    }
+    
+    private var colorScheme: ColorScheme? {
+        switch themeManager.selectedTheme {
+        case .light: return .light
+        case .dark: return .dark
+        case .system: return nil
         }
     }
     

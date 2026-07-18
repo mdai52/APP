@@ -5,13 +5,11 @@ import UIKit
 
 extension AppStoreDownloadManager {
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-        print("📱 [后台会话] 所有任务已完成")
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             if let completionHandler = appDelegate.backgroundSessionCompletionHandler {
 
                 DispatchQueue.main.async {
-                    print("✅ [后台会话] 调用完成处理器")
                     completionHandler()
                     appDelegate.backgroundSessionCompletionHandler = nil
                 }
@@ -51,20 +49,16 @@ class IPAProcessor: @unchecked Sendable {
         withSinfs sinfs: [Any],
         completion: @escaping (Result<URL, Error>) -> Void
     ) {
-        print("🔧 [IPA处理器] 开始处理IPA文件: \(ipaPath.path)")
-        print("🔧 [IPA处理器] 签名信息数量: \(sinfs.count)")
 
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 let startTime = Date()
                 let processedIPA = try self.processIPAFast(at: ipaPath, withSinfs: sinfs)
-                let elapsed = Date().timeIntervalSince(startTime)
-                print("⚡ [IPA处理器] 快速处理完成，耗时: \(String(format: "%.3f", elapsed))秒")
+                _ = Date().timeIntervalSince(startTime)
                 DispatchQueue.main.async {
                     completion(.success(processedIPA))
                 }
             } catch {
-                print("❌ [IPA处理器] IPA处理失败: \(error)")
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
@@ -75,7 +69,6 @@ class IPAProcessor: @unchecked Sendable {
 
 
     nonisolated private func processIPAFast(at ipaPath: URL, withSinfs sinfs: [Any]) throws -> URL {
-        print("⚡ [IPA处理器] 开始快速增量处理")
 
         let ipaData = try Data(contentsOf: ipaPath)
 
@@ -84,13 +77,11 @@ class IPAProcessor: @unchecked Sendable {
         }
 
         let entries = try FastZipArchive.readCentralDirectory(from: ipaData, eocd: eocd)
-        print("📦 [IPA处理器] IPA包含 \(entries.count) 个文件")
 
         let appFolderName = findAppFolderName(in: entries)
         guard let appName = appFolderName else {
             throw NSError(domain: "IPAProcessing", code: 11, userInfo: [NSLocalizedDescriptionKey: "未找到Payload中的.app文件夹"])
         }
-        print("📱 [IPA处理器] 应用文件夹: \(appName)")
 
         let sinfFiles = generateSinfFiles(sinfs: sinfs, appName: appName)
         let metadataPlist = generateiTunesMetadataPlist(
@@ -113,7 +104,6 @@ class IPAProcessor: @unchecked Sendable {
 
         filesToAdd.append(("iTunesMetadata.plist", metadataPlist))
 
-        print("🔧 [IPA处理器] 将增量添加 \(filesToAdd.count) 个文件")
 
         let success = FastZipArchive.shared.addFiles(
             toZipAtPath: ipaPath.path,
@@ -124,7 +114,6 @@ class IPAProcessor: @unchecked Sendable {
             throw NSError(domain: "IPAProcessing", code: 12, userInfo: [NSLocalizedDescriptionKey: "增量添加文件失败"])
         }
 
-        print("✅ [IPA处理器] 快速增量处理完成")
         return ipaPath
     }
 
@@ -157,7 +146,6 @@ class IPAProcessor: @unchecked Sendable {
         if sinfs.isEmpty {
             let defaultSinf = createDefaultSinfData(for: appName)
             result.append(defaultSinf)
-            print("⚠️ [IPA处理器] 无sinf数据，使用默认sinf")
             return result
         }
 
@@ -165,20 +153,17 @@ class IPAProcessor: @unchecked Sendable {
             if let sinfInfo = sinf as? DownloadSinfInfo {
                 if let data = Data(base64Encoded: sinfInfo.sinf) {
                     result.append(data)
-                    print("✅ [IPA处理器] 解析sinf(ID:\(sinfInfo.id)): \(data.count)字节")
                 }
             } else if let sinfDict = sinf as? [String: Any],
                       let sinfString = sinfDict["sinf"] as? String,
                       let data = Data(base64Encoded: sinfString) {
                 result.append(data)
-                print("✅ [IPA处理器] 解析sinf(字典): \(data.count)字节")
             }
         }
 
         if result.isEmpty {
             let defaultSinf = createDefaultSinfData(for: appName)
             result.append(defaultSinf)
-            print("⚠️ [IPA处理器] 所有sinf解析失败，使用默认sinf")
         }
 
         return result
@@ -213,7 +198,6 @@ class IPAProcessor: @unchecked Sendable {
                         version = plist["CFBundleVersion"] as? String ?? version
                     }
                 } catch {
-                    print("⚠️ [IPA处理器] 读取Info.plist失败: \(error)")
                 }
                 break
             }
@@ -291,9 +275,15 @@ class IPAProcessor: @unchecked Sendable {
     }
 }
 
-class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDelegate, @unchecked Sendable {
+class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDelegate, URLSessionDataDelegate, @unchecked Sendable {
     static let shared = AppStoreDownloadManager()
     private var downloadTasks: [String: URLSessionDownloadTask] = [:]
+    private var directDownloadTasks: [String: URLSessionDataTask] = [:]
+    private var directDownloadData: [String: Data] = [:]
+    private var directDownloadExpectedSize: [String: Int64] = [:]
+    private var directDownloadFileHandles: [String: FileHandle] = [:]
+    private var directDownloadTempFiles: [String: URL] = [:]
+    private var directDownloadBytesWritten: [String: Int64] = [:]
     private var progressHandlers: [String: (DownloadProgress) -> Void] = [:]
     private var completionHandlers: [String: (Result<DownloadResult, DownloadError>) -> Void] = [:]
     private var downloadStartTimes: [String: Date] = [:]
@@ -301,6 +291,8 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
     private var lastUIUpdate: [String: Date] = [:]
     private var downloadDestinations: [String: URL] = [:]
     private var downloadStoreItems: [String: DownloadStoreItem] = [:]
+    private var pendingCompletionHandlers: [String: (Result<DownloadResult, DownloadError>) -> Void] = [:]
+    private var startingDownloads: Set<String> = []
     private lazy var urlSession: URLSession = {
         let config = URLSessionConfiguration.background(
             withIdentifier: "com.app.appstoredownload.session"
@@ -315,7 +307,19 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         config.networkServiceType = .default
         return URLSession(configuration: config, delegate: self, delegateQueue: nil)
     }()
+    private lazy var foregroundSession: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 60
+        config.timeoutIntervalForResource = 7200
+        config.allowsCellularAccess = true
+        config.waitsForConnectivity = true
+        config.networkServiceType = .default
+        return URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
+    }()
+    private var activeSessionType: [String: String] = [:]
     private var resumeDataStore: [String: Data] = [:]
+    private var isRetryingDownload: Set<String> = []
+    private var completedDownloads: Set<String> = []
     private var persistedContexts: [String: DownloadContext] = [:]
     
     private struct DownloadContext: Codable {
@@ -336,9 +340,7 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         guard let data = UserDefaults.standard.data(forKey: "DownloadContexts") else { return }
         do {
             persistedContexts = try JSONDecoder().decode([String: DownloadContext].self, from: data)
-            print("💾 [下载上下文] 已恢复 \(persistedContexts.count) 个下载上下文")
         } catch {
-            print("❌ [下载上下文] 恢复失败: \(error)")
         }
     }
     
@@ -347,7 +349,6 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
             let data = try JSONEncoder().encode(persistedContexts)
             UserDefaults.standard.set(data, forKey: "DownloadContexts")
         } catch {
-            print("❌ [下载上下文] 保存失败: \(error)")
         }
     }
     
@@ -385,7 +386,6 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
             try data.write(to: path)
             return path.path
         } catch {
-            print("❌ [断点续传] 保存续传数据失败: \(error.localizedDescription)")
             return path.path
         }
     }
@@ -417,16 +417,12 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
 
     private func verifyDownloadedFile(downloadId: String, fileURL: URL, expectedMD5: String) -> Bool {
         guard FileManager.default.fileExists(atPath: fileURL.path) else {
-            print("❌ [文件校验] 文件不存在: \(fileURL.path)")
             return false
         }
 
-        print("🔍 [文件校验] 开始校验文件 MD5...")
         let isValid = verifyFileIntegrity(fileURL: fileURL, expectedMD5: expectedMD5)
         if isValid {
-            print("✅ [文件校验] MD5 校验通过")
         } else {
-            print("❌ [文件校验] MD5 校验失败")
         }
         return isValid
     }
@@ -442,16 +438,15 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         completion: @escaping @Sendable (String, Result<DownloadResult, DownloadError>) -> Void
     ) {
         Task { @MainActor in
-            let tasks = await urlSession.allTasks
+            let bgTasks = await urlSession.allTasks
             var restoredCount = 0
             
-            for task in tasks {
+            for task in bgTasks {
                 guard let downloadTask = task as? URLSessionDownloadTask,
                       let downloadId = downloadTask.taskDescription,
                       !downloadId.isEmpty else { continue }
                 
                 guard let context = persistedContexts[downloadId] else {
-                    print("⚠️ [后台恢复] 任务 \(downloadId) 没有持久化上下文，跳过")
                     continue
                 }
                 
@@ -468,10 +463,40 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
                 }
                 
                 restoredCount += 1
-                print("✅ [后台恢复] 已恢复任务: \(downloadId)")
+            }
+
+            let fgTasks = await foregroundSession.allTasks
+            for task in fgTasks {
+                guard let dataTask = task as? URLSessionDataTask,
+                      let downloadId = dataTask.taskDescription,
+                      !downloadId.isEmpty else { continue }
+                
+                guard directDownloadTasks[downloadId] == nil else {
+                    continue
+                }
+                
+                guard let context = persistedContexts[downloadId] else {
+                    continue
+                }
+                
+                directDownloadTasks[downloadId] = dataTask
+                downloadDestinations[downloadId] = URL(fileURLWithPath: context.destinationPath)
+                downloadStoreItems[downloadId] = context.storeItem
+                downloadStartTimes[downloadId] = Date()
+                
+                progressHandlers[downloadId] = { progress in
+                    progressHandler(downloadId, progress)
+                }
+                completionHandlers[downloadId] = { result in
+                    completion(downloadId, result)
+                }
+                
+                restoredCount += 1
             }
             
-            print("✅ [后台恢复] 共恢复 \(restoredCount) 个后台下载任务")
+            if restoredCount > 0 {
+                print("🔄 [恢复任务] 共恢复 \(restoredCount) 个下载任务")
+            }
         }
     }
 
@@ -486,22 +511,26 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         completion: @escaping @Sendable (Result<DownloadResult, DownloadError>) -> Void
     ) {
         let downloadId = downloadId ?? UUID().uuidString
-        print("📥 [下载管理器] 开始下载应用: \(appIdentifier)")
-        print("📥 [下载管理器] 下载ID: \(downloadId)")
-        print("📥 [下载管理器] 目标路径: \(destinationURL.path)")
-        print("📥 [下载管理器] 应用版本: \(appVersion ?? "最新版本")")
-        print("📥 [下载管理器] 账户信息: \(account.email)")
+
+        if hasActiveDownload(for: downloadId) || startingDownloads.contains(downloadId) {
+            print("⚠️ [下载] 任务已存在或正在启动，直接附加回调: \(downloadId)")
+            attachHandlers(for: downloadId, progressHandler: progressHandler, completion: completion)
+            return
+        }
+
+        startingDownloads.insert(downloadId)
+        print("ℹ️ [下载] 开始启动任务: \(downloadId)")
+
         Task { @MainActor in
+            defer {
+                startingDownloads.remove(downloadId)
+            }
             do {
-                print("🔍 [下载管理器] 正在获取下载信息...")
 
                 let dsPersonId = account.dsPersonId
                 let passwordToken = account.passwordToken
                 let storeFront = account.storeResponse.storeFront
 
-                print("🔍 [账户信息] dsPersonId: \(dsPersonId)")
-                print("🔍 [账户信息] passwordToken: \(passwordToken.isEmpty ? "空" : "已获取")")
-                print("🔍 [账户信息] storeFront: \(storeFront)")
 
                 let plistResponse = try await downloadFromStoreAPI(
                     appIdentifier: appIdentifier,
@@ -515,7 +544,6 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
 
                 if let songList = plistResponse["songList"] as? [[String: Any]], !songList.isEmpty {
                     let firstSongItem = songList[0]
-                    print("✅ [下载管理器] 成功获取下载信息")
                     print("   - 下载URL: \(firstSongItem["URL"] as? String ?? "未知")")
                     print("   - MD5: \(firstSongItem["md5"] as? String ?? "未知")")
 
@@ -533,11 +561,9 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
                     downloadStoreItem = convertToDownloadStoreItem(from: firstSongItem)
                 } else {
 
-                    print("⚠️ [下载管理器] songList为空，用户可能未购买此应用")
 
-                    if let failureType = plistResponse["failureType"] as? String,
-                       let customerMessage = plistResponse["customerMessage"] as? String {
-                        print("⚠️ [下载管理器] 响应包含错误: \(failureType) - \(customerMessage)")
+                    if let _ = plistResponse["failureType"] as? String,
+                       let _ = plistResponse["customerMessage"] as? String {
                     }
 
                     let error: DownloadError = .licenseError("应用未购买，请先前往App Store购买")
@@ -571,16 +597,12 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
     }
 
     private func convertToDownloadStoreItem(from storeItem: Any) -> DownloadStoreItem {
-        print("🔍 [转换开始] 开始解析StoreItem数据")
-        print("🔍 [转换开始] StoreItem类型: \(type(of: storeItem))")
 
         if let dict = storeItem as? [String: Any] {
-            print("🔍 [转换开始] 检测到字典类型，直接访问键值")
 
             let url = dict["URL"] as? String ?? ""
             let md5 = dict["md5"] as? String ?? ""
 
-            print("🔍 [转换开始] 从字典获取:")
             print("   - URL: \(url.isEmpty ? "空" : "已获取(\(url.count)字符)")")
             print("   - MD5: \(md5.isEmpty ? "空" : "已获取(\(md5.count)字符)")")
 
@@ -599,7 +621,6 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
                 }
                 softwareVersionExternalIdentifiers = metadata["softwareVersionExternalIdentifiers"] as? [Int] ?? []
 
-                print("🔍 [转换开始] 从metadata获取:")
                 print("   - Bundle ID: \(bundleId)")
                 print("   - Display Name: \(bundleDisplayName)")
                 print("   - Version: \(bundleShortVersionString)")
@@ -608,10 +629,8 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
 
             var sinfs: [DownloadSinfInfo] = []
             if let sinfsArray = dict["sinfs"] as? [[String: Any]] {
-                print("🔍 [转换开始] 发现sinfs数组，长度: \(sinfsArray.count)")
 
                 for (index, sinfDict) in sinfsArray.enumerated() {
-                    print("🔍 [转换开始] 解析 Sinf \(index + 1):")
 
                     let sinfId = sinfDict["id"] as? Int ?? index
                     print("   - ID: \(sinfId)")
@@ -639,21 +658,15 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
                                 sinf: finalSinfData
                             )
                             sinfs.append(sinfInfo)
-                            print("✅ [转换开始] 成功添加 Sinf \(index + 1)，ID: \(sinfId)，数据长度: \(finalSinfData.count)")
                         } else {
-                            print("⚠️ [转换开始] Sinf \(index + 1) 数据无效，跳过")
                         }
                     } else {
-                        print("⚠️ [转换开始] Sinf \(index + 1) 没有 sinf 字段")
                     }
                 }
             } else {
-                print("⚠️ [转换开始] 没有找到 sinfs 数组或格式错误")
             }
 
             guard !url.isEmpty && !md5.isEmpty else {
-                print("❌ [转换失败] 无法获取URL或MD5")
-                print("🔍 [转换开始] 字典内容: \(dict)")
                 return createDefaultDownloadStoreItem()
             }
 
@@ -665,14 +678,12 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
                 softwareVersionExternalIdentifiers: softwareVersionExternalIdentifiers
             )
 
-            print("✅ [转换成功] 解析到以下数据:")
             print("   - URL: \(url)")
             print("   - MD5: \(md5)")
             print("   - Bundle ID: \(bundleId)")
             print("   - Display Name: \(bundleDisplayName)")
             print("   - 真实sinf数量: \(sinfs.count)")
 
-            print("✅ [转换完成] 成功创建DownloadStoreItem，包含真实的 Apple ID 签名数据")
             return DownloadStoreItem(
                 url: url,
                 md5: md5,
@@ -680,7 +691,6 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
                 metadata: downloadMetadata
             )
         } else {
-            print("❌ [转换失败] StoreItem不是字典类型")
             return createDefaultDownloadStoreItem()
         }
     }
@@ -700,6 +710,7 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         )
     }
 
+    @MainActor
     private func startFileDownload(
         downloadId: String,
         storeItem: DownloadStoreItem,
@@ -713,8 +724,28 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
             }
             return
         }
-        print("🚀 [下载开始] URL: \(downloadURL.absoluteString)")
-        print("🚀 [下载开始] 任务ID: \(downloadId)")
+
+        let isTrollStore = EnvironmentDetector.shared.isTrollStore
+        let isJailbroken = EnvironmentDetector.shared.isJailbroken
+        let useDirectDownload = isTrollStore || isJailbroken
+
+        if useDirectDownload {
+            activeSessionType[downloadId] = "direct"
+            await startDirectDownload(
+                downloadId: downloadId,
+                storeItem: storeItem,
+                destinationURL: destinationURL,
+                progressHandler: progressHandler,
+                completion: completion
+            )
+            return
+        }
+
+        print("ℹ️ [下载模式] 正常环境，使用后台下载模式")
+        activeSessionType[downloadId] = "background"
+
+        let session = urlSession
+
         var request = URLRequest(url: downloadURL)
 
         request.setValue("keep-alive", forHTTPHeaderField: "Connection")
@@ -724,15 +755,13 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         let downloadTask: URLSessionDownloadTask
 
         if let resumeData = resumeDataStore[downloadId] {
-            downloadTask = urlSession.downloadTask(withResumeData: resumeData)
+            downloadTask = session.downloadTask(withResumeData: resumeData)
             resumeDataStore.removeValue(forKey: downloadId)
-            print("🔄 [下载恢复] 使用内存中的断点续传数据恢复下载")
         } else if let savedResumeData = loadResumeData(for: downloadId) {
-            downloadTask = urlSession.downloadTask(withResumeData: savedResumeData)
-            print("🔄 [下载恢复] 使用磁盘中的断点续传数据恢复下载")
+            downloadTask = session.downloadTask(withResumeData: savedResumeData)
         } else {
             request.setValue("bytes=0-", forHTTPHeaderField: "Range")
-            downloadTask = urlSession.downloadTask(with: request)
+            downloadTask = session.downloadTask(with: request)
         }
 
         downloadTask.taskDescription = downloadId
@@ -747,8 +776,114 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         
         persistContext(for: downloadId)
         
-        print("📥 [下载任务] ID: \(downloadId) 已创建并启动")
         downloadTask.resume()
+    }
+
+    @MainActor
+    private func startDirectDownload(
+        downloadId: String,
+        storeItem: DownloadStoreItem,
+        destinationURL: URL,
+        progressHandler: @escaping @Sendable (DownloadProgress) -> Void,
+        completion: @escaping @Sendable (Result<DownloadResult, DownloadError>) -> Void
+    ) async {
+        guard let downloadURL = URL(string: storeItem.url) else {
+            completion(.failure(.unknownError("无效的下载URL")))
+            return
+        }
+
+        if directDownloadTasks[downloadId] != nil {
+            print("⚠️ [直接下载] 任务已存在，仅附加回调: \(downloadId)")
+            progressHandlers[downloadId] = progressHandler
+            completionHandlers[downloadId] = completion
+            return
+        }
+
+        let existingTasks = await foregroundSession.allTasks
+        if let existingTask = existingTasks.first(where: { $0.taskDescription == downloadId }) as? URLSessionDataTask {
+            print("⚠️ [直接下载] 检测到前台会话中已有任务，恢复回调: \(downloadId)")
+            directDownloadTasks[downloadId] = existingTask
+            downloadDestinations[downloadId] = destinationURL
+            downloadStoreItems[downloadId] = storeItem
+            progressHandlers[downloadId] = progressHandler
+            completionHandlers[downloadId] = completion
+            return
+        }
+
+        downloadDestinations[downloadId] = destinationURL
+        downloadStoreItems[downloadId] = storeItem
+        completionHandlers[downloadId] = completion
+        progressHandlers[downloadId] = progressHandler
+        downloadStartTimes[downloadId] = Date()
+        directDownloadData[downloadId] = Data()
+        directDownloadBytesWritten[downloadId] = 0
+
+        let tempDir = NSTemporaryDirectory()
+        let tempFileURL = URL(fileURLWithPath: tempDir).appendingPathComponent("\(downloadId).tmp")
+        directDownloadTempFiles[downloadId] = tempFileURL
+
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: tempFileURL.path) {
+            try? fileManager.removeItem(at: tempFileURL)
+        }
+        fileManager.createFile(atPath: tempFileURL.path, contents: nil)
+
+        if let fileHandle = try? FileHandle(forWritingTo: tempFileURL) {
+            directDownloadFileHandles[downloadId] = fileHandle
+        }
+
+        var request = URLRequest(url: downloadURL)
+        request.setValue("keep-alive", forHTTPHeaderField: "Connection")
+        request.setValue("*/*", forHTTPHeaderField: "Accept")
+
+        let dataTask = foregroundSession.dataTask(with: request)
+        dataTask.taskDescription = downloadId
+        directDownloadTasks[downloadId] = dataTask
+
+        dataTask.resume()
+    }
+
+    @MainActor
+    private func retryWithForegroundDownload(
+        downloadId: String,
+        storeItem: DownloadStoreItem,
+        destinationURL: URL
+    ) {
+
+        downloadDestinations[downloadId] = destinationURL
+        downloadStoreItems[downloadId] = storeItem
+        downloadStartTimes[downloadId] = Date()
+        directDownloadBytesWritten[downloadId] = 0
+        activeSessionType[downloadId] = "foreground_retry"
+
+        let tempDir = NSTemporaryDirectory()
+        let tempFileURL = URL(fileURLWithPath: tempDir).appendingPathComponent("\(downloadId).tmp")
+        directDownloadTempFiles[downloadId] = tempFileURL
+
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: tempFileURL.path) {
+            try? fileManager.removeItem(at: tempFileURL)
+        }
+        fileManager.createFile(atPath: tempFileURL.path, contents: nil)
+
+        if let fileHandle = try? FileHandle(forWritingTo: tempFileURL) {
+            directDownloadFileHandles[downloadId] = fileHandle
+        }
+
+        guard let downloadURL = URL(string: storeItem.url) else {
+            safeComplete(downloadId: downloadId, result: .failure(.unknownError("无效的下载URL")))
+            return
+        }
+
+        var request = URLRequest(url: downloadURL)
+        request.setValue("keep-alive", forHTTPHeaderField: "Connection")
+        request.setValue("*/*", forHTTPHeaderField: "Accept")
+
+        let dataTask = foregroundSession.dataTask(with: request)
+        dataTask.taskDescription = downloadId
+        directDownloadTasks[downloadId] = dataTask
+
+        dataTask.resume()
     }
 
     private func verifyFileIntegrity(fileURL: URL, expectedMD5: String) -> Bool {
@@ -761,30 +896,36 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
     }
 
     func pauseDownload(downloadId: String) {
-        guard let task = downloadTasks[downloadId] else {
-            print("⏸️ [暂停下载] 未找到任务: \(downloadId)")
-            return
+        if let task = downloadTasks[downloadId] {
+            task.suspend()
         }
-        task.suspend()
-        print("⏸️ [暂停下载] 已暂停: \(downloadId)")
+        if let task = directDownloadTasks[downloadId] {
+            task.suspend()
+        }
     }
 
     func resumeDownload(downloadId: String) {
-        guard let task = downloadTasks[downloadId] else {
+        if let task = downloadTasks[downloadId] {
+            task.resume()
+            print("▶️ [恢复下载] 已恢复: \(downloadId)")
+        } else if let task = directDownloadTasks[downloadId] {
+            task.resume()
+            print("▶️ [恢复直接下载] 已恢复: \(downloadId)")
+        } else {
             print("▶️ [恢复下载] 未找到任务: \(downloadId)")
-            return
         }
-        task.resume()
-        print("▶️ [恢复下载] 已恢复: \(downloadId)")
     }
 
     func cancelDownload(downloadId: String) {
-        guard let task = downloadTasks[downloadId] else {
-            print("🚫 [取消下载] 未找到任务: \(downloadId)")
-            return
+        if let task = downloadTasks[downloadId] {
+            task.cancel()
+            downloadTasks.removeValue(forKey: downloadId)
         }
-        task.cancel()
-        print("🚫 [取消下载] 已取消: \(downloadId)")
+        if let task = directDownloadTasks[downloadId] {
+            task.cancel()
+            directDownloadTasks.removeValue(forKey: downloadId)
+        }
+        startingDownloads.remove(downloadId)
     }
 
     var activeDownloadIds: Set<String> {
@@ -796,12 +937,58 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
             }
             var result = Set(ids)
             result.formUnion(downloadTasks.keys)
+            result.formUnion(directDownloadTasks.keys)
             return result
         }
     }
     
     func hasActiveDownload(for downloadId: String) -> Bool {
-        downloadTasks[downloadId] != nil
+        if startingDownloads.contains(downloadId) {
+            return true
+        }
+        if downloadTasks[downloadId] != nil {
+            return true
+        }
+        if directDownloadTasks[downloadId] != nil {
+            return true
+        }
+        return false
+    }
+
+    func hasBackgroundTask(for downloadId: String) async -> Bool {
+        let backgroundTasks = await urlSession.allTasks
+        let hasBg = backgroundTasks.contains { task in
+            task.taskDescription == downloadId
+        }
+        if hasBg {
+            return true
+        }
+        let directTasks = await foregroundSession.allTasks
+        let hasDirect = directTasks.contains { task in
+            task.taskDescription == downloadId
+        }
+        return hasDirect
+    }
+
+    func attachHandlers(
+        for downloadId: String,
+        progressHandler: @escaping @Sendable (DownloadProgress) -> Void,
+        completion: @escaping @Sendable (Result<DownloadResult, DownloadError>) -> Void
+    ) {
+        progressHandlers[downloadId] = progressHandler
+        completionHandlers[downloadId] = completion
+    }
+
+    private func safeComplete(downloadId: String, result: Result<DownloadResult, DownloadError>) {
+        guard !completedDownloads.contains(downloadId) else {
+            return
+        }
+        completedDownloads.insert(downloadId)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.completionHandlers[downloadId]?(result)
+            self?.cleanupDownload(downloadId: downloadId)
+        }
     }
 
     private func cleanupDownload(downloadId: String) {
@@ -813,6 +1000,22 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         lastUIUpdate.removeValue(forKey: downloadId)
         downloadDestinations.removeValue(forKey: downloadId)
         downloadStoreItems.removeValue(forKey: downloadId)
+        directDownloadTasks.removeValue(forKey: downloadId)
+        directDownloadData.removeValue(forKey: downloadId)
+        directDownloadExpectedSize.removeValue(forKey: downloadId)
+        directDownloadBytesWritten.removeValue(forKey: downloadId)
+
+        if let fileHandle = directDownloadFileHandles[downloadId] {
+            try? fileHandle.close()
+        }
+        directDownloadFileHandles.removeValue(forKey: downloadId)
+
+        if let tempFileURL = directDownloadTempFiles[downloadId] {
+            try? FileManager.default.removeItem(at: tempFileURL)
+        }
+        directDownloadTempFiles.removeValue(forKey: downloadId)
+
+        isRetryingDownload.remove(downloadId)
         removePersistedContext(for: downloadId)
         print("🧹 [清理完成] 下载任务 \(downloadId) 的所有资源已清理")
     }
@@ -824,7 +1027,6 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         passwordToken: String,
         storeFront: String
     ) async throws -> [String: Any] {
-        print("🔍 [Store API] 开始获取真实的下载信息...")
 
         let guid = await StoreRequest.shared.currentGUID()
         let url = URL(string: "https://p25-buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/volumeStoreDownloadProduct?guid=\(guid)")!
@@ -863,8 +1065,6 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
         )
         request.httpBody = plistData
 
-        print("🔍 [Store API] 发送请求到: \(url.absoluteString)")
-        print("🔍 [Store API] 请求体: \(body)")
 
         let storeConfig = URLSessionConfiguration.default
         storeConfig.timeoutIntervalForRequest = 30
@@ -875,11 +1075,9 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
             throw DownloadError.networkError(NSError(domain: "StoreAPI", code: -1, userInfo: [NSLocalizedDescriptionKey: "无效的HTTP响应"]))
         }
 
-        print("🔍 [Store API] 响应状态码: \(httpResponse.statusCode)")
 
         if httpResponse.statusCode != 200 {
             let errorMessage = String(data: data, encoding: .utf8) ?? "未知错误"
-            print("❌ [Store API] 请求失败: \(errorMessage)")
             throw DownloadError.networkError(NSError(domain: "StoreAPI", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage]))
         }
 
@@ -889,43 +1087,26 @@ class AppStoreDownloadManager: NSObject, ObservableObject, URLSessionDownloadDel
             format: nil
         ) as? [String: Any] ?? [:]
 
-        print("🔍 [Store API] 响应包含键: \(Array(plist.keys).sorted())")
 
         if let songList = plist["songList"] as? [[String: Any]], !songList.isEmpty {
-            print("🔍 [Store API] 找到 songList，包含 \(songList.count) 个项目")
 
             let firstSong = songList[0]
-            print("🔍 [Store API] 第一个 song 项目的键: \(Array(firstSong.keys).sorted())")
 
             if let sinfs = firstSong["sinfs"] as? [[String: Any]], !sinfs.isEmpty {
-                print("✅ [Store API] 成功获取真实的 sinf 数据，数量: \(sinfs.count)")
-                for (index, sinf) in sinfs.enumerated() {
-                    print("🔍 [Store API] Sinf \(index + 1) 的键: \(Array(sinf.keys).sorted())")
-                    if let sinfData = sinf["sinf"] as? String {
-                        print("🔍 [Store API] Sinf \(index + 1): 长度 \(sinfData.count) 字符")
-                        print("🔍 [Store API] Sinf \(index + 1) 前100字符: \(String(sinfData.prefix(100)))")
+                for (_, sinf) in sinfs.enumerated() {
+                    if let _ = sinf["sinf"] as? String {
                     } else {
-                        print("⚠️ [Store API] Sinf \(index + 1): sinf 字段类型错误: \(type(of: sinf["sinf"]))")
                     }
                 }
             } else {
-                print("⚠️ [Store API] 没有找到 sinf 数据")
-                print("🔍 [Store API] sinfs 字段类型: \(type(of: firstSong["sinfs"]))")
-                if let sinfsRaw = firstSong["sinfs"] {
-                    print("🔍 [Store API] sinfs 原始值: \(sinfsRaw)")
+                if let _ = firstSong["sinfs"] {
                 }
             }
 
-            print("🔍 [Store API] URL 字段: \(firstSong["URL"] ?? "未找到")")
-            print("🔍 [Store API] md5 字段: \(firstSong["md5"] ?? "未找到")")
-            print("🔍 [Store API] metadata 字段类型: \(type(of: firstSong["metadata"]))")
 
-            if let metadata = firstSong["metadata"] as? [String: Any] {
-                print("🔍 [Store API] metadata 键: \(Array(metadata.keys).sorted())")
+            if let _ = firstSong["metadata"] as? [String: Any] {
             }
         } else {
-            print("⚠️ [Store API] songList 为空或格式错误")
-            print("🔍 [Store API] songList 类型: \(type(of: plist["songList"]))")
         }
 
         return plist
@@ -964,21 +1145,41 @@ extension AppStoreDownloadManager {
     ) {
 
         guard let downloadId = downloadId(for: downloadTask),
-              let completion = completionHandlers[downloadId],
               let destinationURL = downloadDestinations[downloadId],
               let storeItem = downloadStoreItems[downloadId] else {
-            print("❌ [下载完成] 无法找到下载任务ID、完成处理器、目标URL或storeItem")
             return
         }
-        print("📁 [临时文件] 下载完成，临时文件位置: \(location.path)")
-        print("📂 [目标位置] 将移动到: \(destinationURL.path)")
 
-        guard FileManager.default.fileExists(atPath: location.path) else {
-            print("❌ [临时文件] 文件不存在: \(location.path)")
-            DispatchQueue.main.async {
-                completion(.failure(.fileSystemError("临时下载文件不存在")))
+        var actualLocation = location
+        if !FileManager.default.fileExists(atPath: location.path) {
+
+            let tempDownloadPath = destinationURL.path + ".download"
+            if FileManager.default.fileExists(atPath: tempDownloadPath) {
+                actualLocation = URL(fileURLWithPath: tempDownloadPath)
+            } else if let foundURL = findDownloadedFile(
+                downloadId: downloadId,
+                location: location,
+                destinationURL: destinationURL,
+                expectedSize: downloadTask.countOfBytesReceived
+            ) {
+                actualLocation = foundURL
+            } else if let lastResortURL = lastResortFileSearch(
+                expectedSize: downloadTask.countOfBytesReceived,
+                downloadId: downloadId
+            ) {
+                actualLocation = lastResortURL
             }
-            cleanupDownload(downloadId: downloadId)
+        }
+
+        guard FileManager.default.fileExists(atPath: actualLocation.path) else {
+            Task { @MainActor in
+                self.isRetryingDownload.insert(downloadId)
+                self.retryWithForegroundDownload(
+                    downloadId: downloadId,
+                    storeItem: storeItem,
+                    destinationURL: destinationURL
+                )
+            }
             return
         }
 
@@ -987,16 +1188,26 @@ extension AppStoreDownloadManager {
             let targetDirectory = destinationURL.deletingLastPathComponent()
             if !FileManager.default.fileExists(atPath: targetDirectory.path) {
                 try FileManager.default.createDirectory(at: targetDirectory, withIntermediateDirectories: true, attributes: nil)
-                print("📁 [目录创建] 已创建目标目录: \(targetDirectory.path)")
             }
 
-            if FileManager.default.fileExists(atPath: destinationURL.path) {
-                try FileManager.default.removeItem(at: destinationURL)
-                print("🗑️ [文件清理] 已删除现有文件: \(destinationURL.path)")
-            }
+            if actualLocation.path != destinationURL.path {
+                let tempTargetURL = destinationURL.appendingPathExtension("tmp")
+                if FileManager.default.fileExists(atPath: tempTargetURL.path) {
+                    try FileManager.default.removeItem(at: tempTargetURL)
+                }
+                try FileManager.default.moveItem(at: actualLocation, to: tempTargetURL)
 
-            try FileManager.default.moveItem(at: location, to: destinationURL)
-            print("✅ [文件移动] 成功移动到: \(destinationURL.path)")
+                if FileManager.default.fileExists(atPath: destinationURL.path) {
+                    let _ = try? FileManager.default.replaceItemAt(
+                        destinationURL,
+                        withItemAt: tempTargetURL,
+                        backupItemName: nil,
+                        options: []
+                    )
+                } else {
+                    try FileManager.default.moveItem(at: tempTargetURL, to: destinationURL)
+                }
+            }
 
             if !storeItem.md5.isEmpty {
                 let isValid = verifyDownloadedFile(
@@ -1005,7 +1216,6 @@ extension AppStoreDownloadManager {
                     expectedMD5: storeItem.md5
                 )
                 if !isValid {
-                    print("⚠️ [文件校验] MD5 校验失败，但继续处理（如需重试请手动重新下载）")
                 }
             }
 
@@ -1023,12 +1233,8 @@ extension AppStoreDownloadManager {
                 sinfs: storeItem.sinfs,
                 expectedMD5: storeItem.md5
             )
-            print("✅ [下载完成] 文件大小: \(ByteCountFormatter().string(fromByteCount: downloadTask.countOfBytesReceived))")
 
-            print("🔧 [下载完成] 开始处理IPA文件...")
-            print("🔧 [下载完成] 签名信息数量: \(storeItem.sinfs.count)")
 
-            print("🔍 [调试] storeItem详细信息:")
             print("   - URL: \(storeItem.url)")
             print("   - MD5: \(storeItem.md5)")
             print("   - Bundle ID: \(storeItem.metadata.bundleId)")
@@ -1040,28 +1246,20 @@ extension AppStoreDownloadManager {
                 print("   - Sinf \(index + 1): ID=\(sinf.id), 数据长度=\(sinf.sinf.count)")
             }
 
-            print("🔧 [下载完成] 开始处理IPA文件，确保创建必要的签名文件...")
-            print("🔧 [下载完成] 签名信息数量: \(storeItem.sinfs.count)")
 
             Task { @MainActor in
                 IPAProcessor.shared.processIPA(at: destinationURL, withSinfs: storeItem.sinfs) { processingResult in
                 switch processingResult {
                 case .success(let processedIPA):
-                    print("✅ [IPA处理] 成功处理IPA文件: \(processedIPA.path)")
 
                     Task {
                         do {
-                            print("🔧 [元数据处理] 开始为IPA添加iTunesMetadata.plist...")
 
                             guard let metadata = result.metadata else {
-                                print("❌ [元数据处理] metadata为空，无法创建iTunesMetadata.plist")
-                                DispatchQueue.main.async {
-                                    completion(.success(result))
-                                }
+                                self.safeComplete(downloadId: downloadId, result: .success(result))
                                 return
                             }
 
-                            print("🔧 [元数据处理] 元数据信息:")
                             print("   - Bundle ID: \(metadata.bundleId)")
                             print("   - Display Name: \(metadata.bundleDisplayName)")
                             print("   - Version: \(metadata.bundleShortVersionString)")
@@ -1075,7 +1273,6 @@ extension AppStoreDownloadManager {
                                 externalVersionIds: metadata.softwareVersionExternalIdentifiers
                             )
 
-                            print("✅ [元数据处理] 成功生成iTunesMetadata.plist，最终IPA: \(finalIPA)")
 
                             let finalResult = DownloadResult(
                                 downloadId: result.downloadId,
@@ -1086,32 +1283,20 @@ extension AppStoreDownloadManager {
                                 expectedMD5: result.expectedMD5
                             )
 
-                            DispatchQueue.main.async {
-                                completion(.success(finalResult))
-                            }
+                            self.safeComplete(downloadId: downloadId, result: .success(finalResult))
                         } catch {
-                            print("❌ [元数据处理] 生成iTunesMetadata.plist失败: \(error)")
-                            DispatchQueue.main.async {
-                                completion(.success(result))
-                            }
+                            self.safeComplete(downloadId: downloadId, result: .success(result))
                         }
                     }
-                case .failure(let error):
-                    print("❌ [IPA处理] 处理失败: \(error.localizedDescription)")
+                case .failure(_):
 
-                    DispatchQueue.main.async {
-                        completion(.success(result))
-                    }
+                    self.safeComplete(downloadId: downloadId, result: .success(result))
                 }
             }
             }
         } catch {
-            print("❌ [文件移动失败] \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                completion(.failure(.fileSystemError("文件移动失败: \(error.localizedDescription)")))
-            }
+            safeComplete(downloadId: downloadId, result: .failure(.fileSystemError("文件移动失败: \(error.localizedDescription)")))
         }
-        cleanupDownload(downloadId: downloadId)
     }
     func urlSession(
         _ session: URLSession,
@@ -1180,21 +1365,351 @@ extension AppStoreDownloadManager {
             }
         }
     }
+
+    private func findDownloadedFile(
+        downloadId: String,
+        location: URL,
+        destinationURL: URL,
+        expectedSize: Int64
+    ) -> URL? {
+        let fileManager = FileManager.default
+        let tempDir = NSTemporaryDirectory()
+        let cachesDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first ?? ""
+        let libraryDir = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first ?? ""
+        let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? ""
+
+        var searchPaths: [String] = []
+
+        let standardPaths = [
+            tempDir + location.lastPathComponent,
+            tempDir + "\(downloadId).tmp",
+            tempDir + "\(downloadId).download",
+            cachesDir + "/\(location.lastPathComponent)",
+            cachesDir + "/\(downloadId).tmp",
+            cachesDir + "/\(downloadId).download",
+            cachesDir + "/com.apple.nsurlsessiond/Downloads/\(location.lastPathComponent)",
+            cachesDir + "/com.apple.nsurlsessiond/Downloads/\(downloadId)",
+            cachesDir + "/com.apple.CFNetworkDownload_\(downloadId).tmp",
+            libraryDir + "/Caches/\(location.lastPathComponent)",
+            libraryDir + "/Caches/\(downloadId).tmp",
+            libraryDir + "/Caches/com.apple.nsurlsessiond/Downloads/\(location.lastPathComponent)",
+            libraryDir + "/Caches/com.apple.CFNetworkDownload_\(downloadId).tmp",
+            destinationURL.path + ".download",
+            destinationURL.deletingLastPathComponent().path + "/\(location.lastPathComponent)",
+            destinationURL.deletingLastPathComponent().path + "/\(downloadId).tmp",
+            docsDir + "/\(location.lastPathComponent)",
+            docsDir + "/\(downloadId).tmp",
+            docsDir + "/Downloads/\(location.lastPathComponent)"
+        ]
+        searchPaths.append(contentsOf: standardPaths)
+
+        let isTrollStore = EnvironmentDetector.shared.isTrollStore
+        let isJailbroken = EnvironmentDetector.shared.isJailbroken
+
+        if isTrollStore || isJailbroken {
+            let bundleId = Bundle.main.bundleIdentifier ?? ""
+            let trollStorePaths = [
+                "/var/mobile/Library/Caches/\(location.lastPathComponent)",
+                "/var/mobile/Library/Caches/com.apple.nsurlsessiond/Downloads/\(location.lastPathComponent)",
+                "/private/var/mobile/Library/Caches/\(location.lastPathComponent)",
+                "/private/var/mobile/Library/Caches/com.apple.nsurlsessiond/Downloads/\(location.lastPathComponent)",
+                "/var/mobile/Containers/Data/Application/\(bundleId)/tmp/\(location.lastPathComponent)",
+                "/var/mobile/Containers/Data/Application/\(bundleId)/Library/Caches/\(location.lastPathComponent)",
+                "/var/tmp/\(location.lastPathComponent)",
+                "/private/var/tmp/\(location.lastPathComponent)",
+                "/tmp/\(location.lastPathComponent)",
+                "/var/mobile/tmp/\(location.lastPathComponent)",
+                "/private/var/mobile/tmp/\(location.lastPathComponent)"
+            ]
+            searchPaths.append(contentsOf: trollStorePaths)
+        }
+
+        for path in searchPaths {
+            if fileManager.fileExists(atPath: path) {
+                do {
+                    let attrs = try fileManager.attributesOfItem(atPath: path)
+                    let fileSize = attrs[.size] as? Int64 ?? 0
+                    if expectedSize > 0 {
+                        let sizeDiff = abs(fileSize - expectedSize)
+                        let sizeRatio = Double(sizeDiff) / Double(expectedSize)
+                        if sizeRatio < 0.05 {
+                            return URL(fileURLWithPath: path)
+                        } else {
+                        }
+                    } else {
+                        return URL(fileURLWithPath: path)
+                    }
+                } catch {
+                    if fileManager.fileExists(atPath: path) {
+                        return URL(fileURLWithPath: path)
+                    }
+                }
+            }
+        }
+
+        if let deepSearchResult = deepSearchForFile(
+            in: cachesDir,
+            expectedSize: expectedSize,
+            downloadId: downloadId,
+            locationLastPath: location.lastPathComponent
+        ) {
+            return deepSearchResult
+        }
+
+        if isTrollStore || isJailbroken {
+            let systemCacheDirs = [
+                "/var/mobile/Library/Caches",
+                "/private/var/mobile/Library/Caches"
+            ]
+            for dir in systemCacheDirs {
+                if let result = deepSearchForFile(
+                    in: dir,
+                    expectedSize: expectedSize,
+                    downloadId: downloadId,
+                    locationLastPath: location.lastPathComponent
+                ) {
+                    return result
+                }
+            }
+        }
+
+        return nil
+    }
+
+    private func deepSearchForFile(
+        in directory: String,
+        expectedSize: Int64,
+        downloadId: String,
+        locationLastPath: String
+    ) -> URL? {
+        let fileManager = FileManager.default
+        guard let enumerator = fileManager.enumerator(atPath: directory) else {
+            return nil
+        }
+
+        var candidates: [(path: String, size: Int64)] = []
+        let maxCandidates = 50
+        var checkedCount = 0
+        let maxCheck = 500
+
+        while let filePath = enumerator.nextObject() as? String, checkedCount < maxCheck {
+            checkedCount += 1
+            let fullPath = (directory as NSString).appendingPathComponent(filePath)
+            let fileName = (fullPath as NSString).lastPathComponent
+
+            let isPossibleMatch = fileName.contains(locationLastPath)
+                || fileName.contains(downloadId)
+                || fileName.hasSuffix(".ipa")
+                || fileName.hasSuffix(".tmp")
+                || fileName.hasSuffix(".download")
+
+            if isPossibleMatch {
+                do {
+                    let attrs = try fileManager.attributesOfItem(atPath: fullPath)
+                    let fileSize = attrs[.size] as? Int64 ?? 0
+
+                    if expectedSize > 0 {
+                        let sizeDiff = abs(fileSize - expectedSize)
+                        let sizeRatio = Double(sizeDiff) / Double(expectedSize)
+                        if sizeRatio < 0.05 {
+                            return URL(fileURLWithPath: fullPath)
+                        } else if sizeRatio < 0.3 {
+                            candidates.append((fullPath, fileSize))
+                        }
+                    } else {
+                        candidates.append((fullPath, fileSize))
+                    }
+                } catch {
+                    continue
+                }
+            }
+
+            if candidates.count >= maxCandidates {
+                break
+            }
+        }
+
+        if !candidates.isEmpty {
+            let bestMatch = candidates.min { abs($0.size - expectedSize) < abs($1.size - expectedSize) }
+            if let best = bestMatch {
+                return URL(fileURLWithPath: best.path)
+            }
+        }
+
+        return nil
+    }
+
+    private func lastResortFileSearch(expectedSize: Int64, downloadId: String) -> URL? {
+        let fileManager = FileManager.default
+        let tempDir = NSTemporaryDirectory()
+        let cachesDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first ?? ""
+        let libraryDir = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first ?? ""
+        let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? ""
+
+        var searchDirs = [tempDir, cachesDir, libraryDir + "/Caches", docsDir]
+
+        let isTrollStore = EnvironmentDetector.shared.isTrollStore
+        let isJailbroken = EnvironmentDetector.shared.isJailbroken
+        if isTrollStore || isJailbroken {
+            searchDirs.append(contentsOf: [
+                "/var/tmp",
+                "/private/var/tmp",
+                "/tmp",
+                "/var/mobile/Library/Caches",
+                "/private/var/mobile/Library/Caches"
+            ])
+        }
+
+        var candidates: [(path: String, size: Int64, modDate: Date)] = []
+
+        for dir in searchDirs {
+            guard let enumerator = fileManager.enumerator(atPath: dir) else { continue }
+            var checked = 0
+            while let filePath = enumerator.nextObject() as? String, checked < 1000 {
+                checked += 1
+                let fullPath = (dir as NSString).appendingPathComponent(filePath)
+                let fileName = (fullPath as NSString).lastPathComponent
+
+                let isPossible = fileName.hasSuffix(".ipa")
+                    || fileName.hasSuffix(".tmp")
+                    || fileName.hasSuffix(".download")
+                    || fileName.contains("CFNetwork")
+                    || fileName.contains("nsurlsession")
+                    || fileName.contains(downloadId)
+
+                guard isPossible else { continue }
+
+                do {
+                    let attrs = try fileManager.attributesOfItem(atPath: fullPath)
+                    let fileSize = attrs[.size] as? Int64 ?? 0
+                    let modDate = attrs[.modificationDate] as? Date ?? Date.distantPast
+
+                    if expectedSize > 0 {
+                        let sizeDiff = abs(fileSize - expectedSize)
+                        let sizeRatio = Double(sizeDiff) / Double(expectedSize)
+                        if sizeRatio < 0.5 {
+                            candidates.append((fullPath, fileSize, modDate))
+                        }
+                    } else if fileSize > 1024 * 1024 {
+                        candidates.append((fullPath, fileSize, modDate))
+                    }
+                } catch {
+                    continue
+                }
+            }
+        }
+
+        if !candidates.isEmpty {
+            candidates.sort { $0.modDate > $1.modDate }
+            if expectedSize > 0 {
+                candidates.sort { abs($0.size - expectedSize) < abs($1.size - expectedSize) }
+            }
+            if let best = candidates.first {
+                return URL(fileURLWithPath: best.path)
+            }
+        }
+
+        return nil
+    }
+
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+        guard let downloadId = dataTask.taskDescription, !downloadId.isEmpty else {
+            completionHandler(.allow)
+            return
+        }
+        let expectedSize = response.expectedContentLength
+        directDownloadExpectedSize[downloadId] = expectedSize
+        completionHandler(.allow)
+    }
+
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        guard let downloadId = dataTask.taskDescription, !downloadId.isEmpty else { return }
+
+        if let fileHandle = directDownloadFileHandles[downloadId] {
+            do {
+                if #available(iOS 13.0, *) {
+                    try fileHandle.seekToEnd()
+                } else {
+                    fileHandle.seekToEndOfFile()
+                }
+                fileHandle.write(data)
+                directDownloadBytesWritten[downloadId] = (directDownloadBytesWritten[downloadId] ?? 0) + Int64(data.count)
+            } catch {
+                print("⚠️ [直接下载] 写入文件失败: \(error.localizedDescription)")
+            }
+        }
+
+        let totalBytesWritten = directDownloadBytesWritten[downloadId] ?? 0
+        let totalBytesExpected = directDownloadExpectedSize[downloadId] ?? 0
+        let progress = totalBytesExpected > 0 ? Double(totalBytesWritten) / Double(totalBytesExpected) : 0
+
+        guard let progressHandler = progressHandlers[downloadId],
+              let startTime = downloadStartTimes[downloadId] else {
+            return
+        }
+
+        let currentTime = Date()
+        var speed: Double = 0.0
+        if let lastUpdate = lastProgressUpdate[downloadId] {
+            let timeDiff = currentTime.timeIntervalSince(lastUpdate.time)
+            if timeDiff > 0 {
+                let bytesDiff = totalBytesWritten - lastUpdate.bytes
+                speed = Double(bytesDiff) / timeDiff
+            }
+        } else {
+            let totalTime = currentTime.timeIntervalSince(startTime)
+            if totalTime > 0 {
+                speed = Double(totalBytesWritten) / totalTime
+            }
+        }
+
+        lastProgressUpdate[downloadId] = (totalBytesWritten, currentTime)
+
+        var remainingTime: TimeInterval = 0
+        if speed > 0 && totalBytesExpected > 0 {
+            remainingTime = Double(totalBytesExpected - totalBytesWritten) / speed
+        }
+
+        let downloadProgress = DownloadProgress(
+            downloadId: downloadId,
+            bytesDownloaded: totalBytesWritten,
+            totalBytes: totalBytesExpected,
+            progress: progress,
+            speed: speed,
+            remainingTime: remainingTime,
+            status: .downloading
+        )
+
+        DispatchQueue.main.async {
+            progressHandler(downloadProgress)
+        }
+    }
+
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if let dataTask = task as? URLSessionDataTask, let tid = dataTask.taskDescription, !tid.isEmpty {
+            handleDirectDownloadCompletion(downloadId: tid, error: error)
+            return
+        }
+
         guard let downloadTask = task as? URLSessionDownloadTask,
               let downloadId = downloadId(for: downloadTask),
-              let completion = completionHandlers[downloadId],
               let _ = downloadDestinations[downloadId],
               let _ = downloadStoreItems[downloadId] else {
             return
         }
 
+        if isRetryingDownload.contains(downloadId) {
+            return
+        }
+
+        if completedDownloads.contains(downloadId) {
+            return
+        }
+
         if let error = error {
-            print("❌ [下载失败] 任务ID: \(downloadId)，错误: \(error.localizedDescription)")
 
             if let resumeData = (error as NSError).userInfo[NSURLSessionDownloadTaskResumeData] as? Data {
                 resumeDataStore[downloadId] = resumeData
-                print("💾 [断点续传] 已保存断点续传数据，大小: \(resumeData.count) 字节")
             }
 
             if let nsError = error as NSError? {
@@ -1203,47 +1718,167 @@ extension AppStoreDownloadManager {
 
                     switch nsError.code {
                     case NSURLErrorNotConnectedToInternet:
-                        print("📶 [网络错误] 设备未连接到互联网")
-                        DispatchQueue.main.async {
-                            completion(.failure(.networkError(NSError(domain: "DownloadManager", code: -1, userInfo: [NSLocalizedDescriptionKey: "设备未连接到互联网，请检查网络连接后重试"]))))
-                        }
+                        safeComplete(downloadId: downloadId, result: .failure(.networkError(NSError(domain: "DownloadManager", code: -1, userInfo: [NSLocalizedDescriptionKey: "设备未连接到互联网，请检查网络连接后重试"]))))
                     case NSURLErrorTimedOut:
-                        print("⏱️ [网络错误] 下载超时")
-                        DispatchQueue.main.async {
-                            completion(.failure(.networkError(NSError(domain: "DownloadManager", code: -2, userInfo: [NSLocalizedDescriptionKey: "下载超时，请检查网络连接后重试"]))))
-                        }
+                        safeComplete(downloadId: downloadId, result: .failure(.networkError(NSError(domain: "DownloadManager", code: -2, userInfo: [NSLocalizedDescriptionKey: "下载超时，请检查网络连接后重试"]))))
                     case NSURLErrorCancelled:
-                        print("🚫 [下载取消] 下载任务已被取消")
-                        DispatchQueue.main.async {
-                            completion(.failure(.unknownError("下载已取消")))
-                        }
+                        safeComplete(downloadId: downloadId, result: .failure(.unknownError("下载已取消")))
                     default:
-                        print("🌐 [网络错误] 其他网络错误，错误码: \(nsError.code)")
-                        DispatchQueue.main.async {
-                            completion(.failure(.networkError(NSError(domain: "DownloadManager", code: -3, userInfo: [NSLocalizedDescriptionKey: "下载失败，请稍后重试"]))))
-                        }
+                        safeComplete(downloadId: downloadId, result: .failure(.networkError(NSError(domain: "DownloadManager", code: -3, userInfo: [NSLocalizedDescriptionKey: "下载失败，请稍后重试"]))))
                     }
                 } else if nsError.domain == "NSCocoaErrorDomain" {
 
-                    print("💾 [文件错误] 文件系统错误，错误码: \(nsError.code)")
-                    DispatchQueue.main.async {
-                        completion(.failure(.fileSystemError("文件操作失败，请确保有足够的存储空间")))
-                    }
+                    safeComplete(downloadId: downloadId, result: .failure(.fileSystemError("文件操作失败，请确保有足够的存储空间")))
                 } else {
 
-                    print("❓ [未知错误] 错误域: \(nsError.domain)，错误码: \(nsError.code)")
-                    DispatchQueue.main.async {
-                        completion(.failure(.unknownError("下载过程中发生未知错误")))
-                    }
+                    safeComplete(downloadId: downloadId, result: .failure(.unknownError("下载过程中发生未知错误")))
                 }
             } else {
 
-                DispatchQueue.main.async {
-                    completion(.failure(.unknownError("下载失败: \(error.localizedDescription)")))
-                }
+                safeComplete(downloadId: downloadId, result: .failure(.unknownError("下载失败: \(error.localizedDescription)")))
             }
         }
-        cleanupDownload(downloadId: downloadId)
+    }
+
+    private func handleDirectDownloadCompletion(downloadId: String, error: Error?) {
+        guard let destinationURL = downloadDestinations[downloadId],
+              let storeItem = downloadStoreItems[downloadId] else {
+            return
+        }
+
+        if let fileHandle = directDownloadFileHandles[downloadId] {
+            do {
+                if #available(iOS 13.0, *) {
+                    try fileHandle.close()
+                } else {
+                    fileHandle.closeFile()
+                }
+            } catch {}
+            directDownloadFileHandles.removeValue(forKey: downloadId)
+        }
+
+        if let error = error {
+            let nsError = error as NSError
+            if nsError.domain == NSURLErrorDomain {
+                switch nsError.code {
+                case NSURLErrorNotConnectedToInternet:
+                    safeComplete(downloadId: downloadId, result: .failure(.networkError(NSError(domain: "DownloadManager", code: -1, userInfo: [NSLocalizedDescriptionKey: "设备未连接到互联网，请检查网络连接后重试"]))))
+                case NSURLErrorTimedOut:
+                    safeComplete(downloadId: downloadId, result: .failure(.networkError(NSError(domain: "DownloadManager", code: -2, userInfo: [NSLocalizedDescriptionKey: "下载超时，请检查网络连接后重试"]))))
+                case NSURLErrorCancelled:
+                    safeComplete(downloadId: downloadId, result: .failure(.unknownError("下载已取消")))
+                default:
+                    safeComplete(downloadId: downloadId, result: .failure(.networkError(NSError(domain: "DownloadManager", code: -3, userInfo: [NSLocalizedDescriptionKey: "下载失败，请稍后重试"]))))
+                }
+            } else {
+                safeComplete(downloadId: downloadId, result: .failure(.unknownError("下载失败: \(error.localizedDescription)")))
+            }
+            return
+        }
+
+        var downloadedFileSize: Int64 = 0
+
+        if let tempFileURL = directDownloadTempFiles[downloadId],
+           FileManager.default.fileExists(atPath: tempFileURL.path),
+           let fileSize = try? FileManager.default.attributesOfItem(atPath: tempFileURL.path)[.size] as? NSNumber,
+           fileSize.int64Value > 0 {
+            downloadedFileSize = fileSize.int64Value
+            print("📦 [直接下载] 临时文件大小: \(tempFileURL.lastPathComponent), 大小: \(downloadedFileSize)")
+        }
+
+        guard let tempFileURL = directDownloadTempFiles[downloadId],
+              FileManager.default.fileExists(atPath: tempFileURL.path),
+              downloadedFileSize > 0 else {
+            safeComplete(downloadId: downloadId, result: .failure(.fileSystemError("下载数据为空或临时文件不存在")))
+            return
+        }
+
+        do {
+            let targetDirectory = destinationURL.deletingLastPathComponent()
+            if !FileManager.default.fileExists(atPath: targetDirectory.path) {
+                try FileManager.default.createDirectory(at: targetDirectory, withIntermediateDirectories: true, attributes: nil)
+            }
+
+            let tempTargetURL = destinationURL.appendingPathExtension("tmp")
+
+            if FileManager.default.fileExists(atPath: tempTargetURL.path) {
+                try FileManager.default.removeItem(at: tempTargetURL)
+            }
+
+            try FileManager.default.moveItem(at: tempFileURL, to: tempTargetURL)
+
+            if FileManager.default.fileExists(atPath: destinationURL.path) {
+                let _ = try? FileManager.default.replaceItemAt(
+                    destinationURL,
+                    withItemAt: tempTargetURL,
+                    backupItemName: nil,
+                    options: []
+                )
+            } else {
+                try FileManager.default.moveItem(at: tempTargetURL, to: destinationURL)
+            }
+
+            print("✅ [直接下载] 临时文件移动到目标位置: \(destinationURL.lastPathComponent)")
+
+            let result = DownloadResult(
+                downloadId: downloadId,
+                fileURL: destinationURL,
+                fileSize: downloadedFileSize,
+                metadata: DownloadAppMetadata(
+                    bundleId: storeItem.metadata.bundleId,
+                    bundleDisplayName: storeItem.metadata.bundleDisplayName,
+                    bundleShortVersionString: storeItem.metadata.bundleShortVersionString,
+                    softwareVersionExternalIdentifier: storeItem.metadata.softwareVersionExternalIdentifier,
+                    softwareVersionExternalIdentifiers: storeItem.metadata.softwareVersionExternalIdentifiers
+                ),
+                sinfs: storeItem.sinfs,
+                expectedMD5: storeItem.md5
+            )
+
+            Task { @MainActor in
+                IPAProcessor.shared.processIPA(at: destinationURL, withSinfs: storeItem.sinfs) { processingResult in
+                    switch processingResult {
+                    case .success(let processedIPA):
+
+                        Task {
+                            do {
+                                guard let metadata = result.metadata else {
+                                    self.safeComplete(downloadId: downloadId, result: .success(result))
+                                    return
+                                }
+
+                                let finalIPA = try await self.generateiTunesMetadata(
+                                    for: processedIPA.path,
+                                    bundleId: metadata.bundleId,
+                                    displayName: metadata.bundleDisplayName,
+                                    version: metadata.bundleShortVersionString,
+                                    externalVersionId: Int(metadata.softwareVersionExternalIdentifier) ?? 0,
+                                    externalVersionIds: metadata.softwareVersionExternalIdentifiers
+                                )
+
+
+                                let finalResult = DownloadResult(
+                                    downloadId: result.downloadId,
+                                    fileURL: URL(fileURLWithPath: finalIPA),
+                                    fileSize: result.fileSize,
+                                    metadata: result.metadata,
+                                    sinfs: result.sinfs,
+                                    expectedMD5: result.expectedMD5
+                                )
+
+                                self.safeComplete(downloadId: downloadId, result: .success(finalResult))
+                            } catch {
+                                self.safeComplete(downloadId: downloadId, result: .success(result))
+                            }
+                        }
+                    case .failure(_):
+                        self.safeComplete(downloadId: downloadId, result: .success(result))
+                    }
+                }
+            }
+        } catch {
+            safeComplete(downloadId: downloadId, result: .failure(.fileSystemError("文件写入失败: \(error.localizedDescription)")))
+        }
     }
 }
 
@@ -1415,8 +2050,6 @@ extension AppStoreDownloadManager {
         externalVersionId: Int,
         externalVersionIds: [Int]?
     ) async throws -> String {
-        print("🔧 [iTunesMetadata] 开始为IPA文件强制生成iTunesMetadata.plist: \(ipaPath)")
-        print("🔧 [iTunesMetadata] 参数信息:")
         print("   - Bundle ID: \(bundleId)")
         print("   - Display Name: \(displayName)")
         print("   - Version: \(version)")
@@ -1455,7 +2088,6 @@ extension AppStoreDownloadManager {
             "versionRestrictions": 0
         ]
 
-        print("🔧 [iTunesMetadata] 构建的元数据字典包含 \(metadataDict.count) 个字段")
 
         let plistData = try PropertyListSerialization.data(
             fromPropertyList: metadataDict,
@@ -1463,10 +2095,8 @@ extension AppStoreDownloadManager {
             options: 0
         )
 
-        print("🔧 [iTunesMetadata] 成功生成plist数据，大小: \(ByteCountFormatter().string(fromByteCount: Int64(plistData.count)))")
 
 
-        print("⚡ [iTunesMetadata] 使用FastZipArchive增量添加iTunesMetadata.plist")
 
         let success = FastZipArchive.shared.addFiles(
             toZipAtPath: ipaPath,
@@ -1477,7 +2107,6 @@ extension AppStoreDownloadManager {
             throw NSError(domain: "iTunesMetadataProcessing", code: 1, userInfo: [NSLocalizedDescriptionKey: "FastZipArchive添加iTunesMetadata.plist失败"])
         }
 
-        print("✅ [iTunesMetadata] 成功使用FastZipArchive处理IPA文件")
         return ipaPath
     }
 }

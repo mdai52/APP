@@ -16,6 +16,14 @@ enum AppTheme: Int, CaseIterable {
     case light = 1
     case dark = 2
     case system = 0
+    
+    var displayName: String {
+        switch self {
+        case .system: return "follow_system".localized
+        case .light: return "light_mode".localized
+        case .dark: return "dark_mode".localized
+        }
+    }
 }
 @MainActor
 class ThemeManager: ObservableObject, @unchecked Sendable {
@@ -23,11 +31,17 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
 
     @Published var selectedTheme: AppTheme = .system {
         didSet {
-            updateUserInterfaceStyle()
+            UserDefaults.standard.set(selectedTheme.rawValue, forKey: "Feather.userInterfaceStyle")
+            print("🎨 [ThemeManager] 主题已更新为: \(selectedTheme)")
         }
     }
 
-    @Published var accentColor: Color = Color(hex: "#007AFF")
+    @Published var accentColor: Color = Color(hex: "#007AFF") {
+        didSet {
+            updateWindowTintColor()
+            saveAccentColor()
+        }
+    }
 
     private var notificationObserver: Any?
 
@@ -52,8 +66,6 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
                 self?.updateAccentColor()
             }
         }
-
-        updateUserInterfaceStyle()
     }
 
     deinit {
@@ -67,6 +79,19 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
 
         let savedColorHex = UserDefaults.standard.string(forKey: "APP.userTintColor") ?? "#007AFF"
         accentColor = Color(hex: savedColorHex)
+    }
+
+    private func saveAccentColor() {
+        let hex = accentColor.toHex()
+        UserDefaults.standard.set(hex, forKey: "APP.userTintColor")
+    }
+
+    private func updateWindowTintColor() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            for window in windowScene.windows {
+                window.tintColor = UIColor(accentColor)
+            }
+        }
     }
 
     var isDarkMode: Bool {
@@ -153,8 +178,10 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
     }
 
     func updateUserInterfaceStyle() {
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            for window in windowScene.windows {
+        // Find the active window scene and all its windows
+        let windowScenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+        for scene in windowScenes {
+            for window in scene.windows {
                 switch selectedTheme {
                 case .light:
                     window.overrideUserInterfaceStyle = .light
@@ -218,9 +245,8 @@ struct FloatingThemeSelector: View {
     @Binding var isPresented: Bool
 
     var body: some View {
-        ZStack {
-
-            if isPresented {
+        if isPresented {
+            ZStack {
                 Color.black.opacity(0.3)
                     .ignoresSafeArea()
                     .onTapGesture {
@@ -228,9 +254,7 @@ struct FloatingThemeSelector: View {
                             isPresented = false
                         }
                     }
-            }
 
-            if isPresented {
                 VStack(spacing: 0) {
                     Spacer()
 
@@ -265,6 +289,7 @@ struct FloatingThemeSelector: View {
                     .padding(.bottom, 80)
                 }
             }
+            .transition(.opacity)
         }
     }
 }

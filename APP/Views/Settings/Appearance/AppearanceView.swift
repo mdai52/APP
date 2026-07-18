@@ -8,10 +8,10 @@ private extension UIUserInterfaceStyle {
 
     var displayName: String {
         switch self {
-        case .unspecified: return "auto".localized
+        case .unspecified: return "follow_system".localized
         case .light: return "light_mode".localized
         case .dark: return "dark_mode".localized
-        @unknown default: return "unknown".localized
+        @unknown default: return "none".localized
         }
     }
 }
