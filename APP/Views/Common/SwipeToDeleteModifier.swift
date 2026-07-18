@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct SwipeAction {
     let title: String
@@ -10,7 +11,6 @@ struct SwipeAction {
 struct SwipeActionsModifier: ViewModifier {
     var actions: [SwipeAction]
     @State private var offset: CGFloat = 0
-    @State private var isDragging = false
     
     private var totalButtonWidth: CGFloat {
         CGFloat(actions.count) * 80
@@ -23,23 +23,21 @@ struct SwipeActionsModifier: ViewModifier {
             
             content
                 .offset(x: offset)
-                .gesture(
-                    DragGesture()
-                        .onChanged { value in
-                            if value.translation.width < 0 {
-                                isDragging = true
-                                let dragAmount = -value.translation.width
+                .overlay(
+                    SwipeGestureView(
+                        onSwipeChange: { translation in
+                            if translation < 0 {
+                                let dragAmount = -translation
                                 let resistance: CGFloat = dragAmount > totalButtonWidth ? 0.3 : 1.0
                                 offset = -min(dragAmount * resistance, maxSwipeDistance)
-                            } else if isDragging {
-                                offset = min(value.translation.width * 0.5, 0)
+                            } else {
+                                offset = min(translation * 0.5, 0)
                             }
-                        }
-                        .onEnded { value in
-                            isDragging = false
-                            let dragAmount = -value.translation.width
+                        },
+                        onSwipeEnd: { translation, velocity in
+                            let dragAmount = -translation
                             
-                            if dragAmount > totalButtonWidth * 0.4 {
+                            if dragAmount > totalButtonWidth * 0.4 || velocity < -200 {
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                                     offset = -totalButtonWidth
                                 }
@@ -49,6 +47,7 @@ struct SwipeActionsModifier: ViewModifier {
                                 }
                             }
                         }
+                    )
                 )
         }
     }
@@ -83,6 +82,91 @@ struct SwipeActionsModifier: ViewModifier {
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 16))
+    }
+}
+
+struct SwipeGestureView: UIViewRepresentable {
+    var onSwipeChange: (CGFloat) -> Void
+    var onSwipeEnd: (CGFloat, CGFloat) -> Void
+    
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .clear
+        
+        let panGesture = UIPanGestureRecognizer(
+            target: context.coordinator,
+            action: #selector(Coordinator.handlePan(_:))
+        )
+        panGesture.delegate = context.coordinator
+        panGesture.minimumNumberOfTouches = 1
+        view.addGestureRecognizer(panGesture)
+        
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(onSwipeChange: onSwipeChange, onSwipeEnd: onSwipeEnd)
+    }
+    
+    class Coordinator: NSObject, UIGestureRecognizerDelegate {
+        var onSwipeChange: (CGFloat) -> Void
+        var onSwipeEnd: (CGFloat, CGFloat) -> Void
+        private var initialTranslation: CGPoint = .zero
+        private var didBeginHorizontal = false
+        
+        init(onSwipeChange: @escaping (CGFloat) -> Void, onSwipeEnd: @escaping (CGFloat, CGFloat) -> Void) {
+            self.onSwipeChange = onSwipeChange
+            self.onSwipeEnd = onSwipeEnd
+        }
+        
+        @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
+            let translation = gesture.translation(in: gesture.view)
+            
+            switch gesture.state {
+            case .began:
+                initialTranslation = translation
+                didBeginHorizontal = false
+            case .changed:
+                let deltaX = translation.x - initialTranslation.x
+                let deltaY = translation.y - initialTranslation.y
+                
+                if !didBeginHorizontal {
+                    if abs(deltaX) > abs(deltaY) && abs(deltaX) > 12 {
+                        didBeginHorizontal = true
+                        initialTranslation = translation
+                    }
+                    return
+                }
+                
+                let currentTranslation = translation.x - initialTranslation.x
+                onSwipeChange(currentTranslation)
+                
+            case .ended, .cancelled, .failed:
+                if didBeginHorizontal {
+                    let velocity = gesture.velocity(in: gesture.view).x
+                    let finalTranslation = translation.x - initialTranslation.x
+                    onSwipeEnd(finalTranslation, velocity)
+                }
+                didBeginHorizontal = false
+                
+            default:
+                break
+            }
+        }
+        
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            return true
+        }
+        
+        func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+            guard let pan = gestureRecognizer as? UIPanGestureRecognizer else {
+                return false
+            }
+            let velocity = pan.velocity(in: pan.view)
+            return abs(velocity.x) > abs(velocity.y) && abs(velocity.x) > 50
+        }
     }
 }
 

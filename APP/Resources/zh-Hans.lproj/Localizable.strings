@@ -7,7 +7,7 @@
 // MARK: - Common
 "cancel" = "取消";
 "confirm" = "确定";
-"ok" = "好的";
+"ok" = "👌";
 "done" = "完成";
 "back" = "返回";
 "save" = "保存";
@@ -62,6 +62,8 @@
 "follow_system" = "跟随系统";
 "light_mode" = "浅色";
 "dark_mode" = "深色";
+"auto" = "自动";
+"auto_theme_description" = "基于日出或日落，自动在浅色和深色之间切换。";
 "accent_color" = "整体颜色";
 "app_icon" = "应用图标";
 "select_icon" = "选择图标";

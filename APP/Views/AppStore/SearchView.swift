@@ -2309,10 +2309,39 @@ struct SearchView: SwiftUI.View {
                 switch storeVersionsResult {
                 case .success(let versions):
                     await MainActor.run {
-                        self.availableVersions = versions
+                        var mergedVersions = versions
+                        
+                        var versionInfoMap: [String: (releaseDate: Date?, releaseNotes: String?)] = [:]
+                        for h in hist {
+                            versionInfoMap[h.version] = (h.releaseDate, h.releaseNotes)
+                        }
+                        
+                        for i in 0..<mergedVersions.count {
+                            var v = mergedVersions[i]
+                            let verStr = v.versionString
+                            
+                            if v.versionString.hasPrefix("历史版本") || v.versionString.isEmpty {
+                                if i < hist.count {
+                                    mergedVersions[i].versionString = hist[i].version
+                                    if v.releaseDate == nil {
+                                        mergedVersions[i].releaseDate = hist[i].releaseDate
+                                    }
+                                    mergedVersions[i].releaseNotes = hist[i].releaseNotes
+                                }
+                            } else if let info = versionInfoMap[verStr] {
+                                if v.releaseDate == nil {
+                                    mergedVersions[i].releaseDate = info.releaseDate
+                                }
+                                if (v.releaseNotes == nil || v.releaseNotes!.isEmpty) && info.releaseNotes != nil && !info.releaseNotes!.isEmpty {
+                                    mergedVersions[i].releaseNotes = info.releaseNotes
+                                }
+                            }
+                        }
+                        
+                        self.availableVersions = mergedVersions
                         self.versionHistory = hist
                         self.isLoadingVersions = false
-                        print("[SearchView] 成功加载 \(versions.count) 个版本, 历史记录 \(hist.count) 条")
+                        print("[SearchView] 成功加载 \(mergedVersions.count) 个版本, 历史记录 \(hist.count) 条")
                     }
                 case .failure(let error):
                     throw error
@@ -2506,13 +2535,6 @@ struct SearchView: SwiftUI.View {
                     }
                 }
 
-                if let note = shortReleaseNote(for: version) {
-                    Text(note)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .lineLimit(2)
-                }
-
                 HStack(spacing: 8) {
                     Image(systemName: "number.circle.fill")
                         .font(.caption2)
@@ -2633,8 +2655,13 @@ struct SearchView: SwiftUI.View {
     }
 
     private func shortReleaseNote(for version: StoreAppVersion) -> String? {
+        if let rn = version.releaseNotes, !rn.isEmpty {
+            let firstLine = rn.split(separator: "\n").first.map(String.init) ?? rn
+            return firstLine
+        }
+        
         let versionStr = version.versionString
-
+        
         for h in versionHistory {
             if h.version == versionStr {
                 if let rn = h.releaseNotes, !rn.isEmpty {
@@ -2642,41 +2669,6 @@ struct SearchView: SwiftUI.View {
                     return firstLine
                 }
             }
-        }
-
-        for h in versionHistory {
-            if versionStr.hasPrefix(h.version) || h.version.hasPrefix(versionStr) {
-                if let rn = h.releaseNotes, !rn.isEmpty {
-                    let firstLine = rn.split(separator: "\n").first.map(String.init) ?? rn
-                    return firstLine
-                }
-            }
-        }
-
-        let versionComponents = versionStr.split(separator: ".").map(String.init)
-        for h in versionHistory {
-            let hComponents = h.version.split(separator: ".").map(String.init)
-            let minCount = min(versionComponents.count, hComponents.count)
-            var matchCount = 0
-            for i in 0..<minCount {
-                if versionComponents[i] == hComponents[i] {
-                    matchCount += 1
-                } else {
-                    break
-                }
-            }
-            if matchCount >= 2 {
-                if let rn = h.releaseNotes, !rn.isEmpty {
-                    let firstLine = rn.split(separator: "\n").first.map(String.init) ?? rn
-                    return firstLine
-                }
-            }
-        }
-
-        if let latestVersion = versionHistory.first,
-           let rn = latestVersion.releaseNotes, !rn.isEmpty {
-            let firstLine = rn.split(separator: "\n").first.map(String.init) ?? rn
-            return firstLine
         }
 
         return nil

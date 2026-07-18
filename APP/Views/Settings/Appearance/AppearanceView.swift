@@ -1,55 +1,37 @@
 import SwiftUI
 import UIKit
 
-private extension UIUserInterfaceStyle {
-    static var allStyles: [UIUserInterfaceStyle] {
-        return [.unspecified, .light, .dark]
-    }
-
-    var displayName: String {
-        switch self {
-        case .unspecified: return "follow_system".localized
-        case .light: return "light_mode".localized
-        case .dark: return "dark_mode".localized
-        @unknown default: return "none".localized
-        }
-    }
-}
-
 struct AppearanceView: View {
     @EnvironmentObject var themeManager: ThemeManager
-
-    private var selectedStyle: Binding<UIUserInterfaceStyle> {
-        Binding(
-            get: {
-                switch themeManager.selectedTheme {
-                case .system: return .unspecified
-                case .light: return .light
-                case .dark: return .dark
-                }
-            },
-            set: { newStyle in
-                switch newStyle {
-                case .unspecified: themeManager.selectedTheme = .system
-                case .light: themeManager.selectedTheme = .light
-                case .dark: themeManager.selectedTheme = .dark
-                @unknown default: break
-                }
-            }
-        )
-    }
 
     var body: some View {
         List {
             Section {
-                Picker("appearance".localized, selection: selectedStyle) {
-                    ForEach(UIUserInterfaceStyle.allStyles, id: \.self) { style in
-                        Text(style.displayName)
-                            .tag(style)
+                HStack(spacing: 8) {
+                    ForEach(AppTheme.allCases, id: \.self) { theme in
+                        Button(action: {
+                            let impactMed = UIImpactFeedbackGenerator(style: .light)
+                            impactMed.impactOccurred()
+                            themeManager.selectedTheme = theme
+                        }) {
+                            Text(theme.displayName)
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(themeManager.selectedTheme == theme ? .white : .primary)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 10)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(themeManager.selectedTheme == theme ? themeManager.accentColor : Color(.systemGray5))
+                                )
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
-                .pickerStyle(.segmented)
+            } header: {
+                Text("appearance".localized)
             }
         }
+        .navigationTitle("appearance".localized)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

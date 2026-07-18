@@ -971,8 +971,8 @@ struct DownloadView: SwiftUI.View {
 
     var downloadManagementSegmentView: some SwiftUI.View {
         ScrollView(.vertical, showsIndicators: true) {
-            LazyVStack(spacing: 16) {
-                Spacer(minLength: 16)
+            LazyVStack(spacing: 10) {
+                Spacer(minLength: 12)
 
                 if vm.downloadRequests.isEmpty {
                     emptyStateView
@@ -986,8 +986,8 @@ struct DownloadView: SwiftUI.View {
                 Spacer(minLength: 65)
             }
             .padding(.horizontal, 16)
-            .padding(.top, 8)
-            .padding(.bottom, 24)
+            .padding(.top, 4)
+            .padding(.bottom, 20)
             .background(
                 GeometryReader { geometry in
                     Color.clear
@@ -1041,7 +1041,52 @@ struct DownloadView: SwiftUI.View {
             .animation(Animation.spring().delay(Double(index) * 0.1), value: animateCards)
             .animation(nil, value: isScrollingFast)
             .id(request.id)
+            .swipeActions(
+                makeSwipeActions(for: request)
+            )
         }
+    }
+
+    private func makeSwipeActions(for request: DownloadRequest) -> [SwipeAction] {
+        var actions: [SwipeAction] = []
+
+        if request.runtime.status == .completed,
+           let localFilePath = request.localFilePath,
+           FileManager.default.fileExists(atPath: localFilePath) {
+            actions.append(
+                SwipeAction(
+                    title: "share".localized,
+                    systemImage: "square.and.arrow.up",
+                    backgroundColor: .blue
+                ) {
+                    shareIPAFile(path: localFilePath, name: request.package.name)
+                }
+            )
+        }
+
+        actions.append(
+            SwipeAction(
+                title: "delete".localized,
+                systemImage: "trash",
+                backgroundColor: .red
+            ) {
+                UnifiedDownloadManager.shared.deleteDownload(request: request)
+                UnifiedDownloadManager.shared.saveDownloadTasks()
+                
+                if let localFilePath = request.localFilePath, FileManager.default.fileExists(atPath: localFilePath) {
+                    do {
+                        try FileManager.default.removeItem(atPath: localFilePath)
+                        print("[DownloadView] 左滑删除 - 已删除本地文件: \(localFilePath)")
+                    } catch {
+                        print("[DownloadView] 左滑删除 - 删除本地文件失败: \(error.localizedDescription)")
+                    }
+                }
+                
+                NotificationCenter.default.post(name: NSNotification.Name("ForceRefreshUI"), object: nil)
+            }
+        )
+
+        return actions
     }
 
     private func shareIPAFile(path: String, name: String) {
@@ -1332,7 +1377,7 @@ struct DownloadCardView: SwiftUI.View {
 
 
     var body: some SwiftUI.View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 8) {
             topSection
 
             if shouldShowProgress {
@@ -1348,10 +1393,10 @@ struct DownloadCardView: SwiftUI.View {
                 completedStatusView
             }
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
         .background(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 14)
                 .fill(Color(.secondarySystemGroupedBackground))
                 .shadow(
                     color: colorScheme == .dark ? Color.black.opacity(0.4) : Color.black.opacity(0.08),
@@ -1375,10 +1420,10 @@ struct DownloadCardView: SwiftUI.View {
     }
 
     private var topSection: some SwiftUI.View {
-        HStack(alignment: .top, spacing: 12) {
+        HStack(alignment: .top, spacing: 10) {
             appIconView
             appInfoView
-            Spacer(minLength: 8)
+            Spacer(minLength: 6)
             actionButtonView
         }
     }
@@ -1390,46 +1435,46 @@ struct DownloadCardView: SwiftUI.View {
                     url: url,
                     aspectRatio: 1,
                     contentMode: .fill,
-                    cornerRadius: 14,
+                    cornerRadius: 12,
                     showsBorder: true,
                     loadingAnimation: !isPreview,
                     isPreview: isPreview
                 )
-                .frame(width: 64, height: 64)
+                .frame(width: 52, height: 52)
             } else {
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: 12)
                     .fill(Color(.systemGray5))
                     .overlay(
                         Image(systemName: "app.fill")
-                            .font(.system(size: 24))
+                            .font(.system(size: 20))
                             .foregroundColor(.secondary)
                     )
-                    .frame(width: 64, height: 64)
+                    .frame(width: 52, height: 52)
             }
         }
     }
 
     private var appInfoView: some SwiftUI.View {
-        VStack(alignment: .leading, spacing: 3) {
+        VStack(alignment: .leading, spacing: 2) {
             Text(request.package.name)
-                .font(.system(size: 17, weight: .semibold))
+                .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.primary)
                 .lineLimit(1)
 
             Text(request.package.bundleIdentifier)
-                .font(.system(size: 13))
+                .font(.system(size: 12))
                 .foregroundColor(.secondary)
                 .lineLimit(1)
 
             Text(String(format: "version_x".localized, request.version))
-                .font(.system(size: 13))
+                .font(.system(size: 12))
                 .foregroundColor(.secondary)
                 .lineLimit(1)
 
             if let localFilePath = request.localFilePath {
                 if let fileSize = getFileSize(path: localFilePath) {
                     Text(String(format: "file_size_x".localized, fileSize))
-                        .font(.system(size: 12))
+                        .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .lineLimit(1)
                 }
@@ -1452,14 +1497,14 @@ struct DownloadCardView: SwiftUI.View {
             Button(action: {
                 retryDownload()
             }) {
-                HStack(spacing: 4) {
+                HStack(spacing: 3) {
                     Text("🔄")
-                        .font(.system(size: 14))
+                        .font(.system(size: 13))
                     Text("retry".localized)
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 13, weight: .semibold))
                 }
                 .foregroundColor(.orange)
-                .frame(width: 84, height: 36)
+                .frame(width: 76, height: 32)
                 .background(
                     Capsule()
                         .fill(Color.orange.opacity(0.12))
@@ -1472,20 +1517,20 @@ struct DownloadCardView: SwiftUI.View {
                 Button(action: {
                     startInstallation(for: request)
                 }) {
-                    HStack(spacing: 6) {
+                    HStack(spacing: 4) {
                         if isInstalling {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                                .scaleEffect(0.8)
+                                .scaleEffect(0.7)
                         } else {
                             Text("📦")
-                                .font(.system(size: 16))
+                                .font(.system(size: 14))
                         }
                         Text(isInstalling ? "installing".localized : "install".localized)
-                            .font(.system(size: 15, weight: .bold))
+                            .font(.system(size: 13, weight: .bold))
                     }
                     .foregroundColor(.white)
-                    .frame(width: 96, height: 40)
+                    .frame(width: 84, height: 34)
                     .background(
                         LinearGradient(
                             colors: [themeManager.accentColor, themeManager.accentColor.opacity(0.85)],
@@ -1494,13 +1539,13 @@ struct DownloadCardView: SwiftUI.View {
                         )
                     )
                     .clipShape(Capsule())
-                    .shadow(color: themeManager.accentColor.opacity(0.4), radius: 8, x: 0, y: 4)
+                    .shadow(color: themeManager.accentColor.opacity(0.4), radius: 6, x: 0, y: 3)
                 }
                 .buttonStyle(PlainButtonStyle())
                 .disabled(isInstalling)
             } else {
                 Text("✅")
-                    .font(.system(size: 24))
+                    .font(.system(size: 20))
             }
         }
     }

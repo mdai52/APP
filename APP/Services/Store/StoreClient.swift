@@ -4,17 +4,19 @@ typealias iTunesSearchResponse = iTunesResponse
 
 public struct StoreAppVersion: Codable, Identifiable {
     public let id: UUID
-    public let versionString: String
+    public var versionString: String
     public let versionId: String
     public let isCurrent: Bool
-    public let releaseDate: Date?
+    public var releaseDate: Date?
+    public var releaseNotes: String?
 
-    public init(versionString: String, versionId: String, isCurrent: Bool, releaseDate: Date? = nil) {
+    public init(versionString: String, versionId: String, isCurrent: Bool, releaseDate: Date? = nil, releaseNotes: String? = nil) {
         self.id = UUID()
         self.versionString = versionString
         self.versionId = versionId
         self.isCurrent = isCurrent
         self.releaseDate = releaseDate
+        self.releaseNotes = releaseNotes
     }
 
     public var displayName: String {

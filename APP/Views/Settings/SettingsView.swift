@@ -276,13 +276,26 @@ extension SettingsView {
                 Spacer()
             }
 
-            Picker("", selection: $themeManager.selectedTheme) {
+            HStack(spacing: 8) {
                 ForEach(AppTheme.allCases, id: \.self) { theme in
-                    Text(theme.displayName)
-                        .tag(theme)
+                    Button(action: {
+                        let impactMed = UIImpactFeedbackGenerator(style: .light)
+                        impactMed.impactOccurred()
+                        themeManager.selectedTheme = theme
+                    }) {
+                        Text(theme.displayName)
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(themeManager.selectedTheme == theme ? .white : .primary)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(themeManager.selectedTheme == theme ? themeManager.accentColor : Color(.systemGray5))
+                            )
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
-            .pickerStyle(.segmented)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 14)

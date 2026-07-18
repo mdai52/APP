@@ -33,6 +33,9 @@ class ThemeManager: ObservableObject, @unchecked Sendable {
         didSet {
             UserDefaults.standard.set(selectedTheme.rawValue, forKey: "Feather.userInterfaceStyle")
             print("🎨 [ThemeManager] 主题已更新为: \(selectedTheme)")
+            DispatchQueue.main.async { [weak self] in
+                self?.updateUserInterfaceStyle()
+            }
         }
     }
 
@@ -236,6 +239,246 @@ enum ThemeMode: String, CaseIterable {
             return "light_mode".localized
         case .dark:
             return "dark_mode".localized
+        }
+    }
+}
+
+struct ThemePreviewCard: View {
+    let mode: ThemeMode
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 14) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 28)
+                        .fill(themeBackgroundColor)
+                        .frame(width: 130, height: 220)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 28)
+                                .stroke(isSelected ? themeManager.accentColor : borderColor, lineWidth: isSelected ? 3 : 1.5)
+                        )
+                        .shadow(color: isSelected ? themeManager.accentColor.opacity(0.35) : Color.black.opacity(0.15), radius: isSelected ? 16 : 8, x: 0, y: isSelected ? 8 : 4)
+
+                    VStack(spacing: 0) {
+                        statusBar
+                        contentArea
+                        Spacer(minLength: 0)
+                        dockArea
+                        homeIndicator
+                    }
+                    .frame(width: 130, height: 220)
+                    .clipShape(RoundedRectangle(cornerRadius: 28))
+
+                    dynamicIsland
+                }
+
+                Text(mode.displayName)
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundColor(.primary)
+
+                ZStack {
+                    Circle()
+                        .stroke(isSelected ? themeManager.accentColor : Color.gray.opacity(0.4), lineWidth: 2)
+                        .frame(width: 24, height: 24)
+
+                    if isSelected {
+                        Circle()
+                            .fill(themeManager.accentColor)
+                            .frame(width: 24, height: 24)
+
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(PlainButtonStyle())
+        .scaleEffect(isSelected ? 1.03 : 1.0)
+        .animation(.spring(response: 0.35, dampingFraction: 0.7), value: isSelected)
+    }
+
+    private var statusBar: some View {
+        HStack {
+            Text("9:41")
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundColor(themeTextColor)
+            Spacer()
+            HStack(spacing: 4) {
+                Image(systemName: "cellularbars")
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundColor(themeTextColor)
+                Image(systemName: "wifi")
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundColor(themeTextColor)
+                Image(systemName: "battery.100")
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundColor(themeTextColor)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 12)
+    }
+
+    private var dynamicIsland: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Capsule()
+                    .fill(themeTextColor.opacity(0.9))
+                    .frame(width: 36, height: 7)
+                Spacer()
+            }
+            .padding(.top, 14)
+            Spacer()
+        }
+    }
+
+    private var contentArea: some View {
+        VStack(spacing: 10) {
+            HStack(spacing: 8) {
+                widgetView
+                VStack(spacing: 6) {
+                    iconRow1
+                    iconRow2
+                }
+            }
+            .padding(.top, 6)
+
+            HStack(spacing: 8) {
+                iconRow3
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.top, 4)
+    }
+
+    private var widgetView: some View {
+        RoundedRectangle(cornerRadius: 12)
+            .fill(widgetGradient)
+            .frame(width: 50, height: 50)
+            .overlay(
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("天气")
+                        .font(.system(size: 7, weight: .medium))
+                        .foregroundColor(.white.opacity(0.9))
+                    Spacer()
+                    Text("24°")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(.white)
+                    Text("晴")
+                        .font(.system(size: 6))
+                        .foregroundColor(.white.opacity(0.8))
+                }
+                .padding(8)
+                .frame(maxWidth: .infinity, alignment: .leading),
+                alignment: .topLeading
+            )
+    }
+
+    private var iconRow1: some View {
+        HStack(spacing: 6) {
+            appIcon(color: Color.blue, icon: "envelope.fill")
+            appIcon(color: Color.green, icon: "message.fill")
+            appIcon(color: Color.orange, icon: "photo.fill")
+        }
+    }
+
+    private var iconRow2: some View {
+        HStack(spacing: 6) {
+            appIcon(color: Color.purple, icon: "music.note")
+            appIcon(color: Color.red, icon: "heart.fill")
+            appIcon(color: Color.teal, icon: "cloud.fill")
+        }
+    }
+
+    private var iconRow3: some View {
+        HStack(spacing: 6) {
+            appIcon(color: Color.indigo, icon: "gearshape.fill")
+            appIcon(color: Color.pink, icon: "heart.text.square.fill")
+            appIcon(color: Color.brown, icon: "book.fill")
+            appIcon(color: Color.mint, icon: "cart.fill")
+        }
+    }
+
+    private var dockArea: some View {
+        HStack(spacing: 8) {
+            appIcon(color: Color.green, icon: "phone.fill")
+            appIcon(color: Color.blue, icon: "safari.fill")
+            appIcon(color: Color.green, icon: "message.fill")
+            appIcon(color: Color.orange, icon: "music.note")
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(dockBackgroundColor)
+        )
+        .padding(.horizontal, 10)
+        .padding(.bottom, 8)
+    }
+
+    private var homeIndicator: some View {
+        RoundedRectangle(cornerRadius: 3)
+            .fill(themeTextColor.opacity(0.4))
+            .frame(width: 50, height: 4)
+            .padding(.bottom, 6)
+    }
+
+    private func appIcon(color: Color, icon: String) -> some View {
+        RoundedRectangle(cornerRadius: 8)
+            .fill(color)
+            .frame(width: 16, height: 16)
+            .overlay(
+                Image(systemName: icon)
+                    .font(.system(size: 9, weight: .semibold))
+                    .foregroundColor(.white)
+            )
+    }
+
+    private var widgetGradient: LinearGradient {
+        LinearGradient(
+            colors: mode == .light
+                ? [Color(red: 0.4, green: 0.7, blue: 1.0), Color(red: 0.2, green: 0.5, blue: 0.9)]
+                : [Color(red: 0.2, green: 0.3, blue: 0.5), Color(red: 0.1, green: 0.2, blue: 0.4)],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+    }
+
+    @EnvironmentObject private var themeManager: ThemeManager
+
+    private var borderColor: Color {
+        mode == .light ? Color.gray.opacity(0.25) : Color.gray.opacity(0.35)
+    }
+
+    private var themeBackgroundColor: Color {
+        switch mode {
+        case .light:
+            return Color(red: 0.96, green: 0.96, blue: 0.98)
+        case .dark:
+            return ModernDarkColors.surfacePrimary
+        }
+    }
+
+    private var themeTextColor: Color {
+        switch mode {
+        case .light:
+            return Color.black
+        case .dark:
+            return ModernDarkColors.textPrimary
+        }
+    }
+
+    private var dockBackgroundColor: Color {
+        switch mode {
+        case .light:
+            return Color.white.opacity(0.7)
+        case .dark:
+            return ModernDarkColors.surfaceSecondary.opacity(0.8)
         }
     }
 }

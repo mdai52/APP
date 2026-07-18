@@ -62,6 +62,8 @@
 "follow_system" = "System Default";
 "light_mode" = "Light";
 "dark_mode" = "Dark";
+"auto" = "Automatic";
+"auto_theme_description" = "Automatically switch between light and dark appearances based on sunrise and sunset.";
 "accent_color" = "Accent Color";
 "app_icon" = "App Icon";
 "select_icon" = "Select Icon";
