@@ -979,6 +979,7 @@ struct DownloadView: SwiftUI.View {
                         .animation(.spring().delay(0.1), value: animateCards)
                         .listRowBackground(Color.clear)
                         .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
                         .padding(.top, 40)
                 } else {
                     ForEach(vm.sortedDownloadRequests.indices, id: \.self) { index in
